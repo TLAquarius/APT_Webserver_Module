@@ -1,0 +1,11 @@
+﻿timestamp,src_ip,dst_ip,src_port,dst_port,protocol,action,bytes,rule_id,interface,entry,summary,suspicious,risk_type,severity,action.1,next_prediction
+2025-09-27T09:00:00Z,10.0.0.5,8.8.8.8,54321,53,UDP,ALLOW,64,210,eth1,"['2025-09-27T09:02:00Z', '2025-09-27T09:02:05Z', '2025-09-27T09:04:00Z', '2025-09-27T09:07:00Z']","IP công 198.51.100.23 liên tục cố gắng kết nối đến hệ thống nội bộ 10.0.0.5 qua cổng SSH (22) và RDP (3389) bị từ chối. Đồng thời, hệ thống nội bộ 10.0.0.5 có hành vi gửi dữ liệu lớn (2MB) đến IP công 198.51.100.102 qua cổng HTTPS (443).",Có,Thử nghiệm xâm nhập (Intrusion Attempt) và có thể là khai thác dữ liệu (Data Exfiltration),Cao,Chặn IP công 198.51.100.23 và theo dõi hành vi gửi dữ liệu lớn từ 10.0.0.5,Đối tượng có thể tiếp tục cố gắng xâm nhập hệ thống nội bộ hoặc mở rộng hoạt động khai thác dữ liệu.
+2025-09-27T09:01:00Z,10.0.0.5,198.51.100.100,443,52345,TCP,ALLOW,1024,201,eth1,['2025-09-27T09:06:00Z'],Hệ thống nội bộ 10.0.0.5 gửi lượng dữ liệu lớn (2MB) đến IP công 198.51.100.102 qua cổng HTTPS (443).,Có,Khai thác dữ liệu (Data Exfiltration),Cao,Xác minh nguồn dữ liệu và chặn kết nối nếu không có lý do chính đáng,Có thể tiếp tục gửi dữ liệu lớn hoặc thực hiện các hành động khác để thu thập thông tin nhạy cảm.
+2025-09-27T09:02:00Z,198.51.100.23,10.0.0.5,49212,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:02:05Z,198.51.100.23,10.0.0.5,49213,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:03:00Z,10.0.0.5,198.51.100.101,80,52346,TCP,ALLOW,512,201,eth1,,,,,,,
+2025-09-27T09:04:00Z,198.51.100.23,10.0.0.5,49214,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:05:00Z,10.0.0.5,8.8.4.4,54322,53,UDP,ALLOW,64,210,eth1,,,,,,,
+2025-09-27T09:06:00Z,10.0.0.5,198.51.100.102,443,52347,TCP,ALLOW,2048000,201,eth1,,,,,,,
+2025-09-27T09:07:00Z,198.51.100.23,10.0.0.5,49215,3389,TCP,DENY,0,102,eth0,,,,,,,
+2025-09-27T09:08:00Z,10.0.0.5,192.0.2.10,80,52348,TCP,ALLOW,1024,201,eth1,,,,,,,

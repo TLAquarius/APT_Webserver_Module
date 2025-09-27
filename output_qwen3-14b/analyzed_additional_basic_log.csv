@@ -1,0 +1,11 @@
+﻿timestamp,src_ip,dst_ip,src_port,dst_port,protocol,action,bytes,rule_id,interface,entry,summary,suspicious,risk_type,severity,action.1,next_prediction
+2025-09-27T09:00:00Z,10.0.0.5,8.8.8.8,54321,53,UDP,ALLOW,64,210,eth1,"['2025-09-27T09:02:00Z', '2025-09-27T09:02:05Z', '2025-09-27T09:04:00Z', '2025-09-27T09:07:00Z']",IP 198.51.100.23 đã thực hiện nhiều lần kết nối bị từ chối đến 10.0.0.5 trên cổng 22 (SSH) và 3389 (RDP) trong khoảng thời gian ngắn.,Có,Có thể là tấn công brute-force hoặc cố gắng xâm nhập hệ thống (Privilege Escalation),Cao,Ngay lập tức chặn IP 198.51.100.23 và kiểm tra nhật ký bảo mật để xác định nguồn gốc tấn công,Người tấn công có thể tiếp tục thử các cổng khác hoặc chuyển sang phương thức tấn công khác nếu không thành công
+2025-09-27T09:01:00Z,10.0.0.5,198.51.100.100,443,52345,TCP,ALLOW,1024,201,eth1,['2025-09-27T09:06:00Z'],IP 10.0.0.5 đã tải về một lượng dữ liệu lớn (2MB) từ 192.0.2.10 trên cổng 80 (HTTP).,Có,Có thể là hành vi trích xuất dữ liệu (Data Exfiltration) hoặc tải về tài nguyên bất thường,Trung bình,Kiểm tra nội dung tải về và xác minh tính hợp lệ của lưu lượng HTTP,Người dùng có thể tiếp tục tải về dữ liệu hoặc thực hiện các hành vi đáng ngờ khác trên mạng
+2025-09-27T09:02:00Z,198.51.100.23,10.0.0.5,49212,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:02:05Z,198.51.100.23,10.0.0.5,49213,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:03:00Z,10.0.0.5,198.51.100.101,80,52346,TCP,ALLOW,512,201,eth1,,,,,,,
+2025-09-27T09:04:00Z,198.51.100.23,10.0.0.5,49214,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:05:00Z,10.0.0.5,8.8.4.4,54322,53,UDP,ALLOW,64,210,eth1,,,,,,,
+2025-09-27T09:06:00Z,10.0.0.5,198.51.100.102,443,52347,TCP,ALLOW,2048000,201,eth1,,,,,,,
+2025-09-27T09:07:00Z,198.51.100.23,10.0.0.5,49215,3389,TCP,DENY,0,102,eth0,,,,,,,
+2025-09-27T09:08:00Z,10.0.0.5,192.0.2.10,80,52348,TCP,ALLOW,1024,201,eth1,,,,,,,

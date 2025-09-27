@@ -1,0 +1,11 @@
+﻿timestamp,src_ip,dst_ip,src_port,dst_port,protocol,action,bytes,rule_id,interface,entry,summary,suspicious,risk_type,severity,action.1,next_prediction
+2025-09-27T09:00:00Z,10.0.0.5,8.8.8.8,54321,53,UDP,ALLOW,64,210,eth1,"['2025-09-27T09:02:00Z', '2025-09-27T09:02:05Z', '2025-09-27T09:04:00Z', '2025-09-27T09:07:00Z']","Địa chỉ IP 198.51.100.23 liên tục gửi yêu cầu kết nối tới các cổng 22 (SSH) và 3389 (RDP) của máy chủ nội bộ, tất cả đều bị chặn. Đây là dấu hiệu của hành vi quét cổng và thử nghiệm tấn công đăng nhập.",Có,Quét cổng / Tấn công brute force (Reconnaissance),Trung Bình,"Theo dõi liên tục, chặn địa chỉ IP 198.51.100.23 và ghi nhận các sự kiện tiếp theo",Tấn công có thể tiếp tục quét các cổng khác hoặc thử đăng nhập bằng mật khẩu yếu
+2025-09-27T09:01:00Z,10.0.0.5,198.51.100.100,443,52345,TCP,ALLOW,1024,201,eth1,['2025-09-27T09:06:00Z'],"Máy chủ nội bộ gửi một luồng dữ liệu lớn (2 MB) tới địa chỉ 198.51.100.102 qua cổng 443. Địa chỉ này thuộc dải TEST‑NET và thường không được dùng cho giao tiếp thực, do đó chuyển phát dữ liệu lớn tới dải này là bất thường.",Có,Truyền dữ liệu bất thường / Có thể là exfiltration hoặc tải malware,Cao,"Chặn ngay luồng dữ liệu, kiểm tra nội dung payload và phân tích sâu hơn","Nếu là exfiltration, attacker có thể tiếp tục gửi dữ liệu lớn hoặc tải lên các máy chủ khác; nếu là tải malware, attacker có thể cố gắng thực thi mã trên máy chủ mục tiêu"
+2025-09-27T09:02:00Z,198.51.100.23,10.0.0.5,49212,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:02:05Z,198.51.100.23,10.0.0.5,49213,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:03:00Z,10.0.0.5,198.51.100.101,80,52346,TCP,ALLOW,512,201,eth1,,,,,,,
+2025-09-27T09:04:00Z,198.51.100.23,10.0.0.5,49214,22,TCP,DENY,0,101,eth0,,,,,,,
+2025-09-27T09:05:00Z,10.0.0.5,8.8.4.4,54322,53,UDP,ALLOW,64,210,eth1,,,,,,,
+2025-09-27T09:06:00Z,10.0.0.5,198.51.100.102,443,52347,TCP,ALLOW,2048000,201,eth1,,,,,,,
+2025-09-27T09:07:00Z,198.51.100.23,10.0.0.5,49215,3389,TCP,DENY,0,102,eth0,,,,,,,
+2025-09-27T09:08:00Z,10.0.0.5,192.0.2.10,80,52348,TCP,ALLOW,1024,201,eth1,,,,,,,

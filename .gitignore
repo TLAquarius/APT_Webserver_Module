@@ -1,3 +1,4 @@
 # Pycharm IDE configs
 .idea/
 __pycache__/
+.env

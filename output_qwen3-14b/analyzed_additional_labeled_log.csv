@@ -1,0 +1,11 @@
+﻿timestamp,src_ip,dst_ip,src_port,dst_port,protocol,action,bytes,rule_id,interface,label,entry,summary,suspicious,risk_type,severity,action.1,next_prediction
+2025-09-27T10:00:00Z,10.0.0.30,198.51.100.200,40000,80,TCP,ALLOW,8192,201,eth1,normal,"['2025-09-27T10:01:00Z', '2025-09-27T10:03:00Z', '2025-09-27T10:08:00Z']",IP 203.0.113.55 đã thực hiện nhiều lần kết nối đến cổng 22 (SSH) của máy chủ nội bộ 10.0.0.30 nhưng bị từ chối (DENY).,Có,Có thể là cuộc tấn công brute-force để cố gắng truy cập SSH trái phép,Cao,Ngăn chặn IP 203.0.113.55 và kiểm tra nhật ký xác thực SSH,Người tấn công có thể tiếp tục thử nhiều lần khác hoặc chuyển sang cổng 3389 (RDP) để tìm lỗ hổng
+2025-09-27T10:01:00Z,203.0.113.55,10.0.0.30,33333,22,TCP,DENY,0,101,eth0,suspicious,"['2025-09-27T10:05:00Z', '2025-09-27T10:07:00Z']","IP 203.0.113.55 đã cố gắng truy cập cổng 3389 (RDP) của máy chủ 10.0.0.30 và cùng lúc, máy chủ 10.0.0.30 đã gửi 100MB dữ liệu đến IP 198.51.100.202 qua cổng 443 (HTTPS).",Có,Có thể là hành vi cố gắng leo thang phân quyền (Privilege Escalation) và khai thác dữ liệu (Data Exfiltration),Cao,"Ngăn chặn kết nối RDP, kiểm tra chi tiết lưu lượng 100MB và phân tích nguồn đích 198.51.100.202","Nếu thành công, kẻ tấn công có thể sử dụng máy chủ 10.0.0.30 để truyền dữ liệu nhạy cảm hoặc mở rộng tấn công"
+2025-09-27T10:02:00Z,10.0.0.30,198.51.100.200,40001,443,TCP,ALLOW,16384,201,eth1,normal,,,,,,,
+2025-09-27T10:03:00Z,203.0.113.55,10.0.0.30,33334,22,TCP,DENY,0,101,eth0,suspicious,,,,,,,
+2025-09-27T10:04:00Z,10.0.0.30,8.8.8.8,54321,53,UDP,ALLOW,64,210,eth1,normal,,,,,,,
+2025-09-27T10:05:00Z,203.0.113.55,10.0.0.30,33335,3389,TCP,DENY,0,102,eth0,suspicious,,,,,,,
+2025-09-27T10:06:00Z,10.0.0.30,198.51.100.201,40002,80,TCP,ALLOW,4096,201,eth1,normal,,,,,,,
+2025-09-27T10:07:00Z,10.0.0.30,198.51.100.202,104857600,443,TCP,ALLOW,104857600,201,eth1,suspicious,,,,,,,
+2025-09-27T10:08:00Z,203.0.113.55,10.0.0.30,33336,22,TCP,DENY,0,101,eth0,suspicious,,,,,,,
+2025-09-27T10:09:00Z,10.0.0.30,192.0.2.20,40003,443,TCP,ALLOW,1024,201,eth1,normal,,,,,,,

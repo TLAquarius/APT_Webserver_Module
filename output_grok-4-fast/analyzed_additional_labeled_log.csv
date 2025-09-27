@@ -1,0 +1,11 @@
+﻿timestamp,src_ip,dst_ip,src_port,dst_port,protocol,action,bytes,rule_id,interface,label,entry,summary,suspicious,risk_type,severity,action.1,next_prediction
+2025-09-27T10:00:00Z,10.0.0.30,198.51.100.200,40000,80,TCP,ALLOW,8192,201,eth1,normal,"['2025-09-27T10:01:00Z', '2025-09-27T10:03:00Z', '2025-09-27T10:05:00Z', '2025-09-27T10:08:00Z']","IP bên ngoài 203.0.113.55 liên tục cố gắng kết nối đến máy nội bộ 10.0.0.30 qua các cổng SSH (22) và RDP (3389), tất cả đều bị từ chối bởi quy tắc bảo mật.",Có,Có thể là nỗ lực quét cổng và brute force tấn công truy cập từ xa (Remote Access Attack hoặc Port Scanning),Trung bình,Theo dõi chặt chẽ IP này và chặn vĩnh viễn nếu các nỗ lực tiếp tục,"Kẻ tấn công có thể thử các cổng khác, sử dụng proxy hoặc công cụ khai thác lỗ hổng để vượt qua tường lửa"
+2025-09-27T10:01:00Z,203.0.113.55,10.0.0.30,33333,22,TCP,DENY,0,101,eth0,suspicious,['2025-09-27T10:07:00Z'],"Máy nội bộ 10.0.0.30 thực hiện truyền dữ liệu lớn (khoảng 100MB) đến IP bên ngoài 198.51.100.202 qua cổng HTTPS (443), được phép nhưng lượng dữ liệu bất thường.",Có,Có thể là hành vi trích xuất dữ liệu trái phép (Data Exfiltration) qua kênh mã hóa,Cao,"Kiểm tra ngay lập tức hoạt động của máy 10.0.0.30, xác minh dữ liệu truyền và cô lập nếu cần",Máy này có thể tiếp tục truyền dữ liệu lớn hơn hoặc kẻ tấn công sẽ di chuyển sang các máy nội bộ khác để khai thác
+2025-09-27T10:02:00Z,10.0.0.30,198.51.100.200,40001,443,TCP,ALLOW,16384,201,eth1,normal,,,,,,,
+2025-09-27T10:03:00Z,203.0.113.55,10.0.0.30,33334,22,TCP,DENY,0,101,eth0,suspicious,,,,,,,
+2025-09-27T10:04:00Z,10.0.0.30,8.8.8.8,54321,53,UDP,ALLOW,64,210,eth1,normal,,,,,,,
+2025-09-27T10:05:00Z,203.0.113.55,10.0.0.30,33335,3389,TCP,DENY,0,102,eth0,suspicious,,,,,,,
+2025-09-27T10:06:00Z,10.0.0.30,198.51.100.201,40002,80,TCP,ALLOW,4096,201,eth1,normal,,,,,,,
+2025-09-27T10:07:00Z,10.0.0.30,198.51.100.202,104857600,443,TCP,ALLOW,104857600,201,eth1,suspicious,,,,,,,
+2025-09-27T10:08:00Z,203.0.113.55,10.0.0.30,33336,22,TCP,DENY,0,101,eth0,suspicious,,,,,,,
+2025-09-27T10:09:00Z,10.0.0.30,192.0.2.20,40003,443,TCP,ALLOW,1024,201,eth1,normal,,,,,,,
