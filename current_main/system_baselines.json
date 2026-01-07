@@ -1,0 +1,61 @@
+{
+    "level_1_system": {
+        "max_global_rpm": 4.5,
+        "description": "If total system traffic exceeds this RPM, suspect DDoS."
+    },
+    "level_2_resources": {
+        "/admin/config": {
+            "max_safe_bytes": 1296.0,
+            "max_safe_duration": 100.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        },
+        "/api/search": {
+            "max_safe_bytes": 1241.0,
+            "max_safe_duration": 522.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        },
+        "/assets/style.css": {
+            "max_safe_bytes": 20926.088689625423,
+            "max_safe_duration": 39.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        },
+        "/dashboard": {
+            "max_safe_bytes": 6021.0,
+            "max_safe_duration": 299.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        },
+        "/index.html": {
+            "max_safe_bytes": 1700.0,
+            "max_safe_duration": 91.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        },
+        "/login.php": {
+            "max_safe_bytes": 386.0,
+            "max_safe_duration": 210.0,
+            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+        }
+    },
+    "level_3_groups": {
+        "0": {
+            "max_safe_rpm": 0.78,
+            "max_safe_daily_bytes": 6784713.0,
+            "max_safe_error_rate": 0.0,
+            "avg_rpm_baseline": 0.52,
+            "description": "Thresholds for User Group 0"
+        },
+        "1": {
+            "max_safe_rpm": 0.81,
+            "max_safe_daily_bytes": 6970264.5,
+            "max_safe_error_rate": 0.0,
+            "avg_rpm_baseline": 0.535,
+            "description": "Thresholds for User Group 1"
+        },
+        "2": {
+            "max_safe_rpm": 0.81,
+            "max_safe_daily_bytes": 7168957.5,
+            "max_safe_error_rate": 0.0,
+            "avg_rpm_baseline": 0.54,
+            "description": "Thresholds for User Group 2"
+        }
+    }
+}

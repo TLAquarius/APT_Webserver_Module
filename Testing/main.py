@@ -1,12 +1,12 @@
 # main.py
 import pandas as pd
-from llm_init_openrouter import LLMClient
+from Testing.llm_init_openrouter import LLMClient
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-data_path = "./fake_dataset"
+data_path = "../fake_dataset"
 output = "./output_gemini-2.5-flash"
 
 model_name = os.getenv('MODEL_NAME',"mistralai/mistral-7b-instruct")
