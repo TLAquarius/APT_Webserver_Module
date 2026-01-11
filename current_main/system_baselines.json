@@ -1,61 +1,135 @@
 {
     "level_1_system": {
-        "max_global_rpm": 4.5,
-        "description": "If total system traffic exceeds this RPM, suspect DDoS."
+        "max_global_rpm": 21.0
     },
     "level_2_resources": {
         "/admin/config": {
-            "max_safe_bytes": 1296.0,
-            "max_safe_duration": 100.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 1032.0,
+            "max_safe_bytes": 1362.0,
+            "min_safe_duration": 0.0,
+            "max_safe_duration": 179.0
         },
         "/api/search": {
-            "max_safe_bytes": 1241.0,
-            "max_safe_duration": 522.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 109.0,
+            "max_safe_bytes": 1524.0,
+            "min_safe_duration": 0.0,
+            "max_safe_duration": 666.0
         },
         "/assets/style.css": {
-            "max_safe_bytes": 20926.088689625423,
-            "max_safe_duration": 39.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 9000.0,
+            "max_safe_bytes": 15000.0,
+            "min_safe_duration": 0.0,
+            "max_safe_duration": 130.0
         },
         "/dashboard": {
-            "max_safe_bytes": 6021.0,
-            "max_safe_duration": 299.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 3285.0,
+            "max_safe_bytes": 6705.0,
+            "min_safe_duration": 27.0,
+            "max_safe_duration": 367.0
         },
         "/index.html": {
-            "max_safe_bytes": 1700.0,
-            "max_safe_duration": 91.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 1156.0,
+            "max_safe_bytes": 1836.0,
+            "min_safe_duration": 0.0,
+            "max_safe_duration": 149.0
         },
         "/login.php": {
-            "max_safe_bytes": 386.0,
-            "max_safe_duration": 210.0,
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": 250.0,
+            "max_safe_bytes": 450.0,
+            "min_safe_duration": 0.0,
+            "max_safe_duration": 268.0
         }
     },
     "level_3_groups": {
         "0": {
-            "max_safe_rpm": 0.78,
-            "max_safe_daily_bytes": 6784713.0,
-            "max_safe_error_rate": 0.0,
-            "avg_rpm_baseline": 0.52,
-            "description": "Thresholds for User Group 0"
+            "max_safe_daily_bytes": 9046284.0
         },
         "1": {
-            "max_safe_rpm": 0.81,
-            "max_safe_daily_bytes": 6970264.5,
-            "max_safe_error_rate": 0.0,
-            "avg_rpm_baseline": 0.535,
-            "description": "Thresholds for User Group 1"
+            "max_safe_daily_bytes": 9293686.0
         },
         "2": {
-            "max_safe_rpm": 0.81,
-            "max_safe_daily_bytes": 7168957.5,
-            "max_safe_error_rate": 0.0,
-            "avg_rpm_baseline": 0.54,
-            "description": "Thresholds for User Group 2"
+            "max_safe_daily_bytes": 9558610.0
+        }
+    },
+    "level_4_users": {
+        "admin": {
+            "valid_hours": [
+                3,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18
+            ],
+            "max_personal_bytes": 51293.0
+        },
+        "alice": {
+            "valid_hours": [
+                1,
+                2,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                20,
+                21
+            ],
+            "max_personal_bytes": 51265.0
+        },
+        "bob": {
+            "valid_hours": [
+                4,
+                5,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18
+            ],
+            "max_personal_bytes": 51363.0
+        },
+        "manager": {
+            "valid_hours": [
+                0,
+                2,
+                3,
+                5,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                22,
+                23
+            ],
+            "max_personal_bytes": 51257.0
         }
     }
 }

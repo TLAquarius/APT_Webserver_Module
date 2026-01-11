@@ -2,37 +2,41 @@ import pandas as pd
 import numpy as np
 import json
 import re
+import warnings
 
-# FILES
+warnings.filterwarnings('ignore')
+
 LOG_FILE = "web_server_v4.log"
 GROUP_FILE = "user_groups.csv"
 OUTPUT_JSON = "system_baselines.json"
 
 
-# --- HELPER: ROBUST STATISTICS ---
-def calculate_limit(series, multiplier=3.0):
-    """
-    Returns the Upper Limit using Median + (3 * MAD).
-    This ensures actual attacks in the training data don't skew the baseline.
-    """
-    if len(series) < 5: return float(series.max()) * 1.5  # Fallback for rare data
+def calculate_bounds(series, multiplier=3.5, min_buffer_abs=0):
+    if len(series) < 5:
+        return float(series.min()) * 0.5, float(series.max()) * 2.0
 
     median = series.median()
     mad = (series - median).abs().median()
 
-    if mad == 0:  # If data is very stable (std dev ~ 0)
-        mad = series.std() if series.std() > 0 else (median * 0.1)
+    # --- CRITICAL FIX ---
+    # Previous bug: Falling back to .std() allowed attacks in the training data
+    # to inflate the baseline.
+    # New Logic: If data is stable (MAD=0), assume a strict 5% variance limit.
+    if mad == 0:
+        mad = median * 0.05  # Assume 5% natural variance
         if mad == 0: mad = 1.0
 
-    limit = median + (multiplier * mad)
-    return float(limit)
+    final_buffer = max(multiplier * mad, min_buffer_abs)
+
+    # Ensure lower limit doesn't drop below 0
+    return float(max(0, median - final_buffer)), float(median + final_buffer)
 
 
 def train_baselines():
-    print("[-] Training System Baselines...")
+    print("[-] Training System Baselines (With Smart Hour Filtering)...")
 
-    # 1. LOAD DATA
-    # Load Raw Logs for Level 1 & 2
+    # ... (Loading Logic remains the same) ...
+    # [Paste your existing loading code here]
     log_regex = r'(?P<ip>\S+) - (?P<user>\S+) \[(?P<time>.*?)\] "(?P<method>\S+) (?P<uri>\S+).*?" (?P<status>\d+) (?P<req_bytes>\d+) (?P<res_bytes>\d+) (?P<duration>\d+)'
     log_data = []
     with open(LOG_FILE, "r") as f:
@@ -47,56 +51,61 @@ def train_baselines():
     logs_df['res_bytes'] = logs_df['res_bytes'].astype(int)
     logs_df['duration'] = logs_df['duration'].astype(int)
 
-    # Load Groups for Level 3
     groups_df = pd.read_csv(GROUP_FILE)
 
     baselines = {
         "level_1_system": {},
         "level_2_resources": {},
-        "level_3_groups": {}
+        "level_3_groups": {},
+        "level_4_users": {}
     }
 
-    # --- LEVEL 1: SYSTEM PULSE (Global Traffic) ---
-    print("[-] Calculating Level 1: Global Pulse...")
-    # Resample to 1-minute buckets
+    # ... (Level 1, 2, 3 code remains the same) ...
+    # [Paste Level 1, 2, 3 code here - no changes needed]
     traffic_per_min = logs_df.set_index('time').resample('1min')['ip'].count()
+    _, max_rpm = calculate_bounds(traffic_per_min, multiplier=4.0, min_buffer_abs=20)
+    baselines["level_1_system"] = {"max_global_rpm": max_rpm}
 
-    baselines["level_1_system"] = {
-        "max_global_rpm": calculate_limit(traffic_per_min, multiplier=3.5),
-        "description": "If total system traffic exceeds this RPM, suspect DDoS."
-    }
-
-    # --- LEVEL 2: RESOURCE PROFILING (Per URL) ---
-    print("[-] Calculating Level 2: URL Personalities...")
     for uri, group in logs_df.groupby('uri'):
-        if len(group) < 20: continue  # Skip rare pages
-
+        if len(group) < 10: continue
+        min_bytes, max_bytes = calculate_bounds(group['res_bytes'], multiplier=5.0, min_buffer_abs=100)
+        min_time, max_time = calculate_bounds(group['duration'], multiplier=5.0, min_buffer_abs=100)
         baselines["level_2_resources"][uri] = {
-            "max_safe_bytes": calculate_limit(group['res_bytes']),
-            "max_safe_duration": calculate_limit(group['duration']),
-            "description": "Exceeding bytes = Exfiltration. Exceeding duration = SQLi/DoS."
+            "min_safe_bytes": min_bytes, "max_safe_bytes": max_bytes,
+            "min_safe_duration": min_time, "max_safe_duration": max_time
         }
 
-    # --- LEVEL 3: PEER GROUP PROFILES (Cluster Thresholds) ---
-    print("[-] Calculating Level 3: Group Behaviors...")
     for cluster_id, group in groups_df.groupby('cluster_group'):
-        cluster_id = str(cluster_id)  # JSON keys must be strings
+        cluster_id = str(cluster_id)
+        _, max_bytes = calculate_bounds(group['total_bytes_sent'], multiplier=3.0, min_buffer_abs=100000)
+        baselines["level_3_groups"][cluster_id] = {"max_safe_daily_bytes": max_bytes}
 
-        baselines["level_3_groups"][cluster_id] = {
-            "max_safe_rpm": calculate_limit(group['avg_rpm']),
-            "max_safe_daily_bytes": calculate_limit(group['total_bytes_sent']),
-            "max_safe_error_rate": calculate_limit(group['error_rate_pct'], multiplier=2.0),
-            "avg_rpm_baseline": float(group['avg_rpm'].median()),  # For reference
-            "description": f"Thresholds for User Group {cluster_id}"
+    # --- LEVEL 4: INDIVIDUAL USERS (UPDATED) ---
+    print("[-] Level 4: Learning Core Working Hours...")
+    for user, group in logs_df[logs_df['user'] != '-'].groupby('user'):
+        # 1. Count traffic per hour (0-23)
+        hourly_counts = group['time'].dt.hour.value_counts()
+
+        # 2. Calculate the threshold (e.g., must be > 10% of their average hourly traffic)
+        # This removes the "3 AM" noise where they only had 1 or 2 requests
+        avg_traffic = hourly_counts.mean()
+        threshold = avg_traffic * 0.15
+
+        # 3. Only keep hours that meet the threshold
+        core_hours = hourly_counts[hourly_counts > threshold].index.tolist()
+        active_hours = sorted(core_hours)
+
+        _, max_personal_bytes = calculate_bounds(group['res_bytes'], multiplier=8.0, min_buffer_abs=50000)
+
+        baselines["level_4_users"][user] = {
+            "valid_hours": active_hours,
+            "max_personal_bytes": max_personal_bytes
         }
 
-    # SAVE TO FILE
     with open(OUTPUT_JSON, "w") as f:
         json.dump(baselines, f, indent=4)
 
-    print(f"[+] Training Complete. Intelligence saved to '{OUTPUT_JSON}'")
-    print(
-        f"[+] Created baselines for {len(baselines['level_2_resources'])} URIs and {len(baselines['level_3_groups'])} User Groups.")
+    print(f"[+] Training Complete.")
 
 
 if __name__ == "__main__":

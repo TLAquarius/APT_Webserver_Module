@@ -2,11 +2,11 @@ import json
 import re
 import pandas as pd
 from datetime import datetime
+from collections import Counter
 
-# CONFIGURATION
 LOG_FILE = "web_server_v4.log"
 BASELINE_FILE = "system_baselines.json"
-GROUND_TRUTH_FILE = "ground_truth.json"  # To verify if we were right
+GROUND_TRUTH_FILE = "ground_truth.json"
 
 
 def load_baselines():
@@ -15,21 +15,15 @@ def load_baselines():
 
 
 def parse_log_line(line):
-    # Regex to parse the V4 log format
     regex = r'(?P<ip>\S+) - (?P<user>\S+) \[(?P<time>.*?)\] "(?P<method>\S+) (?P<uri>\S+).*?" (?P<status>\d+) (?P<req_bytes>\d+) (?P<res_bytes>\d+) (?P<duration>\d+)'
     match = re.search(regex, line)
     if match:
         data = match.groupdict()
-        # Convert types
         data['res_bytes'] = int(data['res_bytes'])
         data['duration'] = int(data['duration'])
 
-        # --- FIX START ---
-        # 1. Strip the trailing space
         clean_time = data['time'].strip()
-        # 2. Parse without the %z (Timezone)
         dt = datetime.strptime(clean_time, "%d/%b/%Y:%H:%M:%S")
-        # --- FIX END ---
 
         data['hour'] = dt.hour
         data['timestamp_obj'] = dt
@@ -40,11 +34,9 @@ def parse_log_line(line):
 def scan_logs():
     print("[-] Loading Baselines...")
     baselines = load_baselines()
-
-    # We will track our detections here
     detected_anomalies = []
 
-    print(f"[-] Scanning {LOG_FILE} against Security Baselines...")
+    print(f"[-] Scanning {LOG_FILE}...")
 
     with open(LOG_FILE, "r") as f:
         for line_num, line in enumerate(f, 1):
@@ -54,83 +46,109 @@ def scan_logs():
             uri = record['uri']
             user = record['user']
 
-            # === CHECK 1: RESOURCE ANOMALY (Level 2) ===
-            # Does this URI exist in our baseline?
+            # Check 1: Resource Anomaly (Level 2)
             if uri in baselines["level_2_resources"]:
                 rules = baselines["level_2_resources"][uri]
 
-                # Rule A: Data Exfiltration Check (Size)
+                # Rule A: Exfiltration (Too Big)
                 if record['res_bytes'] > rules['max_safe_bytes']:
                     detected_anomalies.append({
-                        "line": line_num,
-                        "type": "RESOURCE_ANOMALY (SIZE)",
-                        "detail": f"URI {uri} sent {record['res_bytes']} bytes (Limit: {rules['max_safe_bytes']:.0f})",
+                        "line": line_num, "type": "RESOURCE_ANOMALY (SIZE_HIGH)",
+                        "detail": f"URI {uri} sent {record['res_bytes']}b (Limit: {rules['max_safe_bytes']:.0f}b)",
                         "confidence": "High"
                     })
-                    continue  # Stop checking this line if already flagged
+                    continue
 
-                # Rule B: DoS / SQLi Check (Time)
-                if record['duration'] > rules['max_safe_duration']:
+                    # Rule B: C2 Beaconing (Too Small)
+                # FIX: Check > 0 to catch 1-byte attacks. Reduced buffer allows this to work.
+                if record['res_bytes'] < rules['min_safe_bytes'] and record['res_bytes'] > 0:
                     detected_anomalies.append({
-                        "line": line_num,
-                        "type": "RESOURCE_ANOMALY (TIME)",
-                        "detail": f"URI {uri} took {record['duration']} ms (Limit: {rules['max_safe_duration']:.0f})",
+                        "line": line_num, "type": "RESOURCE_ANOMALY (SIZE_LOW)",
+                        "detail": f"URI {uri} sent {record['res_bytes']}b (Expected Min: {rules['min_safe_bytes']:.0f}b)",
                         "confidence": "Medium"
                     })
                     continue
 
-            # === CHECK 2: TEMPORAL ANOMALY (Level 4) ===
-            # (Simplified: Just checking if it's "Late Night" for this demo)
-            # In a real system, you'd check baselines['level_4_users'][user]['valid_hours']
-            if record['hour'] < 5 or record['hour'] > 23:
-                # Reduce noise: Only alert if it's a known user, not anonymous
-                if user != "-":
+                # Rule C: Time Anomaly (Too Slow)
+                if record['duration'] > rules['max_safe_duration']:
                     detected_anomalies.append({
-                        "line": line_num,
-                        "type": "BEHAVIOR_ANOMALY (TIME)",
-                        "detail": f"User {user} active at {record['hour']}:00 hours (Unusual time)",
+                        "line": line_num, "type": "RESOURCE_ANOMALY (TIME_HIGH)",
+                        "detail": f"URI {uri} took {record['duration']}ms (Limit: {rules['max_safe_duration']:.0f}ms)",
+                        "confidence": "Medium"
+                    })
+                    continue
+
+            # Check 2: Behavior Anomaly (Level 4)
+            if user in baselines["level_4_users"]:
+                profile = baselines["level_4_users"][user]
+
+                # Rule D: Unusual Time
+                is_valid_time = False
+                for h in profile['valid_hours']:
+                    diff = abs(record['hour'] - h)
+                    if diff > 12: diff = 24 - diff
+                    if diff <= 4:
+                        is_valid_time = True
+                        break
+
+                if not is_valid_time:
+                    detected_anomalies.append({
+                        "line": line_num, "type": "BEHAVIOR_ANOMALY (UNUSUAL_TIME)",
+                        "detail": f"User {user} active at {record['hour']}:00.",
                         "confidence": "Low"
+                    })
+
+                # Rule E: Personal Spike
+                if record['res_bytes'] > profile['max_personal_bytes']:
+                    detected_anomalies.append({
+                        "line": line_num, "type": "BEHAVIOR_ANOMALY (PERSONAL_SPIKE)",
+                        "detail": f"User {user} sent {record['res_bytes']}b. Personal Max: {profile['max_personal_bytes']:.0f}b",
+                        "confidence": "Medium"
                     })
 
     return detected_anomalies
 
 
 def validate_results(detections):
-    print("\n[-] Validating detections against Ground Truth (The Cheat Sheet)...")
-
+    print("\n[-] Validating detections against Ground Truth...")
     try:
         with open(GROUND_TRUTH_FILE, "r") as f:
             truth = json.load(f)
     except FileNotFoundError:
-        print("[!] No ground truth file found. Cannot calculate accuracy.")
         return
 
-    # Convert truth to a set of line numbers for fast lookup
     true_attack_lines = {item['line_number'] for item in truth}
     detected_lines = {item['line'] for item in detections}
 
-    # Calculate Stats
     true_positives = true_attack_lines.intersection(detected_lines)
     false_positives = detected_lines - true_attack_lines
     missed_attacks = true_attack_lines - detected_lines
 
     print("=" * 60)
-    print(f"TOTAL ATTACKS INJECTED: {len(true_attack_lines)}")
-    print(f"TOTAL ALERTS TRIGGERED: {len(detected_lines)}")
+    print(f"TOTAL ATTACKS:       {len(true_attack_lines)}")
+    print(f"TOTAL ALERTS:        {len(detected_lines)}")
     print("=" * 60)
-    print(f"[+] TRUE POSITIVES (Caught): {len(true_positives)}")
-    print(f"[-] FALSE POSITIVES (Noise): {len(false_positives)}")
-    print(f"[-] MISSED ATTACKS:          {len(missed_attacks)}")
+    print(f"[+] TRUE POSITIVES:  {len(true_positives)}")
+    print(f"[-] FALSE POSITIVES: {len(false_positives)}")
+    print(f"[-] MISSED:          {len(missed_attacks)}")
     print("=" * 60)
 
     if len(true_attack_lines) > 0:
-        detection_rate = (len(true_positives) / len(true_attack_lines)) * 100
-        print(f"FINAL DETECTION SCORE: {detection_rate:.1f}%")
+        score = (len(true_positives) / len(true_attack_lines)) * 100
+        print(f"FINAL ACCURACY SCORE: {score:.1f}%")
+        if len(detected_lines) > 0:
+            precision = (len(true_positives) / len(detected_lines)) * 100
+            print(f"PRECISION:            {precision:.1f}%")
 
-    # Print a few examples
-    print("\n[Example Alerts]")
-    for alert in detections[:3]:
-        print(f"Line {alert['line']}: [{alert['type']}] {alert['detail']}")
+    if len(missed_attacks) > 0:
+        print("\n[DEBUG] Analysis of Missed Attacks:")
+        missed_types = []
+        for t in truth:
+            if t['line_number'] in missed_attacks:
+                missed_types.append(t['attack_type'])
+
+        for attack_type, count in Counter(missed_types).items():
+            print(f"   > Missed {count} logs of type: {attack_type}")
 
 
 if __name__ == "__main__":
