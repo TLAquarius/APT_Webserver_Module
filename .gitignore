@@ -202,7 +202,15 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+#file
+./Testing/Version1-0/data/access.log
+./Testing/Version1-0/data/csic_database.csv
+./Testing/Version1-0/data/zaker_timeline.json
+./Testing/Version1-0/data/csic_timeline.json

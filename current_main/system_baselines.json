@@ -4,16 +4,16 @@
     },
     "level_2_resources": {
         "/admin/config": {
-            "min_safe_bytes": 1032.0,
-            "max_safe_bytes": 1362.0,
+            "min_safe_bytes": 1030.0,
+            "max_safe_bytes": 1370.0,
             "min_safe_duration": 0.0,
             "max_safe_duration": 179.0
         },
         "/api/search": {
-            "min_safe_bytes": 109.0,
-            "max_safe_bytes": 1524.0,
+            "min_safe_bytes": 98.0,
+            "max_safe_bytes": 1528.0,
             "min_safe_duration": 0.0,
-            "max_safe_duration": 666.0
+            "max_safe_duration": 668.0
         },
         "/assets/style.css": {
             "min_safe_bytes": 9000.0,
@@ -22,16 +22,16 @@
             "max_safe_duration": 130.0
         },
         "/dashboard": {
-            "min_safe_bytes": 3285.0,
-            "max_safe_bytes": 6705.0,
-            "min_safe_duration": 27.0,
-            "max_safe_duration": 367.0
+            "min_safe_bytes": 3321.0,
+            "max_safe_bytes": 6671.0,
+            "min_safe_duration": 35.0,
+            "max_safe_duration": 365.0
         },
         "/index.html": {
-            "min_safe_bytes": 1156.0,
-            "max_safe_bytes": 1836.0,
+            "min_safe_bytes": 1162.0,
+            "max_safe_bytes": 1832.0,
             "min_safe_duration": 0.0,
-            "max_safe_duration": 149.0
+            "max_safe_duration": 150.0
         },
         "/login.php": {
             "min_safe_bytes": 250.0,
@@ -42,19 +42,18 @@
     },
     "level_3_groups": {
         "0": {
-            "max_safe_daily_bytes": 9046284.0
+            "max_safe_daily_bytes": 46070178.0
         },
         "1": {
-            "max_safe_daily_bytes": 9293686.0
+            "max_safe_daily_bytes": 47122088.0
         },
         "2": {
-            "max_safe_daily_bytes": 9558610.0
+            "max_safe_daily_bytes": 47169472.0
         }
     },
     "level_4_users": {
         "admin": {
             "valid_hours": [
-                3,
                 8,
                 9,
                 10,
@@ -67,33 +66,10 @@
                 17,
                 18
             ],
-            "max_personal_bytes": 51293.0
+            "max_personal_bytes": 51268.0
         },
         "alice": {
             "valid_hours": [
-                1,
-                2,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18,
-                20,
-                21
-            ],
-            "max_personal_bytes": 51265.0
-        },
-        "bob": {
-            "valid_hours": [
-                4,
-                5,
-                7,
                 8,
                 9,
                 10,
@@ -106,15 +82,10 @@
                 17,
                 18
             ],
-            "max_personal_bytes": 51363.0
+            "max_personal_bytes": 51269.0
         },
-        "manager": {
+        "bob": {
             "valid_hours": [
-                0,
-                2,
-                3,
-                5,
-                7,
                 8,
                 9,
                 10,
@@ -125,11 +96,25 @@
                 15,
                 16,
                 17,
-                18,
-                22,
-                23
+                18
             ],
-            "max_personal_bytes": 51257.0
+            "max_personal_bytes": 51308.5
+        },
+        "manager": {
+            "valid_hours": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18
+            ],
+            "max_personal_bytes": 51275.5
         }
     }
 }

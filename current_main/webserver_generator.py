@@ -7,7 +7,7 @@ from faker import Faker
 fake = Faker()
 
 # Configuration
-TOTAL_RECORDS = 10000
+TOTAL_RECORDS = 50000
 ATTACK_RATIO = 0.03  # 3% of traffic is malicious
 START_TIME = datetime.now() - timedelta(days=3)
 LOG_FILE = "web_server_v4.log"
