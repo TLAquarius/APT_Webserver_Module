@@ -1,0 +1,24 @@
+{
+  "models": [
+    "IsolationForest",
+    "SGDOneClassSVM"
+  ],
+  "contamination": 0.005,
+  "iforest_threshold": -0.6683205480995483,
+  "svm_threshold": 0.0011630163965390544,
+  "features_used": [
+    "duration",
+    "total_requests",
+    "requests_per_sec",
+    "rate_4xx",
+    "rate_5xx",
+    "unique_path_ratio",
+    "unique_path_count",
+    "avg_uri_entropy",
+    "max_uri_entropy",
+    "avg_payload_entropy",
+    "max_payload_entropy",
+    "max_req_bytes",
+    "avg_req_bytes"
+  ]
+}

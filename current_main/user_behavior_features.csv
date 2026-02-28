@@ -1,5 +1,0 @@
-user_id,total_requests,total_bytes_sent,total_bytes_received,avg_rpm,distinct_pages,error_rate_pct,write_read_ratio,avg_active_hour
-admin,6309,23584736,3464156,0.65,6,0.0,0.21,12.7
-alice,6319,23035089,3472782,0.65,6,0.0,0.217,12.8
-bob,6146,23561044,3361800,0.64,6,0.0,0.203,12.8
-manager,6230,22614934,3422960,0.65,6,0.0,0.209,12.8
