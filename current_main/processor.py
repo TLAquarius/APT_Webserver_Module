@@ -17,9 +17,6 @@ except ImportError:
     GEOIP_AVAILABLE = False
 
 
-# ==========================================
-# 1. ENRICHMENT
-# ==========================================
 class LogEnricher:
     STATIC_EXTS = {'.jpg', '.jpeg', '.png', '.gif', '.css', '.js', '.ico', '.svg', '.woff', '.ttf', '.eot', '.map'}
 
@@ -28,7 +25,6 @@ class LogEnricher:
         if GEOIP_AVAILABLE and os.path.exists(geo_db_path):
             self.geo_reader = geoip2.database.Reader(geo_db_path)
 
-    # OPTIMIZATION 1: LRU Cache prevents querying the same IP thousands of times
     @lru_cache(maxsize=16384)
     def _get_country(self, ip: str) -> str:
         if not self.geo_reader or not ip:
@@ -72,10 +68,10 @@ class LogEnricher:
             "label": event.label
         }
 
+    @lru_cache(maxsize=100000)
     def _calc_entropy(self, text: str) -> float:
         if not text: return 0.0
         length = len(text)
-        # OPTIMIZATION 2: collections.Counter uses highly optimized C-code for counting
         counts = collections.Counter(text).values()
         return -sum((c / length) * math.log2(c / length) for c in counts)
 
@@ -95,46 +91,34 @@ class LogEnricher:
         return "unknown"
 
 
-# ==========================================
-# 2. RULE ENGINE (Aggressive CSIC Mode)
-# ==========================================
 class OwaspRuleEngine:
     def __init__(self):
-        # OPTIMIZATION 3: Regex Alternation compiles into a single fast state machine
-        sqli_patterns = [
-            r"union\s+(all\s+)?select", r"select\s+.*\s+from", r"insert\s+into\s+.*\s+values",
-            r"drop\s+(table|database)", r"waitfor\s+delay", r"exec(\s|\+)+(xp|sp)_",
-            r"(or|and)\s+['0-9]+=['0-9]+", r"--", r";\s*$"
-        ]
-        self.sqli_re = re.compile("|".join(sqli_patterns), re.I)
-
-        xss_patterns = [
-            r"<script", r"javascript:", r"on\w+\s*=",
-            r"alert\(", r"<img\s+.*?onerror", r"&#", r"%3cscript"
-        ]
-        self.xss_re = re.compile("|".join(xss_patterns), re.I)
-
-        traversal_patterns = [
-            r"\.\./", r"%2e%2e%2f", r"/etc/passwd",
-            r"c:\\windows", r"cmd\.exe", r"/bin/sh"
-        ]
-        self.traversal_re = re.compile("|".join(traversal_patterns), re.I)
+        self.sqli_re = re.compile(
+            r"union\s+(all\s+)?select|select\s+.*\s+from|insert\s+into\s+.*\s+values|drop\s+(table|database)|waitfor\s+delay|exec(\s|\+)+(xp|sp)_|(or|and)\s+['0-9]+=['0-9]+|--|;\s*$",
+            re.I)
+        self.xss_re = re.compile(r"<script|javascript:|on\w+\s*=|alert\(|<img\s+.*?onerror|&#|%3cscript", re.I)
+        self.traversal_re = re.compile(r"\.\./|%2e%2e%2f|/etc/passwd|c:\\windows|cmd\.exe|/bin/sh", re.I)
 
     def evaluate(self, enriched: dict) -> dict:
         content = enriched['path'] + " " + enriched['full_payload']
         if not content.strip():
             return {"is_sqli": False, "is_xss": False, "is_traversal": False}
 
-        return {
-            "is_sqli": bool(self.sqli_re.search(content)),
-            "is_xss": bool(self.xss_re.search(content)),
-            "is_traversal": bool(self.traversal_re.search(content))
-        }
+        content_lower = content.lower()
+        is_sqli, is_xss, is_traversal = False, False, False
+
+        if any(c in content_lower for c in ("'", "select", "union", "insert", "drop", "--", ";")):
+            is_sqli = bool(self.sqli_re.search(content))
+
+        if any(c in content_lower for c in ("<", ">", "script", "alert", "onerror", "%3c", "&#")):
+            is_xss = bool(self.xss_re.search(content))
+
+        if any(c in content_lower for c in (".", "%2e", "etc", "windows", "bin")):
+            is_traversal = bool(self.traversal_re.search(content))
+
+        return {"is_sqli": is_sqli, "is_xss": is_xss, "is_traversal": is_traversal}
 
 
-# ==========================================
-# 3. SESSIONIZER
-# ==========================================
 class Sessionizer:
     def __init__(self, timeout_mins=30, max_duration_mins=60):
         self.timeout = timedelta(minutes=timeout_mins)
@@ -167,6 +151,7 @@ class Sessionizer:
             "key": key, "ip": e['ip'],
             "start_time": e['timestamp'], "last_seen": e['timestamp'],
             "event_count": 1,
+            "min_interarrival": 0.0,
             "sum_req_bytes": e['req_bytes'], "max_req_bytes": e['req_bytes'],
             "sum_resp_bytes": e['resp_bytes'], "max_resp_bytes": e['resp_bytes'],
             "count_4xx": 1 if 400 <= e['status_code'] < 500 else 0,
@@ -175,28 +160,57 @@ class Sessionizer:
             "sum_uri_ent": e['uri_entropy'], "max_uri_ent": e['uri_entropy'],
             "sum_pl_ent": e['payload_entropy'], "max_pl_ent": e['payload_entropy'],
             "rule_matches": 1 if any(rules.values()) else 0,
+            "sqli_count": 1 if rules.get('is_sqli') else 0,
+            "xss_count": 1 if rules.get('is_xss') else 0,
+            "traversal_count": 1 if rules.get('is_traversal') else 0,
             "flags": {k for k, v in rules.items() if v},
+
+            # --- FIXED: Initialize the evidence_uris list! ---
+            "evidence_uris": [e['path']],
+
             "paths": {e['path']}, "exts": {e['ext']},
             "ua_type": e['ua_type'], "country": e['country'], "label": e['label']
         }
 
     def _update(self, s, e, rules):
+        delta = (e['timestamp'] - s['last_seen']).total_seconds()
+        if s['event_count'] == 1:
+            s['min_interarrival'] = delta
+        else:
+            s['min_interarrival'] = min(s['min_interarrival'], delta)
+
         s['last_seen'] = e['timestamp']
         s['event_count'] += 1
         s['sum_req_bytes'] += e['req_bytes']
         s['max_req_bytes'] = max(s['max_req_bytes'], e['req_bytes'])
         s['sum_resp_bytes'] += e['resp_bytes']
         s['max_resp_bytes'] = max(s['max_resp_bytes'], e['resp_bytes'])
+
         if 400 <= e['status_code'] < 500: s['count_4xx'] += 1
         if 500 <= e['status_code'] < 600: s['count_5xx'] += 1
         s['status_set'].add(e['status_code'])
+
         s['sum_uri_ent'] += e['uri_entropy']
         s['max_uri_ent'] = max(s['max_uri_ent'], e['uri_entropy'])
         s['sum_pl_ent'] += e['payload_entropy']
         s['max_pl_ent'] = max(s['max_pl_ent'], e['payload_entropy'])
-        if any(rules.values()):
+
+        rule_hit = any(rules.values())
+        if rule_hit:
             s['rule_matches'] += 1
             s['flags'].update({k for k, v in rules.items() if v})
+
+        if rules.get('is_sqli'): s['sqli_count'] += 1
+        if rules.get('is_xss'): s['xss_count'] += 1
+        if rules.get('is_traversal'): s['traversal_count'] += 1
+
+        # --- FIXED: Append suspicious paths to evidence_uris! ---
+        if rule_hit and e['path'] not in s['evidence_uris']:
+            if len(s['evidence_uris']) < 5:
+                s['evidence_uris'].append(e['path'])
+        elif len(s['evidence_uris']) < 3 and e['path'] not in s['evidence_uris']:
+            s['evidence_uris'].append(e['path'])
+
         s['paths'].add(e['path'])
         s['exts'].add(e['ext'])
         if e['label'] != 'unknown' and e['label'] != 'Normal': s['label'] = 'Anomalous'

@@ -17,23 +17,29 @@ DATASETS = {
     "csic": {
         "input": "data/csic_features.csv",
         "output": "baselines/csic",
-        "contamination": 0.05,
+        "contamination": 0.08,
         "clean_label_logic": lambda df: df[df["label"] == "Normal"]
     }
 }
 
+# --- UPDATED: ALL NEW ML FEATURES INCLUDED ---
 FEATURE_COLS = [
     "duration", "total_requests", "requests_per_sec",
     "rate_4xx", "rate_5xx",
     "unique_path_ratio", "unique_path_count",
     "avg_uri_entropy", "max_uri_entropy",
     "avg_payload_entropy", "max_payload_entropy",
-    "max_req_bytes", "avg_req_bytes"
+    "max_req_bytes", "avg_req_bytes",
+
+    # NEW: EXFILTRATION & DIVERSITY
+    "avg_resp_bytes", "max_resp_bytes", "total_resp_bytes", "resp_req_ratio",
+    "status_diversity", "suspicious_ext_ratio", "static_ratio",
+    "min_interarrival_time"
 ]
 
 
 def train_dataset(name, config):
-    print(f"\n[TRAIN] {name.upper()} (Ensemble ML: iForest + SVM)")
+    print(f"\n[TRAIN] {name.upper()} (Ensemble ML: iForest + SVM + Exfiltration Features)")
     os.makedirs(config["output"], exist_ok=True)
     if not os.path.exists(config["input"]):
         print(f"  [!] Missing {config['input']}. Run pipeline first.")

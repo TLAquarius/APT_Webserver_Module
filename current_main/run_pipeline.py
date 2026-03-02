@@ -3,7 +3,7 @@ import csv
 import os
 import multiprocessing
 
-sys.path.append('../current_main')
+sys.path.append('.')
 
 from parsing.access_log_parser import ApacheAccessParser
 from parsing.request_header_parser import CSICCSVParser
@@ -38,67 +38,73 @@ def process_single_event(event):
 # ==========================================
 # MAIN PIPELINE
 # ==========================================
-def save_csv(vectors, filename, feature_cols):
-    if not vectors: return
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    print(f"[IO] Saving {len(vectors)} vectors to {filename}...")
-    headers = feature_cols + ['ip', 'label']
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
-        w = csv.DictWriter(f, fieldnames=headers)
-        w.writeheader()
-        w.writerows(vectors)
-
-
 def run_pipeline(parser, filepath, source_name, output_file):
-    print(f"\n[PIPELINE] Processing {source_name} with Multiprocessing (Pool.imap)...")
+    print(f"\n[PIPELINE] Processing {source_name} with Optimized Multiprocessing...")
 
     sessionizer = Sessionizer(timeout_mins=30, max_duration_mins=60)
-    dom_country = "VN" if "Zaker" in source_name else "XX"
+    dom_country = "IR" if "Zaker" in source_name else "XX"
     extractor = SessionFeatureExtractor(dominant_country=dom_country)
 
-    vectors = []
     total_events = 0
-
     num_workers = max(1, multiprocessing.cpu_count() - 1)
     print(f"  -> utilizing {num_workers} CPU cores...")
 
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    headers = extractor.FEATURE_COLUMNS + ['ip', 'label', 'evidence_uris']
+
+    # OPTIMIZATION: Buffered Batch Writing
+    # We write directly to the open file in batches, keeping RAM usage extremely low.
+    BATCH_SIZE = 50000
+    vectors_batch = []
+
     try:
-        # Use Pool instead of ProcessPoolExecutor.
-        # Pool.imap is strictly lazy and memory-safe for massive files.
-        with multiprocessing.Pool(processes=num_workers, initializer=init_worker) as pool:
-            event_stream = parser.parse(filepath)
+        with open(output_file, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
 
-            # imap guarantees order, and chunksize batches them for IPC efficiency
-            for result in pool.imap(process_single_event, event_stream, chunksize=2000):
-                total_events += 1
+            with multiprocessing.Pool(processes=num_workers, initializer=init_worker) as pool:
+                event_stream = parser.parse(filepath)
 
-                # You should see this print within the first few seconds now!
-                if total_events % 50000 == 0:
-                    print(f"  .. {total_events:,} events processed ..")
+                # OPTIMIZATION: Increased chunksize from 2,000 to 20,000
+                # This drastically reduces IPC (Inter-Process Communication) overhead.
+                for result in pool.imap(process_single_event, event_stream, chunksize=20000):
+                    total_events += 1
 
-                if result is None:
-                    continue
+                    if total_events % 50000 == 0:
+                        print(f"  .. {total_events:,} events processed ..")
 
-                enriched, rules = result
+                    if result is None:
+                        continue
 
-                for raw_session in sessionizer.process_event(enriched, rules):
-                    vec = extractor.extract_vector(raw_session)
-                    vec['ip'] = raw_session['ip']
-                    vec['label'] = raw_session['label']
-                    vectors.append(vec)
+                    enriched, rules = result
 
-        for raw_session in sessionizer.flush():
-            vec = extractor.extract_vector(raw_session)
-            vec['ip'] = raw_session['ip']
-            vec['label'] = raw_session['label']
-            vectors.append(vec)
+                    for raw_session in sessionizer.process_event(enriched, rules):
+                        vec = extractor.extract_vector(raw_session)
+                        vec['ip'] = raw_session['ip']
+                        vec['label'] = raw_session['label']
+                        vectors_batch.append(vec)
+
+                        # Flush batch to disk to clear RAM
+                        if len(vectors_batch) >= BATCH_SIZE:
+                            writer.writerows(vectors_batch)
+                            vectors_batch.clear()
+
+            # Flush remaining active sessions at the end
+            for raw_session in sessionizer.flush():
+                vec = extractor.extract_vector(raw_session)
+                vec['ip'] = raw_session['ip']
+                vec['label'] = raw_session['label']
+                vectors_batch.append(vec)
+
+            # Final write
+            if vectors_batch:
+                writer.writerows(vectors_batch)
 
     except Exception as e:
         print(f"[ERROR] Pipeline Failed: {e}")
         return
 
-    save_csv(vectors, output_file, extractor.FEATURE_COLUMNS)
-    print(f"[DONE] Processed {total_events:,} events successfully.")
+    print(f"[DONE] Processed {total_events:,} events successfully. Saved to {output_file}")
 
 
 if __name__ == "__main__":

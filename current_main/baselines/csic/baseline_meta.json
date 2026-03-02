@@ -3,9 +3,9 @@
     "IsolationForest",
     "SGDOneClassSVM"
   ],
-  "contamination": 0.05,
-  "iforest_threshold": -0.6267014178891253,
-  "svm_threshold": 6.568061575483736e-05,
+  "contamination": 0.08,
+  "iforest_threshold": -0.5922682604725151,
+  "svm_threshold": -3.412598801668819e-05,
   "features_used": [
     "duration",
     "total_requests",
@@ -19,6 +19,14 @@
     "avg_payload_entropy",
     "max_payload_entropy",
     "max_req_bytes",
-    "avg_req_bytes"
+    "avg_req_bytes",
+    "avg_resp_bytes",
+    "max_resp_bytes",
+    "total_resp_bytes",
+    "resp_req_ratio",
+    "status_diversity",
+    "suspicious_ext_ratio",
+    "static_ratio",
+    "min_interarrival_time"
   ]
 }
