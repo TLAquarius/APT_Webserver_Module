@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 import ipaddress
 import geoip2.database
 import geoip2.errors
-
+from typing import Callable
 
 class UserSession:
     """Stateful memory object tracking an IP's behavior and building its timeline."""
@@ -25,8 +25,6 @@ class UserSession:
         self.start_time = start_time
         self.last_seen = start_time
         self.last_host = None
-
-        # Entity Linking: Retain parent ID if split, else create a new one
         self.parent_tracking_id = parent_tracking_id if parent_tracking_id else f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S')}"
 
         self.total_logs = 0
@@ -49,8 +47,7 @@ class UserSession:
 
         self.l1_alert_count = 0
         self.l1_alert_types = set()
-
-        self.raw_logs = []
+        self.raw_logs = [] # ENTIRE record (including request_body) is preserved here!
 
     def _get_extension(self, uri):
         if not uri or '?' in uri: return ""
@@ -135,7 +132,6 @@ class UserSession:
         start_hour = self.start_time.hour
         is_off_hours = 1 if (start_hour < 6 or start_hour > 18) else 0
 
-        # Create a unique session ID for this specific chunk, but retain the parent ID for linking
         session_id = f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S')}"
         min_arrival = 0.0 if self.min_interarrival_sec == float('inf') else self.min_interarrival_sec
         avg_depth = self.total_uri_depth / self.total_logs if self.total_logs > 0 else 0
@@ -190,16 +186,15 @@ class StatefulStreamingEngine:
 
         self.active_sessions = {}
         self.global_watermark = None
-
         self.completed_features = []
         self.completed_timelines = []
 
         self.geo_reader = None
         try:
+            # We fail silently if GeoIP is missing to not crash the WebApp
             self.geo_reader = geoip2.database.Reader(geo_db_path)
-            print(f"[+] Successfully loaded GeoIP Database: {geo_db_path}")
         except FileNotFoundError:
-            print(f"[-] Warning: GeoIP Database not found at {geo_db_path}. Geo-country will default to UNKNOWN.")
+            pass
 
     def _parse_time(self, time_str):
         return datetime.fromisoformat(time_str.replace('Z', '+00:00'))
@@ -207,7 +202,6 @@ class StatefulStreamingEngine:
     def _find_correlated_ip(self, log_time, host_name, time_window=2.0):
         best_ip = None
         smallest_diff = float('inf')
-
         for ip, session in self.active_sessions.items():
             if session.last_host == host_name:
                 diff = (log_time - session.last_seen).total_seconds()
@@ -230,9 +224,8 @@ class StatefulStreamingEngine:
         for ip in stale_ips:
             self._flush_session(ip)
 
-    def process_stream(self, input_ndjson, output_csv, output_json):
-        print(
-            f"[*] Starting Dual-Output Sessionizer (Gap: {self.timeout_seconds / 60} mins, Max Span: {self.max_session_seconds / 3600} hrs)...")
+    def process_stream(self, input_ndjson: str, output_csv: str, output_json: str, status_callback: Callable = None):
+        """Processes logs and updates the UI via callback."""
         total_logs = 0
 
         with open(input_ndjson, 'r', encoding='utf-8') as f:
@@ -247,20 +240,18 @@ class StatefulStreamingEngine:
                     continue
 
                 ip = record.get('source_ip')
-
                 if not ip or ip == '-':
                     if record.get('event_source') in ['apache_error', 'apache_error_stderr']:
                         ip = self._find_correlated_ip(log_time, record.get('host_name'))
-
-                    if not ip:
-                        continue
+                    if not ip: continue
 
                 if not self.global_watermark or log_time > self.global_watermark:
                     self.global_watermark = log_time
 
                 if total_logs % 20000 == 0:
-                    print(f"  -> Processed {total_logs:,} logs. Active sessions in RAM: {len(self.active_sessions)}")
                     self._garbage_collect()
+                    if status_callback:
+                        status_callback(f"Sessionizer: Grouped {total_logs:,} events...", 50)
 
                 if ip in self.active_sessions:
                     session = self.active_sessions[ip]
@@ -268,11 +259,9 @@ class StatefulStreamingEngine:
                     absolute_time = (log_time - session.start_time).total_seconds()
 
                     if idle_time > self.timeout_seconds:
-                        # Natural expiration (User went idle). Start a completely new session.
                         self._flush_session(ip)
                         self.active_sessions[ip] = UserSession(ip, log_time)
                     elif absolute_time > self.max_session_seconds or session.total_logs >= self.max_events:
-                        # Forced boundary split. Retain the parent_tracking_id to link the chunks.
                         parent_id = session.parent_tracking_id
                         self._flush_session(ip)
                         self.active_sessions[ip] = UserSession(ip, log_time, parent_tracking_id=parent_id)
@@ -288,9 +277,8 @@ class StatefulStreamingEngine:
         if self.geo_reader:
             self.geo_reader.close()
 
-        print(f"\n[+] REACHED END OF FILE. Total lines read: {total_logs:,}")
-        print(f"[+] Built {len(self.completed_features):,} distinct timelines.")
         self._export_data(output_csv, output_json)
+        return True
 
     def _export_data(self, csv_path, json_path):
         if not self.completed_features: return
@@ -302,15 +290,3 @@ class StatefulStreamingEngine:
         with open(json_path, 'w', encoding='utf-8') as f:
             for timeline in self.completed_timelines:
                 f.write(json.dumps(timeline) + "\n")
-
-        print(f"[+] Exported ML Features to: {csv_path}")
-        print(f"[+] Exported Full Timelines to: {json_path}")
-
-
-if __name__ == '__main__':
-    INPUT_FILE = "../webserver_module_AIT/layer1_tagged_timeline.json"
-    OUTPUT_CSV = "ml_features.csv"
-    OUTPUT_JSON = "session_timelines.json"
-
-    engine = StatefulStreamingEngine(timeout_minutes=10, max_session_hours=2, max_events_per_session=3000)
-    engine.process_stream(INPUT_FILE, OUTPUT_CSV, OUTPUT_JSON)

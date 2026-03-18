@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import os
 from collections import defaultdict
+from typing import Callable
 
 
 class DataCorrelator:
@@ -11,25 +12,21 @@ class DataCorrelator:
         self.timelines_json = timelines_json
         self.output_ndjson = output_ndjson
 
-    def run_correlation(self):
-        print("[*] Starting Layer 3 Data Fusion & Correlation (Full Log Management Mode)...")
+    def run_correlation(self, status_callback: Callable = None):
+        if status_callback: status_callback("Correlator: Fusing ML scores and raw timelines...", 85)
 
         try:
             df_stat = pd.read_csv(self.stat_csv)
             df_seq = pd.read_csv(self.seq_csv)
         except FileNotFoundError as e:
-            print(f"[-] Error loading Layer 2 scores: {e}")
-            return
+            raise FileNotFoundError(f"Error loading Layer 2/3 scores: {e}")
 
         # 1. Fuse the Data
         df_merged = pd.merge(df_stat, df_seq, on=['session_id', 'parent_tracking_id'], how='inner')
 
         if df_merged.empty:
-            print("[-] No data to correlate.")
             open(self.output_ndjson, 'w').close()
             return
-
-        print(f"[*] Fused {len(df_merged)} total session chunks. Preparing all for the dashboard...")
 
         # 2. Group by Parent Tracking ID to prepare for timeline stitching
         parent_groups = defaultdict(list)
@@ -37,15 +34,14 @@ class DataCorrelator:
             parent_id = row['parent_tracking_id']
             parent_groups[parent_id].append(row.to_dict())
 
-        # 3. Extract and Stitch Timelines for EVERY session
+        # 3. Extract and Stitch Timelines
+        if status_callback: status_callback("Correlator: Compressing behavioral noise (RLE)...", 90)
         self._build_case_files(parent_groups)
 
+        if status_callback: status_callback("Correlator: Incident Reports generated successfully.", 95)
+
     def _compress_timeline(self, raw_timeline):
-        """
-        Run-Length Encoding (RLE) to compress automated bot noise.
-        Fixed: Correctly handles distinction between access logs and error logs.
-        Safeguard: Never compresses WAF-flagged alerts.
-        """
+        """Run-Length Encoding (RLE) to compress automated bot noise."""
         compressed = []
         if not raw_timeline: return compressed
 
@@ -54,21 +50,17 @@ class DataCorrelator:
 
         for i in range(1, len(raw_timeline)):
             next_event = raw_timeline[i]
-
             is_same = False
 
-            # SAFEGUARD: Never compress Layer 1 WAF Alerts so the Evaluator can see them
             if current_event.get('layer1_flagged') or next_event.get('layer1_flagged'):
                 is_same = False
-
-            # Access Log Compression (Match URI and Status)
             elif current_event.get('event_source') == 'apache_access' and next_event.get(
                     'event_source') == 'apache_access':
                 same_uri = current_event.get('uri_path') == next_event.get('uri_path')
                 same_status = current_event.get('status_code') == next_event.get('status_code')
-                is_same = same_uri and same_status
-
-            # Error Log Compression (Match exact Error Message)
+                # Optional: Ensure same request body if available
+                same_body = current_event.get('request_body') == next_event.get('request_body')
+                is_same = same_uri and same_status and same_body
             elif current_event.get('event_source') == 'apache_error' and next_event.get(
                     'event_source') == 'apache_error':
                 is_same = current_event.get('error_message') == next_event.get('error_message')
@@ -110,8 +102,6 @@ class DataCorrelator:
         return compressed
 
     def _build_case_files(self, parent_groups):
-        print("[*] Stitching fragmented sessions and compressing timelines...")
-
         raw_timelines = {}
         with open(self.timelines_json, 'r', encoding='utf-8') as f:
             for line in f:
@@ -130,7 +120,6 @@ class DataCorrelator:
             for chunk in session_chunks:
                 session_id = chunk['session_id']
 
-                # Still calculate the max threat level so the dashboard can color-code the row
                 if chunk['statistical_threat_score'] > max_stat_score:
                     max_stat_score = chunk['statistical_threat_score']
                     final_threat_level = chunk['statistical_threat_level']
@@ -146,8 +135,12 @@ class DataCorrelator:
             full_timeline = sorted(full_timeline, key=lambda x: x.get('@timestamp', ''))
             compressed_timeline = self._compress_timeline(full_timeline)
 
+            # EXTRACT IP (Assuming format "IP_TIMESTAMP")
+            source_ip = parent_id.split("_")[0] if "_" in parent_id else parent_id
+
             case_file = {
                 "incident_tracking_id": parent_id,
+                "source_ip": source_ip,  # Added for UI filtering
                 "overall_threat_level": final_threat_level,
                 "max_statistical_score": max_stat_score,
                 "max_markov_score": max_markov_score,
@@ -162,18 +155,3 @@ class DataCorrelator:
         with open(self.output_ndjson, 'w', encoding='utf-8') as f:
             for case in case_files:
                 f.write(json.dumps(case) + "\n")
-
-        print(f"[+] Successfully generated {len(case_files)} total Session Files (Alerts + Normal Traffic).")
-        print(f"[+] Exported to {self.output_ndjson}")
-
-
-if __name__ == '__main__':
-    # FIXED: Read the LIVE scores (which contains all 255 sessions including the attacker)
-    STAT_CSV = "../behaviour_layer/machine_learning/scores/statistical_scores_live.csv"
-    SEQ_CSV = "../behaviour_layer/machine_learning/scores/sequential_scores.csv"
-    TIMELINES_JSON = "../behaviour_layer/session_timelines.json"
-
-    OUTPUT_NDJSON = "./incident_reports.ndjson"
-
-    correlator = DataCorrelator(STAT_CSV, SEQ_CSV, TIMELINES_JSON, OUTPUT_NDJSON)
-    correlator.run_correlation()

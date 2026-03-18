@@ -1,71 +1,70 @@
-# run_layer1.py
 import json
 import os
 import time
+from typing import Callable, Dict
+
 from filter_layer.unified_engine import Layer1UnifiedEngine
 
 
-def process_logs_through_layer1(input_file, output_file):
-    if not os.path.exists(input_file):
-        print(f"[-] Input file '{input_file}' not found. Please run the parser script first!")
-        return
+class Layer1Runner:
+    """
+    Object-Oriented wrapper for Layer 1 Execution.
+    Allows dynamic path injection and UI progress tracking.
+    """
 
-    engine = Layer1UnifiedEngine()
+    def __init__(self):
+        self.engine = Layer1UnifiedEngine()
 
-    total_processed = 0
-    total_flagged = 0
-    start_time = time.perf_counter()
+    def run(self, input_ndjson_path: str, output_ndjson_path: str,
+            status_callback: Callable[[str, int], None] = None) -> Dict:
+        """
+        Runs the Unified Engine over the parsed logs.
+        Returns a dictionary of execution statistics.
+        """
+        if not os.path.exists(input_ndjson_path):
+            raise FileNotFoundError(f"Input file '{input_ndjson_path}' not found. Parser must run first.")
 
-    print(f"\n[*] Streaming records from {input_file} through Layer 1...")
+        total_processed = 0
+        total_flagged = 0
+        start_time = time.perf_counter()
 
-    with open(input_file, 'r', encoding='utf-8') as infile, \
-            open(output_file, 'w', encoding='utf-8') as outfile:
+        # Update UI Progress
+        if status_callback:
+            status_callback("Layer 1 WAF: Starting deterministic analysis...", 30)
 
-        for line in infile:
-            if not line.strip():
-                continue
+        with open(input_ndjson_path, 'r', encoding='utf-8') as infile, \
+                open(output_ndjson_path, 'w', encoding='utf-8') as outfile:
 
-            # Load the parsed record from Layer 0
-            record = json.loads(line)
+            for line in infile:
+                if not line.strip():
+                    continue
 
-            # REMOVED: The block skipping 'apache_error' logs.
-            # Unified Engine now handles both access logs (for input payloads)
-            # and error logs (for RCE execution outputs like wget/curl).
+                record = json.loads(line)
+                tagged_record = self.engine.evaluate_record(record)
 
-            # Route ALL logs through the Unified Engine
-            tagged_record = engine.evaluate_record(record)
+                if tagged_record.get('layer1_flagged'):
+                    total_flagged += 1
 
-            if tagged_record.get('layer1_flagged'):
-                total_flagged += 1
+                outfile.write(json.dumps(tagged_record) + '\n')
+                total_processed += 1
 
-            # Save the tagged record to the output file
-            outfile.write(json.dumps(tagged_record) + '\n')
+                # Update UI every 50k records to avoid lagging the frontend
+                if total_processed % 50000 == 0 and status_callback:
+                    status_callback(f"Layer 1 WAF: Scanned {total_processed:,} logs...", 35)
 
-            total_processed += 1
-            if total_processed % 50000 == 0:
-                print(f"  -> Processed {total_processed} records...")
+        elapsed = time.perf_counter() - start_time
+        tpt = total_processed / elapsed if elapsed > 0 else 0
 
-    elapsed = time.perf_counter() - start_time
+        # Compile statistics for the Dashboard (Zone 1)
+        stats = {
+            "total_processed": total_processed,
+            "total_flagged_layer1": total_flagged,
+            "flagged_percentage": round((total_flagged / total_processed) * 100, 2) if total_processed > 0 else 0.0,
+            "execution_time_sec": round(elapsed, 2),
+            "throughput_eps": round(tpt, 0)
+        }
 
-    print("\n" + "=" * 40)
-    print(" LAYER 1 PROCESSING COMPLETE ")
-    print("=" * 40)
-    print(f"Total Records Processed : {total_processed:,}")
+        if status_callback:
+            status_callback(f"Layer 1 WAF: Completed in {stats['execution_time_sec']}s", 40)
 
-    # Safe calculation
-    pct = (total_flagged / total_processed) * 100 if total_processed > 0 else 0
-    print(f"Total Records Flagged   : {total_flagged:,} ({pct:.2f}%)")
-    print(f"Execution Time          : {elapsed:.2f} seconds")
-
-    tpt = total_processed / elapsed if elapsed > 0 else 0
-    print(f"Throughput              : {tpt:,.0f} logs/second")
-    print(f"Output saved to         : {output_file}")
-    print("=" * 40)
-
-
-if __name__ == '__main__':
-    # Update these filenames if your parser script output something different
-    INPUT_NDJSON = "russellmitchell_enterprise_web_timeline.json"
-    OUTPUT_NDJSON = "layer1_tagged_timeline.json"
-
-    process_logs_through_layer1(INPUT_NDJSON, OUTPUT_NDJSON)
+        return stats
