@@ -22,9 +22,6 @@ def render_dashboard(dashboard_data: dict):
         st.warning("Chưa có dữ liệu phân tích cho Hồ sơ này. Vui lòng sang tab 'Tải lên & Cấu hình' để nạp Log.")
         return
 
-    # ==========================================
-    # 🟢 ZONE 1: HIGH-LEVEL METRICS
-    # ==========================================
     st.markdown("### 📊 1. Chỉ số Tổng quan (Global Metrics)")
     metrics = dashboard_data.get("zone1_metrics", {})
 
@@ -43,9 +40,6 @@ def render_dashboard(dashboard_data: dict):
         st.metric(label="Mức Độ Đe Dọa", value=f"{color} {threat}")
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ==========================================
-    # 🟡 ZONE 2: THREAT LANDSCAPE (WAF LAYER 1)
-    # ==========================================
     st.markdown("### 🛡️ 2. Bề mặt Tấn công (Dựa trên WAF Regex)")
     waf_data = dashboard_data.get("zone2_waf", {})
     col2_1, col2_2 = st.columns(2)
@@ -87,15 +81,12 @@ def render_dashboard(dashboard_data: dict):
             st.plotly_chart(fig_bar_uri, use_container_width=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ==========================================
-    # 🟠 ZONE 3: MACHINE LEARNING BEHAVIORAL ANALYTICS
-    # ==========================================
     st.markdown("### 🧠 3. Phân tích Hành vi (AI/ML)")
     color_map = {"NORMAL": "#00CC96", "SUSPICIOUS": "#FFA15A", "CRITICAL": "#EF553B"}
 
-    # --- ROW 1: Biểu đồ Tròn nằm giữa ---
-    col_empty_left, col_pie_center, col_empty_right = st.columns([1, 2, 1])
-    with col_pie_center:
+    col3_1, col3_2, col3_3 = st.columns([1, 1.2, 1.2])
+
+    with col3_1:
         session_counts = {
             "NORMAL": metrics.get("normal_sessions", 0),
             "SUSPICIOUS": metrics.get("suspicious_sessions", 0),
@@ -108,23 +99,20 @@ def render_dashboard(dashboard_data: dict):
             fig_pie_session = px.pie(df_pie_session, names='Mức độ', values='Số lượng',
                                      color='Mức độ', color_discrete_map=color_map,
                                      title="Tỷ lệ Phân loại Phiên", hole=0.4)
+            fig_pie_session.update_layout(
+                legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5))
             st.plotly_chart(fig_pie_session, use_container_width=True)
         else:
             st.info("Chưa có dữ liệu phân loại Phiên.")
 
-    # Thêm khoảng trắng nhỏ
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # --- ROW 2: Biểu đồ Plot ngang hàng ---
-    col3_1, col3_2 = st.columns(2)
-    with col3_1:
+    with col3_2:
         scatter_data = dashboard_data.get("zone3_ml", {}).get("scatter_data", [])
         if scatter_data:
             df_scatter = pd.DataFrame(scatter_data)
             fig_scatter = px.scatter(df_scatter, x="stat_score", y="seq_score", color="label",
                                      color_discrete_map=color_map, hover_data=["ip", "session_id"],
                                      title="Phân tích Điểm Dị thường",
-                                     labels={"stat_score": "Isolation Forest Score", "seq_score": "Markov Score",
+                                     labels={"stat_score": "Isolation Forest", "seq_score": "Markov Score",
                                              "label": "Mức độ"})
             fig_scatter.add_hline(y=50, line_dash="dash", line_color="gray", opacity=0.5)
             fig_scatter.add_vline(x=50, line_dash="dash", line_color="gray", opacity=0.5)
@@ -132,7 +120,7 @@ def render_dashboard(dashboard_data: dict):
         else:
             st.info("Chưa có đủ dữ liệu Scatter Plot.")
 
-    with col3_2:
+    with col3_3:
         timeline_data = dashboard_data.get("zone3_ml", {}).get("timeline_data", [])
         if timeline_data:
             df_time = pd.DataFrame(timeline_data)
@@ -186,14 +174,37 @@ def run_llm_advisor(dashboard_data: dict):
         st.success("Chưa có dữ liệu phân tích cho Hồ sơ này. Vui lòng sang tab 'Tải lên & Cấu hình' để nạp Log.")
         return
 
-    st.markdown("#### Danh sách Phiên truy cập")
-    df_incidents = pd.DataFrame(incidents)
+    st.markdown("#### Danh sách Phiên truy cập & Phân tích AI")
 
-    display_df = df_incidents[
-        ["incident_tracking_id", "source_ip", "overall_threat_level", "max_statistical_score", "max_markov_score",
-         "total_raw_events", "sequence_chain"]].copy()
-    display_df.columns = ["ID Sự Cố", "IP Nguồn", "Mức Đe Dọa", "Điểm Stat", "Điểm Markov", "Số Request",
-                          "Chuỗi Hành Vi"]
+    # 🟢 CHUYỂN ĐỔI INCIDENTS THÀNH DATAFRAME & BUNG CỘT FEATURES
+    flat_incidents = []
+    for inc in incidents:
+        base_info = {
+            "ID Sự Cố": inc.get("incident_tracking_id"),
+            "IP Nguồn": inc.get("source_ip"),
+            "Mức Đe Dọa": inc.get("overall_threat_level"),
+            "Điểm Stat": inc.get("max_statistical_score"),
+            "Điểm Markov": inc.get("max_markov_score"),
+            "Số Request": inc.get("total_raw_events"),
+            "Chuỗi Hành Vi": inc.get("sequence_chain")
+        }
+
+        # Bung các thông số thống kê vào chung một hàng
+        stats = inc.get("stats_context", {})
+        if stats:
+            for key, val in stats.items():
+                # Dùng endswith để tránh lỗi nhận nhầm chữ "ratio" trong chữ "duration"
+                if key.endswith("_rate") or key.endswith("_ratio"):
+                    val_str = f"{float(val) * 100:.1f}%"
+                elif isinstance(val, float):
+                    val_str = f"{val:.2f}"
+                else:
+                    val_str = str(val)
+                base_info[key] = val_str
+
+        flat_incidents.append(base_info)
+
+    display_df = pd.DataFrame(flat_incidents)
 
     col_filter, col_export = st.columns([3, 1])
     with col_filter:
@@ -203,10 +214,13 @@ def run_llm_advisor(dashboard_data: dict):
         st.download_button("📥 Xuất Báo cáo CSV", data=csv_data, file_name="soc_incidents_report.csv", mime="text/csv",
                            use_container_width=True)
 
-    if not show_normal: display_df = display_df[display_df["Mức Đe Dọa"] != "NORMAL"]
+    if not show_normal:
+        display_df = display_df[display_df["Mức Đe Dọa"] != "NORMAL"]
 
     st.markdown(
-        "💡 *Mẹo: Click chọn trực tiếp vào một dòng trong bảng dưới đây để xem chi tiết và yêu cầu AI phân tích.*")
+        "💡 *Mẹo: Bạn có thể trượt thanh cuộn ngang để xem tất cả các đặc trưng ML, và click chọn trực tiếp vào một dòng để xem chi tiết Timeline.*")
+
+    # Bảng DataFrame hiển thị toàn bộ
     selection_event = st.dataframe(display_df, use_container_width=True, hide_index=True, on_select="rerun",
                                    selection_mode="single-row")
     st.divider()
@@ -267,7 +281,6 @@ def confirm_delete_profile(bridge):
             st.rerun()
 
 
-# 🟢 DIALOG MỚI: XÁC NHẬN XÓA FILE CỤ THỂ VÀ CHẠY LẠI
 @st.dialog("⚠️ Xác nhận Xóa File")
 def confirm_delete_files(file_ids):
     st.warning(
@@ -349,9 +362,29 @@ def render_page():
                 sel_indices = file_selection.selection.rows
                 sel_file_ids = display_files.iloc[sel_indices]["ID File"].tolist()
 
-                if st.button(f"🗑️ Xóa {len(sel_file_ids)} file đã chọn", type="primary"):
-                    confirm_delete_files(sel_file_ids)  # Gọi Dialog xác nhận
+                is_deleting_all = len(sel_file_ids) == len(display_files)
+                btn_text = f"🗑️ Xóa {len(sel_file_ids)} file đã chọn"
+                btn_text += " (Reset Profile)" if is_deleting_all else " & Quét lại Hệ thống"
 
+                if st.button(btn_text, type="primary"):
+                    bridge.delete_specific_files(sel_file_ids)
+
+                    if is_deleting_all:
+                        st.success("Đã xóa sạch các file. Hồ sơ đã được trả về trạng thái trống!")
+                        st.rerun()
+                    else:
+                        st.info(
+                            f"Đang xóa {len(sel_file_ids)} file, tính toán lại Baseline và quét lại các file còn lại...")
+                        progress_bar = st.progress(0)
+                        status_text = st.empty()
+
+                        def ui_cb(msg, pct):
+                            status_text.text(msg)
+                            progress_bar.progress(pct / 100.0)
+
+                        bridge.rescan_existing_data("both", status_callback=ui_cb)
+                        st.success(f"Đã xóa file và cập nhật hệ thống thành công!")
+                        st.rerun()
         else:
             st.info("Profile này hiện chưa có file dữ liệu nào.")
 
@@ -420,23 +453,6 @@ def render_page():
                     progress_bar.empty()
                     status_text.empty()
                     st.rerun()
-
-        if st.session_state.get("do_delete_files"):
-            sel_file_ids = st.session_state.pop("do_delete_files")
-            bridge.delete_specific_files(sel_file_ids)
-
-            st.info(f"Đang xóa {len(sel_file_ids)} file, tính toán lại Baseline và quét lại các file còn lại...")
-            progress_bar = st.progress(0)
-            status_text = st.empty()
-
-            def ui_cb(msg, pct):
-                status_text.text(msg)
-                progress_bar.progress(pct / 100.0)
-
-            bridge.update_ai_thresholds(selected_sensitivity)
-            bridge.rescan_existing_data(operation_mode, time_window=rescan_time_window, status_callback=ui_cb)
-            st.success(f"Đã xóa {len(sel_file_ids)} file và cập nhật hệ thống thành công!")
-            st.rerun()
 
         st.divider()
 

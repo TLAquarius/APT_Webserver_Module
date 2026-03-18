@@ -6,7 +6,6 @@ from typing import Callable
 
 
 class DataCorrelator:
-    # Đã thêm tham số models_dir
     def __init__(self, stat_csv, seq_csv, timelines_json, output_ndjson,
                  models_dir="./webserver_module_AIT/module_data/Default_Tenant/models"):
         self.stat_csv = stat_csv
@@ -16,6 +15,15 @@ class DataCorrelator:
         self.models_dir = models_dir
 
         self.alert_config = self._load_alert_config()
+
+        # Danh sách toàn bộ các Features có thể có từ tầng ML
+        self.ml_feature_cols = [
+            'is_external_ip', 'is_off_hours', 'session_duration_sec', 'total_requests',
+            'req_per_min', 'min_interarrival_sec', 'avg_uri_depth',
+            'error_404_rate', 'error_403_rate', 'error_50x_rate', 'post_rate', 'rare_method_rate',
+            'unique_path_ratio', 'static_asset_ratio', 'suspicious_ext_rate',
+            'status_diversity', 'unique_uas', 'avg_payload_bytes', 'max_resp_bytes'
+        ]
 
     def _load_alert_config(self):
         config_path = os.path.join(self.models_dir, "alert_config.json")
@@ -29,12 +37,9 @@ class DataCorrelator:
         return default_config
 
     def _determine_final_threat(self, stat_score, seq_score, has_l1_alert):
-        # WAF phát hiện -> Luôn CRITICAL
         if has_l1_alert: return "CRITICAL"
-
         sus_thresh = self.alert_config.get("suspicious_threshold", 50)
         crit_thresh = self.alert_config.get("critical_threshold", 80)
-
         max_ai_score = max(stat_score, seq_score)
 
         if max_ai_score >= crit_thresh:
@@ -50,10 +55,22 @@ class DataCorrelator:
         try:
             df_stat = pd.read_csv(self.stat_csv)
             df_seq = pd.read_csv(self.seq_csv)
+
+            features_csv_path = self.stat_csv.replace("statistical_scores.csv", "ml_features.csv")
+            df_features = pd.read_csv(features_csv_path) if os.path.exists(features_csv_path) else pd.DataFrame()
+
         except FileNotFoundError as e:
             raise FileNotFoundError(f"Error loading Layer 2/3 scores: {e}")
 
         df_merged = pd.merge(df_stat, df_seq, on=['session_id', 'parent_tracking_id'], how='inner')
+
+        # 🟢 LẤY TOÀN BỘ CÁC FEATURE TỒN TẠI ĐỂ CUNG CẤP NGỮ CẢNH TỐI ĐA
+        available_features = []
+        if not df_features.empty:
+            available_features = [c for c in self.ml_feature_cols if c in df_features.columns]
+            cols_to_keep = ['session_id'] + available_features
+            df_features = df_features[cols_to_keep]
+            df_merged = pd.merge(df_merged, df_features, on='session_id', how='left')
 
         if df_merged.empty:
             open(self.output_ndjson, 'w').close()
@@ -65,7 +82,7 @@ class DataCorrelator:
             parent_groups[parent_id].append(row.to_dict())
 
         if status_callback: status_callback("Correlator: Evaluating thresholds and Compressing noise...", 90)
-        self._build_case_files(parent_groups)
+        self._build_case_files(parent_groups, available_features)
 
         if status_callback: status_callback("Correlator: Incident Reports generated successfully.", 95)
 
@@ -125,7 +142,7 @@ class DataCorrelator:
                 compressed.append(raw_timeline[j])
         return compressed
 
-    def _build_case_files(self, parent_groups):
+    def _build_case_files(self, parent_groups, available_features):
         raw_timelines = {}
         with open(self.timelines_json, 'r', encoding='utf-8') as f:
             for line in f:
@@ -141,12 +158,21 @@ class DataCorrelator:
             has_l1_alert = False
             sequence_summaries = []
 
+            # 🟢 TỰ ĐỘNG GOM TOÀN BỘ CÁC FEATURES
+            stats_context = {feat: 0.0 for feat in available_features}
+
             for chunk in session_chunks:
                 session_id = chunk['session_id']
                 if chunk.get('statistical_threat_score', 0) > max_stat_score:
                     max_stat_score = chunk['statistical_threat_score']
                 if chunk.get('markov_threat_score', 0) > max_markov_score:
                     max_markov_score = chunk['markov_threat_score']
+
+                # Cập nhật giá trị Max cho từng feature
+                for feat in available_features:
+                    val = chunk.get(feat, 0.0)
+                    if pd.notna(val) and val > stats_context[feat]:
+                        stats_context[feat] = float(val)
 
                 sequence_summaries.append(chunk.get('sequence_summary', ''))
                 if session_id in raw_timelines:
@@ -172,6 +198,7 @@ class DataCorrelator:
                 "sequence_chain": " | ".join(sequence_summaries),
                 "total_raw_events": len(full_timeline),
                 "total_compressed_events": len(compressed_timeline),
+                "stats_context": stats_context,
                 "timeline": compressed_timeline
             }
             case_files.append(case_file)

@@ -32,26 +32,38 @@ class LLMAdvisor:
         prompt = (
             "You are a Senior Threat Hunter and APT (Advanced Persistent Threat) Expert. Review this session profile.\n"
             "WARNING: APTs often hide in plain sight using 'benign' HTTP 200 requests. Do NOT just look for obvious SQLi/XSS payloads.\n"
-            "You MUST analyze the TEMPORAL TIMELINE (the timestamps between requests) to detect:\n"
-            "1. C2 Beaconing (automated, rhythmic, or periodic requests like polling admin-ajax.php every few minutes).\n"
-            "2. Low-and-slow data exfiltration or automated reconnaissance.\n"
-            "3. Evasion attempts masking as normal internal traffic.\n\n"
-            "Your job is to look at the raw log samples, verify if an actual exploit or automated C2 beaconing occurred, "
+            "You MUST analyze BOTH the Statistical Context, the Temporal Timeline, and the session's stats to detect:\n"
+            "1. Automated Scanners / Fuzzing (High Request/Min, Request/Sec, High 404 Rate, multiple User-Agents).\n"
+            "2. C2 Beaconing (rhythmic, periodic requests).\n"
+            "3. Path Traversal or LFI (High unique path ratio, deep URI depths).\n"
+            "4. Exploitation of suspicious extensions (.env, .bak, .php).\n"
+            "5. Data Exfiltration (High max_resp_bytes or avg_payload_bytes).\n"
+            "7. Time-based attacks type\n"
+            "6. And other type of anomalies (high total request number, long session)\n\n"
+            "Your job is to look at the profile, verify if it's an actual exploit or scanning tool, "
             "explain the attacker's methodology, and determine if this is a True Attack or benign.\n"
             "Answer precisely, shortly and go straight to the point in Vietnamese.\n\n"
         )
 
-        prompt += "[EVENTS PROFILE]\n"
+        prompt += "[1. GENERAL PROFILE]\n"
         prompt += f"Entity ID: {case_file.get('incident_tracking_id', 'UNKNOWN')}\n"
-        prompt += f"Statistical Threat Level: {case_file.get('overall_threat_level', 'NORMAL')} (Score: {case_file.get('max_statistical_score', 0)})\n"
-        prompt += f"Markov Sequence Score: {case_file.get('max_markov_score', 0)}/100\n"
+        prompt += f"Threat Level: {case_file.get('overall_threat_level', 'NORMAL')} (Stat Score: {case_file.get('max_statistical_score', 0)}, Markov Score: {case_file.get('max_markov_score', 0)})\n"
         prompt += f"Behavioral Chain: {case_file.get('sequence_chain', '')}\n\n"
+
+        # 🟢 IN TOÀN BỘ CÁC FEATURE ĐỂ CUNG CẤP NGỮ CẢNH ĐẦY ĐỦ CHO LLM
+        stats = case_file.get('stats_context', {})
+        if stats:
+            prompt += "[2. FULL STATISTICAL BEHAVIOR CONTEXT]\n"
+            prompt += "The following are aggregated statistical features extracted by ML Sessionizer for this IP:\n"
+            for feature_name, value in stats.items():
+                prompt += f"- {feature_name}: {value}\n"
+            prompt += "\n"
 
         full_timeline = case_file.get('timeline', [])
         if not full_timeline: return prompt + "No timeline data available."
 
         sampled_timeline = self._extract_multi_anchor_blast_radius(full_timeline)
-        prompt += "[TIMELINE & RAW LOG SAMPLES]\n"
+        prompt += "[3. TIMELINE & RAW LOG SAMPLES]\n"
         prompt += f"Note: Showing the {len(sampled_timeline)} most critical events surrounding the anomalies:\n\n"
 
         for event in sampled_timeline:
@@ -73,7 +85,7 @@ class LLMAdvisor:
                     body = event.get('request_body', '')
 
                     log_str = f"[{timestamp}] {method} {uri} -> {status}"
-                    if body: log_str += f" | BODY: {body}"  # Feed the payload body to the AI!
+                    if body: log_str += f" | BODY: {body}"
                     prompt += log_str + "\n"
 
         return prompt
