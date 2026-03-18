@@ -35,4 +35,8 @@ incident_reports.ndjson
 
 !./behaviour_layer/machine_learning/models
 
+*.log.*
+.ndjson
+module_data/*
+!module_data/Default_Tenant/
 
