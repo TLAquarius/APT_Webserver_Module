@@ -103,7 +103,9 @@ class UserSession:
             elif status_int >= 500:
                 self.error_50x += 1
 
-        bytes_sent = record.get('bytes_sent', 0)
+        raw_bytes = record.get('bytes_sent')
+        bytes_sent = int(raw_bytes) if raw_bytes is not None else 0
+
         self.bytes_sent_total += bytes_sent
         if bytes_sent > self.max_resp_bytes:
             self.max_resp_bytes = bytes_sent

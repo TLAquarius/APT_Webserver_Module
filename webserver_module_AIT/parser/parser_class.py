@@ -9,38 +9,24 @@ import os
 
 
 class WebServerLogParser:
-    """
-    Parses various formats of Web Server access and error logs.
-    Optimized with Multiprocessing and Chunking to handle Big Data safely.
-    Updated for Dynamic Format Support.
-    """
-
-    # =================================================================
-    # 1. DYNAMIC REGEX PATTERNS REGISTRY
-    # Expand this dictionary to support new log formats in the future.
-    # =================================================================
     FORMAT_PATTERNS = {
-        # Standard Apache/Nginx Combined Access Log
         "combined_access": re.compile(
             r'(?P<ip>\S+) (?P<identd>\S+) (?P<user_id>\S+) \[(?P<timestamp>.*?)\] '
             r'"(?P<method>\S+)\s+(?P<raw_uri>\S+)\s+(?P<protocol>[^"]+)" '
             r'(?P<status>\d+) (?P<bytes>\S+) '
             r'"(?P<referer>[^"]*)" "(?P<user_agent>[^"]*)"'
         ),
-        # Basic Common Log Format (No Referer or User-Agent)
         "common_access": re.compile(
             r'(?P<ip>\S+) (?P<identd>\S+) (?P<user_id>\S+) \[(?P<timestamp>.*?)\] '
             r'"(?P<method>\S+)\s+(?P<raw_uri>\S+)\s+(?P<protocol>[^"]+)" '
             r'(?P<status>\d+) (?P<bytes>\S+)'
         ),
-        # Standard Apache Error Log
         "apache_error": re.compile(
             r'\[(?P<timestamp>[^\]]+)\] \[(?P<module>[^\]]+)\] '
             r'(?:\[pid (?P<pid>\d+)(?::tid (?P<tid>\d+))?\] )?'
             r'(?:\[client (?P<client_ip>[^:]+)(?::(?P<client_port>\d+))?\] )?'
             r'(?P<error_message>.*)'
         ),
-        # Standard Nginx Error Log
         "nginx_error": re.compile(
             r'(?P<timestamp>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) \[(?P<level>\w+)\] '
             r'(?P<pid>\d+)#(?P<tid>\d+): (?:\*(?P<cid>\d+) )?(?P<error_message>.*?)'
@@ -55,6 +41,33 @@ class WebServerLogParser:
         self.parsed_data = []
         self.error_logs = []
 
+    # =================================================================
+    # AUTO-DETECT LOG FORMAT (TÍNH NĂNG MỚI ĐỂ HỖ TRỢ UPLOAD FILE TỰ DO)
+    # =================================================================
+    @classmethod
+    def auto_detect_format(cls, filepath, sample_lines=20):
+        """Đọc vài dòng đầu của file để tự đoán định dạng. Trả về (log_format, log_type)"""
+        match_counts = {fmt: 0 for fmt in cls.FORMAT_PATTERNS.keys()}
+
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                lines = [f.readline() for _ in range(sample_lines)]
+        except Exception:
+            raise ValueError(f"Không thể đọc file {os.path.basename(filepath)}")
+
+        for line in lines:
+            if not line.strip(): continue
+            for fmt, pattern in cls.FORMAT_PATTERNS.items():
+                if pattern.match(line):
+                    match_counts[fmt] += 1
+
+        best_format = max(match_counts, key=match_counts.get)
+        if match_counts[best_format] == 0:
+            raise ValueError("Không tìm thấy mẫu định dạng tương thích (Không phải Web Log hợp lệ).")
+
+        log_type = "error" if "error" in best_format else "access"
+        return best_format, log_type
+
     @staticmethod
     def _normalize_access_time(time_str):
         try:
@@ -65,17 +78,13 @@ class WebServerLogParser:
 
     @staticmethod
     def _normalize_error_time(time_str):
-        """Safely parses Error timestamps with multiple fallbacks."""
         try:
-            # Try Apache with microseconds: Mon Jan 24 03:57:26.696483 2022
             dt = datetime.strptime(time_str, '%a %b %d %H:%M:%S.%f %Y')
         except ValueError:
             try:
-                # Try Apache without microseconds: Mon Jan 24 03:57:26 2022
                 dt = datetime.strptime(time_str, '%a %b %d %H:%M:%S %Y')
             except ValueError:
                 try:
-                    # Try Nginx format: 2022/01/24 03:57:26
                     dt = datetime.strptime(time_str, '%Y/%m/%d %H:%M:%S')
                 except ValueError:
                     return None
@@ -85,20 +94,14 @@ class WebServerLogParser:
     def _process_uri(raw_uri):
         single_decoded_uri = unquote(raw_uri)
         parsed_single = urlparse(single_decoded_uri)
-
         current_uri = raw_uri
         decode_depth = 0
-        max_depth = 5
-
         while True:
             decoded_uri = unquote(current_uri)
-            if decoded_uri == current_uri:
+            if decoded_uri == current_uri or decode_depth >= 5:
                 break
             current_uri = decoded_uri
             decode_depth += 1
-            if decode_depth >= max_depth:
-                break
-
         return {
             'uri_path': parsed_single.path,
             'uri_query': parsed_single.query,
@@ -106,35 +109,21 @@ class WebServerLogParser:
             'is_evasion_attempt': decode_depth > 2
         }
 
-    # =================================================================
-    # 2. MULTIPROCESSING WORKER FUNCTIONS
-    # =================================================================
     @staticmethod
     def _parse_chunk(chunk_data):
-        """
-        Universal chunk parser that accepts the regex pattern dynamically.
-        chunk_data = (chunk_list, filepath, log_format_key, log_type)
-        """
         chunk, filepath, log_format, log_type = chunk_data
-        parsed_records = []
-        errors = []
-
+        parsed_records, errors = [], []
         pattern = WebServerLogParser.FORMAT_PATTERNS.get(log_format)
-        if not pattern:
-            raise ValueError(f"Unsupported log format: {log_format}")
-
         last_timestamp = None
 
         for line_num, line in chunk:
             match = pattern.match(line)
             if match:
                 log_dict = match.groupdict()
-
                 if log_type == "access":
-                    # --- Logic for Access Logs ---
                     uri_comp = WebServerLogParser._process_uri(log_dict.get('raw_uri', ''))
                     parsed_records.append({
-                        'event_source': f'{log_format}',
+                        'event_source': log_format,
                         'event_id': f"acc_{os.path.basename(filepath)}_{line_num}",
                         '@timestamp': WebServerLogParser._normalize_access_time(log_dict.get('timestamp')),
                         'source_ip': log_dict.get('ip'),
@@ -147,13 +136,10 @@ class WebServerLogParser:
                         'raw_message': line.strip()
                     })
                 elif log_type == "error":
-                    # --- Logic for Error Logs ---
                     timestamp_str = log_dict.get('timestamp')
-                    if timestamp_str:
-                        last_timestamp = WebServerLogParser._normalize_error_time(timestamp_str)
-
+                    if timestamp_str: last_timestamp = WebServerLogParser._normalize_error_time(timestamp_str)
                     parsed_records.append({
-                        'event_source': f'{log_format}',
+                        'event_source': log_format,
                         'event_id': f"err_{os.path.basename(filepath)}_{line_num}",
                         '@timestamp': last_timestamp,
                         'source_ip': log_dict.get('client_ip', None),
@@ -162,25 +148,12 @@ class WebServerLogParser:
                         'raw_message': line.strip()
                     })
             else:
-                # If regex fails, record the error for UI reporting
-                raw_line = line.strip()
-                if raw_line:  # Ignore completely empty lines
-                    errors.append({'file': os.path.basename(filepath), 'line': line_num, 'raw': raw_line})
-
+                if line.strip(): errors.append(
+                    {'file': os.path.basename(filepath), 'line': line_num, 'raw': line.strip()})
         return parsed_records, errors
 
-    # =================================================================
-    # 3. PUBLIC API (CALLED BY BACKEND_BRIDGE)
-    # =================================================================
     def process_log_file(self, filepath, log_format, log_type, stream_to_disk=False, temp_out="temp_parsed.ndjson"):
-        """
-        Main function to process a single log file based on its dynamic format.
-        log_type must be "access" or "error".
-        """
-        if log_format not in self.FORMAT_PATTERNS:
-            raise ValueError(f"Log format '{log_format}' is not registered in FORMAT_PATTERNS.")
-
-        print(f"[*] Parsing {log_type.upper()} Log [{log_format}]: {filepath}")
+        if log_format not in self.FORMAT_PATTERNS: raise ValueError(f"Unsupported format '{log_format}'.")
 
         def get_chunks():
             chunk = []
@@ -188,50 +161,45 @@ class WebServerLogParser:
                 for line_num, line in enumerate(file, start=1):
                     chunk.append((line_num, line))
                     if len(chunk) >= self.chunk_size:
-                        # Yield the chunk along with metadata needed by the worker
                         yield (chunk, filepath, log_format, log_type)
                         chunk = []
-                if chunk:
-                    yield (chunk, filepath, log_format, log_type)
+                if chunk: yield (chunk, filepath, log_format, log_type)
 
         with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
             for parsed, errors in executor.map(self._parse_chunk, get_chunks()):
                 if stream_to_disk:
                     with open(temp_out, 'a', encoding='utf-8') as f:
-                        for record in parsed:
-                            f.write(json.dumps(record) + '\n')
+                        for record in parsed: f.write(json.dumps(record) + '\n')
                 else:
                     self.parsed_data.extend(parsed)
                 self.error_logs.extend(errors)
 
     def get_timeline_dataframe(self, from_disk=False, temp_out="temp_parsed.ndjson"):
-        """Compiles parsed data into a chronologically sorted Pandas DataFrame."""
         if from_disk:
-            if not os.path.exists(temp_out):
-                return pd.DataFrame()
+            if not os.path.exists(temp_out): return pd.DataFrame()
             df = pd.read_json(temp_out, lines=True)
         else:
-            if not self.parsed_data:
-                return pd.DataFrame()
+            if not self.parsed_data: return pd.DataFrame()
             df = pd.DataFrame(self.parsed_data)
 
         if not df.empty and '@timestamp' in df.columns:
-            # Handles mixed ISO8601 formats
-            df['@timestamp'] = pd.to_datetime(df['@timestamp'], format='ISO8601')
-            df = df.sort_values(by='@timestamp').reset_index(drop=True)
+            df['@timestamp'] = pd.to_datetime(df['@timestamp'], format='ISO8601', errors='coerce')
+            df = df.dropna(subset=['@timestamp']).sort_values(by='@timestamp').reset_index(drop=True)
         return df
 
-    def get_parsing_stats(self):
-        """Returns statistics about the parsing process for the UI."""
-        total_success = len(self.parsed_data)
-        total_failed = len(self.error_logs)
-        total_lines = total_success + total_failed
-        success_rate = (total_success / total_lines * 100) if total_lines > 0 else 0
+    # =================================================================
+    # HÀM BỊ THIẾU MÀ BACKEND_BRIDGE GỌI Ở BƯỚC 1.5
+    # =================================================================
+    def export_to_ndjson(self, out_path, from_disk=False, temp_out="temp_parsed.ndjson"):
+        """Sắp xếp DataFrame theo thời gian và xuất ra file ndjson"""
+        df = self.get_timeline_dataframe(from_disk=from_disk, temp_out=temp_out)
 
-        return {
-            "total_lines": total_lines,
-            "parsed_successfully": total_success,
-            "failed_lines": total_failed,
-            "success_rate_percent": round(success_rate, 2),
-            "sample_errors": self.error_logs[:5]  # Top 5 errors for debugging
-        }
+        if df.empty:
+            open(out_path, 'w').close()  # Tạo file rỗng nếu không có dữ liệu
+            return
+
+        # Chuyển đổi timestamp về định dạng string để tương thích JSON
+        if '@timestamp' in df.columns:
+            df['@timestamp'] = df['@timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+
+        df.to_json(out_path, orient='records', lines=True, force_ascii=False)
