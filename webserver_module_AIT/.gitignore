@@ -38,5 +38,10 @@ incident_reports.ndjson
 *.log.*
 .ndjson
 module_data/*
+
 !module_data/Default_Tenant/
+!module_data/Default_Tenant/models/
+!module_data/Default_Tenant/raw_logs/
+!module_data/Default_Tenant/results/
+
 

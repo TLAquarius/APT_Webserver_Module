@@ -44,10 +44,6 @@ class MarkovSequentialEngine:
             return "[SESSION_RESUME]"
 
     def _get_state(self, log):
-        alerts = log.get('layer1_alerts', [])
-        if alerts and 'RCE_Execution_Output' in alerts: return "SHELL_EXECUTION"
-        if log.get('layer1_flagged'): return "L1_ALERT"
-
         event_source = log.get('event_source')
         if event_source == 'apache_error_stderr': return "UNHANDLED_STDERR"
         if event_source == 'apache_error': return "SERVER_INTERNAL_ERROR"

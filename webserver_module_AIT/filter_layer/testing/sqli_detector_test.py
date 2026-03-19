@@ -27,30 +27,28 @@ except ImportError:
 
 
 # ==========================================
-# 1. OUR CUSTOM DETERMINISTIC ENGINE
+# 1. OUR CUSTOM DETERMINISTIC ENGINE (Current System)
 # ==========================================
-import re
-import urllib.parse
-
-
 class SQLiDetector:
-    # __slots__ prevents Python from creating dynamic dictionaries, saving RAM
+    """
+    Deterministic SQL Injection Detection Engine.
+    Engineered for high-throughput web server log analysis.
+    Utilizes a Hybrid Architecture: Payload Normalization -> Heuristic Dictionaries -> Structural Regex.
+    """
     __slots__ = ['name', 'dangerous_functions', 'command_chains', 'tautology_patterns', 'owasp_patterns']
 
     def __init__(self):
         self.name = "Our Hybrid Normalized-CRS WAF"
 
-        # 1. RESTORED FULL DICTIONARY (This brings back the 90%+ Recall)
         self.dangerous_functions = [
             'information_schema', '@@version', 'version()',
             'system_user', 'database()', 'user()',
             'pg_sleep', 'waitfor delay', 'benchmark(',
-            'load_file', 'into outfile', 'into dumpfile',
+            'load_file(', 'into outfile', 'into dumpfile',
             'sleep(', 'extractvalue(', 'updatexml(', 'group_concat(',
             'xp_cmdshell', 'exec(', 'randomblob(', 'substring('
         ]
 
-        # 2. Pre-compiled list of regexes (Fast, but keeps backreferences intact)
         chains = [
             r'union\s+select', r'union\s+all\s+select', r'insert\s+into',
             r'drop\s+table', r'delete\s+from', r'update\s+.+?\s+set',
@@ -58,7 +56,6 @@ class SQLiDetector:
         ]
         self.command_chains = [re.compile(c, re.IGNORECASE) for c in chains]
 
-        # 3. Pre-compiled tautologies
         tautologies = [
             r'(\d+)\s*=\s*\1',
             r'([\'"])(.*?)\1\s*=\s*\1\2\1',
@@ -72,7 +69,6 @@ class SQLiDetector:
         ]
         self.tautology_patterns = [re.compile(t) for t in tautologies]
 
-        # 4. OWASP
         self.owasp_patterns = [
             re.compile(
                 r'(?i)(?:\b(?:select|union|insert|update|delete|drop|alter)\b.*?\b(?:from|into|table|where|set)\b)'),
@@ -81,31 +77,24 @@ class SQLiDetector:
 
     def _normalize(self, payload):
         if not payload: return ""
-        normalized = payload.lower()
+        normalized = str(payload).lower()
         normalized = re.sub(r'/\*!\d+(.*?)\*/', r' \1 ', normalized)
         normalized = re.sub(r'/\*.*?\*/', ' ', normalized)
         normalized = re.sub(r'\s+', ' ', normalized)
         return normalized.strip()
 
-    def inspect_uri(self, uri_query):
-        if not uri_query or str(uri_query) == 'nan': return False
+    def inspect_payload(self, payload):
+        if not payload or str(payload) == 'nan': return False
+        normalized_payload = self._normalize(payload)
 
-        # Removed the 'while True' loop. We trust Layer 0!
-        # We keep one fast unquote just as a localized safety net.
-        payload = self._normalize(urllib.parse.unquote(str(uri_query)))
-
-        # Tiered Inspection Pipeline
         for func in self.dangerous_functions:
-            if func in payload: return True
-
+            if func in normalized_payload: return True
         for pattern in self.command_chains:
-            if pattern.search(payload): return True
-
+            if pattern.search(normalized_payload): return True
         for pattern in self.tautology_patterns:
-            if pattern.search(payload): return True
-
+            if pattern.search(normalized_payload): return True
         for pattern in self.owasp_patterns:
-            if pattern.search(payload): return True
+            if pattern.search(normalized_payload): return True
 
         return False
 
@@ -118,9 +107,8 @@ class NaiveRegexWAF:
         self.name = "Naive Regex WAF"
         self.pattern = re.compile(r'(?i)(union select|insert into|drop table|1=1|or true|sleep\()')
 
-    def inspect_uri(self, uri_query):
-        decoded = urllib.parse.unquote(uri_query)
-        return bool(self.pattern.search(decoded))
+    def inspect_payload(self, payload):
+        return bool(self.pattern.search(str(payload)))
 
 
 # ==========================================
@@ -130,14 +118,12 @@ class SqlParseWAF:
     def __init__(self):
         self.name = "SqlParse (AST Library)"
 
-    def inspect_uri(self, uri_query):
+    def inspect_payload(self, payload):
         if not HAS_SQLPARSE: return False
-        decoded = urllib.parse.unquote(uri_query)
         try:
-            statements = sqlparse.parse(decoded)
+            statements = sqlparse.parse(str(payload))
             for stmt in statements:
-                if stmt.get_type() in ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'UNION']:
-                    return True
+                if stmt.get_type() in ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'UNION']: return True
             return False
         except:
             return False
@@ -147,8 +133,6 @@ class SqlParseWAF:
 # 4. COMPETITOR 3: OWASP CRS (Heavy Regex)
 # ==========================================
 class OwaspCrsWAF:
-    """ Simulates Enterprise WAFs that rely on massive, complex regular expressions """
-
     def __init__(self):
         self.name = "OWASP CRS (Heavy Regex)"
         self.patterns = [
@@ -159,10 +143,10 @@ class OwaspCrsWAF:
             re.compile(r'/\*!?[0-9]*.*?\*/')
         ]
 
-    def inspect_uri(self, uri_query):
-        decoded = urllib.parse.unquote(uri_query)
+    def inspect_payload(self, payload):
+        text = str(payload)
         for p in self.patterns:
-            if p.search(decoded): return True
+            if p.search(text): return True
         return False
 
 
@@ -170,17 +154,13 @@ class OwaspCrsWAF:
 # 5. COMPETITOR 4: LIBINJECTION (C-Library)
 # ==========================================
 class LibinjectionWAF:
-    """ The Gold Standard Industry Tokenizer """
-
     def __init__(self):
         self.name = "Libinjection (C-Library)"
 
-    def inspect_uri(self, uri_query):
+    def inspect_payload(self, payload):
         if not HAS_LIBINJECTION: return False
-        decoded = urllib.parse.unquote(uri_query)
         try:
-            # Returns a dict: {'is_sqli': True, 'fingerprint': 's&k'}
-            result = libinjection.is_sql_injection(decoded)
+            result = libinjection.is_sql_injection(str(payload))
             return result.get('is_sqli', False)
         except:
             return False
@@ -191,13 +171,9 @@ class LibinjectionWAF:
 # ==========================================
 def download_payloads():
     print("=== Downloading Stable InfoSecWarrior and PayloadsAllTheThings SQLi Benchmarks ===")
-
     urls = [
-        # Original InfoSecWarrior Payloads (Stable)
         "https://raw.githubusercontent.com/InfoSecWarrior/Offensive-Payloads/main/SQL-Injection-Payloads.txt",
         "https://raw.githubusercontent.com/InfoSecWarrior/Offensive-Payloads/main/SQL-Injection-Auth-Bypass-Payloads.txt",
-
-        # PayloadsAllTheThings (Stable)
         "https://raw.githubusercontent.com/swisskyrepo/PayloadsAllTheThings/master/SQL%20Injection/Intruder/Auth_Bypass.txt",
         "https://raw.githubusercontent.com/swisskyrepo/PayloadsAllTheThings/master/SQL%20Injection/Intruder/Generic_UnionSelect.txt",
         "https://raw.githubusercontent.com/swisskyrepo/PayloadsAllTheThings/master/SQL%20Injection/Intruder/SQL-Injection"
@@ -212,13 +188,9 @@ def download_payloads():
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             response = urllib.request.urlopen(req, context=ctx, timeout=10)
-
-            # Use errors='ignore' because advanced payloads often contain raw bytes/malformed characters
             lines = response.read().decode('utf-8', errors='ignore').splitlines()
-
             for line in lines:
                 clean_line = line.strip()
-                # Filtering to ignore markdown headers/HTML tags present in some raw files
                 if clean_line and not clean_line.startswith('#') and not clean_line.startswith(
                         '```') and not clean_line.startswith('<'):
                     combined_payloads.add(clean_line)
@@ -229,20 +201,19 @@ def download_payloads():
 
 
 def run_performance_test(engine, payloads, output_dir="benchmark_results"):
-    # Create the output directory if it doesn't exist
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    if not os.path.exists(output_dir): os.makedirs(output_dir)
 
     total = len(payloads)
     detected_payloads = []
     missed_payloads = []
 
-    # Start tracking time and memory
     tracemalloc.start()
     start_time = time.perf_counter()
 
     for p in payloads:
-        if engine.inspect_uri(p):
+        # Simulate UnifiedEngine decoding before passing to engines
+        decoded_p = urllib.parse.unquote(p)
+        if engine.inspect_payload(decoded_p):
             detected_payloads.append(p)
         else:
             missed_payloads.append(p)
@@ -253,45 +224,50 @@ def run_performance_test(engine, payloads, output_dir="benchmark_results"):
 
     recall = (len(detected_payloads) / total) * 100 if total > 0 else 0
 
-    # --- SAVE TO FILE LOGIC ---
-    # Sanitize the engine name for a clean filename
     safe_name = engine.name.replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
     filename = os.path.join(output_dir, f"{safe_name}_results.txt")
 
     with open(filename, 'w', encoding='utf-8') as f:
-        f.write(f"=== {engine.name} Benchmark Results ===\n")
-        f.write(f"Total Payloads: {total}\n")
-        f.write(f"Detected:       {len(detected_payloads)} ({recall:.2f}%)\n")
-        f.write(f"Missed:         {len(missed_payloads)}\n")
-        f.write("=" * 50 + "\n\n")
+        f.write(
+            f"=== {engine.name} Benchmark Results ===\nTotal Payloads: {total}\nDetected:       {len(detected_payloads)} ({recall:.2f}%)\nMissed:         {len(missed_payloads)}\n")
+        f.write("=" * 50 + "\n\n--- MISSED PAYLOADS ---\n")
+        for mp in missed_payloads: f.write(f"{mp}\n")
 
-        f.write("--- MISSED PAYLOADS (Analyze these: Are they Exploits or Harmless Junk?) ---\n")
-        for mp in missed_payloads:
-            f.write(f"{mp}\n")
+    return {"name": engine.name, "recall": recall, "time": end_time - start_time, "memory_kb": peak_memory / 1024}
 
-        f.write("\n\n--- DETECTED PAYLOADS (True Positives) ---\n")
-        for dp in detected_payloads:
-            f.write(f"{dp}\n")
 
-    return {
-        "name": engine.name,
-        "recall": recall,
-        "time": end_time - start_time,
-        "memory_kb": peak_memory / 1024,
-        "log_file": filename
-    }
+def run_false_positive_test(engines):
+    print("\n=== HARD MODE FALSE POSITIVE (FP) TESTING ===")
+    url_benign = "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/raft-large-words.txt"
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(url_benign, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=10) as response:
+            legitimate_traffic = [line.decode('utf-8', errors='ignore').strip() for line in response.readlines()][:5000]
+    except Exception as e:
+        print(f"[-] Lỗi tải Benign traffic: {e}. Dùng dữ liệu giả lập...")
+        legitimate_traffic = ["user=admin", "id=123", "page=about", "search=hello", "profile=name"] * 400
+
+    print(f"[+] Đã tải {len(legitimate_traffic)} mẫu truy cập hợp lệ từ SecLists.")
+    print(f"{'Engine Name':<30} | {'FP Count':<10} | {'FP Rate (%)':<15}")
+    print("-" * 65)
+
+    for engine in engines:
+        fps = 0
+        for lp in legitimate_traffic:
+            if engine.inspect_payload(f"q={lp}"): fps += 1
+        fpr = (fps / len(legitimate_traffic)) * 100
+        print(f"{engine.name:<30} | {fps:>2}/{len(legitimate_traffic):<7} | {fpr:>8.2f}%")
 
 
 if __name__ == "__main__":
     payloads = download_payloads()
-
-    if not payloads:
-        print("[-] Failed to download payloads. Exiting.")
-        exit()
+    if not payloads: exit()
 
     print(f"[+] Loaded {len(payloads)} unique payloads. Running comparative analysis...\n")
 
-    # Initialize Engines
     engines = [NaiveRegexWAF(), OwaspCrsWAF(), SQLiDetector()]
     if HAS_SQLPARSE: engines.append(SqlParseWAF())
     if HAS_LIBINJECTION: engines.append(LibinjectionWAF())
@@ -300,14 +276,10 @@ if __name__ == "__main__":
     for engine in engines:
         results.append(run_performance_test(engine, payloads))
 
-    # Print Comparative Table
     print(f"{'Engine Name':<30} | {'Recall (%)':<12} | {'Time (sec)':<12} | {'Peak Memory (KB)':<15}")
     print("-" * 77)
-
     results.sort(key=lambda x: x['recall'], reverse=True)
-
     for r in results:
         print(f"{r['name']:<30} | {r['recall']:>8.2f}%   | {r['time']:>10.4f}   | {r['memory_kb']:>12.2f}")
 
-    print("\n[+] Benchmark Complete.")
-    print("[+] Detailed diagnostic logs have been saved to the 'benchmark_results' folder.")
+    run_false_positive_test(engines)

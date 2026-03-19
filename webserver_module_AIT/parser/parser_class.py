@@ -4,7 +4,7 @@ import json
 from urllib.parse import unquote, urlparse
 from datetime import datetime, timezone
 import multiprocessing as mp
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 import os
 
 
@@ -172,7 +172,8 @@ class WebServerLogParser:
                         chunk = []
                 if chunk: yield (chunk, filepath, log_format, log_type)
 
-        with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
+        # 🟢 SỬA DÒNG NÀY: Dùng ThreadPoolExecutor thay vì ProcessPoolExecutor
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             for parsed, errors in executor.map(worker_parse_chunk, get_chunks()):
                 if stream_to_disk:
                     with open(temp_out, 'a', encoding='utf-8') as f:

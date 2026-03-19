@@ -84,9 +84,8 @@ def render_dashboard(dashboard_data: dict):
     st.markdown("### 🧠 3. Phân tích Hành vi (AI/ML)")
     color_map = {"NORMAL": "#00CC96", "SUSPICIOUS": "#FFA15A", "CRITICAL": "#EF553B"}
 
-    col3_1, col3_2, col3_3 = st.columns([1, 1.2, 1.2])
-
-    with col3_1:
+    col_empty_left, col_pie_center, col_empty_right = st.columns([1, 2, 1])
+    with col_pie_center:
         session_counts = {
             "NORMAL": metrics.get("normal_sessions", 0),
             "SUSPICIOUS": metrics.get("suspicious_sessions", 0),
@@ -99,13 +98,15 @@ def render_dashboard(dashboard_data: dict):
             fig_pie_session = px.pie(df_pie_session, names='Mức độ', values='Số lượng',
                                      color='Mức độ', color_discrete_map=color_map,
                                      title="Tỷ lệ Phân loại Phiên", hole=0.4)
-            fig_pie_session.update_layout(
-                legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5))
             st.plotly_chart(fig_pie_session, use_container_width=True)
         else:
             st.info("Chưa có dữ liệu phân loại Phiên.")
 
-    with col3_2:
+    st.markdown("<br>", unsafe_allow_html=True)
+    # --- ROW 2: Biểu đồ Plot ngang hàng ---
+    col3_1, col3_2 = st.columns(2)
+
+    with col3_1:
         scatter_data = dashboard_data.get("zone3_ml", {}).get("scatter_data", [])
         if scatter_data:
             df_scatter = pd.DataFrame(scatter_data)
@@ -120,7 +121,7 @@ def render_dashboard(dashboard_data: dict):
         else:
             st.info("Chưa có đủ dữ liệu Scatter Plot.")
 
-    with col3_3:
+    with col3_2:
         timeline_data = dashboard_data.get("zone3_ml", {}).get("timeline_data", [])
         if timeline_data:
             df_time = pd.DataFrame(timeline_data)

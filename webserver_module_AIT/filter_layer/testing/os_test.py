@@ -8,14 +8,13 @@ import os
 
 
 # ==========================================
-# 1. OUR FINAL RCE DETECTOR
+# 1. OUR FINAL RCE DETECTOR (Current System)
 # ==========================================
 class OSCommandInjectionDetector:
-    __slots__ = ['name', 'patterns', 'decode_threshold', '_prefilter']
+    __slots__ = ['name', 'patterns', 'stderr_patterns', '_prefilter']
 
-    def __init__(self, decode_threshold=3):
+    def __init__(self):
         self.name = "OS Command Injection Detector"
-        self.decode_threshold = decode_threshold
 
         self.patterns = [
             # 1. UNIVERSAL CHAINING (With Negative Lookahead for FP reduction)
@@ -29,53 +28,52 @@ class OSCommandInjectionDetector:
             re.compile(r'(?i)(?:`[^`]{2,20}`|\$\([^)]+\))'),
 
             # 4. IO REDIRECTION & LOGICAL OPERATORS
-            re.compile(r'(?i)(?:[0-9]?[><]{1,2}\s*[a-z0-9_\-\./]+|\|\||&&)')
+            re.compile(r'(?i)(?:[0-9]?[><]{1,2}\s*[a-z0-9_\-\./]+|\|\||&&)'),
+
+            # 5. WEBSHELL / STANDALONE COMMANDS
+            re.compile(
+                r'(?i)\b(?:whoami|uname\s+-[ar]|cat\s+/(?:etc|proc|var)/[a-z0-9_-]+|netstat\s+-[a-z]+|id|ifconfig|ip\s+addr)\b(?!\s*=)'),
+
+            # 6. REVERSE TCP/UDP SHELLS
+            re.compile(r'(?i)(?:/dev/tcp/[0-9\.]+|/dev/udp/[0-9\.]+|nc\s+-e|bash\s+-i|bash\s+-c)')
         ]
 
-        self._prefilter = (';', '&', '|', '`', '$', '>', '<', '/', '%', '\n')
+        self.stderr_patterns = [
+            re.compile(r'(?i)(?:TERM environment variable not set|No LSB modules are available)'),
+            re.compile(r'(?i)(?:Resolving github\.com|Connecting to.*?\|:443\.\.\. connected)'),
+            re.compile(r'(?i)(?:command not found|sh: 1:|bash: line 1:)'),
+            re.compile(r'(?i)(?:uid=\d+\(.*\) gid=\d+\(.*\) groups=\d+\(.*\))')
+        ]
 
-    def _normalize(self, payload):
-        if not payload:
-            return "", 0
+        self._prefilter = (
+            ';', '&', '|', '`', '$', '>', '<', '/', '%', '\n',
+            'whoami', 'uname', 'cat ', 'netstat', 'id', 'ifconfig', 'ip ', 'nc ', 'bash'
+        )
 
-        curr = str(payload)
-        max_depth = 0
+    def inspect_payload(self, payload):
+        if not payload: return False
 
-        if not any(x in curr for x in self._prefilter):
-            return curr.lower(), 0
-
-        for depth in range(1, 6):
-            prev = curr
-            curr = urllib.parse.unquote(curr)
-
-            curr_lower = curr.lower()
-            if '${ifs}' in curr_lower or '$ifs$9' in curr_lower:
-                curr = re.sub(r'(?i)\$\{ifs\}|\$ifs\$9', ' ', curr)
-
-            curr = curr.replace('\x00', '')
-
-            if prev == curr:
-                max_depth = depth - 1
-                break
-            max_depth = depth
-
-        return curr.lower(), max_depth
-
-    def inspect_uri(self, uri_path, uri_query):
-        if not any(x in uri_path or x in uri_query for x in self._prefilter):
+        payload_lower = payload.lower()
+        if not any(x in payload_lower for x in self._prefilter):
             return False
 
-        norm_path, p_depth = self._normalize(uri_path)
-        norm_query, q_depth = self._normalize(uri_query)
+        if '${ifs}' in payload_lower or '$ifs$9' in payload_lower:
+            payload_lower = re.sub(r'(?i)\$\{ifs\}|\$ifs\$9', ' ', payload_lower)
 
-        if p_depth >= self.decode_threshold or q_depth >= self.decode_threshold:
-            return True
+        payload_lower = payload_lower.replace('\x00', '')
 
-        combined = f"{norm_path} {norm_query}"
         for p in self.patterns:
-            if p.search(combined):
+            if p.search(payload_lower):
                 return True
 
+        return False
+
+    def inspect_error(self, raw_message):
+        if not raw_message: return False
+        if "AH00163:" in raw_message or "AH00094:" in raw_message: return False
+
+        for p in self.stderr_patterns:
+            if p.search(raw_message): return True
         return False
 
 
@@ -87,10 +85,8 @@ class NaiveRegexWAF:
         self.name = "Naive Regex WAF"
         self.pattern = re.compile(r'(?i)(;|&&|\|\||whoami|cat\b|dir\b)')
 
-    def inspect_uri(self, uri_path, uri_query):
-        combined = f"{uri_path}?{uri_query}"
-        decoded = urllib.parse.unquote(combined)
-        return bool(self.pattern.search(decoded))
+    def inspect_payload(self, payload):
+        return bool(self.pattern.search(str(payload)))
 
 
 class OwaspCrsWAF:
@@ -102,11 +98,10 @@ class OwaspCrsWAF:
             re.compile(r'(?i)\b(?:cat|ls|id|whoami|powershell|cmd)\b')
         ]
 
-    def inspect_uri(self, uri_path, uri_query):
-        combined = f"{uri_path}?{uri_query}"
-        decoded = urllib.parse.unquote(combined)
+    def inspect_payload(self, payload):
+        text = str(payload)
         for p in self.patterns:
-            if p.search(decoded): return True
+            if p.search(text): return True
         return False
 
 
@@ -130,14 +125,11 @@ def download_payloads():
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             response = urllib.request.urlopen(req, context=ctx, timeout=15)
             raw_data = response.read().decode('utf-8', errors='ignore')
-            count = 0
             for line in raw_data.splitlines():
                 clean_line = line.strip()
                 if clean_line and not clean_line.startswith('#'):
                     combined_payloads.add(clean_line)
-                    count += 1
-            print(f"[+] Loaded {count} payloads from {url.split('/')[-1]}")
-        except Exception as e:
+        except Exception:
             pass
     return list(combined_payloads)
 
@@ -149,7 +141,9 @@ def run_performance_test(engine, payloads):
     start_time = time.perf_counter()
 
     for p in payloads:
-        if engine.inspect_uri("/", f"cmd={p}"):
+        # Simulate UnifiedEngine decoding
+        decoded_p = urllib.parse.unquote(p)
+        if engine.inspect_payload(decoded_p):
             detected += 1
 
     end_time = time.perf_counter()
@@ -161,6 +155,9 @@ def run_performance_test(engine, payloads):
 
 
 def run_false_positive_test(engines):
+    print("\n=== HARD MODE FALSE POSITIVE (FP) TESTING ===")
+
+    # 1. Base hardcoded URLs that trigger edge cases
     legitimate_traffic_hard = [
         "comment=I have a dog; cat is sleeping",
         "code=if (a && b) { return c || d; }",
@@ -174,17 +171,30 @@ def run_false_positive_test(engines):
         "profile=name:john|age:30|role:admin"
     ]
 
-    print("\n=== HARD MODE FALSE POSITIVE (FP) TESTING ===")
-    print(f"{'Engine Name':<35} | {'FP Count':<10} | {'FP Rate (%)':<15}")
+    # 2. Add SecLists Raft Large Words
+    url_benign = "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/raft-large-words.txt"
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(url_benign, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=15) as response:
+            legitimate_traffic_hard += [line.decode('utf-8', errors='ignore').strip() for line in response.readlines()][
+                                       :5000]
+    except Exception as e:
+        print(f"[-] Lỗi tải Benign traffic: {e}.")
+
+    print(f"[+] Đã tải {len(legitimate_traffic_hard)} mẫu truy cập hợp lệ từ SecLists.")
+    print(f"{'Engine Name':<30} | {'FP Count':<10} | {'FP Rate (%)':<15}")
     print("-" * 65)
 
     for engine in engines:
         fps = 0
         for lp in legitimate_traffic_hard:
-            if engine.inspect_uri("/index.php", f"q={lp}"):
+            if engine.inspect_payload(lp):
                 fps += 1
         fpr = (fps / len(legitimate_traffic_hard)) * 100
-        print(f"{engine.name:<35} | {fps:>2}/{len(legitimate_traffic_hard):<7} | {fpr:>8.2f}%")
+        print(f"{engine.name:<30} | {fps:>2}/{len(legitimate_traffic_hard):<7} | {fpr:>8.2f}%")
 
 
 if __name__ == "__main__":
@@ -198,10 +208,10 @@ if __name__ == "__main__":
     for engine in engines:
         results.append(run_performance_test(engine, payloads))
 
-    print(f"{'Engine Name':<35} | {'Recall (%)':<12} | {'Time (sec)':<12} | {'Peak Memory (KB)'}")
-    print("-" * 80)
+    print(f"{'Engine Name':<30} | {'Recall (%)':<12} | {'Time (sec)':<12} | {'Peak Memory (KB)'}")
+    print("-" * 77)
     results.sort(key=lambda x: x['recall'], reverse=True)
     for r in results:
-        print(f"{r['name']:<35} | {r['recall']:>8.2f}%   | {r['time']:>10.4f}   | {r['memory_kb']:>12.2f}")
+        print(f"{r['name']:<30} | {r['recall']:>8.2f}%   | {r['time']:>10.4f}   | {r['memory_kb']:>12.2f}")
 
     run_false_positive_test(engines)

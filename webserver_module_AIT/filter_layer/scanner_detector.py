@@ -23,7 +23,7 @@ class ScannerDetector:
             re.compile(r'(?i)(?:sqlmap|nikto|nmap|nuclei|nessus|acunetix|dirbuster|gobuster|wfuzz|masscan|zgrab|projectdiscovery|commix|wpscan|hydra|medusa|burp|ffuf|patator)'),
             # 3. GENERIC HTTP LIBRARIES & SCRIPTING TOOLS
             # Humans use browsers; automated exploit scripts use these raw network libraries.
-            re.compile(r'(?i)(?:python-requests|go-http-client|curl/|wget/|urllib|httpclient|postman)'),
+            re.compile(r'(?i)(?:python-requests|go-http-client|curl/|wget/|urllib|\bruby\b|\bphp\b|httpclient|postman)'),
 
             # 4. EXPLOIT SIGNATURES IN HEADERS
             # Catching specific malware families or embedded injection attempts

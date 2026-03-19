@@ -9,76 +9,55 @@ import json
 
 
 # ==========================================
-# 1. OUR GENERALIZED DETERMINISTIC ENGINE
+# 1. OUR FINAL PATH TRAVERSAL DETECTOR (Current System)
 # ==========================================
-import re
-import urllib.parse
-import base64
-
-import re
-import urllib.parse
-
-import re
-import urllib.parse
-
-
 class PathTraversalDetector:
-    __slots__ = ['name', 'patterns', 'decode_threshold']
+    """
+    Tier 1 Deterministic Detector for Path Traversal and LFI.
+    Employs structural pattern matching to identify directory escapes
+    and unauthorized file access on pre-normalized payloads.
+    """
+    __slots__ = ['name', 'patterns']
 
-    def __init__(self, decode_threshold=3):
+    def __init__(self):
         self.name = "Path Traversal Detector"
-        self.decode_threshold = decode_threshold
 
         self.patterns = [
-            # 1. Structural: Relative traversal (../ or ..\)
+            # 1. Structural Traversal: Catch relative climbs (../ or ..\)
             re.compile(r'(?i)(?:\.{2,}[/\\]+|[/\\]+\.{2,})'),
 
-            # 2. System Roots: Linux/Windows Core
+            # 2. System Roots: High-value Linux/Windows core directories
             re.compile(r'(?i)(?:/etc/|/proc/|/root/|/\.ssh/|boot\.ini|/windows/system32|/usr/local/bin)'),
 
-            # 3. Application Stack: Catching the "Missed" XAMPP/WAMP/Apache files
-            # This targets the "Intent" of reading logs or config files
+            # 3. Application Stack: Common targets in web environments
             re.compile(r'(?i)(?:/xampp/|/wamp/|/apache2?/|/phpmyadmin/|/logs?/|config\.inc\.php|php\.ini|\.viminfo)'),
 
-            # 4. Protocols & Wrappers
+            # 4. Protocols & Wrappers: Used in advanced LFI
             re.compile(r'(?i)(?:php://|file://|expect://|zip://|data://|phar://)')
         ]
 
-    def _normalize(self, payload):
-        if not payload: return "", 0
-        curr = str(payload)
-        max_depth = 0
+    def inspect_payload(self, payload):
+        """
+        Primary entry point. Analyzes the centralized payload for malicious intent.
+        Returns: Boolean (True if attack detected).
+        """
+        if not payload:
+            return False
 
-        for depth in range(1, 6):
-            prev = curr
-            curr = urllib.parse.unquote(curr)
-            # Handle the specific overlong/unicode evasions from your missed list
-            curr = curr.replace('%c0%ae', '.').replace('%c0%af', '/').replace('%25c1%259c', '/')
-            curr = curr.replace('%uff0e', '.').replace('%u2216', '\\')
+        curr = str(payload).lower()
 
-            if prev == curr:
-                max_depth = depth - 1
-                break
-            max_depth = depth
-        return curr.lower(), max_depth
+        # Normalize common obfuscations found during benchmark failure analysis
+        curr = curr.replace('%c0%ae', '.').replace('%c0%af', '/')
+        curr = curr.replace('%25c1%259c', '/')
+        curr = curr.replace('%uff0e', '.').replace('%u2216', '\\')
 
-    def inspect_uri(self, uri_path, uri_query):
-        norm_path, p_depth = self._normalize(uri_path)
-        norm_query, q_depth = self._normalize(uri_query)
-
-        # Heuristic: Excessive decoding
-        if p_depth >= self.decode_threshold or q_depth >= self.decode_threshold:
-            return True
-
-        combined = f"{norm_path} {norm_query}"
-
-        # Check Patterns
+        # Deterministic Scan
         for p in self.patterns:
-            if p.search(combined):
+            if p.search(curr):
                 return True
 
-        # Check for Null Byte
-        if '%00' in str(uri_path) or '%00' in str(uri_query):
+        # Structural Scan: Detect Null Byte injection (%00 or decoded \x00)
+        if '%00' in curr or '\x00' in curr:
             return True
 
         return False
@@ -92,10 +71,8 @@ class NaiveRegexWAF:
         self.name = "Naive Regex WAF"
         self.pattern = re.compile(r'(?i)(\.\./|\.\.\\|/etc/passwd|windows\\win\.ini)')
 
-    def inspect_uri(self, uri_path, uri_query):
-        combined = f"{uri_path}?{uri_query}"
-        decoded = urllib.parse.unquote(combined)
-        return bool(self.pattern.search(decoded))
+    def inspect_payload(self, payload):
+        return bool(self.pattern.search(str(payload)))
 
 
 # ==========================================
@@ -110,20 +87,18 @@ class OwaspCrsWAF:
             re.compile(r'(?i)(?:/etc/passwd|/etc/shadow|boot\.ini|/windows/win\.ini)')
         ]
 
-    def inspect_uri(self, uri_path, uri_query):
-        combined = f"{uri_path}?{uri_query}"
-        decoded = urllib.parse.unquote(combined)
+    def inspect_payload(self, payload):
+        text = str(payload)
         for p in self.patterns:
-            if p.search(decoded): return True
+            if p.search(text): return True
         return False
 
 
 # ==========================================
-# THE BENCHMARKING SYSTEM
+# BENCHMARK RUNNERS
 # ==========================================
 def download_payloads():
-    print("=== Downloading Fuzzing Benchmarks ===")
-
+    print("=== Downloading Fuzzing Benchmarks (Path Traversal) ===")
     urls = [
         "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/LFI/LFI-Jhaddix.txt",
         "https://raw.githubusercontent.com/1N3/IntruderPayloads/master/FuzzLists/lfi.txt",
@@ -155,14 +130,12 @@ def download_payloads():
                     if clean_line and not clean_line.startswith('#'):
                         combined_payloads.add(clean_line)
         except Exception as e:
-            print(f"[-] Failed to download from {url}: {e}")
+            pass
 
     return list(combined_payloads)
 
-
 def run_performance_test(engine, payloads, output_dir="lfi_benchmark_results"):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    if not os.path.exists(output_dir): os.makedirs(output_dir)
 
     total = len(payloads)
     detected_payloads = []
@@ -172,7 +145,9 @@ def run_performance_test(engine, payloads, output_dir="lfi_benchmark_results"):
     start_time = time.perf_counter()
 
     for p in payloads:
-        if engine.inspect_uri("/", f"file={p}"):
+        # Simulate UnifiedEngine decoding
+        decoded_p = urllib.parse.unquote(p)
+        if engine.inspect_payload(decoded_p):
             detected_payloads.append(p)
         else:
             missed_payloads.append(p)
@@ -182,38 +157,44 @@ def run_performance_test(engine, payloads, output_dir="lfi_benchmark_results"):
     tracemalloc.stop()
 
     recall = (len(detected_payloads) / total) * 100 if total > 0 else 0
-
     safe_name = engine.name.replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
     filename = os.path.join(output_dir, f"{safe_name}_results.txt")
 
     with open(filename, 'w', encoding='utf-8') as f:
-        f.write(f"=== {engine.name} Benchmark Results ===\n")
-        f.write(f"Total Payloads: {total}\n")
-        f.write(f"Detected:       {len(detected_payloads)} ({recall:.2f}%)\n")
-        f.write(f"Missed:         {len(missed_payloads)}\n")
-        f.write("=" * 50 + "\n\n")
+        f.write(f"=== {engine.name} Benchmark Results ===\nTotal Payloads: {total}\nDetected:       {len(detected_payloads)} ({recall:.2f}%)\nMissed:         {len(missed_payloads)}\n")
+    return {"name": engine.name, "recall": recall, "time": end_time - start_time, "memory_kb": peak_memory / 1024}
 
-        f.write("--- MISSED PAYLOADS ---\n")
-        for mp in missed_payloads:
-            f.write(f"{mp}\n")
+def run_false_positive_test(engines):
+    print("\n=== HARD MODE FALSE POSITIVE (FP) TESTING ===")
+    url_benign = "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/raft-large-words.txt"
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(url_benign, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=15) as response:
+            # Lấy 5000 payload lớn nhất
+            legitimate_traffic = [line.decode('utf-8', errors='ignore').strip() for line in response.readlines()][:5000]
+    except Exception as e:
+        print(f"[-] Lỗi tải Benign traffic: {e}. Dùng dữ liệu giả lập...")
+        legitimate_traffic = ["user=admin", "id=123", "page=about", "search=hello"] * 1000
 
-    return {
-        "name": engine.name,
-        "recall": recall,
-        "time": end_time - start_time,
-        "memory_kb": peak_memory / 1024
-    }
+    print(f"[+] Đã tải {len(legitimate_traffic)} mẫu truy cập hợp lệ từ SecLists.")
+    print(f"{'Engine Name':<30} | {'FP Count':<10} | {'FP Rate (%)':<15}")
+    print("-" * 65)
 
+    for engine in engines:
+        fps = 0
+        for lp in legitimate_traffic:
+            if engine.inspect_payload(lp): fps += 1
+        fpr = (fps / len(legitimate_traffic)) * 100
+        print(f"{engine.name:<30} | {fps:>2}/{len(legitimate_traffic):<7} | {fpr:>8.2f}%")
 
 if __name__ == "__main__":
     payloads = download_payloads()
+    if not payloads: exit()
 
-    if not payloads:
-        print("[-] Failed to download payloads. Exiting.")
-        exit()
-
-    print(f"[+] Loaded {len(payloads)} unique LFI payloads. Running comparative analysis...\n")
-
+    print(f"\n[+] Loaded {len(payloads)} unique LFI payloads. Running comparative analysis...\n")
     engines = [NaiveRegexWAF(), OwaspCrsWAF(), PathTraversalDetector()]
 
     results = []
@@ -224,8 +205,7 @@ if __name__ == "__main__":
     print("-" * 77)
 
     results.sort(key=lambda x: x['recall'], reverse=True)
-
     for r in results:
         print(f"{r['name']:<30} | {r['recall']:>8.2f}%   | {r['time']:>10.4f}   | {r['memory_kb']:>12.2f}")
 
-    print("\n[+] Benchmark Complete.")
+    run_false_positive_test(engines)

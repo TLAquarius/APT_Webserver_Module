@@ -48,13 +48,13 @@ class WebserverBridge:
     def update_ai_thresholds(self, sensitivity: str):
         config_path = os.path.join(self.models_dir, "alert_config.json")
         data = {
-            "suspicious_threshold": 50,
+            "suspicious_threshold": 60,
             "critical_threshold": 80
         }
         if sensitivity == "low":
             data = {"suspicious_threshold": 70, "critical_threshold": 95}
         elif sensitivity == "high":
-            data = {"suspicious_threshold": 30, "critical_threshold": 60}
+            data = {"suspicious_threshold": 40, "critical_threshold": 60}
 
         with open(config_path, 'w', encoding='utf-8') as f:
             json.dump(data, f)
@@ -114,7 +114,7 @@ class WebserverBridge:
             l1_runner.run(self.paths["parsed_timeline"], self.paths["layer1_alerts"], status_callback)
 
             update_ui("3/5: Đang nhóm Phiên và trích xuất Đặc trưng (Sessionizing)...", 45)
-            sessionizer = StatefulStreamingEngine(timeout_minutes=15, max_session_hours=2)
+            sessionizer = StatefulStreamingEngine(timeout_minutes=10, max_session_hours=2)
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
@@ -406,7 +406,7 @@ class WebserverBridge:
                 if os.path.exists(config_path):
                     with open(config_path, 'r', encoding='utf-8') as f:
                         cfg = json.load(f)
-                        sus_thresh = cfg.get("suspicious_threshold", 50)
+                        sus_thresh = cfg.get("suspicious_threshold", 60)
                         crit_thresh = cfg.get("critical_threshold", 80)
 
                 valid_parent_ids = {case["incident_tracking_id"] for case in incidents}
