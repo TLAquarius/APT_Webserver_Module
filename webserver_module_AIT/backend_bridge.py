@@ -52,7 +52,7 @@ class WebserverBridge:
             "critical_threshold": 80
         }
         if sensitivity == "low":
-            data = {"suspicious_threshold": 70, "critical_threshold": 95}
+            data = {"suspicious_threshold": 80, "critical_threshold": 90}
         elif sensitivity == "high":
             data = {"suspicious_threshold": 40, "critical_threshold": 60}
 
@@ -402,7 +402,7 @@ class WebserverBridge:
                 df_merged = pd.merge(df_stat, df_seq, on=['session_id', 'parent_tracking_id'], how='inner')
 
                 config_path = os.path.join(self.models_dir, "alert_config.json")
-                sus_thresh, crit_thresh = 50, 80
+                sus_thresh, crit_thresh = 60, 80
                 if os.path.exists(config_path):
                     with open(config_path, 'r', encoding='utf-8') as f:
                         cfg = json.load(f)

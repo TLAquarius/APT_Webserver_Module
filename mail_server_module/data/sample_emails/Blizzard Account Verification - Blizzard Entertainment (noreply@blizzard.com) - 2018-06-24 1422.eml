@@ -1,0 +1,1485 @@
+Delivered-To: godofhuman2003@gmail.com
+Received: by 2002:a6b:9945:0:0:0:0:0 with SMTP id b66-v6csp218904ioe;
+        Sun, 24 Jun 2018 00:22:54 -0700 (PDT)
+X-Google-Smtp-Source: ADUXVKIwAAQUlxjIWbYJBNa+L3WRsgQ8gln1Ge1uDMlPQer9mp6IJCsIgb/GiL4cdPGPWDHMp7zS
+X-Received: by 2002:a63:91c8:: with SMTP id l191-v6mr6767587pge.53.1529824974828;
+        Sun, 24 Jun 2018 00:22:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1529824974; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Zkogzz06GaC0BU7rVePEvILTPjL9iWYuw7Q6SyzS98jI/nb4IVr9MYrBsN7QKeMawy
+         7RFiiGvVmjM7Z7aZwMOXMJrRqmyvHoxVIUhTquMQEM8mjM99CNVn2xVH69+frKRFQYsL
+         tlIO/E3zIAkDd40RUO1LIIMt0PUNhExHUXwYf7eln3eyd2g6MvbBs8q2FXBpfRAZx5Iw
+         HLXfTCGOzGxJj9GTVx4E7uzNkAEzHRvXKhZR7qw0rhm9HqdsALvLv+Eni2HUlWeizwj/
+         YyLklU5yDprkCsWPx6sj/17v+eLAls0MbDEAlUI2nXUdJq/fEQhNHLde92/y8xf9lgxB
+         fj8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:from:date:dkim-signature
+         :dkim-filter:arc-authentication-results;
+        bh=b6PHX8aLuTVwy5P4R7ztjAtiEZl7gt0LgCGWTlo2f78=;
+        b=GkayFGxfK6YZ/DSMkLHkBo7hGpyeMP9qqI2nJtrv3bblG1FS3vG+qXTQ0AVdyNKoDe
+         ILPHM06JQEuj3JTiXoAbXIhvNI6jPori4V5HsJArhOYu7CJlKCKoD/Ks6nDfma+snedx
+         kienTwANVNYyQWuCaERIx4SAuejrLqGuOgqQolJm0mL6MAdWTxSQbPGT8yYla4909cqR
+         x5iZrI0bbkzTQdbpjr97D71NZtRe5CJsgUF4W+nGYoMj3PoLKQQaF8AyFn7ssqFiuuk9
+         s4RNtv9YLmnjOM5PL86fMOKF/BIfKg3oWzAg2l3qTXG6lvIyIXf8+aE/ZNt66u6ypykE
+         EfbQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@blizzard.com header.s=mail header.b=z1Vi1CsA;
+       spf=pass (google.com: domain of noreply@blizzard.com designates 121.254.166.47 as permitted sender) smtp.mailfrom=noreply@blizzard.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=blizzard.com
+Return-Path: <noreply@blizzard.com>
+Received: from ext-smtp11.kr.battle.net (ext-smtp11.kr.battle.net. [121.254.166.47])
+        by mx.google.com with ESMTPS id b18-v6si11096670pls.292.2018.06.24.00.22.54
+        for <GODOFHUMAN2003@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 24 Jun 2018 00:22:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@blizzard.com designates 121.254.166.47 as permitted sender) client-ip=121.254.166.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@blizzard.com header.s=mail header.b=z1Vi1CsA;
+       spf=pass (google.com: domain of noreply@blizzard.com designates 121.254.166.47 as permitted sender) smtp.mailfrom=noreply@blizzard.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=blizzard.com
+Received: from icn1a-bn-client-tomcat-nexus-notification-01.icn1a.cloud.blizzard.net (icn1a-bn-client-tomcat-nexus-notification-01.battle.net [10.60.84.44])
+	by ext-smtp11.kr.battle.net (Postfix) with ESMTP id 34D786403DB
+	for <GODOFHUMAN2003@GMAIL.COM>; Sun, 24 Jun 2018 07:22:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ext-smtp11.kr.battle.net 34D786403DB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blizzard.com;
+	s=mail; t=1529824973;
+	bh=b6PHX8aLuTVwy5P4R7ztjAtiEZl7gt0LgCGWTlo2f78=;
+	h=Date:From:To:Subject:From;
+	b=z1Vi1CsA43lfQaMbDgQGZH6ttyk8uG9AGtPCY6bNdTixARavD1M4RJuhYDxgC1DOi
+	 NjitzIXKtlAPxIsi40oUfcqO/nf3YuTrJppeX56Kc8eP0sCgJ0mpE7J/1EJDN9GrH9
+	 pqKccdLoxMU7iTHkSjqB1FvVvMZ8pc28gW+fuyz8=
+Date: Sun, 24 Jun 2018 07:22:53 +0000 (UTC)
+From: Blizzard Entertainment <noreply@blizzard.com>
+To: GODOFHUMAN2003@GMAIL.COM
+Message-ID: <313908066.2153711529824973210.JavaMail.tomcat@icn1a-bn-client-tomcat-nexus-notification-01.icn1a.cloud.blizzard.net>
+Subject: Blizzard Account Verification
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_430722_1552151209.1529824973202"
+
+------=_Part_430722_1552151209.1529824973202
+Content-Type: multipart/related; 
+	boundary="----=_Part_430723_1078556887.1529824973202"
+
+------=_Part_430723_1078556887.1529824973202
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8" />
+<meta charset=3D"utf-8" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1"=
+ />
+<meta name=3D"format-detection" content=3D"telephone=3Dno" />
+<meta name=3D"format-detection" content=3D"date=3Dno" />
+<meta name=3D"format-detection" content=3D"address=3Dno" />
+<meta name=3D"format-detection" content=3D"email=3Dno" />
+<title>Blizzard Account Verification</title>
+<!--[if !mso]><!-->
+<style type=3D"text/css">
+@font-face {
+font-family: 'Open Sans';
+font-weight: 300;
+font-style: normal;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 400;
+font-style: normal;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 600;
+font-style: normal;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/MTP_ySUJH_bn48VBG8sNSqRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 700;
+font-style: normal;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 800;
+font-style: normal;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/EInbV5DfGHOiMmvb1Xr-hqRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 300;
+font-style: italic;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/PRmiXeptR36kaC0GEAetxvR_54zmj3SbGZQh3vCOwvY.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 400;
+font-style: italic;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/xjAJXh38I15wypJXxuGMBrrIa-7acMAeDBVuclsi6Gc.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 600;
+font-style: italic;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/PRmiXeptR36kaC0GEAetxuw_rQOTGi-AJs5XCWaKIhU.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 700;
+font-style: italic;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/PRmiXeptR36kaC0GEAetxhbnBKKEOwRKgsHDreGcocg.woff') format('woff');
+}
+@font-face {
+font-family: 'Open Sans';
+font-weight: 800;
+font-style: italic;
+src: local('=E2=98=BA=EF=B8=8E'), url('http://fonts.gstatic.com/s/opensans/=
+v13/PRmiXeptR36kaC0GEAetxsBo4hlZyBvkZICS3KpNonM.woff') format('woff');
+}
+</style>
+<!--<![endif]-->
+<style type=3D"text/css">
+#outlook a {
+padding: 0;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font,=
+ .ExternalClass td, .ExternalClass div {
+line-height: 100%;
+}
+body, table, td, a {
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+table, td {
+mso-table-lspace: 0;
+mso-table-rspace: 0;
+}
+img {
+-ms-interpolation-mode: bicubic;
+}
+body {
+margin: 0;
+padding: 0;
+}
+img {
+line-height: 100%;
+height: auto;
+text-decoration: none;
+border: 0;
+outline: none;
+}
+table {
+border-collapse: collapse !important;
+}
+body {
+width: 100% !important;
+height: 100% !important;
+margin: 0;
+padding: 0;
+background-color: #000000 !important;
+}
+a[href^=3D"mailto"] {
+text-decoration: none !important;
+color: #01b2f1 !important;
+}
+.preheader {
+display: none !important;
+}
+a:link, a:hover, a:visited, a:focus {
+text-decoration: none;
+}
+a[x-apple-data-detectors] {
+font-family: inherit !important;
+font-size: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+text-decoration: none !important;
+color: inherit !important;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+a[x-apple-data-detectors] {
+font-family: inherit !important;
+font-size: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+text-decoration: none !important;
+color: inherit !important;
+}
+img[class=3D'img-hide'] {
+display: none !important;
+}
+td[class=3D'img-hide'] {
+display: none !important;
+}
+td[class=3D'display-block'] {
+display: block !important;
+}
+div[class=3D'display-block'] {
+display: block !important;
+}
+}
+@media screen and (max-width: 525px) {
+table[class=3D'wrapper'] {
+width: 100% !important;
+}
+table[class=3D'mobile-hide'] {
+display: none !important;
+}
+td[class=3D'mobile-hide'] {
+display: none !important;
+}
+img[class=3D'mobile-hide'] {
+display: none !important;
+}
+td[class=3D'display-img'] {
+display: block !important;
+max-width: 100% !important;
+height: auto !important;
+}
+td[class=3D'logo'] img {
+margin: 0 auto !important;
+}
+td[class=3D'center'] {
+text-align: center !important;
+}
+img[class=3D'img-max'] {
+width: 100%;
+max-width: 100%;
+height: auto;
+}
+table[class=3D'responsive-table'] {
+min-width: 0 !important;
+width: 100% !important;
+}
+td[class=3D'2-column-buttons-section-padding-0px-15px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'2-column-buttons-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-buttons-padding-0px-center'] {
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-buttons-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-buttons-padding-15px-1p-10px-font-18px-center'] {
+font-size: 18px !important;
+padding: 15px 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-buttons-padding-0px-1p-30px-font-12px-center'] {
+font-size: 12px !important;
+padding: 0 1% 30px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-buttons-cta-button-padding-0px-5p-30px'] {
+padding: 0 5% 30px !important;
+}
+td[class=3D'2-column-image-subheader-body-text-section-padding-0px-15px-20p=
+x'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'2-column-image-subheader-body-text-padding-0px-5p-0px-center'] =
+{
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-subheader-body-text-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-subheader-body-text-padding-15px-1p-10px-font-18=
+px-center'] {
+font-size: 18px !important;
+padding: 15px 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-subheader-body-text-padding-0px-1p-30px-font-12p=
+x-center'] {
+font-size: 12px !important;
+padding: 0 1% 30px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-subheader-body-text-padding-0px-1p-30px-font-14p=
+x-center'] {
+font-size: 14px !important;
+padding: 0 1% 30px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-section-padding-0px-15px-0px'] {
+padding: 0 15px 0 !important;
+}
+td[class=3D'2-column-image-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-padding-0px-5p-20px-center'] {
+padding: 0 5% 20px !important;
+text-align: center !important;
+}
+td[class=3D'2-column-image-padding-10px-0px-0px-center'] {
+display: block !important;
+padding: 10px 0 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-section-padding-0px-15px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'3-column-image-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-subheader-body-text-section-padding-0px-15px-20p=
+x'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'3-column-image-subheader-body-text-padding-0px-5p-0px-center'] =
+{
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-subheader-body-text-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-subheader-body-text-padding-15px-1p-10px-font-18=
+px-center'] {
+font-size: 18px !important;
+padding: 15px 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-subheader-body-text-padding-0px-1p-30px-font-12p=
+x-center'] {
+font-size: 12px !important;
+padding: 0 1% 30px !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-subheader-body-text-padding-0px-1p-30px-font-14p=
+x-center'] {
+font-size: 14px !important;
+padding: 0 1% 30px !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-section-padding-0px-15px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'3-column-image-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'3-column-image-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'body-text-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-12px-left'] {
+font-size: 12px !important;
+padding: 0 5% 30px !important;
+text-align: left !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-12px-center'] {
+font-size: 12px !important;
+padding: 0 5% 30px !important;
+text-align: center !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-12px-right'] {
+font-size: 12px !important;
+padding: 0 5% 30px !important;
+text-align: right !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-14px-left'] {
+font-size: 14px !important;
+padding: 0 5% 30px !important;
+text-align: left !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-14px-center'] {
+font-size: 14px !important;
+padding: 0 5% 30px !important;
+text-align: center !important;
+}
+td[class=3D'body-text-padding-0px-5p-30px-font-14px-right'] {
+font-size: 14px !important;
+padding: 0 5% 30px !important;
+text-align: right !important;
+}
+td[class=3D'cta-button-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'cta-button-padding-0px-5p-30px'] {
+padding: 0 5% 30px !important;
+}
+td[class=3D'code-redemption-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'code-redemption-padding-0px-5p-10px'] {
+padding: 0 5% 10px !important;
+}
+td[class=3D'code-redemption-padding-0px-5p-30px'] {
+padding: 0 5% 30px !important;
+}
+td[class=3D'full-width-image-section-padding-0px'] {
+padding: 0 !important;
+}
+td[class=3D'full-width-image-padding-0px-0px-20px-center'] {
+display: block !important;
+padding: 0 0 20px !important;
+text-align: center !important;
+}
+td[class=3D'full-width-image-padding-0px-center'] {
+display: block !important;
+padding: 0px !important;
+text-align: center !important;
+}
+td[class=3D'header-section-padding-0px-15px-0px'] {
+padding: 0 15px 0 !important;
+}
+td[class=3D'header-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'header-padding-0px-5p-0px-font-center'] {
+font-size: 22px !important;
+line-height: 30px !important;
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'header-padding-0px-5p-10px-font-center'] {
+font-size: 22px !important;
+line-height: 30px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-body-text-right-30-70-section-padding-0px-15px-20px'=
+] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'image-left-body-text-right-30-70-section-padding-0px-0px-10px']=
+ {
+padding: 0 0 10px !important;
+}
+td[class=3D'image-left-body-text-right-30-70-padding-0px-center'] {
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-body-text-right-30-70-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-body-text-right-30-70-padding-0px-1p-10px-font-12px-=
+center'] {
+font-size: 12px !important;
+line-height: 24px !important;
+padding: 0 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-section-padding-0px-1=
+5px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-center'] =
+{
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-0px-10px'=
+] {
+padding: 0 0 10px !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-5p'] {
+padding: 0 5% !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-10px-5p-10px-=
+center'] {
+padding: 10px 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-1p-10px-f=
+ont-12px-left'] {
+font-size: 12px !important;
+line-height: 24px !important;
+padding: 0 1% 10px !important;
+text-align: left !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-1p-10px-f=
+ont-14px-left'] {
+font-size: 14px !important;
+line-height: 24px !important;
+padding: 0 1% 10px !important;
+text-align: left !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-1p-10px-f=
+ont-16px-center'] {
+font-size: 16px !important;
+line-height: 24px !important;
+padding: 0 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-icon-subheader-body-text-right-padding-0px-1p-20px-f=
+ont-18px-center'] {
+font-size: 16px !important;
+padding: 0px 1% 20px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-section-padding-0px-15px']=
+ {
+padding: 0 15px !important;
+}
+td[class=3D'image-left-subheader-body-text-right-section-padding-0px-0px-10=
+px'] {
+padding: 0 0 10px !important;
+}
+td[class=3D'image-left-subheader-body-text-right-section-padding-0px-15px-1=
+0px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'image-left-subheader-body-text-right-section-padding-0px-15px-2=
+0px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-0px-5p-0px-center'=
+] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-section-padding-10px-15px-=
+10px'] {
+padding: 10px 15px 10px !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-0px-1p-10px-font-1=
+2px-center'] {
+font-size: 12px !important;
+line-height: 24px !important;
+padding: 0 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-0px-1p-10px-font-1=
+4px-center'] {
+font-size: 14px !important;
+line-height: 20px !important;
+padding: 0 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-0px-5p'] {
+padding: 0 5% !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-10px-5p-10px-cente=
+r'] {
+padding: 10px 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-subheader-body-text-right-padding-15px-1p-10px-font-=
+18px-center'] {
+font-size: 18px !important;
+padding: 15px 1% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-text-right-button-section-padding-0px-15px'] {
+padding: 0 15px !important;
+}
+td[class=3D'image-left-text-right-button-section-padding-10px-15px-10px'] {
+padding: 10px 15px 10px !important;
+}
+td[class=3D'image-left-text-right-button-padding-0px-5p'] {
+padding: 0 5% !important;
+}
+td[class=3D'image-left-text-right-button-padding-10px-5p-10px-center'] {
+padding: 10px 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-text-right-button-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'list-text-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'list-padding-0px-5p-30px-left'] {
+padding: 0 5% 30px !important;
+text-align: left !important;
+}
+td ul[class=3D'mobile-list'] {
+font-size: 12px !important;
+margin-left: 0 !important;
+}
+td[class=3D'multiple-icons-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'purchase-details-section-padding-0px-0px-10px'] {
+padding: 0 0 10px !important;
+}
+td[class=3D'purchase-details-section-padding-0px-15px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'purchase-details-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'purchase-details-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'purchase-details-padding-15px-0px-0px-font-10px-left'] {
+font-size: 10px !important;
+padding: 10px 0 0 !important;
+text-align: left !important;
+}
+td[class=3D'purchase-details-padding-0px-0px-10px-font-12px-left'] {
+font-size: 12px !important;
+line-height: 18px !important;
+padding: 0 0 10px !important;
+text-align: left !important;
+}
+td[class=3D'purchase-item-section-padding-0px-15px-20px'] {
+padding: 0 15px 20px !important;
+}
+td[class=3D'purchase-item-section-padding-0px-0px-10px'] {
+padding: 0 0 10px !important;
+}
+td[class=3D'purchase-item-padding-0px-center'] {
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'purchase-item-padding-0px-5p-0px-center'] {
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'purchase-item-padding-0px-1p-5px-font-12px-left'] {
+font-size: 12px !important;
+line-height: 16px !important;
+padding: 0 1% 5px !important;
+text-align: left !important;
+}
+td[class=3D'purchase-item-padding-0px-1p-10px-font-14px-left'] {
+font-size: 14px !important;
+line-height: 18px !important;
+padding: 0 1% 10px !important;
+text-align: left !important;
+}
+td[class=3D'special-text-battletag-section-padding-0px-15px-0px'] {
+padding: 0 15px 0 !important;
+}
+td[class=3D'special-text-battletag-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'special-text-battletag-padding-0px-5p-0px-font-14px-center'] {
+font-size: 14px !important;
+line-height: 16px !important;
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'special-text-battletag-padding-0px-5p-10px-font-16px-center'] {
+font-size: 16px !important;
+line-height: 18px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'special-text-caption-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'special-text-caption-padding-0px-5p-30px-font-12px-center'] {
+font-size: 12px !important;
+padding: 0 5% 30px !important;
+text-align: center !important;
+}
+td[class=3D'special-text-subheader-section-padding-0px-15px-0px'] {
+padding: 0 15px 0 !important;
+}
+td[class=3D'special-text-subheader-padding-0px-5p-20px-font-14px-center'] {
+font-size: 14px !important;
+line-height: 16px !important;
+padding: 0 5% 20px !important;
+text-align: center !important;
+}
+td[class=3D'subheader-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+}
+td[class=3D'subheader-section-padding-30px-15px-10px'] {
+padding: 30px 15px 10px !important;
+}
+td[class=3D'subheader-padding-0px-5p-10px-font-20px-center'] {
+font-size: 20px !important;
+line-height: 28px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'subheader-padding-0px-5p-10px-font-center'] {
+font-size: 20px !important;
+line-height: 24px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'image-left-text-right-button-padding-30px-0px-0px-center'] {
+display: block !important;
+padding: 30px 0 0 !important;
+text-align: center !important;
+}
+td[class=3D'image-left-text-right-button-padding-0px-5p-30px-font-12px-left=
+'] {
+font-size: 12px !important;
+padding: 0 5% 30px !important;
+text-align: left !important;
+}
+td[class=3D'image-left-text-right-button-padding-0px-5p-30px-font-14px-left=
+'] {
+font-size: 14px !important;
+padding: 0 5% 30px !important;
+text-align: left !important;
+}
+td[class=3D'social-section-padding-0px-0px-30px'] {
+padding: 0 0 30px !important;
+background-color: #001845 !important;
+}
+td[class=3D'social-section-padding-0px-15px-0px'] {
+padding: 0 15px 0 !important;
+background-color: #001845 !important;
+}
+td[class=3D'social-section-padding-0px-15px-10px'] {
+padding: 0 15px 10px !important;
+background-color: #001845 !important;
+}
+td[class=3D'social-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'social-padding-0px-5p-10px'] {
+padding: 0 5% 10px !important;
+}
+td[class=3D'social-padding-0px-5p-10px-font-12px-center'] {
+font-size: 12px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'social-padding-0px-5p-10px-font-14px-center'] {
+font-size: 14px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'social-padding-0px-5p-0px-font-24px-center'] {
+font-size: 24px !important;
+line-height: 30px !important;
+padding: 0 5% 0 !important;
+text-align: center !important;
+}
+td[class=3D'social-padding-0px-5p-10px-font-24px-center'] {
+font-size: 24px !important;
+line-height: 30px !important;
+padding: 0 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'footer-section-padding-0px'] {
+padding: 0 !important;
+}
+td[class=3D'footer-section-padding-10px-15px-10px'] {
+padding: 10px 15px 10px !important;
+}
+td[class=3D'footer-section-padding-25px-15px-25px'] {
+padding: 25px 15px 25px !important;
+}
+td[class=3D'footer-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'footer-padding-0px-5p-30px-center'] {
+padding: 0 5% 30px !important;
+text-align: center !important;
+}
+td[class=3D'footer-padding-0px-10p-30px-center'] {
+padding: 0 10% 30px !important;
+text-align: center !important;
+}
+td[class=3D'footer-padding-5px-0px-center'] {
+display: block !important;
+width: 100% !important;
+padding: 5px 0 !important;
+text-align: center !important;
+border-bottom: 1px solid #0d3551;
+}
+td[class=3D'footer-padding-10px-5p-10px-left'] {
+padding: 10px 5% 10px !important;
+text-align: left !important;
+}
+td[class=3D'footer-padding-10px-5p-10px-center'] {
+padding: 10px 5% 10px !important;
+text-align: center !important;
+}
+td[class=3D'footer-padding-30px-0px-0px-center'] {
+display: block !important;
+padding: 30px 0 0 !important;
+text-align: center !important;
+}
+td[class=3D'header-section-padding-0px'] {
+padding: 0 !important;
+}
+td[class=3D'header-section-padding-25px-15px-25px'] {
+padding: 25px 15px 25px !important;
+}
+td[class=3D'header-padding-0px-center'] {
+display: block !important;
+padding: 0 !important;
+text-align: center !important;
+}
+td[class=3D'header-padding-20px-0px-30px'] {
+display: block !important;
+padding: 20px 0 30px !important;
+}
+td[class=3D'warning-section-padding-0px'] {
+padding: 0 !important;
+}
+td[class=3D'warning-padding-10px-0px-left'] {
+padding: 10px 0 !important;
+text-align: left !important;
+}
+td[class=3D'warning-padding-0px-10px-0px-5p-left'] {
+padding: 0 10px 0 5% !important;
+text-align: left !important;
+}
+td[class=3D'warning-padding-0px-5p-0px-0px-left'] {
+padding: 0 5% 0 0 !important;
+text-align: left !important;
+}
+.cta {
+display: block !important;
+}
+}
+.body-text-padding-0px-5p-30px-font-12px-left a,
+.body-text-padding-0px-5p-30px-font-12px-left p a {
+text-decoration: underline !important;
+color: #01b2f1 !important;
+}
+.body-text-padding-0px-5p-30px-font-12px-left a.cta {
+text-decoration: none !important;
+color: #ffffff !important;
+}
+</style> </head>
+<body bgcolor=3D"#000000" style=3D"margin: 0; padding: 0; table-layout: fix=
+ed; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-=
+color: #000000;">
+<center bgcolor=3D"#000000" style=3D"margin: 0; padding: 0; background-colo=
+r: #000000;">
+<table bgcolor=3D"#002650" style=3D"background-color: #002650;" class=3D"re=
+sponsive-table">
+<tr>
+<td bgcolor=3D"#002650" style=3D"background-color: #002650;">
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#002650" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+2650;">
+<tr>
+<td
+class=3D"header-section-padding-0px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"header-padding-0px-center"
+bgcolor=3D"#002650"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td>
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/image-battlen=
+et-banner-header.jpg" width=3D"100%" height=3D"100%" style=3D"font-family: =
+'Open Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helv=
+etica, Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sa=
+ns Condensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Micros=
+oft YaHei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hi=
+ragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=
+=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=
+=E3=82=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sa=
+ns-serif; font-size: 14px; display: block; margin: 0; padding: 0; text-deco=
+ration: none; color: #7ca2cb; " alt=3D"This is an image" border=3D"0" class=
+=3D"img-max"/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#002650" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+2650;">
+<tr>
+<td
+class=3D"header-section-padding-25px-15px-25px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"logo"
+style=3D"width: 600px; text-align: center"
+bgcolor=3D"#002650"
+>
+<center>
+<a href=3D"http://blizzard.com/" target=3D"_blank" alias=3D"Image Link (Bli=
+zzard Logo)">
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/logo-blizzard=
+-header.gif" width=3D"160" height=3D"86" style=3D"font-family: 'Open Sans',=
+ Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, Arial=
+, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed=
+', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei', =
+AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kaku =
+Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=
+=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=
+=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif; fo=
+nt-size: 14px; display: block; margin: 0; padding: 0; text-decoration: none=
+; color: #7ca2cb; margin: 0 auto;" alt=3D"BLIZZARD ENTERTAINMENT" border=3D=
+"0" class=3D""/>
+</a>
+</center>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#002650" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+2650;">
+<tr>
+<td
+class=3D"header-section-padding-0px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"header-padding-0px-center"
+bgcolor=3D"#002650"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td class=3D"header-padding-20px-0px-30px" style=3D"padding: 30px 0;">
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/image-battlen=
+et-divider.jpg" width=3D"100%" height=3D"100%" style=3D"font-family: 'Open =
+Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica,=
+ Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Con=
+densed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft Ya=
+Hei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino=
+ Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=
+=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=
+=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-ser=
+if; font-size: 14px; display: block; margin: 0; padding: 0; text-decoration=
+: none; color: #7ca2cb; " alt=3D"This is an image" border=3D"0" class=3D"im=
+g-max"/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#002650" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+2650;">
+<tr>
+<td
+class=3D"body-text-section-padding-0px-15px-10px"
+style=3D"padding: 0;"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+bgcolor=3D"#002650"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td class=3D"body-text-padding-0px-5p-30px-font-12px-left" style=3D"font-fa=
+mily: 'Open Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue'=
+, Helvetica, Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'Dej=
+aVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', '=
+Microsoft YaHei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei=
+', 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=
+=83=A1=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=
+=82=B4=E3=82=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verda=
+na, sans-serif; font-size: 14px; font-weight: 300; line-height: 24px; text-=
+align: left; padding: 0 40px 40px; color: #bbbbbb;">
+<table id=3D"" class=3D"" style=3D"" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" height=3D""><tr><td style=3D"font-family: 'Open S=
+ans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, =
+Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Cond=
+ensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaH=
+ei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino =
+Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=
+=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=
+=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif;=
+font-weight: 300; font-size: 24px; color: #FFFFFF; line-height: 32px;">Here=
+=E2=80=99s your security code:</td></tr></table>
+<p style=3D""><em style=3D"font-family: 'Open Sans', Frutiger, 'Frutiger Li=
+notype', Univers, 'Helvetica Neue', Helvetica, Arial, 'Gill Sans', 'Gill Sa=
+ns MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', '=
+Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei', AppleSDGothicNeo, Apple=
+Gothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kaku Gothic Pro', 'Hiragino =
+Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, =
+'=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF', Calibri=
+, Geneva, Display, Tahoma, Verdana, sans-serif;font-size: 28px; font-weight=
+: 300; color: #3ed500; font-style: normal;">DQFWTR</em></p>
+<p style=3D""> Hello hung!
+</p>
+<p style=3D""> We=E2=80=99ve received a security request from your Blizzard=
+ Account. Please use the code above to verify ownership of your account.
+</p>
+<p style=3D""> <i><b>Note:</b> The code will expire in 10 minutes, so pleas=
+e verify soon!</i>
+</p>
+<p style=3D"">Enjoy your adventures!<br/>
+Blizzard Entertainment</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table bgcolor=3D"#002650" style=3D"background-color: #002650;" class=3D"re=
+sponsive-table">
+<tr>
+<td bgcolor=3D"#001845" style=3D"background-color: #001845;">
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"social-section-padding-0px-0px-30px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"social-padding-0px-center"
+style=3D"padding: 0 0 30px;"
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td>
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/divider.jpg" =
+width=3D"100%" height=3D"100%" style=3D"font-family: 'Open Sans', Frutiger,=
+ 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, Arial, 'Gill Sa=
+ns', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Libera=
+tion Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei', AppleSDGot=
+hicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kaku Gothic Pro=
+', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=83=AA=E3=82=
+=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=83=83=E3=82=
+=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif; font-size: 14p=
+x; display: block; margin: 0; padding: 0; text-decoration: none; color: #7c=
+a2cb; " alt=3D"This is an image" border=3D"0" class=3D"img-max"/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"social-section-padding-0px-15px-0px"
+style=3D"padding: 0;"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td class=3D"social-padding-0px-5p-0px-font-24px-center" style=3D"font-fami=
+ly: 'Open Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', =
+Helvetica, Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaV=
+u Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Mi=
+crosoft YaHei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei',=
+ 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=
+=A1=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=
+=B4=E3=82=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana,=
+ sans-serif; font-weight: 300; font-size: 24px; color: #FFFFFF; line-height=
+: 32px; text-align: center; padding: 0 40px 0;">
+Stay Connected With Blizzard
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"social-section-padding-0px-15px-10px"
+align=3D"center"
+>
+<div align=3D"center">
+<table class=3D"wrapper" width=3D"600" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0">
+<tr>
+<td
+class=3D"logo"
+style=3D"padding: 0 0 40px;"
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td align=3D"center">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td style=3D"padding: 20px 15px 0 0;" align=3D"left">
+<a href=3D"https://www.facebook.com/Blizzard/" target=3D"_blank" alias=3D"F=
+acebook"> <img src=3D"http://media.blizzard.com/emails/global/battlenet/ico=
+n-facebook.png" width=3D"24" height=3D"24" style=3D"font-family: 'Open Sans=
+', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, Ari=
+al, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condens=
+ed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei'=
+, AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kak=
+u Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=
+=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=
+=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif; fo=
+nt-size: 14px; display: block; margin: 0; padding: 0; text-decoration: none=
+; color: #7ca2cb; " alt=3D"Facebook" border=3D"0" class=3D""/>
+</a>
+</td>
+<td style=3D"padding: 20px 0 0;" align=3D"left">
+<a href=3D"https://www.twitter.com/Blizzard_Ent/" target=3D"_blank" alias=
+=3D"Twitter"> <img src=3D"http://media.blizzard.com/emails/global/battlenet=
+/icon-twitter.png" width=3D"24" height=3D"24" style=3D"font-family: 'Open S=
+ans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, =
+Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Cond=
+ensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaH=
+ei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino =
+Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=
+=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=
+=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif;=
+ font-size: 14px; display: block; margin: 0; padding: 0; text-decoration: n=
+one; color: #7ca2cb; " alt=3D"Twitter" border=3D"0" class=3D""/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"footer-section-padding-0px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"footer-padding-0px-center"
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td>
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/footer-divide=
+r.jpg" width=3D"100%" height=3D"100%" style=3D"font-family: 'Open Sans', Fr=
+utiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, Arial, '=
+Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', =
+'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei', App=
+leSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kaku Got=
+hic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=83=
+=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=83=
+=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif; font-=
+size: 14px; display: block; margin: 0; padding: 0; text-decoration: none; c=
+olor: #7ca2cb; " alt=3D"This is an image" border=3D"0" class=3D"img-max"/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"footer-section-padding-25px-15px-25px"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+class=3D"logo"
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td width=3D"600" align=3D"center" bgcolor=3D"#001845">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"center">
+<a href=3D"http://blizzard.com/" target=3D"_blank" alias=3D"BLIZZARD ENTERT=
+AINMENT">
+<img src=3D"http://media.blizzard.com/emails/global/battlenet/logo-blizzard=
+.gif" width=3D"160" height=3D"86" style=3D"font-family: 'Open Sans', Frutig=
+er, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica, Arial, 'Gill=
+ Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Lib=
+eration Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft YaHei', AppleSD=
+GothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino Kaku Gothic =
+Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=A4=E3=83=AA=E3=
+=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=83=83=E3=
+=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-serif; font-size: =
+14px; display: block; margin: 0; padding: 0; text-decoration: none; color: =
+#7ca2cb; margin: 0 auto;" alt=3D"BLIZZARD ENTERTAINMENT" border=3D"0" class=
+=3D""/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+class=3D"footer-section-padding-10px-15px-10px"
+style=3D"padding: 0 0 40px;"
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+bgcolor=3D"#001845"
+>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"width: 100%; min-width: 100%; border-spacing: 0; border-collapse: coll=
+apse; word-wrap: break-word; word-break: break-word; -ms-word-break: break-=
+word; overflow-wrap: break-word;">
+<tr>
+<td class=3D"footer-padding-10px-5p-10px-left" style=3D"font-family: 'Open =
+Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue', Helvetica,=
+ Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Con=
+densed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'Microsoft Ya=
+Hei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei', 'Hiragino=
+ Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=A1=E3=82=
+=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=
+=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana, sans-ser=
+if; font-size: 10px; line-height: 14px; text-align: left; padding: 20px 40p=
+x 0; color: #7ca2cb;">
+If you have any questions or concerns please visit the <a style=3D"font-fam=
+ily: 'Open Sans', Frutiger, 'Frutiger Linotype', Univers, 'Helvetica Neue',=
+ Helvetica, Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'Deja=
+Vu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', 'Malgun Gothic', 'M=
+icrosoft YaHei', AppleSDGothicNeo, AppleGothic, Dotum, 'Microsoft JhengHei'=
+, 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic ProN W3', Osaka, =E3=83=
+=A1=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=BC=B3 =EF=BC=B0=E3=82=
+=B4=E3=82=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Display, Tahoma, Verdana,=
+ sans-serif;color: #01B2F1 !important; text-decoration: underline !importan=
+t;" href=3D"http://kr.battle.net/support/">Blizzard Support Site</a>.
+<br />
+<a style=3D"font-family: 'Open Sans', Frutiger, 'Frutiger Linotype', Univer=
+s, 'Helvetica Neue', Helvetica, Arial, 'Gill Sans', 'Gill Sans MT', 'Myriad=
+ Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L',=
+ 'Malgun Gothic', 'Microsoft YaHei', AppleSDGothicNeo, AppleGothic, Dotum, =
+'Microsoft JhengHei', 'Hiragino Kaku Gothic Pro', 'Hiragino Kaku Gothic Pro=
+N W3', Osaka, =E3=83=A1=E3=82=A4=E3=83=AA=E3=82=AA, Meiryo, '=EF=BC=AD=EF=
+=BC=B3 =EF=BC=B0=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF', Calibri, Geneva, Dis=
+play, Tahoma, Verdana, sans-serif;color: #01B2F1 !important; text-decoratio=
+n: underline !important;" href=3D"http://kr.blizzard.com/company/about/priv=
+acy.html">Online Privacy Policy</a>
+<br />
+Blizzard Entertainment, 2F, 401, Hakdong-ro, Gangnam-gu, Seoul, Korea, 0606=
+9
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"center" valign=3D"top" bgcolor=3D"#001845" s=
+tyle=3D"width: 600px; min-width: 600px; border-spacing: 0; border-collapse:=
+ collapse; margin: 0 auto; word-wrap: break-word; word-break: break-word; -=
+ms-word-break: break-word; overflow-wrap: break-word; background-color: #00=
+1845;">
+<tr>
+<td
+align=3D"center"
+>
+<table class=3D"responsive-table" width=3D"600" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0">
+<tr>
+<td
+bgcolor=3D"#001845"
+>
+<table class=3D"mobile-hide" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0">
+<tr>
+<td class=3D"mobile-hide" style=3D"font-size: 0; line-height: 0; visibility=
+: hidden; min-width: 600px; height: 1px; max-height: 1px; min-height: 1px; =
+text-decoration: none; -ms-interpolation-mode: bicubic; border: none;" heig=
+ht=3D"1">
+<img src=3D"http://media.blizzard.com/emails/global/shared-components/space=
+r.gif" style=3D"line-height: 0; visibility: hidden; min-width: 600px; heigh=
+t: 1px; max-height: 1px; min-height: 1px; text-decoration: none; -ms-interp=
+olation-mode: bicubic; border: none;" height=3D"1" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+------=_Part_430723_1078556887.1529824973202--
+
+------=_Part_430722_1552151209.1529824973202--
+

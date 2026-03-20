@@ -1,0 +1,20 @@
+timestamp,program,action,user,rip
+2022-01-16 15:16:55,auth,Login Failed,meghan.morris,172.17.131.81
+2022-01-17 18:48:09,sshd,Login Success,hwarren,172.17.130.196
+2022-01-17 18:48:09,sshd,Session Opened,hwarren,
+2022-01-17 18:48:09,systemd-logind,Systemd Session Opened,hwarren.,
+2022-01-17 18:48:09,systemd,Systemd Session Opened,hwarren,
+2022-01-17 18:48:35,sshd,Disconnected,,172.17.130.196
+2022-01-17 18:48:35,sshd,Disconnected,,172.17.130.196
+2022-01-17 18:48:35,sshd,Session Closed,hwarren,
+2022-01-17 18:53:11,sshd,Login Success,hwarren,172.17.130.196
+2022-01-17 18:53:11,sshd,Session Opened,hwarren,
+2022-01-17 18:53:11,systemd-logind,Systemd Session Opened,hwarren.,
+2022-01-17 18:53:11,systemd,Systemd Session Opened,hwarren,
+2022-01-17 18:54:14,sshd,Disconnected,,172.17.130.196
+2022-01-17 18:54:14,sshd,Disconnected,,172.17.130.196
+2022-01-17 18:54:14,sshd,Session Closed,hwarren,
+2022-01-18 16:25:38,auth,Login Failed,daniel.morgan,172.17.131.81
+2022-01-19 12:38:18,auth,Login Failed,meghan.morris,172.17.131.81
+2022-01-19 13:31:55,auth,Login Failed,michael.davis,172.17.131.81
+2022-01-19 14:53:32,auth,Login Failed,carole.noble,172.17.131.81

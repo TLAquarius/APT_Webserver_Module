@@ -1,0 +1,1603 @@
+Delivered-To: godofhuman2003@gmail.com
+Received: by 2002:a17:90a:5805:0:0:0:0 with SMTP id h5csp3661567pji;
+        Mon, 15 Apr 2019 23:24:21 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzvCoVHr5MTU8X/PE3/U8EH7nMsRkkDiftZklit0PRtUBEQ7HJmf9f8ooHWTww1jcVzV0pE
+X-Received: by 2002:a65:610a:: with SMTP id z10mr27719258pgu.23.1555395861624;
+        Mon, 15 Apr 2019 23:24:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1555395861; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CPzSlr/TJFqZ4oaG3yQtt8+GK+2zdkxlcxr+dknFOh+Om1aJPxwyNBpbfxzefz9kHb
+         hfIpm6ax/rnDSymB3Q4hu5CAOUk+LG7I5xXeycG3eXNkE9afgRmEOuZ+EuDjYaB25Fzo
+         ljjkzx08xlyAWS+zhbW3Cm8U3DOZ2M3NTLrZnrOwIl0KcPETKX1t11zKastDC29sYU9y
+         qQWNZIZlKixVszos4kdtwBc0ahJljCD5PkUH7iDvAZTJ9DJfV65VrqssmC3RtpIMpPuB
+         x7VnFyWc+npLOeplnM7kbIPLYZfG7+zWjmRhPAFZehBPZBtgeQCQaYfAd91iyWleruzT
+         R5qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:subject:to:from:date:dkim-signature
+         :message-id;
+        bh=DAU6AnZeZ1RqhWVbLmWwhTsdk5gr+CeOsYYeL2Mn/+Q=;
+        b=BaHndCYpIpb6jjBdUyRhtu55VoQ3Y+owHwxYBndjXfnQAy6lStUU0Pkp0J5+oHnWgj
+         /Lv33PRTbSg12GxtbrWsMAQwYrwdpb3POyD/5LyUX37cdjAF76Q4nfiIv6WqLEfNDBqy
+         qHfReVQj6SoDGj8v0R8UpQ46eIzseip9wywUUmvAeQO8vc9yVAklFdDWRXAfxM+ZqJxf
+         A2aAe2oJA9GuIRIh5wSI/PHAkZ3ldWZgmYcpbdmw+1xxYIjntEu6YtEwlnxso4u9tSdQ
+         e4L3nI9dcx3hkB/TTezPtdHm8Eewg+pTiM/VvBUSgtGfAHtrSfxDCsC8/w7ZPON6DmQj
+         tbXA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@support.lazada.vn header.s=default header.b=oNQAMxjJ;
+       spf=pass (google.com: domain of noreply@support.lazada.vn designates 47.88.235.78 as permitted sender) smtp.mailfrom=noreply@support.lazada.vn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=support.lazada.vn
+Return-Path: <noreply@support.lazada.vn>
+Received: from mail-sgdm-235-78.aliyun.com (mail-sgdm-235-78.aliyun.com. [47.88.235.78])
+        by mx.google.com with ESMTP id c5si46728731plr.5.2019.04.15.23.24.20
+        for <godofhuman2003@gmail.com>;
+        Mon, 15 Apr 2019 23:24:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@support.lazada.vn designates 47.88.235.78 as permitted sender) client-ip=47.88.235.78;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@support.lazada.vn header.s=default header.b=oNQAMxjJ;
+       spf=pass (google.com: domain of noreply@support.lazada.vn designates 47.88.235.78 as permitted sender) smtp.mailfrom=noreply@support.lazada.vn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=support.lazada.vn
+Message-ID: <5cb57515.1c69fb81.1119e.b497SMTPIN_ADDED_BROKEN@mx.google.com>
+X-Google-Original-Message-ID: lazada-1555395859880-233
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=support.lazada.vn; s=default;
+	t=1555395860; h=Date:From:To:Message-Id:Subject:MIME-Version:Content-Type;
+	bh=DAU6AnZeZ1RqhWVbLmWwhTsdk5gr+CeOsYYeL2Mn/+Q=;
+	b=oNQAMxjJNMcC1EHA0EDqX4rX867PafG6w14GOMCu7nhgZX5Ib7ZmKg1GsP/x5KBd129q6NsrwbpKKx3OTAkY/pjNJzdsmI64SDORLp4s9XxCAYeF+PQsCjIPCnN7WAMDbS81GLqbtPD+kPpoju/UVqyali7vkG2WqjwWDUfrXpA=
+X-EnvId: 17870283322272957800
+Received: from lazada-message-service011133142234.lazada-sg.sg94(100.68.161.101)
+          by smtp.aliyun-inc.com(127.0.0.1);
+          Tue, 16 Apr 2019 14:24:19 +0800
+Return-Path: <orders@orders.lazada.vn>
+Date: Tue, 16 Apr 2019 14:24:19 +0800 (CST)
+From: Lazada Vietnam <noreply@support.lazada.vn>
+To: godofhuman2003@gmail.com
+Subject: =?UTF-8?Q?T=C3=A0i_kho=E1=BA=A3n_t=E1=BA=A1o_th=C3=A0nh_c=C3=B4ng?=
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_2904978_455014240.1555395859880"
+X-LZD-Message-Template-Name: BOB_ACC_RegConf
+X-LZD-Message-Template-Language: VN
+X-LZD-Message-Id: 0c51f398-9bab-4f92-bc80-eb249717fb6b
+Feedback-ID: BOB_ACC_RegConf:VN:0c51f398-9bab-4f92-bc80-eb249717fb6b:Lazada
+
+------=_Part_2904978_455014240.1555395859880
+Content-Type: multipart/related; 
+	boundary="----=_Part_2904979_1746141944.1555395859880"
+
+------=_Part_2904979_1746141944.1555395859880
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html style=3D"opacity: 1;" xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+   <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Type"=
+ />
+   <meta content=3D"width=3Ddevice-width" name=3D"viewport" />
+   <title>T&agrave;i kho=E1=BA=A3n t=E1=BA=A1o th&agrave;nh c&ocirc;ng</tit=
+le>
+   <style type=3D"text/css">/**
+    * CSS - fixex broken layout on Outlook
+    *
+    * @author: Eclerk
+    * @version: 1.0
+    */=20
+    body{
+    -webkit-text-size-adjust:100%;
+    }
+
+    /* * [lang=3Dlarge_align_center] {
+    text-align: center !important;
+    }
+
+    .large_align_center {
+    text-align: center !important;
+    } */
+
+    .container {
+    width: 700px !important;
+    }
+
+    /* * [lang=3Df_right] {
+    float: right;
+    }
+
+    .f_right {
+    float: right;
+    } */
+
+    /* * [lang=3Dspace40] {
+    width: 40px !important;
+    }
+
+    .space40 {
+    width: 40px !important;
+    }
+
+    * [lang=3Dtwo_col] {
+    width: 50% !important;
+    float: left !important;
+    }
+
+    .two_col {
+    width: 50% !important;
+    float: left !important;
+    }
+
+    * [lang=3Dtwo_col_right] {
+    width: 50% !important;
+    float: right !important;
+    }
+
+    .two_col_right {
+    width: 50% !important;
+    float: right !important;
+    }
+
+    * [lang=3Dtwo_col_left] {
+    width: 50% !important;
+    float: left !important;
+    }
+
+    .two_col_left {
+    width: 50% !important;
+    float: left !important;
+    }
+
+    * [lang=3Dthree_col_30] {
+    width: 30% !important;
+    float: left !important;
+    }
+
+    * [lang=3Dthree_col_40] {
+    width: 40% !important;
+    float: left !important;
+    } */
+
+    /* * [lang=3Dsmall_align_center] {
+    text-align: left !important;
+    }
+
+    .small_align_center {
+    text-align: left !important;
+    } */
+
+    /*=20
+    .three_col_40 {
+    width: 40% !important;
+    float: left !important;
+    }
+
+    .three_col_30 {
+    width: 30% !important;
+    float: left !important;
+    } */
+
+    .normal a {
+    color: #202020 !important;
+    text-decoration: none !important;
+    }
+
+    /* * [lang=3Dheader_txt] {
+    font-size: 11px !important;
+    }
+
+    .header_txt {
+    font-size: 11px !important;
+    }
+
+    * [lang=3Dheader_icon] {
+    max-width: 100% !important;
+    }
+
+    .header_icon {
+    max-width: 100% !important;
+    }
+    * [lang=3Dpad45] {
+    margin-left: 45px;
+    }
+
+    .pad45 {
+    margin-left: 45px;
+    }
+    * [lang=3Dpad30] {
+    margin-left: 30px;
+    } */
+
+    .pad30 {
+    margin-left: 30px;
+    }
+    .spacer {
+    display: block !important;
+    font-size: 1px !important;
+    }
+    * {
+    line-height: 150% !important;
+    }
+    .normal-white a {
+    color: #90a6b2 !important;
+    text-decoration: none !important;
+    }
+    .normal-blue a {
+    color: #173948 !important;
+    text-decoration: none !important;
+    }
+    @media screen and (max-width:767px){
+    * [lang=3Dcontainer]{
+        width: 100% !important;
+    }
+    .header_icon {
+        max-width: 30px !important;
+    }
+    * [lang=3Dheader_txt]{
+        font-size: 10px !important;
+    }
+    .header_txt {
+        font-size: 9px !important;
+    }
+    * [lang=3Dheader_icon]{
+        max-width: 30px !important;
+    }
+    .header_icon {
+        max-width: 30px !important;
+    }
+    .small-align-right {
+        text-align: right !important;
+    }
+    .small-align-center {
+        text-align: center !important;
+    }
+    * [lang=3Df_right] {
+        float: none !important;
+    }
+
+    .f_right {
+        float: right !important;
+    }
+    * [lang=3Dtwo_col]{
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    .two_col {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    * [lang=3Dthree_col_30]{
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    * [lang=3Dthree_col_40]{
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    .three_col_40 {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    .three_col_30 {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    * [lang=3Dsmall_align_center]{
+        text-align: center !important;
+    }
+    .small_align_center {
+        text-align: center !important;
+    }
+    * [lang=3Dspace40]{
+        width: 20px !important;
+    }
+    .space40 {
+        width: 20px !important;
+    }
+    * [lang=3Dtwo_col_right]{
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    .two_col_right {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    * [lang=3Dtwo_col_left]{
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    .two_col_left {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+    }
+    * [lang=3Dpad45] {
+        margin-left: 0 !important;
+    }
+
+    .pad45 {
+        margin-left: 0 !important;
+    }
+    .large_align_center {
+        text-align: inherit !important;
+    }
+    * [lang=3Dpad30] {
+        margin-left: 0 !important;
+    }
+
+    .pad30 {
+        margin-left: 0 !important;
+    }
+}</style>
+</head>
+<!--[if mso]>
+<body class=3D"mso">
+
+<![endif]--><!--[if !mso]><!-->
+<body style=3D"margin: 0px; padding: 0px; color: rgb(32, 32, 32); font-size=
+: 16px; font-weight: normal; font-family: Helvetica, Arial, sans-serif !imp=
+ortant;"><!--<![endif]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" la=
+ng=3D"wrapper" style=3D"width: 100%; background: #ffffff;" width=3D"100%">
+   <tbody>
+      <tr>
+         <td align=3D"center" style=3D"width: 100%;" valign=3D"top" width=
+=3D"100%"><!--[if mso]><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" class=3D"container" lang=3D"container" width=3D"700" s=
+tyle=3D"max-width: 700px;"><![endif]--><!--[if !mso]><!-->
+         <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"container" lang=3D"container" style=3D"max-width: 700px;" w=
+idth=3D"100%"><!--<![endif]-->
+            <tbody>
+               <tr><!--begin of header-->
+                  <td valign=3D"top" width=3D"100%">
+                  <table class=3D"header" lang=3D"header" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" border=3D"0" style=3D"width:100%;">
+    <tbody>
+    <tr>
+        <td width=3D"100%" height=3D"70" valign=3D"top" bgcolor=3D"#183545"=
+ style=3D"background: #183545; height:70px;">
+            <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" heigh=
+t=3D"70" border=3D"0" style=3D"width:100%; height:70px;">
+                <tbody>
+                <tr>
+                    <td class=3D"space40" style=3D"width:20px" width=3D"20"=
+>
+                        <div lang=3D"space40"></div>
+                    </td>
+                    <td valign=3D"middle" align=3D"left">
+                        <div class=3D"spacer" style=3D"font-size:15px;line-=
+height:15px; height:15px;">&nbsp;</div>
+                        <a href=3D"https://www.lazada.vn" style=3D"text-dec=
+oration:none" target=3D"_blank">
+                            <img border=3D"0" alt=3D"Lazada Vietnam"
+                                 src=3D"https://laz-img-cdn.alicdn.com/tfs/=
+TB1YhSmX1OSBuNjy0FdXXbDnVXa-120-39.jpg"
+                                 width=3D"100%" style=3D"display: block; ma=
+x-width: 114px; border: none;">
+                        </a>
+                        <div class=3D"spacer" style=3D"font-size:15px;line-=
+height:15px; height:15px;">&nbsp;</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>                  </td>
+               </tr>
+               <!--end of header-->
+               <tr><!--begin of heading-->
+                  <td valign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td class=3D"space40" style=3D"width:20px" width=
+=3D"20">
+                           <div lang=3D"space40">
+                           </div>
+                           </td>
+                           <td valign=3D"top">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+
+                           <p style=3D"margin: 0; padding: 0; font-size: 25=
+px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: n=
+ormal;">T&agrave;i kho=E1=BA=A3n t=E1=BA=A1o th&agrave;nh c&ocirc;ng
+                           </p>
+
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                           <td class=3D"space40" style=3D"width:20px" width=
+=3D"20">
+                           <div lang=3D"space40">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of heading-->
+               <tr>
+                  <td align=3D"center" style=3D"text-align:center;" valign=
+=3D"top" width=3D"100%">
+                  <p style=3D"margin: 0; padding: 0; font-size: 14px; color=
+: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: normal; fo=
+nt-style: italic;"><i>(Scroll down for English version)</i>
+                  </p>
+
+                  <div class=3D"spacer" style=3D"font-size: 30px; line-heig=
+ht: 30px; height:30px;">
+                  </div>
+                  </td>
+               </tr>
+               <tr><!--begin of content-->
+                  <td bgcolor=3D"#f0f0f0" style=3D"background:#f0f0f0;" val=
+ign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" c=
+lass=3D"main_content" lang=3D"main_content" style=3D"width:100%;" width=3D"=
+100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 18px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal;">H=C6=B0ng =C4=90=C3=A0o  th&acirc;n m=E1=BA=BFn,
+                                    </p>
+
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 10px; line-height: 10px; height:10px;">
+                                    </div>
+
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">Ch&agrave;o m=E1=BB=ABng b=E1=BA=A1n =
+=C4=91=E1=BA=BFn v=E1=BB=9Bi <b>LAZADA Vi=E1=BB=87t Nam!</b>
+                                    </p>
+
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 10px; line-height: 10px; height:10px;">
+                                    </div>
+
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">L=C3=A0 th=C3=A0nh vi=C3=AAn c=E1=BB=A7=
+a <a href=3D"https://www.lazada.vn/" style=3D"color: #33A2B2; text-decorati=
+on: none;" target=3D"_blank">Lazada.vn</a> b=E1=BA=A1n s=E1=BA=BD l=C3=A0 n=
+g=C6=B0=E1=BB=9Di =C4=91=E1=BA=A7u ti=C3=AAn nh=E1=BA=ADn =C4=91=C6=B0=E1=
+=BB=A3c th=C3=B4ng tin nh=E1=BB=AFng ch=C6=B0=C6=A1ng tr=C3=ACnh khuy=E1=BA=
+=BFn m=C3=A3i =C4=91=E1=BB=99c quy=E1=BB=81n v=C3=A0 nh=E1=BB=AFng s=E1=BA=
+=A3n ph=E1=BA=A9m m=E1=BB=9Bi nh=E1=BA=A5t. =C4=90=C4=83ng k=C3=AD ngay b=
+=E1=BA=A3n tin c=E1=BB=A7a Lazada Vi=E1=BB=87t Nam =C4=91=E1=BB=83:
+                                    </p>
+=09=09=09=09=09=09=09=09=09<ul>
+=09=09=09=09=09=09=09=09=09=09<li>Nh=E1=BA=ADn =C4=91=C6=B0=E1=BB=A3c nh=E1=
+=BB=AFng th=C3=B4ng tin khuy=E1=BA=BFn m=C3=A3i m=E1=BB=9Bi v=C3=A0 =C4=91=
+=E1=BA=B7c bi=E1=BB=87t t=E1=BB=AB Lazada.</li>
+=09=09=09=09=09=09=09=09=09=09<li>Nh=E1=BA=ADn =C4=91=C6=B0=E1=BB=A3c nh=E1=
+=BB=AFng ch=C6=B0=C6=A1ng tr=C3=ACnh khuy=E1=BA=BFn m=C3=A3i gi=E1=BA=A3m g=
+i=C3=A1 =C4=91=E1=BA=B7c bi=E1=BB=87t ch=E1=BB=89 d=C3=A0nh ri=C3=AAng cho =
+th=C3=A0nh vi=C3=AAn c=E1=BB=A7a Lazada.</li>
+=09=09=09=09=09=09=09=09=09=09<li>C=E1=BA=ADp nh=E1=BA=ADt nh=E1=BB=AFng xu=
+ h=C6=B0=E1=BB=9Bng mua s=E1=BA=AFm hot nh=E1=BA=A5t hi=E1=BB=87n nay.</li>
+=09=09=09=09=09=09=09=09=09</ul>
+
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 20px; line-height: 20px; height:20px;">
+                                    </div>
+
+                                    <div style=3D"text-align: center;"><!--=
+[if mso]>
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schem=
+as-microsoft-com:office:word" href=3D"https://www.lazada.vn/index/newslette=
+r/" style=3D"height:45px;v-text-anchor:middle; width:300px;" arcsize=3D"0%"=
+ stroke=3D"f" fillcolor=3D"#F57224">
+<w:anchorlock/>
+<center style=3D"color:#ffffff;font-family: Helvetica,Arial,sans-serif!impo=
+rtant;font-size:16px;font-weight:normal;">=C4=90=C4=82NG K=C3=8D V=C3=80 NH=
+=E1=BA=ACN VOUCHER</center>
+</v:roundrect>
+<![endif]--><a href=3D"https://www.lazada.vn/index/newsletter/" style=3D"mi=
+n-width: 200px;display: inline-block; background: #F57224; color: #ffffff; =
+font-size: 16px; text-transform: uppercase; text-align: center; padding: 15=
+px 30px; border-bottom: 5px solid #e1561a; font-family: Helvetica,Arial,san=
+s-serif!important; text-decoration: none;-webkit-text-size-adjust:none;mso-=
+hide:all;" target=3D"_blank">=C4=90=C4=82NG K=C3=9D NGAY</a>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of content-->
+               <tr><!--begin of What's next-->
+                  <td valign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width:100%;" width=3D"100%">
+                                       <tbody>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30"><img alt=3D"" src=3D"http://static.cdn.responsys.net/i5/responsysimage=
+s/lazada/contentlibrary/!images/ic-whatnext.jpg" style=3D"display: block; b=
+order:none;" width=3D"30" /></td>
+                                             <td style=3D"width:15px" width=
+=3D"15"></td>
+                                             <td style=3D"font-size: 18px; =
+color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: norma=
+l;" valign=3D"middle">B=C6=B0=E1=BB=9Bc ti=E1=BA=BFp theo</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 15px; line-height: 15px; height:15px;">
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"pad45" lang=3D"pad45" sty=
+le=3D"overflow:hidden;">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">B=E1=BA=A1n c&oacute; th=E1=BB=83 tham =
+kh=E1=BA=A3o c&aacute;ch th=E1=BB=A9c mua h&agrave;ng tr&ecirc;n Lazada t=
+=E1=BA=A1i <a href=3D"https://www.lazada.vn/helpcenter/payments/?setLang=3D=
+vi#answer-faq-placeorder-ans" style=3D"color: #33A2B2; text-decoration: non=
+e;" target=3D"_blank">=C4=91&acirc;y</a>
+                                    </p>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of What's next-->
+               <tr>
+                  <td align=3D"center">
+                  <div class=3D"spacer" style=3D"font-size: 15px; line-heig=
+ht: 15px; height:15px;">
+                  </div>
+
+                  <p style=3D"margin: 0; padding: 0; font-size: 16px; color=
+: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: normal;"><=
+i>(=C4=90&acirc;y l&agrave; email t=E1=BB=B1 =C4=91=E1=BB=99ng, b=E1=BA=A1n=
+ vui l&ograve;ng kh&ocirc;ng tr=E1=BA=A3 l=E1=BB=9Di email n&agrave;y)</i>
+                  </p>
+
+                  <div class=3D"spacer" style=3D"font-size: 30px; line-heig=
+ht: 30px; height:30px;">
+                  </div>
+                  </td>
+               </tr>
+               <tr><!--begin of Notes-->
+                  <td bgcolor=3D"#f0f0f0" style=3D"background:#f0f0f0;" val=
+ign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width:100%;" width=3D"100%">
+                                       <tbody>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30"><img alt=3D"" src=3D"http://static.cdn.responsys.net/i5/responsysimage=
+s/lazada/contentlibrary/!images/ic-note.png" style=3D"display: block; borde=
+r:none;" width=3D"30" /></td>
+                                             <td style=3D"width:15px" width=
+=3D"15"></td>
+                                             <td style=3D"font-size: 18px; =
+color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: norma=
+l;" valign=3D"middle">L=C6=B0u &yacute;</td>
+                                          </tr>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                             <td style=3D"width:15px" width=
+=3D"15">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                             <td valign=3D"top">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"pad45" lang=3D"pad45">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal;">N=E1=BA=BFu g=E1=BA=B7p kh&oacute; kh=C4=83n khi mua h&agr=
+ave;ng, b=E1=BA=A1n vui l&ograve;ng tham kh=E1=BA=A3o th&ocirc;ng tin t=E1=
+=BA=A1i <a href=3D"https://www.lazada.vn/helpcenter" style=3D"color: #33A2B=
+2; text-decoration: none;" target=3D"_blank">Trung t&acirc;m h=E1=BB=97 tr=
+=E1=BB=A3</a>&nbsp;ho=E1=BA=B7c =C4=91=E1=BB=83 l=E1=BA=A1i tin nh=E1=BA=AF=
+n cho b=E1=BB=99 ph=E1=BA=ADn Ch=C4=83m S&oacute;c Kh&aacute;ch H&agrave;ng=
+ c=E1=BB=A7a Lazada t=E1=BA=A1i <a href=3D"mailto:hotro@lazada.vn" style=3D=
+"color: #33A2B2; text-decoration: none;" target=3D"_blank">=C4=91&acirc;y</=
+a>
+                                    </p>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of Notes-->
+               <tr><!--begin of heading-->
+                  <td valign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td class=3D"space40" style=3D"width:20px" width=
+=3D"20">
+                           <div lang=3D"space40">
+                           </div>
+                           </td>
+                           <td valign=3D"top">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+
+                           <p style=3D"margin: 0; padding: 0; font-size: 25=
+px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: n=
+ormal;">Your registration was successful
+                           </p>
+
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                           <td class=3D"space40" style=3D"width:20px" width=
+=3D"20">
+                           <div lang=3D"space40">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of heading-->
+               <tr><!--begin of content-->
+                  <td bgcolor=3D"#f0f0f0" style=3D"background:#f0f0f0;" val=
+ign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" c=
+lass=3D"main_content" lang=3D"main_content" style=3D"width:100%;" width=3D"=
+100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 18px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal;">Dear H=C6=B0ng =C4=90=C3=A0o ,
+                                    </p>
+
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 10px; line-height: 10px; height:10px;">
+                                    </div>
+
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">Welcome to LAZADA Viet Nam!</p>
+
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">Thanks for registering with us. As a me=
+mber of <a href=3D"https://www.lazada.vn/" style=3D"color: #33A2B2; text-de=
+coration: none;" target=3D"_blank">Lazada.vn</a>, you will be the first one=
+ to receive exclusive promotions and latest updates.</p>
+
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">Subscribe to Lazada e-newsletter to:</p=
+>
+=09=09=09=09=09=09=09=09=09<ul>
+=09=09=09=09=09=09=09=09=09=09<li>Be the first to know about Lazada promoti=
+on & discount.</li>
+=09=09=09=09=09=09=09=09=09=09<li>Receive exclusive vouchers on special occ=
+asions - only available to  subscribers.</li>
+=09=09=09=09=09=09=09=09=09=09<li>Update on latest shopping trends.</li>
+=09=09=09=09=09=09=09=09=09</ul>
+
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 20px; line-height: 20px; height:20px;">
+                                    </div>
+
+                                    <div style=3D"text-align: center;"><!--=
+[if mso]>
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schem=
+as-microsoft-com:office:word" href=3D"https://www.lazada.vn/index/newslette=
+r/" style=3D"height:45px;v-text-anchor:middle; width:300px;" arcsize=3D"0%"=
+ stroke=3D"f" fillcolor=3D"#F57224">
+<w:anchorlock/>
+<center style=3D"color:#ffffff;font-family: Helvetica,Arial,sans-serif!impo=
+rtant;font-size:16px;font-weight:normal;">SUBSCRIBE</center>
+</v:roundrect>
+<![endif]--><a href=3D"https://www.lazada.vn/index/newsletter/" style=3D"mi=
+n-width: 200px;display: inline-block; background: #F57224; color: #ffffff; =
+font-size: 16px; text-transform: uppercase; text-align: center; padding: 15=
+px 30px; border-bottom: 5px solid #e1561a; font-family: Helvetica,Arial,san=
+s-serif!important; text-decoration: none;-webkit-text-size-adjust:none;mso-=
+hide:all;" target=3D"_blank">SUBSCRIBE</a>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of content-->
+               <tr><!--begin of What's next-->
+                  <td valign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width:100%;" width=3D"100%">
+                                       <tbody>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30"><img alt=3D"" src=3D"http://static.cdn.responsys.net/i5/responsysimage=
+s/lazada/contentlibrary/!images/ic-whatnext.jpg" style=3D"display: block; b=
+order:none;" width=3D"30" /></td>
+                                             <td style=3D"width:15px" width=
+=3D"15"></td>
+                                             <td style=3D"font-size: 18px; =
+color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: norma=
+l;" valign=3D"middle">What's Next?</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"spacer" style=3D"font-siz=
+e: 15px; line-height: 15px; height:15px;">
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"pad45" lang=3D"pad45">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal; line-height: 24px;">Find out "How to shop on Lazada" <a hre=
+f=3D"https://www.lazada.vn/helpcenter/payments/#answer-faq-placeorder-ans" =
+style=3D"color: #33A2B2; text-decoration: none;" target=3D"_blank">here</a>
+                                    </p>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of What's next-->
+               <tr>
+                  <td align=3D"center">
+                  <div class=3D"spacer" style=3D"font-size: 15px; line-heig=
+ht: 15px; height:15px;">
+                  </div>
+
+                  <p style=3D"margin: 0; padding: 0; font-size: 16px; color=
+: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: normal;"><=
+i>(This is automatic email, please do not reply)</i>
+                  </p>
+
+                  <div class=3D"spacer" style=3D"font-size: 30px; line-heig=
+ht: 30px; height:30px;">
+                  </div>
+                  </td>
+               </tr>
+               <tr><!--begin of Notes-->
+                  <td bgcolor=3D"#f0f0f0" style=3D"background:#f0f0f0;" val=
+ign=3D"top" width=3D"100%">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:100%;" width=3D"100%">
+                     <tbody>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width:100%;" width=3D"100%">
+                              <tbody>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width:100%;" width=3D"100%">
+                                       <tbody>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30"><img alt=3D"" src=3D"http://static.cdn.responsys.net/i5/responsysimage=
+s/lazada/contentlibrary/!images/ic-note.png" style=3D"display: block; borde=
+r:none;" width=3D"30" /></td>
+                                             <td style=3D"width:15px" width=
+=3D"15"></td>
+                                             <td style=3D"font-size: 18px; =
+color: #202020; font-family:Helvetica,Arial,sans-serif;  font-weight: norma=
+l;" valign=3D"middle">Notes</td>
+                                          </tr>
+                                          <tr>
+                                             <td valign=3D"middle" width=3D=
+"30">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                             <td style=3D"width:15px" width=
+=3D"15">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                             <td valign=3D"top">
+                                             <div class=3D"spacer" style=3D=
+"font-size: 15px; line-height: 15px; height:15px;">
+                                             </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                    <td valign=3D"top">
+                                    <div class=3D"pad45" lang=3D"pad45">
+                                    <p style=3D"margin: 0; padding: 0; font=
+-size: 16px; color: #202020; font-family:Helvetica,Arial,sans-serif;  font-=
+weight: normal;">For further assistance, please check our <a href=3D"https:=
+//www.lazada.vn/helpcenter" style=3D"color: #33A2B2; text-decoration: none;=
+" target=3D"_blank">Help Center</a> or contact our <a href=3D"https://www.l=
+azada.vn/contact" style=3D"color: #33A2B2; text-decoration: none;" target=
+=3D"_blank">Customer Service</a> or <a href=3D"mailto:hotro@lazada.vn" styl=
+e=3D"color: #33A2B2; text-decoration: none;" target=3D"_blank">here</a>
+                                    </p>
+                                    </div>
+                                    </td>
+                                    <td class=3D"space40" style=3D"width:20=
+px" width=3D"20">
+                                    <div lang=3D"space40">
+                                    </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td valign=3D"top" width=3D"100%">
+                           <div class=3D"spacer" style=3D"font-size: 30px; =
+line-height: 30px; height:30px;">
+                           </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  </td>
+               </tr>
+               <!--end of Notes-->
+               <tr><!--begin of Footer-->
+                  <td valign=3D"top" width=3D"100%">
+<html dir=3D"ltr">
+ <head>
+  <title></title>
+ </head>
+ <body>
+  <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0">
+   <tbody>
+    <tr>
+     <td valign=3D"top" width=3D"100%">
+     <table class=3D"category" lang=3D"category" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"100%" border=3D"0" style=3D"width:100%;">
+      <tbody>
+       <tr>
+        <td width=3D"100%" valign=3D"top">
+        <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D=
+"0" style=3D"width:100%;">
+         <tbody>
+          <tr>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+           <td valign=3D"top">
+           <div class=3D"spacer" style=3D"font-size:20px;line-height:20px; =
+height:20px;">&nbsp;</div>
+           <p style=3D"margin: 0; padding: 0; font-size: 18px; color: #2020=
+20; font-family:Helvetica,Arial,sans-serif;  font-weight: normal;">Danh m&#=
+7909;c ng&#224;nh</p>
+           <div class=3D"spacer" style=3D"font-size:20px;line-height:20px; =
+height:20px;">&nbsp;</div>
+           </td>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+       </tr>
+       <tr>
+        <td width=3D"100%" valign=3D"top" style=3D"background: #f0f0f0;" bg=
+color=3D"#f0f0f0">
+        <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D=
+"0" style=3D"width:100%;">
+         <tbody>
+          <tr>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+           <td valign=3D"top">
+           <div class=3D"spacer" style=3D"font-size: 30px; line-height: 30p=
+x; height:30px;">&nbsp;</div>
+           </td>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+          </tr>
+          <tr>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+           <td valign=3D"top" style=3D"font-size: 0; text-align: center;"><=
+!--[if (mso)|(IE)]><table align=3D"center" cellpadding=3D"0" cellspacing=3D=
+"0" width=3D"100%"><tr><td width=3D"50%" valign=3D"top"><![endif]-->
+           <div class=3D"two_col" lang=3D"two_col" style=3D"display: inline=
+-block; max-width: 330px; vertical-align: top; width: 100%;">
+           <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=
+=3D"0">
+            <tbody>
+             <tr>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/cham-s=
+oc-suc-khoe-va-lam-dep/?boost=3D1" style=3D"text-decoration: none;" target=
+=3D"_blank"> <img src=3D"https://img.alicdn.com/tfs/TB1D70MpfDH8KJjy1XcXXcp=
+dXXa-22-43.jpg" alt=3D"" style=3D"max-width: 100%;  border: none" /></a></t=
+d>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/thoi-t=
+rang-nu/?boost=3D1" style=3D"text-decoration: none;" target=3D"_blank"> <im=
+g src=3D"https://laz-img-cdn.alicdn.com/tfs/TB1._dMpfDH8KJjy1XcXXcpdXXa-44-=
+43.jpg" alt=3D"" style=3D"max-width: 100%;  border: none" /></a></td>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/dong-h=
+o/?boost=3D1" style=3D"text-decoration: none;" target=3D"_blank"> <img src=
+=3D"https://laz-img-cdn.alicdn.com/tfs/TB1pVGEpcLJ8KJjy0FnXXcFDpXa-30-43.jp=
+g" alt=3D"" style=3D"max-width: 100%;  border: none" /></a></td>
+             </tr>
+             <tr>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/cham-soc-suc-khoe-va-la=
+m-dep/?boost=3D1" style=3D"text-decoration: none; color: #202020; font-size=
+:16px; font-family: Helvetica,Arial,sans-serif!important;" target=3D"_blank=
+">S&#7913;c kh&#7887;e &amp; S&#7855;c &#273;&#7865;p</a></td>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/thoi-trang-nu/?boost=3D=
+1" style=3D"text-decoration: none; color: #202020; font-size:16px; font-fam=
+ily: Helvetica,Arial,sans-serif!important;" target=3D"_blank">Th&#7901;i tr=
+ang</a></td>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/dong-ho/?boost=3D1" sty=
+le=3D"text-decoration: none; color: #202020; font-size:16px; font-family: H=
+elvetica,Arial,sans-serif!important;" target=3D"_blank">&#272;&#7891;ng h&#=
+7891;</a></td>
+             </tr>
+             <tr>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           </div>
+           <!--[if (mso)|(IE)]></td><td width=3D"50%" valign=3D"top"><![end=
+if]-->
+           <div class=3D"two_col" lang=3D"two_col" style=3D"display: inline=
+-block; max-width: 330px; vertical-align: top; width: 100%;">
+           <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=
+=3D"0">
+            <tbody>
+             <tr>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/dien-t=
+hoai-may-tinh-bang/?boost=3D1" style=3D"text-decoration: none;" target=3D"_=
+blank"> <img src=3D"https://laz-img-cdn.alicdn.com/tfs/TB1rG5EpcLJ8KJjy0FnX=
+XcFDpXa-26-43.jpg" alt=3D"" style=3D"max-width: 100%; border: none" /></a><=
+/td>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/may-vi=
+-tinh-laptop/?boost=3D1" style=3D"text-decoration: none;" target=3D"_blank"=
+> <img src=3D"https://laz-img-cdn.alicdn.com/tfs/TB1Cz4Hpf6H8KJjy0FjXXaXepX=
+a-38-43.jpg" alt=3D"" style=3D"max-width: 100%;  border: none" /></a></td>
+              <td width=3D"33%" height=3D"50" valign=3D"middle" align=3D"ce=
+nter" style=3D"text-align: center;"><a href=3D"https://www.lazada.vn/tv-vid=
+eo-am-thanh-thiet-bi-deo-cong-nghe/?boost=3D1" style=3D"text-decoration: no=
+ne;" target=3D"_blank"> <img src=3D"https://laz-img-cdn.alicdn.com/tfs/TB1U=
+3A2oZrI8KJjy0FhXXbfnpXa-38-43.jpg" alt=3D"" style=3D"max-width: 100%;  bord=
+er: none" /></a></td>
+             </tr>
+             <tr>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/dien-thoai-may-tinh-ban=
+g/?boost=3D1" style=3D"text-decoration: none; color: #202020; font-size:16p=
+x; font-family: Helvetica,Arial,sans-serif!important;" target=3D"_blank">&#=
+272;i&#7879;n tho&#7841;i &amp; M&#225;y t&#237;nh b&#7843;ng</a></td>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/may-vi-tinh-laptop/?boo=
+st=3D1" style=3D"text-decoration: none; color: #202020; font-size:16px; fon=
+t-family: Helvetica,Arial,sans-serif!important;" target=3D"_blank">M&#225;y=
+ vi t&#237;nh &amp; Laptop</a></td>
+              <td width=3D"33%" valign=3D"top" align=3D"center" style=3D"te=
+xt-align:center; "><a href=3D"https://www.lazada.vn/tv-video-am-thanh-thiet=
+-bi-deo-cong-nghe/?boost=3D1" style=3D"text-decoration: none; color: #20202=
+0; font-size:16px; font-family: Helvetica,Arial,sans-serif!important;" targ=
+et=3D"_blank">TV, Video, &#194;m thanh, Game &amp; Thi&#7871;t b&#7883; s&#=
+7889;</a></td>
+             </tr>
+             <tr>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+              <td width=3D"33%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 30px; line-height: =
+30px; height:30px;">&nbsp;</div>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           </div>
+           <!--[if (mso)|(IE)]></td></tr></table><![endif]--></td>
+           <td class=3D"space40" style=3D"width:20px" width=3D"20">
+           <div lang=3D"space40"></div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     </td>
+    </tr>
+    <tr>
+     <td valign=3D"top" width=3D"100%" bgcolor=3D"#163547" style=3D"text-al=
+ign:left; background: #163547;">
+     <div class=3D"spacer" style=3D"font-size: 20px; line-height: 20px; hei=
+ght:20px;">&nbsp;</div>
+     <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"=
+>
+      <tbody>
+       <tr>
+        <td class=3D"space40" style=3D"width:20px" width=3D"20">
+        <div lang=3D"space40"></div>
+        </td>
+        <td valign=3D"top">
+        <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D=
+"0">
+         <tbody>
+          <tr>
+           <td width=3D"100%" valign=3D"top">
+           <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+            <tbody>
+             <tr>
+              <td valign=3D"top" width=3D"100%" style=3D"font-size: 0;"><!-=
+-[if gte mso 9]><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%"><tr><td width=3D"30%" valign=3D"top"><![endif]-->
+              <div class=3D"three_col_30" lang=3D"three_col_30" style=3D"di=
+splay: inline-block; max-width: 200px; vertical-align: top; width: 100%;">
+              <p style=3D"margin: 0; padding: 0; font-size: 18px; color: #f=
+fffff; font-family:Helvetica,Arial,sans-serif;  font-weight: normal;">Visit=
+ Lazada</p>
+              <div class=3D"spacer" style=3D"font-size: 10px; line-height: =
+10px; height:10px;">&nbsp;</div>
+              <p style=3D"margin:0; padding: 0; font-size: 16px; color: #20=
+2020; font-family:Helvetica,Arial,sans-serif; font-weight: normal;"><a styl=
+e=3D"text-decoration: none; color: #3ED7E4; font-family:Helvetica,Arial,san=
+s-serif; font-size:  16px;" href=3D"https://www.lazada.vn/about/" target=3D=
+"_blank">Gi&#7899;i thi&#7879;u</a>                                        =
+                 <br /><br />                                              =
+           <a style=3D"color:#3ED7E4;text-decoration:none; font-family:Helv=
+etica,Arial,sans-serif; font-size:  16px;" href=3D"https://www.lazada.vn/co=
+ntact/" target=3D"_blank">Li&#234;n h&#7879;</a>                           =
+                              <br /><br />                                 =
+                        <a style=3D"color:#3ED7E4;text-decoration:none; fon=
+t-family:Helvetica,Arial,sans-serif; font-size:  16px;" href=3D"https://www=
+.lazada.vn/privacy-policy/" target=3D"_blank">Ch&#237;nh s&#225;ch b&#7843;=
+o m&#7853;t</a></p>
+              <div class=3D"spacer" style=3D"font-size: 20px; line-height: =
+20px; height:20px;">&nbsp;</div>
+              </div>
+              <!--[if gte mso 9]></td><td width=3D"30%" valign=3D"top"><![e=
+ndif]-->
+              <div class=3D"three_col_30" lang=3D"three_col_30" style=3D"di=
+splay: inline-block; max-width: 200px; vertical-align: top; width: 100%;">
+              <p style=3D"margin: 0; padding: 0; font-size: 18px; color: #f=
+fffff; font-family:Helvetica,Arial,sans-serif;  font-weight: normal;">Lazad=
+a Vietnam</p>
+              <div class=3D"spacer" style=3D"font-size: 10px; line-height: =
+10px; height:10px;">&nbsp;</div>
+              <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" style=3D"border: none; background: #163547; border-collapse: coll=
+apse;" bgcolor=3D"#163547">
+               <tbody>
+                <tr style=3D"font-size:0px; line-height:0px; border-collaps=
+e: collapse;">
+                 <td style=3D"background: #163547; border: none;">
+                 <p class=3D"normal-white" style=3D"margin: 0; padding: 0; =
+font-size: 16px; color: #90a6b2; font-family:Helvetica,Arial,sans-serif;  f=
+ont-weight: normal; line-height: 150%;">T&#7847;ng 19, T&#242;a nh&#224; Sa=
+igon Centre - Th&#225;p 2, 67 L&#234; L&#7907;i, Ph&#432;&#7901;ng B&#7871;=
+n Ngh&#233;, Qu&#7853;n 1,</p>
+                 <p class=3D"normal-white" style=3D"margin: 0; padding: 0; =
+font-size: 16px; color: #90a6b2; font-family:Helvetica,Arial,sans-serif;  f=
+ont-weight: normal; line-height: 150%;">TP. H&#7891; Ch&#237; Minh</p>
+                 </td>
+                 <td style=3D"background: #163547; border: none;" width=3D"=
+30"></td>
+                </tr>
+               </tbody>
+              </table>
+              <div class=3D"spacer" style=3D"font-size: 20px; line-height: =
+20px; height:20px;">&nbsp;</div>
+              </div>
+              <!--[if gte mso 9]></td><td width=3D"40%" valign=3D"top"><![e=
+ndif]-->
+              <div class=3D"three_col_40" lang=3D"three_col_40" style=3D"di=
+splay: inline-block; max-width: 260px; vertical-align: top; width: 100%;">
+              <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+               <tbody>
+                <tr>
+                 <td valign=3D"top" width=3D"100%"><a href=3D"https://www.l=
+azada.vn/promo-mobile-apps/" target=3D"_blank" style=3D"text-decoration: no=
+ne;"> <img alt=3D"" border=3D"0" src=3D"http://id-live.slatic.net/cms/maili=
+ng/ico-footer-download-app.jpg" width=3D"201" style=3D"display: block; bord=
+er: none; max-width: 100%;" /></a></td>
+                </tr>
+                <tr>
+                 <td valign=3D"top" width=3D"100%">
+                 <div class=3D"spacer" style=3D"font-size: 20px; line-heigh=
+t: 20px; height:20px;">&nbsp;</div>
+                 </td>
+                </tr>
+                <tr>
+                 <td valign=3D"top" width=3D"100%">
+                 <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+border=3D"0">
+                  <tbody>
+                   <tr>
+                    <td valign=3D"top" width=3D"130" style=3D"max-width: 50=
+%"><a href=3D"https://itunes.apple.com/us/app/lazada-shopping-deals/id78538=
+5147?mt=3D8" style=3D"text-decoration: none;" target=3D"_blank">           =
+                                                                      <img =
+border=3D"0" src=3D"http://id-live.slatic.net/cms/mailing/footer-download-a=
+ppstore.jpg" width=3D"100%" alt=3D"" style=3D"max-width:130px; border: none=
+;" />                                                                      =
+       </a></td>
+                    <td width=3D"10" style=3D"width:10px;">&nbsp;</td>
+                    <td valign=3D"top" width=3D"130" style=3D"max-width: 50=
+%"><a href=3D"https://play.google.com/store/apps/details?id=3Dcom.lazada.an=
+droid" style=3D"text-decoration: none;" target=3D"_blank">                 =
+                                                                <img border=
+=3D"0" src=3D"http://id-live.slatic.net/cms/mailing/footer-download-playsto=
+re.jpg" alt=3D"" width=3D"100%" style=3D"max-width:130px; border: none;" />=
+                                                                           =
+  </a></td>
+                    <td valign=3D"top"></td>
+                   </tr>
+                  </tbody>
+                 </table>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+              <div class=3D"spacer" style=3D"font-size: 20px; line-height: =
+20px; height:20px;">&nbsp;</div>
+              </div>
+              <!--[if gte mso 9]></td></tr></table><![endif]--></td>
+             </tr>
+            </tbody>
+           </table>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+        <td class=3D"space40" style=3D"width:20px" width=3D"20">
+        <div lang=3D"space40"></div>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     </td>
+    </tr>
+    <tr>
+     <td valign=3D"top" width=3D"100%" bgcolor=3D"#ffffff" style=3D"text-al=
+ign:center; background-color: #ffffff;">
+     <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"=
+>
+      <tbody>
+       <tr>
+        <td class=3D"space40" style=3D"width:20px" width=3D"20">
+        <div lang=3D"space40"></div>
+        </td>
+        <td valign=3D"top">
+        <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D=
+"0">
+         <tbody>
+          <tr>
+           <td width=3D"100%" valign=3D"top">
+           <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+            <tbody>
+             <tr>
+              <td widdth=3D"100%" valign=3D"top">
+              <div class=3D"spacer" style=3D"font-size: 10px; line-height: =
+10px; height:10px;">&nbsp;</div>
+              <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bor=
+der=3D"0" class=3D"small_align_center" lang=3D"small_align_center">
+               <tbody>
+                <tr>
+                 <td valign=3D"top" align=3D"center" style=3D"text-align:ce=
+nter;"><a href=3D"https://www.facebook.com/LazadaVietnam?boost=3D1" target=
+=3D"_blank" style=3D"display: inline-block; vertical-align:top;  text-decor=
+ation: none;"><img src=3D"http://static.cdn.responsys.net/i5/responsysimage=
+s/lazada/contentlibrary/!footer700/images/icon-fb.jpg" style=3D" border: no=
+ne;" alt=3D"" /></a>                                                       =
+      <img width=3D"15" src=3D"http://static.cdn.responsys.net/i5/responsys=
+images/lazada/contentlibrary/!images/blank.gif" alt=3D"" />                =
+                                             <a href=3D"https://twitter.com=
+/?boost=3D1#!/LazadaVN" target=3D"_blank" style=3D"display: inline-block; v=
+ertical-align:top; text-decoration: none;"><img src=3D"http://static.cdn.re=
+sponsys.net/i5/responsysimages/lazada/contentlibrary/!footer700/images/icon=
+-tw.jpg" style=3D" border: none;" alt=3D"" /></a>                          =
+                                   <img width=3D"15" src=3D"http://static.c=
+dn.responsys.net/i5/responsysimages/lazada/contentlibrary/!images/blank.gif=
+" alt=3D"" />                                                             <=
+a href=3D"https://www.linkedin.com/company/lazada" target=3D"_blank" style=
+=3D"display: inline-block; vertical-align:top;  text-decoration: none;"><im=
+g src=3D"http://static.cdn.responsys.net/i5/responsysimages/lazada/contentl=
+ibrary/!footer700/images/icon-in.jpg" style=3D"border: none;" alt=3D"" /></=
+a>                                                             <img width=
+=3D"15" src=3D"http://static.cdn.responsys.net/i5/responsysimages/lazada/co=
+ntentlibrary/!images/blank.gif" alt=3D"" />                                =
+                             <a href=3D"https://plus.google.com/+LazadaVnOf=
+ficial/posts?boost=3D1" target=3D"_blank"><img src=3D"http://static.cdn.res=
+ponsys.net/i5/responsysimages/lazada/contentlibrary/!footer700/images/icon-=
+google.jpg" style=3D"border: none;" alt=3D"" /></a></td>
+                </tr>
+               </tbody>
+              </table>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        </td>
+        <td class=3D"space40" style=3D"width:20px" width=3D"20">
+        <div lang=3D"space40"></div>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <div class=3D"spacer" style=3D"font-size: 5px; line-height: 5px; heigh=
+t:5px;">&nbsp;</div>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p></p>
+ </body>
+</html>                  </td>
+               </tr>
+               <!--end of Footer-->
+            </tbody>
+         </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<img alt=3D"" src=3D"https://sg.mmstat.com/lzdmailer.letter.open?subscriber=
+_id=3D8473404e738514f430f2e8b51f3c1cc7&mail_id=3D0c51f398-9bab-4f92-bc80-eb=
+249717fb6b&email_type=3DVN_BOB_ACC_RegConf&_rnd=3D916812"/>
+</body>
+</html>
+<!-- T=C3=A0i kho=E1=BA=A3n t=E1=BA=A1o th=C3=A0nh c=C3=B4ng -->
+
+------=_Part_2904979_1746141944.1555395859880--
+
+------=_Part_2904978_455014240.1555395859880--

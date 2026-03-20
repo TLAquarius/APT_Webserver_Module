@@ -1,0 +1,17 @@
+{
+  "precision_attack": 0.9661,
+  "recall_attack": 0.965,
+  "f1_attack": 0.9656,
+  "precision_normal": 0.9757,
+  "recall_normal": 0.9764,
+  "f1_normal": 0.9761,
+  "accuracy": 0.9718,
+  "false_positive_rate": 0.0236,
+  "false_negative_rate": 0.035,
+  "true_positives": 24188,
+  "true_negatives": 35152,
+  "false_positives": 848,
+  "false_negatives": 877,
+  "roc_auc": 0.9951,
+  "pr_auc": 0.9923
+}

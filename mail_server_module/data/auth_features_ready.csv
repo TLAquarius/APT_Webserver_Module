@@ -1,0 +1,20 @@
+timestamp,rip,user,program,action,action_code,program_code,is_root_target,is_privilege_escalation,hour_of_day,is_off_hours,velocity,unique_users,session_risk_score
+2022-01-16 15:16:55,172.17.131.81,meghan.morris,auth,Login Failed,-1,2,0,0,15,0,1.0,1,0
+2022-01-17 18:48:09,172.17.130.196,hwarren,sshd,Login Success,1,1,0,0,18,0,1.0,1,0
+2022-01-17 18:48:09,localhost,hwarren,systemd,Systemd Session Opened,5,5,0,0,18,0,3.0,2,0
+2022-01-17 18:48:09,localhost,hwarren.,systemd-logind,Systemd Session Opened,5,5,0,0,18,0,2.0,2,0
+2022-01-17 18:48:09,localhost,hwarren,sshd,Session Opened,3,1,0,0,18,0,1.0,1,0
+2022-01-17 18:48:35,172.17.130.196,unknown,sshd,Disconnected,2,1,0,0,18,0,2.0,2,0
+2022-01-17 18:48:35,172.17.130.196,unknown,sshd,Disconnected,2,1,0,0,18,0,3.0,2,0
+2022-01-17 18:48:35,localhost,hwarren,sshd,Session Closed,4,1,0,0,18,0,4.0,2,0
+2022-01-17 18:53:11,172.17.130.196,hwarren,sshd,Login Success,1,1,0,0,18,0,1.0,2,0
+2022-01-17 18:53:11,localhost,hwarren.,systemd-logind,Systemd Session Opened,5,5,0,0,18,0,2.0,2,0
+2022-01-17 18:53:11,localhost,hwarren,systemd,Systemd Session Opened,5,5,0,0,18,0,1.0,2,0
+2022-01-17 18:53:11,localhost,hwarren,sshd,Session Opened,3,1,0,0,18,0,3.0,2,0
+2022-01-17 18:54:14,localhost,hwarren,sshd,Session Closed,4,1,0,0,18,0,1.0,2,0
+2022-01-17 18:54:14,172.17.130.196,unknown,sshd,Disconnected,2,1,0,0,18,0,2.0,2,0
+2022-01-17 18:54:14,172.17.130.196,unknown,sshd,Disconnected,2,1,0,0,18,0,1.0,2,0
+2022-01-18 16:25:38,172.17.131.81,daniel.morgan,auth,Login Failed,-1,2,0,0,16,0,1.0,2,0
+2022-01-19 12:38:18,172.17.131.81,meghan.morris,auth,Login Failed,-1,2,0,0,12,0,1.0,2,0
+2022-01-19 13:31:55,172.17.131.81,michael.davis,auth,Login Failed,-1,2,0,0,13,0,1.0,3,0
+2022-01-19 14:53:32,172.17.131.81,carole.noble,auth,Login Failed,-1,2,0,0,14,0,1.0,4,0
