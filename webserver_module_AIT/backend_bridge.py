@@ -115,7 +115,6 @@ class WebserverBridge:
 
             update_ui("3/5: Đang nhóm Phiên và trích xuất Đặc trưng (Sessionizing)...", 45)
             sessionizer = StatefulStreamingEngine(timeout_minutes=10, max_session_hours=2)
-            print("bbbbbhhhhhbhbhbhbhb")
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
@@ -220,7 +219,6 @@ class WebserverBridge:
                                        self.paths["session_timelines"], status_callback)
 
             # 🟢 FIX BẢO VỆ ML CHO RESCAN
-
             if not os.path.exists(self.paths["ml_features"]) or os.path.getsize(self.paths["ml_features"]) == 0:
                 update_ui("⚠️ Dữ liệu sau khi lọc không đủ để tạo Phiên. Dừng phân tích.", 100)
                 open(self.paths["incidents"], 'w').close()

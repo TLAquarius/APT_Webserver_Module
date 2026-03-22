@@ -25,11 +25,6 @@ MODULES_REGISTRY = {
         "path": "webserver_module_AIT.view",
         "status": "ready"
     },
-    "📁 Phân tích File Server (UEBA)": {
-        "type": "app",
-        "path": "fileserver_module.view",
-        "status": "ready"
-    },
     "🗄️ Phân tích Database": {
         "type": "app",
         "path": "database_module_XYZ.view",

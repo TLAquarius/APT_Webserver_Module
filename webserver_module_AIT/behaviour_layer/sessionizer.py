@@ -192,17 +192,11 @@ class StatefulStreamingEngine:
         self.completed_timelines = []
 
         self.geo_reader = None
-        print("fucking idio")
         try:
             # We fail silently if GeoIP is missing to not crash the WebApp
-            print("fucking idiot")
             self.geo_reader = geoip2.database.Reader(geo_db_path)
-            if not self.geo_reader:
-                print("Wtf")
         except FileNotFoundError:
             pass
-
-        print("fucking id")
 
     def _parse_time(self, time_str):
         time_str = time_str.replace('Z', '+00:00')
@@ -239,31 +233,22 @@ class StatefulStreamingEngine:
         """Processes logs and updates the UI via callback."""
         total_logs = 0
 
-
         with open(input_ndjson, 'r', encoding='utf-8') as f:
             for line in f:
-                
-                if not line.strip(): 
-                    print(1)
-                    continue
+                if not line.strip(): continue
                 total_logs += 1
                 record = json.loads(line)
 
                 try:
                     log_time = self._parse_time(record['@timestamp'])
                 except Exception:
-                    print(2)
                     continue
 
                 ip = record.get('source_ip')
                 if not ip or ip == '-':
                     if record.get('event_source') in ['apache_error', 'apache_error_stderr']:
                         ip = self._find_correlated_ip(log_time, record.get('host_name'))
-                    if not ip: 
-                        print(3)
-                        continue
-                
-                print(ip)
+                    if not ip: continue
 
                 if not self.global_watermark or log_time > self.global_watermark:
                     self.global_watermark = log_time
@@ -292,7 +277,6 @@ class StatefulStreamingEngine:
                     self.active_sessions[ip].update(record, log_time)
 
         for ip in list(self.active_sessions.keys()):
-            print(ip)
             self._flush_session(ip)
 
         if self.geo_reader:
@@ -302,13 +286,12 @@ class StatefulStreamingEngine:
         return True
 
     def _export_data(self, csv_path, json_path):
+        if not self.completed_features: return
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
-            if self.completed_features:
-                writer = csv.DictWriter(f, fieldnames=self.completed_features[0].keys())
-                writer.writeheader()
-                writer.writerows(self.completed_features)
+            writer = csv.DictWriter(f, fieldnames=self.completed_features[0].keys())
+            writer.writeheader()
+            writer.writerows(self.completed_features)
 
         with open(json_path, 'w', encoding='utf-8') as f:
-            if self.completed_timelines:
-                for timeline in self.completed_timelines:
-                    f.write(json.dumps(timeline) + "\n")
+            for timeline in self.completed_timelines:
+                f.write(json.dumps(timeline) + "\n")
