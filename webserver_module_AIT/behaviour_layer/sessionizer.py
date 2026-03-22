@@ -199,7 +199,10 @@ class StatefulStreamingEngine:
             pass
 
     def _parse_time(self, time_str):
-        return datetime.fromisoformat(time_str.replace('Z', '+00:00'))
+        time_str = time_str.replace('Z', '+00:00')
+        if len(time_str) >= 5 and time_str[-5] in ('+', '-') and ':' not in time_str[-5:]:
+            time_str = time_str[:-2] + ':' + time_str[-2:]
+        return datetime.fromisoformat(time_str)
 
     def _find_correlated_ip(self, log_time, host_name, time_window=2.0):
         best_ip = None
