@@ -1,0 +1,5 @@
+{"line": 58, "labels": ["password_spraying", "brute_force"], "rules": {"auth_bypass": ["attacker.dovecot.auth_failed"]}}
+{"line": 385, "labels": ["password_spraying", "brute_force"], "rules": {"auth_bypass": ["attacker.dovecot.auth_failed"]}}
+{"line": 512, "labels": ["password_spraying", "brute_force"], "rules": {"auth_bypass": ["attacker.dovecot.auth_failed"]}}
+{"line": 519, "labels": ["password_spraying", "brute_force"], "rules": {"auth_bypass": ["attacker.dovecot.auth_failed"]}}
+{"line": 528, "labels": ["password_spraying", "brute_force"], "rules": {"auth_bypass": ["attacker.dovecot.auth_failed"]}}

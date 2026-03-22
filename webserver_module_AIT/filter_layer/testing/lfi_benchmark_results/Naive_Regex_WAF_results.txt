@@ -1,0 +1,4 @@
+=== Naive Regex WAF Benchmark Results ===
+Total Payloads: 5680
+Detected:       2609 (45.93%)
+Missed:         3071

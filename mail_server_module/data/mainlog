@@ -1,0 +1,53 @@
+2022-01-20 06:25:07 1nAQsd-0007gA-0Y <= root@mailserver.price.fox.org U=root P=local S=2213
+2022-01-20 06:25:07 1nAQsd-0007gA-0Y => /var/mail/mail <root@mailserver.price.fox.org> R=mail4root T=address_file
+2022-01-20 06:25:07 1nAQsd-0007gA-0Y Completed
+2022-01-20 06:26:30 1nAQty-0007gL-QG <= john.hammond@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=2455 id=20220120062630.Horde.ktd5sZGXyZqPjD45vXx0oma@mailserver.whittaker.fox.org
+2022-01-20 06:26:30 1nAQty-0007gL-QG => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:26:30 1nAQty-0007gL-QG Completed
+2022-01-20 06:26:34 1nAQu2-0007gP-4T <= vanessa.mcneil@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1489 id=20220120062633.Horde.m36_Nl0Q_CHllwce_dJ0nhM@mailserver.whittaker.fox.org
+2022-01-20 06:26:34 1nAQu2-0007gP-4T => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:26:34 1nAQu2-0007gP-4T Completed
+2022-01-20 06:26:57 Start queue run: pid=29541
+2022-01-20 06:26:57 End queue run: pid=29541
+2022-01-20 06:27:43 1nAQv9-0007gW-N3 <= megan.johnson@miller.fox.org H=mail.miller.fox.org (miller-mail.novalocal) [192.168.129.212] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1249 id=20220120062743.Horde.1zPW4umfMs1t8e9LoQhhVf2@mail.miller.fox.org
+2022-01-20 06:27:43 1nAQv9-0007gW-N3 => brian.potter <brian.potter@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:27:43 1nAQv9-0007gW-N3 Completed
+2022-01-20 06:28:54 1nAQwI-0007h0-1S <= vanessa.mcneil@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=2059 id=20220120062853.Horde.dYpTxC-WQGrSGngOzZaVURx@mailserver.whittaker.fox.org
+2022-01-20 06:28:54 1nAQwI-0007h0-1S => hannah.warren <hannah.warren@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:28:54 1nAQwI-0007h0-1S Completed
+2022-01-20 06:29:01 1nAQwP-0007h5-O7 <= megan.johnson@miller.fox.org H=mail.miller.fox.org (miller-mail.novalocal) [192.168.129.212] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1570 id=20220120062901.Horde.Vmbuhof8nrRggzUeygjA40g@mail.miller.fox.org
+2022-01-20 06:29:01 1nAQwP-0007h5-O7 => daniel.morgan <daniel.morgan@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:29:01 1nAQwP-0007h5-O7 Completed
+2022-01-20 06:31:03 1nAQyN-0007hF-V1 PRDR R=<samantha.thornton@price.fox.org> acceptance
+2022-01-20 06:31:03 1nAQyN-0007hF-V1 PRDR R=<jessica.wright@price.fox.org> acceptance
+2022-01-20 06:31:03 1nAQyN-0007hF-V1 <= christopher.friedman@taylorcruz.fox.org H=mailserver.taylorcruz.fox.org (taylorcruz-mail.novalocal) [192.168.128.195] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no PRDR S=2494 id=20220120063103.Horde.jXCr64Pli8cfr4jP_BqvcXr@mailserver.taylorcruz.fox.org
+2022-01-20 06:31:04 1nAQyN-0007hF-V1 => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:31:04 1nAQyN-0007hF-V1 => jessica.wright <jessica.wright@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:31:04 1nAQyN-0007hF-V1 Completed
+2022-01-20 06:34:35 1nAR1n-0007hM-65 PRDR R=<hannah.warren@price.fox.org> acceptance
+2022-01-20 06:34:35 1nAR1n-0007hM-65 PRDR R=<samantha.thornton@price.fox.org> acceptance
+2022-01-20 06:34:35 1nAR1n-0007hM-65 <= john.hammond@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no PRDR S=1326 id=20220120063434.Horde.GggXF4fj07JfiI7Oz8HEpcH@mailserver.whittaker.fox.org
+2022-01-20 06:34:35 1nAR1n-0007hM-65 => hannah.warren <hannah.warren@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:34:35 1nAR1n-0007hM-65 => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:34:35 1nAR1n-0007hM-65 Completed
+2022-01-20 06:35:52 1nAR32-0007ha-HO <= john.hammond@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1265 id=20220120063552.Horde.60DNVSQXyCeRCIBDlb7jNVP@mailserver.whittaker.fox.org
+2022-01-20 06:35:52 1nAR32-0007ha-HO => hannah.warren <hannah.warren@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:35:52 1nAR32-0007ha-HO Completed
+2022-01-20 06:37:23 1nAR4V-0007he-TI <= vanessa.mcneil@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1301 id=20220120063723.Horde.9NRgSkH5ElVxoim7sYBVj79@mailserver.whittaker.fox.org
+2022-01-20 06:37:23 1nAR4V-0007he-TI => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:37:23 1nAR4V-0007he-TI Completed
+2022-01-20 06:37:50 1nAR4w-0007hi-NK PRDR R=<michael.davis@price.fox.org> acceptance
+2022-01-20 06:37:50 1nAR4w-0007hi-NK PRDR R=<patrick.hopkins@price.fox.org> acceptance
+2022-01-20 06:37:50 1nAR4w-0007hi-NK <= megan.johnson@miller.fox.org H=mail.miller.fox.org (miller-mail.novalocal) [192.168.129.212] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no PRDR S=1941 id=20220120063750.Horde.cEZGznhFBjH_dqmYegwre_0@mail.miller.fox.org
+2022-01-20 06:37:50 1nAR4w-0007hi-NK => michael.davis <michael.davis@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:37:50 1nAR4w-0007hi-NK => patrick.hopkins <patrick.hopkins@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:37:50 1nAR4w-0007hi-NK Completed
+2022-01-20 06:39:33 1nAR6b-0007in-73 <= megan.johnson@miller.fox.org H=mail.miller.fox.org (miller-mail.novalocal) [192.168.129.212] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1330 id=20220120063932.Horde.vbhud4tLsZSfe8BHz1j14Zk@mail.miller.fox.org
+2022-01-20 06:39:33 1nAR6b-0007in-73 => patrick.hopkins <patrick.hopkins@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:39:33 1nAR6b-0007in-73 Completed
+2022-01-20 06:41:05 1nAR85-0007j0-BU <= megan.johnson@miller.fox.org H=mail.miller.fox.org (miller-mail.novalocal) [192.168.129.212] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=2661 id=20220120064105.Horde.RLleaX9BOv-ZN79HGLFmSma@mail.miller.fox.org
+2022-01-20 06:41:05 1nAR85-0007j0-BU => samantha.thornton <samantha.thornton@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:41:05 1nAR85-0007j0-BU Completed
+2022-01-20 06:48:45 1nARFV-0007r3-PU <= john.hammond@whittaker.fox.org H=mailserver.whittaker.fox.org (whittaker-mail.novalocal) [192.168.131.228] P=esmtps X=TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256 CV=no S=1473 id=20220120064845.Horde.5BYhr0veDb-gSGoB95kCOup@mailserver.whittaker.fox.org
+2022-01-20 06:48:45 1nARFV-0007r3-PU => daniel.morgan <daniel.morgan@price.fox.org> R=local_user T=maildir_home
+2022-01-20 06:48:45 1nARFV-0007r3-PU Completed

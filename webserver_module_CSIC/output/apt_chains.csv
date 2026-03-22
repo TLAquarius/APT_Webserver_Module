@@ -1,0 +1,2 @@
+session_id,start_time,end_time,duration_sec,phases_observed,phase_count,apt_score,event_count,critical_count,warning_count,is_apt_candidate
+0,2010-06-01 08:00:00,2010-06-14 01:05:29,1098329.0,execution → reconnaissance → initial_access → defense_evasion → collection,5,0.75,61065,20703,4333,True

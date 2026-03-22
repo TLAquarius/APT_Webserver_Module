@@ -1,0 +1,584 @@
+Jan 16 06:25:10 mail CRON[19422]: pam_unix(cron:session): session closed for user root
+Jan 16 06:39:01 mail CRON[19619]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 06:39:01 mail CRON[19619]: pam_unix(cron:session): session closed for user root
+Jan 16 06:47:01 mail CRON[19693]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 06:47:01 mail CRON[19693]: pam_unix(cron:session): session closed for user root
+Jan 16 07:09:01 mail CRON[19735]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 07:09:01 mail CRON[19735]: pam_unix(cron:session): session closed for user root
+Jan 16 07:17:01 mail CRON[19807]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 07:17:01 mail CRON[19807]: pam_unix(cron:session): session closed for user root
+Jan 16 07:39:01 mail CRON[19881]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 07:39:01 mail CRON[19881]: pam_unix(cron:session): session closed for user root
+Jan 16 08:09:01 mail CRON[20234]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 08:09:01 mail CRON[20234]: pam_unix(cron:session): session closed for user root
+Jan 16 08:17:01 mail CRON[20348]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 08:17:01 mail CRON[20348]: pam_unix(cron:session): session closed for user root
+Jan 16 08:30:01 mail CRON[20422]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 08:30:02 mail CRON[20422]: pam_unix(cron:session): session closed for user root
+Jan 16 08:39:01 mail CRON[20487]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 08:39:01 mail CRON[20487]: pam_unix(cron:session): session closed for user root
+Jan 16 09:09:01 mail CRON[20737]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 09:09:01 mail CRON[20737]: pam_unix(cron:session): session closed for user root
+Jan 16 09:17:01 mail CRON[20832]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 09:17:01 mail CRON[20832]: pam_unix(cron:session): session closed for user root
+Jan 16 09:39:01 mail CRON[20959]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 09:39:01 mail CRON[20959]: pam_unix(cron:session): session closed for user root
+Jan 16 10:09:01 mail CRON[21160]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 10:09:01 mail CRON[21160]: pam_unix(cron:session): session closed for user root
+Jan 16 10:17:01 mail CRON[21243]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 10:17:01 mail CRON[21243]: pam_unix(cron:session): session closed for user root
+Jan 16 10:39:01 mail CRON[21324]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 10:39:01 mail CRON[21324]: pam_unix(cron:session): session closed for user root
+Jan 16 11:09:01 mail CRON[21567]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 11:09:01 mail CRON[21567]: pam_unix(cron:session): session closed for user root
+Jan 16 11:17:01 mail CRON[21693]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 11:17:01 mail CRON[21693]: pam_unix(cron:session): session closed for user root
+Jan 16 11:39:01 mail CRON[21867]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 11:39:01 mail CRON[21867]: pam_unix(cron:session): session closed for user root
+Jan 16 12:09:01 mail CRON[22171]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 12:09:01 mail CRON[22171]: pam_unix(cron:session): session closed for user root
+Jan 16 12:17:01 mail CRON[22314]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 12:17:01 mail CRON[22314]: pam_unix(cron:session): session closed for user root
+Jan 16 12:39:01 mail CRON[22517]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 12:39:01 mail CRON[22517]: pam_unix(cron:session): session closed for user root
+Jan 16 13:09:01 mail CRON[22896]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 13:09:01 mail CRON[22896]: pam_unix(cron:session): session closed for user root
+Jan 16 13:17:01 mail CRON[23000]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 13:17:01 mail CRON[23000]: pam_unix(cron:session): session closed for user root
+Jan 16 13:39:01 mail CRON[23189]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 13:39:01 mail CRON[23189]: pam_unix(cron:session): session closed for user root
+Jan 16 14:09:01 mail CRON[23559]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 14:09:01 mail CRON[23559]: pam_unix(cron:session): session closed for user root
+Jan 16 14:17:01 mail CRON[23681]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 14:17:01 mail CRON[23681]: pam_unix(cron:session): session closed for user root
+Jan 16 14:39:01 mail CRON[23873]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 14:39:01 mail CRON[23873]: pam_unix(cron:session): session closed for user root
+Jan 16 15:09:01 mail CRON[24148]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 15:09:01 mail CRON[24148]: pam_unix(cron:session): session closed for user root
+Jan 16 15:16:55 mail auth: pam_unix(dovecot:auth): authentication failure; logname= uid=0 euid=0 tty=dovecot ruser=meghan.morris rhost=172.17.131.81  user=meghan.morris
+Jan 16 15:17:01 mail CRON[24254]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 15:17:01 mail CRON[24254]: pam_unix(cron:session): session closed for user root
+Jan 16 15:39:01 mail CRON[24462]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 15:39:01 mail CRON[24462]: pam_unix(cron:session): session closed for user root
+Jan 16 16:09:01 mail CRON[24769]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 16:09:01 mail CRON[24769]: pam_unix(cron:session): session closed for user root
+Jan 16 16:17:01 mail CRON[24838]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 16:17:01 mail CRON[24838]: pam_unix(cron:session): session closed for user root
+Jan 16 16:39:01 mail CRON[25129]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 16:39:01 mail CRON[25129]: pam_unix(cron:session): session closed for user root
+Jan 16 17:09:01 mail CRON[25359]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 17:09:01 mail CRON[25359]: pam_unix(cron:session): session closed for user root
+Jan 16 17:17:01 mail CRON[25466]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 17:17:01 mail CRON[25466]: pam_unix(cron:session): session closed for user root
+Jan 16 17:39:01 mail CRON[25696]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 17:39:01 mail CRON[25696]: pam_unix(cron:session): session closed for user root
+Jan 16 18:09:01 mail CRON[25935]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 18:09:01 mail CRON[25935]: pam_unix(cron:session): session closed for user root
+Jan 16 18:17:01 mail CRON[26054]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 18:17:01 mail CRON[26054]: pam_unix(cron:session): session closed for user root
+Jan 16 18:39:01 mail CRON[26246]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 18:39:01 mail CRON[26246]: pam_unix(cron:session): session closed for user root
+Jan 16 19:09:01 mail CRON[26562]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 19:09:01 mail CRON[26562]: pam_unix(cron:session): session closed for user root
+Jan 16 19:17:01 mail CRON[26649]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 19:17:01 mail CRON[26649]: pam_unix(cron:session): session closed for user root
+Jan 16 19:39:01 mail CRON[26784]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 19:39:01 mail CRON[26784]: pam_unix(cron:session): session closed for user root
+Jan 16 20:09:01 mail CRON[26952]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 20:09:01 mail CRON[26952]: pam_unix(cron:session): session closed for user root
+Jan 16 20:17:01 mail CRON[27035]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 20:17:01 mail CRON[27035]: pam_unix(cron:session): session closed for user root
+Jan 16 20:30:02 mail CRON[27065]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 20:30:02 mail CRON[27065]: pam_unix(cron:session): session closed for user root
+Jan 16 20:39:01 mail CRON[27121]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 20:39:01 mail CRON[27121]: pam_unix(cron:session): session closed for user root
+Jan 16 21:09:01 mail CRON[27265]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 21:09:01 mail CRON[27265]: pam_unix(cron:session): session closed for user root
+Jan 16 21:17:01 mail CRON[27346]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 21:17:01 mail CRON[27346]: pam_unix(cron:session): session closed for user root
+Jan 16 21:39:01 mail CRON[27399]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 21:39:01 mail CRON[27399]: pam_unix(cron:session): session closed for user root
+Jan 16 22:09:01 mail CRON[27573]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 22:09:01 mail CRON[27573]: pam_unix(cron:session): session closed for user root
+Jan 16 22:17:01 mail CRON[27653]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 22:17:01 mail CRON[27653]: pam_unix(cron:session): session closed for user root
+Jan 16 22:39:01 mail CRON[27697]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 22:39:01 mail CRON[27697]: pam_unix(cron:session): session closed for user root
+Jan 16 23:09:01 mail CRON[27815]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 23:09:01 mail CRON[27815]: pam_unix(cron:session): session closed for user root
+Jan 16 23:17:01 mail CRON[27891]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 23:17:01 mail CRON[27891]: pam_unix(cron:session): session closed for user root
+Jan 16 23:39:01 mail CRON[27935]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 16 23:39:01 mail CRON[27935]: pam_unix(cron:session): session closed for user root
+Jan 17 00:09:01 mail CRON[28053]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 00:09:01 mail CRON[28053]: pam_unix(cron:session): session closed for user root
+Jan 17 00:17:01 mail CRON[28128]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 00:17:01 mail CRON[28128]: pam_unix(cron:session): session closed for user root
+Jan 17 00:39:01 mail CRON[28180]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 00:39:01 mail CRON[28180]: pam_unix(cron:session): session closed for user root
+Jan 17 01:09:01 mail CRON[28302]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 01:09:01 mail CRON[28302]: pam_unix(cron:session): session closed for user root
+Jan 17 01:17:01 mail CRON[28386]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 01:17:01 mail CRON[28386]: pam_unix(cron:session): session closed for user root
+Jan 17 01:39:01 mail CRON[28423]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 01:39:01 mail CRON[28423]: pam_unix(cron:session): session closed for user root
+Jan 17 02:09:01 mail CRON[28549]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 02:09:01 mail CRON[28549]: pam_unix(cron:session): session closed for user root
+Jan 17 02:17:01 mail CRON[28620]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 02:17:01 mail CRON[28620]: pam_unix(cron:session): session closed for user root
+Jan 17 02:39:01 mail CRON[28664]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 02:39:01 mail CRON[28664]: pam_unix(cron:session): session closed for user root
+Jan 17 03:09:01 mail CRON[28801]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 03:09:01 mail CRON[28801]: pam_unix(cron:session): session closed for user root
+Jan 17 03:17:01 mail CRON[28873]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 03:17:01 mail CRON[28873]: pam_unix(cron:session): session closed for user root
+Jan 17 03:39:01 mail CRON[28922]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 03:39:01 mail CRON[28922]: pam_unix(cron:session): session closed for user root
+Jan 17 04:09:01 mail CRON[29088]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 04:09:01 mail CRON[29088]: pam_unix(cron:session): session closed for user root
+Jan 17 04:17:01 mail CRON[29163]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 04:17:01 mail CRON[29163]: pam_unix(cron:session): session closed for user root
+Jan 17 04:39:01 mail CRON[29208]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 04:39:01 mail CRON[29208]: pam_unix(cron:session): session closed for user root
+Jan 17 05:09:01 mail CRON[29349]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 05:09:01 mail CRON[29349]: pam_unix(cron:session): session closed for user root
+Jan 17 05:17:01 mail CRON[29421]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 05:17:01 mail CRON[29421]: pam_unix(cron:session): session closed for user root
+Jan 17 05:39:01 mail CRON[29473]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 05:39:01 mail CRON[29473]: pam_unix(cron:session): session closed for user root
+Jan 17 06:09:01 mail CRON[29646]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 06:09:01 mail CRON[29646]: pam_unix(cron:session): session closed for user root
+Jan 17 06:17:01 mail CRON[29766]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 06:17:02 mail CRON[29766]: pam_unix(cron:session): session closed for user root
+Jan 17 06:25:01 mail CRON[29793]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 06:25:03 mail CRON[29793]: pam_unix(cron:session): session closed for user root
+Jan 17 06:39:01 mail CRON[29979]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 06:39:01 mail CRON[29979]: pam_unix(cron:session): session closed for user root
+Jan 17 07:09:01 mail CRON[30285]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 07:09:01 mail CRON[30285]: pam_unix(cron:session): session closed for user root
+Jan 17 07:17:01 mail CRON[30431]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 07:17:01 mail CRON[30431]: pam_unix(cron:session): session closed for user root
+Jan 17 07:39:01 mail CRON[30561]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 07:39:01 mail CRON[30561]: pam_unix(cron:session): session closed for user root
+Jan 17 08:09:01 mail CRON[30965]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 08:09:01 mail CRON[30965]: pam_unix(cron:session): session closed for user root
+Jan 17 08:17:01 mail CRON[31081]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 08:17:01 mail CRON[31081]: pam_unix(cron:session): session closed for user root
+Jan 17 08:30:01 mail CRON[31186]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 08:30:01 mail CRON[31186]: pam_unix(cron:session): session closed for user root
+Jan 17 08:39:01 mail CRON[31278]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 08:39:01 mail CRON[31278]: pam_unix(cron:session): session closed for user root
+Jan 17 09:09:01 mail CRON[31617]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 09:09:01 mail CRON[31617]: pam_unix(cron:session): session closed for user root
+Jan 17 09:17:01 mail CRON[31717]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 09:17:01 mail CRON[31717]: pam_unix(cron:session): session closed for user root
+Jan 17 09:39:01 mail CRON[31840]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 09:39:01 mail CRON[31840]: pam_unix(cron:session): session closed for user root
+Jan 17 10:09:01 mail CRON[32135]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 10:09:01 mail CRON[32135]: pam_unix(cron:session): session closed for user root
+Jan 17 10:17:01 mail CRON[32266]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 10:17:01 mail CRON[32266]: pam_unix(cron:session): session closed for user root
+Jan 17 10:39:01 mail CRON[32441]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 10:39:01 mail CRON[32441]: pam_unix(cron:session): session closed for user root
+Jan 17 11:09:01 mail CRON[507]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 11:09:01 mail CRON[507]: pam_unix(cron:session): session closed for user root
+Jan 17 11:17:01 mail CRON[748]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 11:17:01 mail CRON[748]: pam_unix(cron:session): session closed for user root
+Jan 17 11:39:01 mail CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 11:39:01 mail CRON[1043]: pam_unix(cron:session): session closed for user root
+Jan 17 12:09:01 mail CRON[1449]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 12:09:01 mail CRON[1449]: pam_unix(cron:session): session closed for user root
+Jan 17 12:17:01 mail CRON[1600]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 12:17:01 mail CRON[1600]: pam_unix(cron:session): session closed for user root
+Jan 17 12:39:01 mail CRON[1816]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 12:39:01 mail CRON[1816]: pam_unix(cron:session): session closed for user root
+Jan 17 13:09:01 mail CRON[2045]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 13:09:01 mail CRON[2045]: pam_unix(cron:session): session closed for user root
+Jan 17 13:17:01 mail CRON[2127]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 13:17:01 mail CRON[2127]: pam_unix(cron:session): session closed for user root
+Jan 17 13:39:01 mail CRON[2205]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 13:39:01 mail CRON[2205]: pam_unix(cron:session): session closed for user root
+Jan 17 14:09:01 mail CRON[2460]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 14:09:01 mail CRON[2460]: pam_unix(cron:session): session closed for user root
+Jan 17 14:17:01 mail CRON[2557]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 14:17:01 mail CRON[2557]: pam_unix(cron:session): session closed for user root
+Jan 17 14:39:02 mail CRON[2709]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 14:39:02 mail CRON[2709]: pam_unix(cron:session): session closed for user root
+Jan 17 15:09:01 mail CRON[2932]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 15:09:01 mail CRON[2932]: pam_unix(cron:session): session closed for user root
+Jan 17 15:17:01 mail CRON[3049]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 15:17:01 mail CRON[3049]: pam_unix(cron:session): session closed for user root
+Jan 17 15:39:01 mail CRON[3250]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 15:39:01 mail CRON[3250]: pam_unix(cron:session): session closed for user root
+Jan 17 16:09:01 mail CRON[3577]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 16:09:01 mail CRON[3577]: pam_unix(cron:session): session closed for user root
+Jan 17 16:17:01 mail CRON[3702]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 16:17:01 mail CRON[3702]: pam_unix(cron:session): session closed for user root
+Jan 17 16:39:01 mail CRON[3833]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 16:39:01 mail CRON[3833]: pam_unix(cron:session): session closed for user root
+Jan 17 17:09:01 mail CRON[3994]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 17:09:01 mail CRON[3994]: pam_unix(cron:session): session closed for user root
+Jan 17 17:17:01 mail CRON[4083]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 17:17:01 mail CRON[4083]: pam_unix(cron:session): session closed for user root
+Jan 17 17:39:01 mail CRON[4257]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 17:39:01 mail CRON[4257]: pam_unix(cron:session): session closed for user root
+Jan 17 18:09:01 mail CRON[4469]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 18:09:01 mail CRON[4469]: pam_unix(cron:session): session closed for user root
+Jan 17 18:17:01 mail CRON[4536]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 18:17:01 mail CRON[4536]: pam_unix(cron:session): session closed for user root
+Jan 17 18:39:01 mail CRON[4621]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 18:39:01 mail CRON[4621]: pam_unix(cron:session): session closed for user root
+Jan 17 18:48:09 mail sshd[4721]: Accepted publickey for hwarren from 172.17.130.196 port 38014 ssh2: RSA SHA256:8wFbiaYPevKS/wYKnePO20v0iymTcrRh4Kr+1uRS1UM
+Jan 17 18:48:09 mail sshd[4721]: pam_unix(sshd:session): session opened for user hwarren by (uid=0)
+Jan 17 18:48:09 mail systemd-logind[498]: New session 297 of user hwarren.
+Jan 17 18:48:09 mail systemd: pam_unix(systemd-user:session): session opened for user hwarren by (uid=0)
+Jan 17 18:48:35 mail sshd[4734]: Received disconnect from 172.17.130.196 port 38014:11: disconnected by user
+Jan 17 18:48:35 mail sshd[4734]: Disconnected from 172.17.130.196 port 38014
+Jan 17 18:48:35 mail sshd[4721]: pam_unix(sshd:session): session closed for user hwarren
+Jan 17 18:48:35 mail systemd-logind[498]: Removed session 297.
+Jan 17 18:48:35 mail systemd: pam_unix(systemd-user:session): session closed for user hwarren
+Jan 17 18:53:11 mail sshd[4813]: Accepted publickey for hwarren from 172.17.130.196 port 38070 ssh2: RSA SHA256:8wFbiaYPevKS/wYKnePO20v0iymTcrRh4Kr+1uRS1UM
+Jan 17 18:53:11 mail sshd[4813]: pam_unix(sshd:session): session opened for user hwarren by (uid=0)
+Jan 17 18:53:11 mail systemd-logind[498]: New session 299 of user hwarren.
+Jan 17 18:53:11 mail systemd: pam_unix(systemd-user:session): session opened for user hwarren by (uid=0)
+Jan 17 18:54:14 mail sshd[4822]: Received disconnect from 172.17.130.196 port 38070:11: disconnected by user
+Jan 17 18:54:14 mail sshd[4822]: Disconnected from 172.17.130.196 port 38070
+Jan 17 18:54:14 mail sshd[4813]: pam_unix(sshd:session): session closed for user hwarren
+Jan 17 18:54:14 mail systemd-logind[498]: Removed session 299.
+Jan 17 18:54:14 mail systemd: pam_unix(systemd-user:session): session closed for user hwarren
+Jan 17 19:09:01 mail CRON[4961]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 19:09:01 mail CRON[4961]: pam_unix(cron:session): session closed for user root
+Jan 17 19:17:01 mail CRON[5052]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 19:17:01 mail CRON[5052]: pam_unix(cron:session): session closed for user root
+Jan 17 19:39:01 mail CRON[5212]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 19:39:01 mail CRON[5212]: pam_unix(cron:session): session closed for user root
+Jan 17 20:09:01 mail CRON[5338]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 20:09:01 mail CRON[5338]: pam_unix(cron:session): session closed for user root
+Jan 17 20:17:01 mail CRON[5449]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 20:17:01 mail CRON[5449]: pam_unix(cron:session): session closed for user root
+Jan 17 20:30:01 mail CRON[5481]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 20:30:01 mail CRON[5481]: pam_unix(cron:session): session closed for user root
+Jan 17 20:39:01 mail CRON[5563]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 20:39:01 mail CRON[5563]: pam_unix(cron:session): session closed for user root
+Jan 17 21:09:01 mail CRON[5728]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 21:09:01 mail CRON[5728]: pam_unix(cron:session): session closed for user root
+Jan 17 21:17:01 mail CRON[5804]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 21:17:01 mail CRON[5804]: pam_unix(cron:session): session closed for user root
+Jan 17 21:39:01 mail CRON[5846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 21:39:01 mail CRON[5846]: pam_unix(cron:session): session closed for user root
+Jan 17 22:09:01 mail CRON[6033]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 22:09:01 mail CRON[6033]: pam_unix(cron:session): session closed for user root
+Jan 17 22:17:01 mail CRON[6110]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 22:17:01 mail CRON[6110]: pam_unix(cron:session): session closed for user root
+Jan 17 22:39:01 mail CRON[6187]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 22:39:01 mail CRON[6187]: pam_unix(cron:session): session closed for user root
+Jan 17 23:09:01 mail CRON[6299]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 23:09:01 mail CRON[6299]: pam_unix(cron:session): session closed for user root
+Jan 17 23:17:01 mail CRON[6374]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 23:17:01 mail CRON[6374]: pam_unix(cron:session): session closed for user root
+Jan 17 23:39:01 mail CRON[6483]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 17 23:39:01 mail CRON[6483]: pam_unix(cron:session): session closed for user root
+Jan 18 00:09:01 mail CRON[6544]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 00:09:01 mail CRON[6544]: pam_unix(cron:session): session closed for user root
+Jan 18 00:17:01 mail CRON[6616]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 00:17:01 mail CRON[6616]: pam_unix(cron:session): session closed for user root
+Jan 18 00:39:01 mail CRON[6670]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 00:39:01 mail CRON[6670]: pam_unix(cron:session): session closed for user root
+Jan 18 01:09:01 mail CRON[6794]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 01:09:01 mail CRON[6794]: pam_unix(cron:session): session closed for user root
+Jan 18 01:17:01 mail CRON[6861]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 01:17:01 mail CRON[6861]: pam_unix(cron:session): session closed for user root
+Jan 18 01:39:01 mail CRON[6931]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 01:39:01 mail CRON[6931]: pam_unix(cron:session): session closed for user root
+Jan 18 02:09:01 mail CRON[7038]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 02:09:01 mail CRON[7038]: pam_unix(cron:session): session closed for user root
+Jan 18 02:17:01 mail CRON[7113]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 02:17:01 mail CRON[7113]: pam_unix(cron:session): session closed for user root
+Jan 18 02:39:01 mail CRON[7167]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 02:39:01 mail CRON[7167]: pam_unix(cron:session): session closed for user root
+Jan 18 03:09:01 mail CRON[7292]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 03:09:01 mail CRON[7292]: pam_unix(cron:session): session closed for user root
+Jan 18 03:17:01 mail CRON[7366]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 03:17:01 mail CRON[7366]: pam_unix(cron:session): session closed for user root
+Jan 18 03:39:01 mail CRON[7409]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 03:39:01 mail CRON[7409]: pam_unix(cron:session): session closed for user root
+Jan 18 04:09:01 mail CRON[7533]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 04:09:01 mail CRON[7533]: pam_unix(cron:session): session closed for user root
+Jan 18 04:17:01 mail CRON[7604]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 04:17:01 mail CRON[7604]: pam_unix(cron:session): session closed for user root
+Jan 18 04:39:01 mail CRON[7654]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 04:39:01 mail CRON[7654]: pam_unix(cron:session): session closed for user root
+Jan 18 05:09:01 mail CRON[7775]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 05:09:01 mail CRON[7775]: pam_unix(cron:session): session closed for user root
+Jan 18 05:17:01 mail CRON[7846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 05:17:01 mail CRON[7846]: pam_unix(cron:session): session closed for user root
+Jan 18 05:39:01 mail CRON[7892]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 05:39:01 mail CRON[7892]: pam_unix(cron:session): session closed for user root
+Jan 18 06:09:01 mail CRON[8017]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 06:09:01 mail CRON[8017]: pam_unix(cron:session): session closed for user root
+Jan 18 06:17:01 mail CRON[8095]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 06:17:01 mail CRON[8095]: pam_unix(cron:session): session closed for user root
+Jan 18 06:25:01 mail CRON[8128]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 06:25:05 mail CRON[8128]: pam_unix(cron:session): session closed for user root
+Jan 18 06:39:01 mail CRON[8353]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 06:39:01 mail CRON[8353]: pam_unix(cron:session): session closed for user root
+Jan 18 07:09:01 mail CRON[8550]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 07:09:01 mail CRON[8550]: pam_unix(cron:session): session closed for user root
+Jan 18 07:17:01 mail CRON[8666]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 07:17:01 mail CRON[8666]: pam_unix(cron:session): session closed for user root
+Jan 18 07:39:01 mail CRON[8857]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 07:39:01 mail CRON[8857]: pam_unix(cron:session): session closed for user root
+Jan 18 08:09:01 mail CRON[9118]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 08:09:01 mail CRON[9118]: pam_unix(cron:session): session closed for user root
+Jan 18 08:17:01 mail CRON[9224]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 08:17:01 mail CRON[9224]: pam_unix(cron:session): session closed for user root
+Jan 18 08:30:01 mail CRON[9315]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 08:30:01 mail CRON[9315]: pam_unix(cron:session): session closed for user root
+Jan 18 08:39:01 mail CRON[9384]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 08:39:01 mail CRON[9384]: pam_unix(cron:session): session closed for user root
+Jan 18 09:09:01 mail CRON[9846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 09:09:01 mail CRON[9846]: pam_unix(cron:session): session closed for user root
+Jan 18 09:17:01 mail CRON[9992]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 09:17:01 mail CRON[9992]: pam_unix(cron:session): session closed for user root
+Jan 18 09:39:01 mail CRON[10191]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 09:39:01 mail CRON[10191]: pam_unix(cron:session): session closed for user root
+Jan 18 10:09:01 mail CRON[10370]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 10:09:01 mail CRON[10370]: pam_unix(cron:session): session closed for user root
+Jan 18 10:17:01 mail CRON[10502]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 10:17:01 mail CRON[10502]: pam_unix(cron:session): session closed for user root
+Jan 18 10:39:01 mail CRON[10773]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 10:39:01 mail CRON[10773]: pam_unix(cron:session): session closed for user root
+Jan 18 11:09:01 mail CRON[11155]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 11:09:01 mail CRON[11155]: pam_unix(cron:session): session closed for user root
+Jan 18 11:17:01 mail CRON[11318]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 11:17:01 mail CRON[11318]: pam_unix(cron:session): session closed for user root
+Jan 18 11:39:01 mail CRON[11486]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 11:39:01 mail CRON[11486]: pam_unix(cron:session): session closed for user root
+Jan 18 12:09:01 mail CRON[11758]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 12:09:01 mail CRON[11758]: pam_unix(cron:session): session closed for user root
+Jan 18 12:17:01 mail CRON[11852]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 12:17:01 mail CRON[11852]: pam_unix(cron:session): session closed for user root
+Jan 18 12:39:01 mail CRON[11998]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 12:39:01 mail CRON[11998]: pam_unix(cron:session): session closed for user root
+Jan 18 13:09:01 mail CRON[12176]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 13:09:01 mail CRON[12176]: pam_unix(cron:session): session closed for user root
+Jan 18 13:17:01 mail CRON[12247]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 13:17:01 mail CRON[12247]: pam_unix(cron:session): session closed for user root
+Jan 18 13:39:02 mail CRON[12362]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 13:39:02 mail CRON[12362]: pam_unix(cron:session): session closed for user root
+Jan 18 14:09:01 mail CRON[12593]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 14:09:01 mail CRON[12593]: pam_unix(cron:session): session closed for user root
+Jan 18 14:17:01 mail CRON[12683]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 14:17:01 mail CRON[12683]: pam_unix(cron:session): session closed for user root
+Jan 18 14:39:01 mail CRON[12794]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 14:39:01 mail CRON[12794]: pam_unix(cron:session): session closed for user root
+Jan 18 15:09:01 mail CRON[13073]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 15:09:01 mail CRON[13073]: pam_unix(cron:session): session closed for user root
+Jan 18 15:17:01 mail CRON[13193]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 15:17:01 mail CRON[13193]: pam_unix(cron:session): session closed for user root
+Jan 18 15:39:01 mail CRON[13436]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 15:39:01 mail CRON[13436]: pam_unix(cron:session): session closed for user root
+Jan 18 16:09:01 mail CRON[13707]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 16:09:01 mail CRON[13707]: pam_unix(cron:session): session closed for user root
+Jan 18 16:17:01 mail CRON[13839]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 16:17:01 mail CRON[13839]: pam_unix(cron:session): session closed for user root
+Jan 18 16:25:38 mail auth: pam_unix(dovecot:auth): authentication failure; logname= uid=0 euid=0 tty=dovecot ruser=daniel.morgan rhost=172.17.131.81  user=daniel.morgan
+Jan 18 16:39:01 mail CRON[14010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 16:39:01 mail CRON[14010]: pam_unix(cron:session): session closed for user root
+Jan 18 17:09:01 mail CRON[14308]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 17:09:01 mail CRON[14308]: pam_unix(cron:session): session closed for user root
+Jan 18 17:17:01 mail CRON[14418]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 17:17:01 mail CRON[14418]: pam_unix(cron:session): session closed for user root
+Jan 18 17:39:01 mail CRON[14628]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 17:39:01 mail CRON[14628]: pam_unix(cron:session): session closed for user root
+Jan 18 18:09:01 mail CRON[14938]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 18:09:01 mail CRON[14938]: pam_unix(cron:session): session closed for user root
+Jan 18 18:17:01 mail CRON[15030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 18:17:01 mail CRON[15030]: pam_unix(cron:session): session closed for user root
+Jan 18 18:39:01 mail CRON[15125]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 18:39:01 mail CRON[15125]: pam_unix(cron:session): session closed for user root
+Jan 18 19:09:01 mail CRON[15305]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 19:09:01 mail CRON[15305]: pam_unix(cron:session): session closed for user root
+Jan 18 19:17:01 mail CRON[15387]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 19:17:01 mail CRON[15387]: pam_unix(cron:session): session closed for user root
+Jan 18 19:39:01 mail CRON[15441]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 19:39:01 mail CRON[15441]: pam_unix(cron:session): session closed for user root
+Jan 18 20:09:01 mail CRON[15573]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 20:09:01 mail CRON[15573]: pam_unix(cron:session): session closed for user root
+Jan 18 20:17:01 mail CRON[15644]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 20:17:01 mail CRON[15644]: pam_unix(cron:session): session closed for user root
+Jan 18 20:30:01 mail CRON[15676]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 20:30:01 mail CRON[15676]: pam_unix(cron:session): session closed for user root
+Jan 18 20:39:01 mail CRON[15720]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 20:39:01 mail CRON[15720]: pam_unix(cron:session): session closed for user root
+Jan 18 21:09:01 mail CRON[15855]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 21:09:01 mail CRON[15855]: pam_unix(cron:session): session closed for user root
+Jan 18 21:17:01 mail CRON[15929]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 21:17:01 mail CRON[15929]: pam_unix(cron:session): session closed for user root
+Jan 18 21:39:01 mail CRON[15987]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 21:39:01 mail CRON[15987]: pam_unix(cron:session): session closed for user root
+Jan 18 22:09:01 mail CRON[16131]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 22:09:01 mail CRON[16131]: pam_unix(cron:session): session closed for user root
+Jan 18 22:17:01 mail CRON[16215]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 22:17:01 mail CRON[16215]: pam_unix(cron:session): session closed for user root
+Jan 18 22:39:01 mail CRON[16301]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 22:39:01 mail CRON[16301]: pam_unix(cron:session): session closed for user root
+Jan 18 23:09:01 mail CRON[16423]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 23:09:01 mail CRON[16423]: pam_unix(cron:session): session closed for user root
+Jan 18 23:17:01 mail CRON[16506]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 23:17:01 mail CRON[16506]: pam_unix(cron:session): session closed for user root
+Jan 18 23:39:01 mail CRON[16552]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 18 23:39:01 mail CRON[16552]: pam_unix(cron:session): session closed for user root
+Jan 19 00:09:01 mail CRON[16669]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 00:09:01 mail CRON[16669]: pam_unix(cron:session): session closed for user root
+Jan 19 00:17:01 mail CRON[16739]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 00:17:01 mail CRON[16739]: pam_unix(cron:session): session closed for user root
+Jan 19 00:39:01 mail CRON[16781]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 00:39:01 mail CRON[16781]: pam_unix(cron:session): session closed for user root
+Jan 19 01:09:01 mail CRON[16901]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 01:09:01 mail CRON[16901]: pam_unix(cron:session): session closed for user root
+Jan 19 01:17:01 mail CRON[16981]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 01:17:01 mail CRON[16981]: pam_unix(cron:session): session closed for user root
+Jan 19 01:39:01 mail CRON[17079]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 01:39:01 mail CRON[17079]: pam_unix(cron:session): session closed for user root
+Jan 19 02:09:01 mail CRON[17195]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 02:09:01 mail CRON[17195]: pam_unix(cron:session): session closed for user root
+Jan 19 02:17:01 mail CRON[17274]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 02:17:01 mail CRON[17274]: pam_unix(cron:session): session closed for user root
+Jan 19 02:39:01 mail CRON[17329]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 02:39:01 mail CRON[17329]: pam_unix(cron:session): session closed for user root
+Jan 19 03:09:01 mail CRON[17445]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 03:09:01 mail CRON[17445]: pam_unix(cron:session): session closed for user root
+Jan 19 03:17:01 mail CRON[17525]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 03:17:01 mail CRON[17525]: pam_unix(cron:session): session closed for user root
+Jan 19 03:39:01 mail CRON[17563]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 03:39:01 mail CRON[17563]: pam_unix(cron:session): session closed for user root
+Jan 19 04:09:01 mail CRON[17691]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 04:09:01 mail CRON[17691]: pam_unix(cron:session): session closed for user root
+Jan 19 04:17:01 mail CRON[17766]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 04:17:01 mail CRON[17766]: pam_unix(cron:session): session closed for user root
+Jan 19 04:39:01 mail CRON[17817]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 04:39:01 mail CRON[17817]: pam_unix(cron:session): session closed for user root
+Jan 19 05:09:01 mail CRON[17936]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 05:09:01 mail CRON[17936]: pam_unix(cron:session): session closed for user root
+Jan 19 05:17:01 mail CRON[18016]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 05:17:01 mail CRON[18016]: pam_unix(cron:session): session closed for user root
+Jan 19 05:39:01 mail CRON[18084]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 05:39:01 mail CRON[18084]: pam_unix(cron:session): session closed for user root
+Jan 19 06:09:01 mail CRON[18312]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 06:09:01 mail CRON[18312]: pam_unix(cron:session): session closed for user root
+Jan 19 06:17:01 mail CRON[18422]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 06:17:01 mail CRON[18422]: pam_unix(cron:session): session closed for user root
+Jan 19 06:25:01 mail CRON[18452]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 06:25:07 mail CRON[18452]: pam_unix(cron:session): session closed for user root
+Jan 19 06:39:01 mail CRON[18668]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 06:39:01 mail CRON[18668]: pam_unix(cron:session): session closed for user root
+Jan 19 07:09:01 mail CRON[18870]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 07:09:01 mail CRON[18870]: pam_unix(cron:session): session closed for user root
+Jan 19 07:17:01 mail CRON[18946]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 07:17:01 mail CRON[18946]: pam_unix(cron:session): session closed for user root
+Jan 19 07:39:01 mail CRON[19049]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 07:39:01 mail CRON[19049]: pam_unix(cron:session): session closed for user root
+Jan 19 08:09:01 mail CRON[19262]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 08:09:01 mail CRON[19262]: pam_unix(cron:session): session closed for user root
+Jan 19 08:17:01 mail CRON[19376]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 08:17:01 mail CRON[19376]: pam_unix(cron:session): session closed for user root
+Jan 19 08:30:01 mail CRON[19450]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 08:30:02 mail CRON[19450]: pam_unix(cron:session): session closed for user root
+Jan 19 08:39:01 mail CRON[19496]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 08:39:01 mail CRON[19496]: pam_unix(cron:session): session closed for user root
+Jan 19 09:09:01 mail CRON[19775]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 09:09:01 mail CRON[19775]: pam_unix(cron:session): session closed for user root
+Jan 19 09:17:01 mail CRON[19904]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 09:17:01 mail CRON[19904]: pam_unix(cron:session): session closed for user root
+Jan 19 09:39:01 mail CRON[20074]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 09:39:01 mail CRON[20074]: pam_unix(cron:session): session closed for user root
+Jan 19 10:09:01 mail CRON[20464]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 10:09:01 mail CRON[20464]: pam_unix(cron:session): session closed for user root
+Jan 19 10:17:01 mail CRON[20584]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 10:17:01 mail CRON[20584]: pam_unix(cron:session): session closed for user root
+Jan 19 10:39:01 mail CRON[20780]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 10:39:01 mail CRON[20780]: pam_unix(cron:session): session closed for user root
+Jan 19 11:09:01 mail CRON[21002]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 11:09:01 mail CRON[21002]: pam_unix(cron:session): session closed for user root
+Jan 19 11:17:01 mail CRON[21136]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 11:17:01 mail CRON[21136]: pam_unix(cron:session): session closed for user root
+Jan 19 11:39:01 mail CRON[21310]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 11:39:01 mail CRON[21310]: pam_unix(cron:session): session closed for user root
+Jan 19 12:09:01 mail CRON[21614]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 12:09:01 mail CRON[21614]: pam_unix(cron:session): session closed for user root
+Jan 19 12:17:01 mail CRON[21685]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 12:17:01 mail CRON[21685]: pam_unix(cron:session): session closed for user root
+Jan 19 12:38:18 mail auth: pam_unix(dovecot:auth): authentication failure; logname= uid=0 euid=0 tty=dovecot ruser=meghan.morris rhost=172.17.131.81  user=meghan.morris
+Jan 19 12:39:01 mail CRON[21779]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 12:39:01 mail CRON[21779]: pam_unix(cron:session): session closed for user root
+Jan 19 13:09:01 mail CRON[22079]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 13:09:01 mail CRON[22079]: pam_unix(cron:session): session closed for user root
+Jan 19 13:17:01 mail CRON[22183]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 13:17:01 mail CRON[22183]: pam_unix(cron:session): session closed for user root
+Jan 19 13:31:55 mail auth: pam_unix(dovecot:auth): authentication failure; logname= uid=0 euid=0 tty=dovecot ruser=michael.davis rhost=172.17.131.81  user=michael.davis
+Jan 19 13:39:01 mail CRON[22381]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 13:39:01 mail CRON[22381]: pam_unix(cron:session): session closed for user root
+Jan 19 14:09:01 mail CRON[22685]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 14:09:01 mail CRON[22685]: pam_unix(cron:session): session closed for user root
+Jan 19 14:17:01 mail CRON[22756]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 14:17:01 mail CRON[22756]: pam_unix(cron:session): session closed for user root
+Jan 19 14:39:01 mail CRON[22849]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 14:39:01 mail CRON[22849]: pam_unix(cron:session): session closed for user root
+Jan 19 14:53:32 mail auth: pam_unix(dovecot:auth): authentication failure; logname= uid=0 euid=0 tty=dovecot ruser=carole.noble rhost=172.17.131.81  user=carole.noble
+Jan 19 15:09:01 mail CRON[23226]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 15:09:01 mail CRON[23226]: pam_unix(cron:session): session closed for user root
+Jan 19 15:17:01 mail CRON[23365]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 15:17:01 mail CRON[23365]: pam_unix(cron:session): session closed for user root
+Jan 19 15:39:01 mail CRON[23633]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 15:39:01 mail CRON[23633]: pam_unix(cron:session): session closed for user root
+Jan 19 16:09:01 mail CRON[24082]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 16:09:01 mail CRON[24082]: pam_unix(cron:session): session closed for user root
+Jan 19 16:17:01 mail CRON[24229]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 16:17:01 mail CRON[24229]: pam_unix(cron:session): session closed for user root
+Jan 19 16:39:01 mail CRON[24439]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 16:39:01 mail CRON[24439]: pam_unix(cron:session): session closed for user root
+Jan 19 17:09:01 mail CRON[24723]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 17:09:01 mail CRON[24723]: pam_unix(cron:session): session closed for user root
+Jan 19 17:17:01 mail CRON[24929]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 17:17:01 mail CRON[24929]: pam_unix(cron:session): session closed for user root
+Jan 19 17:39:01 mail CRON[25162]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 17:39:01 mail CRON[25162]: pam_unix(cron:session): session closed for user root
+Jan 19 18:09:01 mail CRON[25397]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 18:09:01 mail CRON[25397]: pam_unix(cron:session): session closed for user root
+Jan 19 18:17:01 mail CRON[25493]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 18:17:01 mail CRON[25493]: pam_unix(cron:session): session closed for user root
+Jan 19 18:39:01 mail CRON[25634]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 18:39:01 mail CRON[25634]: pam_unix(cron:session): session closed for user root
+Jan 19 19:09:01 mail CRON[26038]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 19:09:01 mail CRON[26038]: pam_unix(cron:session): session closed for user root
+Jan 19 19:17:01 mail CRON[26204]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 19:17:01 mail CRON[26204]: pam_unix(cron:session): session closed for user root
+Jan 19 19:39:01 mail CRON[26418]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 19:39:01 mail CRON[26418]: pam_unix(cron:session): session closed for user root
+Jan 19 20:09:01 mail CRON[26569]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 20:09:01 mail CRON[26569]: pam_unix(cron:session): session closed for user root
+Jan 19 20:17:01 mail CRON[26640]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 20:17:01 mail CRON[26640]: pam_unix(cron:session): session closed for user root
+Jan 19 20:30:01 mail CRON[26668]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 20:30:01 mail CRON[26668]: pam_unix(cron:session): session closed for user root
+Jan 19 20:39:01 mail CRON[26703]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 20:39:01 mail CRON[26703]: pam_unix(cron:session): session closed for user root
+Jan 19 21:09:01 mail CRON[26819]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 21:09:01 mail CRON[26819]: pam_unix(cron:session): session closed for user root
+Jan 19 21:17:01 mail CRON[26893]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 21:17:01 mail CRON[26893]: pam_unix(cron:session): session closed for user root
+Jan 19 21:39:01 mail CRON[26944]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 21:39:01 mail CRON[26944]: pam_unix(cron:session): session closed for user root
+Jan 19 22:09:01 mail CRON[27093]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 22:09:01 mail CRON[27093]: pam_unix(cron:session): session closed for user root
+Jan 19 22:17:01 mail CRON[27170]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 22:17:01 mail CRON[27170]: pam_unix(cron:session): session closed for user root
+Jan 19 22:39:01 mail CRON[27215]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 22:39:01 mail CRON[27215]: pam_unix(cron:session): session closed for user root
+Jan 19 23:09:01 mail CRON[27346]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 23:09:01 mail CRON[27346]: pam_unix(cron:session): session closed for user root
+Jan 19 23:17:01 mail CRON[27421]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 23:17:01 mail CRON[27421]: pam_unix(cron:session): session closed for user root
+Jan 19 23:39:01 mail CRON[27474]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 19 23:39:01 mail CRON[27474]: pam_unix(cron:session): session closed for user root

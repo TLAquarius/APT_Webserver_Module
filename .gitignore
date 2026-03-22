@@ -1,0 +1,30 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.mmdb
+
+# Ignore IDE settings
+./.idea/
+.idea
+.idea/
+
+# Ignore VSCode settings (optional)
+.vscode/
+
+# Ignore environment files
+.env
+.venv/
+venv/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore build files
+build/
+dist/
+*.egg-info/
+
+.git_remote_b/

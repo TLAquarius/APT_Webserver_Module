@@ -1,0 +1,4 @@
+=== Path Traversal Detector Benchmark Results ===
+Total Payloads: 5680
+Detected:       4731 (83.29%)
+Missed:         949

@@ -1,0 +1,5 @@
+timestamp,rip,user,program,action,is_root_target,is_privilege_escalation,velocity,unique_users,hour_of_day
+2022-01-16 15:16:55,172.17.131.81,meghan.morris,auth,Login Failed,0,0,1.0,1,15
+2022-01-18 16:25:38,172.17.131.81,daniel.morgan,auth,Login Failed,0,0,1.0,2,16
+2022-01-19 12:38:18,172.17.131.81,meghan.morris,auth,Login Failed,0,0,1.0,2,12
+2022-01-19 14:53:32,172.17.131.81,carole.noble,auth,Login Failed,0,0,1.0,4,14

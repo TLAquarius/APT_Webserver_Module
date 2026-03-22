@@ -1,0 +1,4 @@
+=== Simulated OWASP CRS WAF Benchmark Results ===
+Total Payloads: 5680
+Detected:       3623 (63.79%)
+Missed:         2057
