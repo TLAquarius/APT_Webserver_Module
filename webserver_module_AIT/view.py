@@ -10,6 +10,7 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import gc
+import re
 
 from core.shared_ui import render_standard_module_layout
 from backend_bridge import WebserverBridge
@@ -140,32 +141,94 @@ def render_dashboard(dashboard_data: dict):
 def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
     formatted_data = []
     for event in timeline_data:
+        # 1. XỬ LÝ LOG DẠNG NÉN (RLE - Hành vi lặp lại)
         if event.get("event_type") == "COMPRESSED_BULK_ACTION":
             formatted_data.append({
                 "Thời gian (Khoảng)": f"{event.get('start_time', '')[:19]} ➔ {event.get('end_time', '')[11:19]}",
                 "Trạng thái": f"Lặp lại {event.get('count', 0)} lần",
-                "Mã Code": event.get("status_code", ""),
+                "Mã Code": str(event.get("status_code", "N/A")),
+                "Host (VHost)": "N/A",
                 "Đích ngắm (URI)": event.get("uri_path", ""),
+                "Kích thước (Bytes)": "N/A",
+                "User Agent": "N/A",
                 "Chi tiết cảnh báo": event.get("summary", ""),
+                "Log thô (Raw Message)": "",
                 "Phân loại": "HÀNH VI LẶP LẠI (RLE)"
             })
+
+        # 2. XỬ LÝ LOG CHI TIẾT
         else:
             wafs = event.get("layer1_alerts", [])
             alert_str = ", ".join(wafs) if wafs else ""
             status_code = str(event.get("status_code", ""))
-            category = "BÌNH THƯỜNG"
+
+            # Lấy các trường dữ liệu mới
+            uri_path = event.get("uri_path", "")
+            uri_query = event.get("uri_query", "")
+            raw_message = event.get("raw_message", "")
+            user_agent = event.get("user_agent")
+            bytes_sent = event.get("bytes_sent")
+            vhost = event.get("vhost")
+
+            # Gộp uri_path và uri_query thành 1 đường dẫn hoàn chỉnh
+            full_uri = uri_path
+            if uri_query and uri_path:
+                full_uri = f"{uri_path}?{uri_query}"
+
+            # Trích xuất error_message nếu có
+            error_msg = event.get("error_message", "")
+
+            # Gộp thông tin cảnh báo vào biến tiếng Anh (alert_details)
+            alert_details = error_msg
             if wafs:
-                category = "🚨 WAF BÁO ĐỘNG"
-            elif status_code.startswith(("4", "5")):
-                category = "⚠️ LỖI CLIENT/SERVER"
+                if error_msg:
+                    alert_details = f"{error_msg} | WAF: {alert_str}"
+                else:
+                    alert_details = alert_str
+
+            # Xác định xem đây có phải là Error Log hay không
+            is_error_log = event.get("event_source") in ["apache_error", "nginx_error"]
+
+            # KHẮC PHỤC DÒNG TRỐNG URI CHO ERROR LOG
+            if not full_uri and error_msg:
+                # Tìm đường dẫn bắt đầu bằng /var/www hoặc / (regex cơ bản)
+                match = re.search(r'(/[\w\-\.\/]+)', error_msg)
+                if match:
+                    full_uri = f"(Từ log lỗi) {match.group(1)}"
+                else:
+                    full_uri = "N/A"
+
+            # Khởi tạo danh sách các nhãn phân loại màu sắc
+            categories = []
+            if wafs:
+                categories.append("🚨 WAF BÁO ĐỘNG")
+            if status_code.startswith(("4", "5")) or is_error_log:
+                categories.append("⚠️ LỖI CLIENT/SERVER")
+
+            if not categories:
+                category = "BÌNH THƯỜNG"
+            else:
+                category = " | ".join(categories)
+
+            # Hiển thị Trạng thái (HTTP Method)
+            http_method = event.get("http_method")
+            if not http_method:
+                http_method = "INTERNAL" if is_error_log else "N/A"
+
+            # Đẩy dữ liệu vào mảng
             formatted_data.append({
                 "Thời gian (Khoảng)": event.get("@timestamp", "")[:19].replace("T", " "),
-                "Trạng thái": event.get("http_method", "N/A"),
-                "Mã Code": status_code,
-                "Đích ngắm (URI)": event.get("uri_path", ""),
-                "Chi tiết cảnh báo": alert_str,
+                "Trạng thái": http_method,
+                "Mã Code": status_code if status_code != "None" else "N/A",
+                "Host (VHost)": vhost if vhost else "N/A",
+                "Đích ngắm (URI)": full_uri,
+                "Kích thước (Bytes)": str(int(bytes_sent)) if bytes_sent is not None else "N/A",
+                "User Agent": user_agent if user_agent and user_agent != "-" else "N/A",
+                "Chi tiết cảnh báo": alert_details,
+                "Log thô (Raw Message)": raw_message,
                 "Phân loại": category
             })
+
     return pd.DataFrame(formatted_data)
 
 
@@ -238,12 +301,15 @@ def run_llm_advisor(dashboard_data: dict):
         df_timeline = format_timeline_to_df(selected_case.get("timeline", []))
 
         def highlight_rows(row):
-            if row["Phân loại"] == "🚨 WAF BÁO ĐỘNG":
+            cat = row["Phân loại"]
+            if "🚨 WAF BÁO ĐỘNG" in cat and "⚠️ LỖI CLIENT/SERVER" in cat:
+                return ['background-color: rgba(255, 69, 0, 0.3)'] * len(row)
+            elif "🚨 WAF BÁO ĐỘNG" in cat:
                 return ['background-color: rgba(255, 0, 0, 0.2)'] * len(row)
-            elif row["Phân loại"] == "HÀNH VI LẶP LẠI (RLE)":
+            elif "HÀNH VI LẶP LẠI (RLE)" in cat:
                 return ['background-color: rgba(255, 165, 0, 0.2)'] * len(row)
-            elif row["Phân loại"] == "⚠️ LỖI CLIENT/SERVER":
-                return ['background-color: rgba(255, 255, 0, 0.1)'] * len(row)
+            elif "⚠️ LỖI CLIENT/SERVER" in cat:
+                return ['background-color: rgba(255, 215, 0, 0.3)'] * len(row)
             return [''] * len(row)
 
         st.dataframe(df_timeline.style.apply(highlight_rows, axis=1), use_container_width=True, hide_index=True)
@@ -383,7 +449,7 @@ def render_page():
                             status_text.text(msg)
                             progress_bar.progress(pct / 100.0)
 
-                        bridge.rescan_existing_data("both", status_callback=ui_cb)
+                        bridge.run_full_pipeline(status_callback=ui_cb)
                         st.success(f"Đã xóa file và cập nhật hệ thống thành công!")
                         st.rerun()
         else:

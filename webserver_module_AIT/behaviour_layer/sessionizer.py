@@ -5,6 +5,8 @@ import ipaddress
 import geoip2.database
 import geoip2.errors
 from typing import Callable
+import numpy as np  # <-- THÊM THƯ VIỆN NÀY ĐỂ TÍNH P95
+
 
 class UserSession:
     """Stateful memory object tracking an IP's behavior and building its timeline."""
@@ -13,7 +15,8 @@ class UserSession:
         'post_count', 'rare_method_count', 'bytes_sent_total', 'max_resp_bytes', 'unique_uris',
         'unique_uas', 'unique_statuses', 'l1_alert_count', 'l1_alert_types', 'raw_logs',
         'static_asset_count', 'suspicious_ext_count', 'min_interarrival_sec', 'last_host',
-        'total_uri_depth', 'parent_tracking_id'
+        'total_uri_depth', 'parent_tracking_id',
+        'interarrival_times'  # <-- MẢNG LƯU KHOẢNG CÁCH THỜI GIAN ĐỂ TÍNH P95
     ]
 
     STATIC_EXTS = {'.png', '.jpg', '.jpeg', '.gif', '.css', '.js', '.ico', '.woff', '.woff2', '.svg'}
@@ -47,7 +50,8 @@ class UserSession:
 
         self.l1_alert_count = 0
         self.l1_alert_types = set()
-        self.raw_logs = [] # ENTIRE record (including request_body) is preserved here!
+        self.raw_logs = []
+        self.interarrival_times = []  # <-- KHỞI TẠO MẢNG
 
     def _get_extension(self, uri):
         if not uri or '?' in uri: return ""
@@ -59,6 +63,8 @@ class UserSession:
     def update(self, record, log_time):
         if self.total_logs > 0:
             time_diff = (log_time - self.last_seen).total_seconds()
+            if time_diff >= 0:
+                self.interarrival_times.append(time_diff)  # <-- LƯU LẠI KHOẢNG CÁCH THỜI GIAN
             if 0 <= time_diff < self.min_interarrival_sec:
                 self.min_interarrival_sec = time_diff
 
@@ -180,11 +186,16 @@ class UserSession:
 
 
 class StatefulStreamingEngine:
-    def __init__(self, timeout_minutes=15, max_session_hours=2, max_events_per_session=3000,
+    def __init__(self, timeout_minutes=15, max_session_hours=6, max_events_per_session=20000,
                  geo_db_path="GeoLite2-City.mmdb"):
-        self.timeout_seconds = timeout_minutes * 60
+        self.default_timeout_seconds = timeout_minutes * 60
         self.max_session_seconds = max_session_hours * 3600
         self.max_events = max_events_per_session
+
+        # CẤU HÌNH CHO THUẬT TOÁN ADAPTIVE GAP (P95)
+        self.adaptive_alpha = 2.0  # Hệ số nới lỏng
+        self.adaptive_min_sec = 60  # Ngưỡng tối thiểu: 1 phút
+        self.adaptive_max_sec = 3600  # Ngưỡng tối đa: 1 tiếng
 
         self.active_sessions = {}
         self.global_watermark = None
@@ -193,10 +204,23 @@ class StatefulStreamingEngine:
 
         self.geo_reader = None
         try:
-            # We fail silently if GeoIP is missing to not crash the WebApp
             self.geo_reader = geoip2.database.Reader(geo_db_path)
         except FileNotFoundError:
             pass
+
+    def _get_adaptive_timeout(self, session):
+        """Tính toán Adaptive Gap (Timeout thích ứng) dựa trên P95"""
+        # Trả về timeout mặc định nếu chưa có đủ dữ kiện (ít nhất 5 logs) để phân tích
+        if len(session.interarrival_times) < 5:
+            return self.default_timeout_seconds
+
+        # Tính Phân vị thứ 95 của các khoảng thời gian
+        p95 = np.percentile(session.interarrival_times, 95)
+
+        # Công thức: max(min(α × P95(∆t), Threshold_max), Threshold_min)
+        adaptive_gap = max(min(self.adaptive_alpha * p95, self.adaptive_max_sec), self.adaptive_min_sec)
+
+        return adaptive_gap
 
     def _parse_time(self, time_str):
         time_str = time_str.replace('Z', '+00:00')
@@ -224,8 +248,12 @@ class StatefulStreamingEngine:
 
     def _garbage_collect(self):
         if not self.global_watermark: return
-        stale_ips = [ip for ip, session in self.active_sessions.items()
-                     if (self.global_watermark - session.last_seen).total_seconds() > self.timeout_seconds]
+        stale_ips = []
+        for ip, session in self.active_sessions.items():
+            adaptive_timeout = self._get_adaptive_timeout(session)
+            if (self.global_watermark - session.last_seen).total_seconds() > adaptive_timeout:
+                stale_ips.append(ip)
+
         for ip in stale_ips:
             self._flush_session(ip)
 
@@ -263,7 +291,10 @@ class StatefulStreamingEngine:
                     idle_time = (log_time - session.last_seen).total_seconds()
                     absolute_time = (log_time - session.start_time).total_seconds()
 
-                    if idle_time > self.timeout_seconds:
+                    # SỬ DỤNG TIMEOUT THÍCH ỨNG (ADAPTIVE TIMEOUT) TÍNH TOÁN RIÊNG CHO IP NÀY
+                    adaptive_timeout = self._get_adaptive_timeout(session)
+
+                    if idle_time > adaptive_timeout:
                         self._flush_session(ip)
                         self.active_sessions[ip] = UserSession(ip, log_time)
                     elif absolute_time > self.max_session_seconds or session.total_logs >= self.max_events:

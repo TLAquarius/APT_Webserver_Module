@@ -114,7 +114,7 @@ class WebserverBridge:
             l1_runner.run(self.paths["parsed_timeline"], self.paths["layer1_alerts"], status_callback)
 
             update_ui("3/5: Đang nhóm Phiên và trích xuất Đặc trưng (Sessionizing)...", 45)
-            sessionizer = StatefulStreamingEngine(timeout_minutes=10, max_session_hours=2)
+            sessionizer = StatefulStreamingEngine()
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
@@ -177,20 +177,23 @@ class WebserverBridge:
             run_train = operation_mode in ["train", "both"]
             run_detect = operation_mode in ["detect", "both"]
 
-            if time_window:
-                update_ui("Phát hiện bộ lọc thời gian: Khởi động lại luồng Parser...", 15)
-                metadata = self.profile_manager._load_metadata(self.profile_name)
-                existing_files = [f for f in metadata if f.get("status") in ["pending_orchestration", "processed"]]
+            metadata = self.profile_manager._load_metadata(self.profile_name)
+            existing_files = [f for f in metadata if f.get("status") in ["pending_orchestration", "processed"]]
 
-                if not existing_files:
-                    update_ui("❌ Không có file gốc nào trong Profile để lọc.", 100)
-                    return False
+            if not existing_files:
+                update_ui("❌ Không có file gốc nào trong Profile để phân tích.", 100)
+                return False
+
+            # VÁ LỖI: Tự động Parse lại từ đầu nếu có bộ lọc HOẶC file tạm bị mất (do vừa xóa file)
+            if time_window or not os.path.exists(self.paths["layer1_alerts"]):
+                update_ui("Phát hiện thay đổi dữ liệu: Khởi động lại luồng Parser...", 15)
 
                 parser = WebServerLogParser(chunk_size=50000)
                 if os.path.exists(self.paths["temp_parsed"]): os.remove(self.paths["temp_parsed"])
 
-                for f in existing_files:
-                    f["time_window_filter"] = [dt.isoformat() for dt in time_window]
+                if time_window:
+                    for f in existing_files:
+                        f["time_window_filter"] = [dt.isoformat() for dt in time_window]
 
                 for file_rec in existing_files:
                     parser.process_log_file(
@@ -209,12 +212,10 @@ class WebserverBridge:
                 l1_runner = Layer1Runner()
                 l1_runner.run(self.paths["parsed_timeline"], self.paths["layer1_alerts"], status_callback)
             else:
-                if not os.path.exists(self.paths["layer1_alerts"]):
-                    update_ui("❌ Không tìm thấy dữ liệu cũ. Vui lòng Nạp Log Mới trước.", 100)
-                    return False
+                update_ui("Sử dụng lại dữ liệu bóc tách tĩnh...", 15)
 
             update_ui("3/5: Đang trích xuất lại Đặc trưng (Sessionizing)...", 30)
-            sessionizer = StatefulStreamingEngine(timeout_minutes=15, max_session_hours=2)
+            sessionizer = StatefulStreamingEngine()
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
