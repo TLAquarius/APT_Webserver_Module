@@ -5,39 +5,45 @@ import ipaddress
 import geoip2.database
 import geoip2.errors
 from typing import Callable
-import numpy as np  # <-- THÊM THƯ VIỆN NÀY ĐỂ TÍNH P95
+import numpy as np
 
 
 class UserSession:
-    """Stateful memory object tracking an IP's behavior and building its timeline."""
+    """
+    Stateful memory object tracking an IP's behavior and building its timeline.
+    """
     __slots__ = [
-        'ip', 'start_time', 'last_seen', 'total_logs', 'error_404', 'error_403', 'error_50x',
+        'ip', 'start_time', 'last_seen', 'total_logs', 'error_404', 'error_403', 'error_401', 'error_50x',
         'post_count', 'rare_method_count', 'bytes_sent_total', 'max_resp_bytes', 'unique_uris',
         'unique_uas', 'unique_statuses', 'l1_alert_count', 'l1_alert_types', 'raw_logs',
         'static_asset_count', 'suspicious_ext_count', 'min_interarrival_sec', 'last_host',
-        'total_uri_depth', 'parent_tracking_id',
-        'interarrival_times'  # <-- MẢNG LƯU KHOẢNG CÁCH THỜI GIAN ĐỂ TÍNH P95
+        'total_uri_depth', 'parent_tracking_id', 'interarrival_times', 'auth_count', 'bytes_array',
+        'evasion_count', 'max_req_length'
     ]
 
     STATIC_EXTS = {'.png', '.jpg', '.jpeg', '.gif', '.css', '.js', '.ico', '.woff', '.woff2', '.svg'}
     SUSPICIOUS_EXTS = {'.bak', '.sql', '.env', '.old', '.log', '.git', '.sh', '.zip', '.tar.gz', '.inc', '.php'}
     STANDARD_METHODS = {'GET', 'POST', 'HEAD'}
+    AUTH_KEYWORDS = {'login', 'log-in', 'auth', 'signin', 'wp-login'}
 
     def __init__(self, ip, start_time, parent_tracking_id=None):
         self.ip = ip
         self.start_time = start_time
         self.last_seen = start_time
         self.last_host = None
-        self.parent_tracking_id = parent_tracking_id if parent_tracking_id else f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S')}"
+        self.evasion_count = 0
+        self.parent_tracking_id = parent_tracking_id if parent_tracking_id else f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S_%f')}"
 
         self.total_logs = 0
         self.error_404 = 0
         self.error_403 = 0
+        self.error_401 = 0
         self.error_50x = 0
         self.post_count = 0
         self.rare_method_count = 0
         self.bytes_sent_total = 0
         self.max_resp_bytes = 0
+        self.max_req_length = 0
 
         self.unique_uris = set()
         self.unique_uas = set()
@@ -48,12 +54,18 @@ class UserSession:
         self.total_uri_depth = 0
         self.min_interarrival_sec = float('inf')
 
+        self.auth_count = 0
+        self.bytes_array = []
+
         self.l1_alert_count = 0
         self.l1_alert_types = set()
         self.raw_logs = []
-        self.interarrival_times = []  # <-- KHỞI TẠO MẢNG
+        self.interarrival_times = []
 
     def _get_extension(self, uri):
+        """
+        Extracts the file extension from a URI string.
+        """
         if not uri or '?' in uri: return ""
         parts = uri.split('.')
         if len(parts) > 1:
@@ -61,10 +73,13 @@ class UserSession:
         return ""
 
     def update(self, record, log_time):
+        """
+        Updates the session statistics and timeline with a new log record.
+        """
         if self.total_logs > 0:
             time_diff = (log_time - self.last_seen).total_seconds()
             if time_diff >= 0:
-                self.interarrival_times.append(time_diff)  # <-- LƯU LẠI KHOẢNG CÁCH THỜI GIAN
+                self.interarrival_times.append(time_diff)
             if 0 <= time_diff < self.min_interarrival_sec:
                 self.min_interarrival_sec = time_diff
 
@@ -73,16 +88,28 @@ class UserSession:
         self.total_logs += 1
         self.raw_logs.append(record)
 
-        uri = record.get('uri_path')
-        if uri:
-            self.unique_uris.add(uri)
-            self.total_uri_depth += str(uri).count('/')
+        if record.get('is_evasion_attempt'):
+            self.evasion_count += 1
 
-            ext = self._get_extension(uri)
+        uri_path = record.get('uri_path', '')
+        uri_query = record.get('uri_query', '')
+
+        req_length = len(str(uri_path)) + len(str(uri_query))
+        if req_length > self.max_req_length:
+            self.max_req_length = req_length
+
+        if uri_path:
+            self.unique_uris.add(uri_path)
+            self.total_uri_depth += str(uri_path).count('/')
+
+            ext = self._get_extension(uri_path)
             if ext in self.STATIC_EXTS:
                 self.static_asset_count += 1
             elif ext in self.SUSPICIOUS_EXTS:
                 self.suspicious_ext_count += 1
+
+            if any(kw in str(uri_path).lower() for kw in self.AUTH_KEYWORDS):
+                self.auth_count += 1
 
         ua = record.get('user_agent')
         if ua: self.unique_uas.add(ua)
@@ -106,6 +133,8 @@ class UserSession:
                 self.error_404 += 1
             elif status_int == 403:
                 self.error_403 += 1
+            elif status_int == 401:
+                self.error_401 += 1
             elif status_int >= 500:
                 self.error_50x += 1
 
@@ -113,10 +142,14 @@ class UserSession:
         bytes_sent = int(raw_bytes) if raw_bytes is not None else 0
 
         self.bytes_sent_total += bytes_sent
+        self.bytes_array.append(bytes_sent)
         if bytes_sent > self.max_resp_bytes:
             self.max_resp_bytes = bytes_sent
 
     def extract_data(self, geo_reader=None):
+        """
+        Computes final statistical rates and bundles the JSON timeline.
+        """
         duration_sec = (self.last_seen - self.start_time).total_seconds()
         safe_duration = max(1.0, duration_sec)
 
@@ -137,12 +170,10 @@ class UserSession:
             is_external = 1
             geo_country = "UNKNOWN"
 
-        start_hour = self.start_time.hour
-        is_off_hours = 1 if (start_hour < 6 or start_hour > 18) else 0
-
-        session_id = f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S')}"
+        session_id = f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S_%f')}"
         min_arrival = 0.0 if self.min_interarrival_sec == float('inf') else self.min_interarrival_sec
         avg_depth = self.total_uri_depth / self.total_logs if self.total_logs > 0 else 0
+        bytes_std_dev = float(np.std(self.bytes_array)) if len(self.bytes_array) > 1 else 0.0
 
         features = {
             "session_id": session_id,
@@ -150,7 +181,6 @@ class UserSession:
             "source_ip": self.ip,
             "geo_country": geo_country,
             "is_external_ip": is_external,
-            "is_off_hours": is_off_hours,
             "session_duration_sec": round(duration_sec, 2),
             "total_requests": self.total_logs,
             "req_per_min": round(self.total_logs / (safe_duration / 60.0), 2),
@@ -158,6 +188,7 @@ class UserSession:
             "avg_uri_depth": round(avg_depth, 2),
             "error_404_rate": round(self.error_404 / self.total_logs, 4),
             "error_403_rate": round(self.error_403 / self.total_logs, 4),
+            "error_401_rate": round(self.error_401 / self.total_logs, 4),
             "error_50x_rate": round(self.error_50x / self.total_logs, 4),
             "post_rate": round(self.post_count / self.total_logs, 4),
             "rare_method_rate": round(self.rare_method_count / self.total_logs, 4),
@@ -168,8 +199,12 @@ class UserSession:
             "unique_uas": len(self.unique_uas),
             "avg_payload_bytes": round(self.bytes_sent_total / self.total_logs, 2),
             "max_resp_bytes": self.max_resp_bytes,
+            "max_req_length": self.max_req_length,
+            "auth_attempt_rate": round(self.auth_count / self.total_logs, 4),
+            "bytes_std_dev": round(bytes_std_dev, 2),
             "l1_alert_count": self.l1_alert_count,
-            "l1_alert_types": "|".join(self.l1_alert_types)
+            "l1_alert_types": "|".join(self.l1_alert_types),
+            "evasion_attempt_rate": round(self.evasion_count / self.total_logs, 4)
         }
 
         timeline_object = {
@@ -192,10 +227,9 @@ class StatefulStreamingEngine:
         self.max_session_seconds = max_session_hours * 3600
         self.max_events = max_events_per_session
 
-        # CẤU HÌNH CHO THUẬT TOÁN ADAPTIVE GAP (P95)
-        self.adaptive_alpha = 2.0  # Hệ số nới lỏng
-        self.adaptive_min_sec = 60  # Ngưỡng tối thiểu: 1 phút
-        self.adaptive_max_sec = 3600  # Ngưỡng tối đa: 1 tiếng
+        self.adaptive_alpha = 2.0
+        self.adaptive_min_sec = 300
+        self.adaptive_max_sec = 3600
 
         self.active_sessions = {}
         self.global_watermark = None
@@ -209,26 +243,30 @@ class StatefulStreamingEngine:
             pass
 
     def _get_adaptive_timeout(self, session):
-        """Tính toán Adaptive Gap (Timeout thích ứng) dựa trên P95"""
-        # Trả về timeout mặc định nếu chưa có đủ dữ kiện (ít nhất 5 logs) để phân tích
+        """
+        Calculates the Adaptive Gap timeout based on the P95 inter-arrival time.
+        """
         if len(session.interarrival_times) < 5:
             return self.default_timeout_seconds
 
-        # Tính Phân vị thứ 95 của các khoảng thời gian
         p95 = np.percentile(session.interarrival_times, 95)
-
-        # Công thức: max(min(α × P95(∆t), Threshold_max), Threshold_min)
         adaptive_gap = max(min(self.adaptive_alpha * p95, self.adaptive_max_sec), self.adaptive_min_sec)
 
         return adaptive_gap
 
     def _parse_time(self, time_str):
+        """
+        Parses strictly formatted ISO8601 strings into datetime objects.
+        """
         time_str = time_str.replace('Z', '+00:00')
         if len(time_str) >= 5 and time_str[-5] in ('+', '-') and ':' not in time_str[-5:]:
             time_str = time_str[:-2] + ':' + time_str[-2:]
         return datetime.fromisoformat(time_str)
 
     def _find_correlated_ip(self, log_time, host_name, time_window=2.0):
+        """
+        Links orphan error logs to the most probable active session based on time proximity.
+        """
         best_ip = None
         smallest_diff = float('inf')
         for ip, session in self.active_sessions.items():
@@ -241,12 +279,18 @@ class StatefulStreamingEngine:
         return best_ip
 
     def _flush_session(self, ip):
+        """
+        Extracts finished session data and clears it from active memory.
+        """
         features, timeline = self.active_sessions[ip].extract_data(geo_reader=self.geo_reader)
         self.completed_features.append(features)
         self.completed_timelines.append(timeline)
         del self.active_sessions[ip]
 
     def _garbage_collect(self):
+        """
+        Sweeps inactive sessions that have exceeded their adaptive timeout.
+        """
         if not self.global_watermark: return
         stale_ips = []
         for ip, session in self.active_sessions.items():
@@ -258,7 +302,9 @@ class StatefulStreamingEngine:
             self._flush_session(ip)
 
     def process_stream(self, input_ndjson: str, output_csv: str, output_json: str, status_callback: Callable = None):
-        """Processes logs and updates the UI via callback."""
+        """
+        Main streaming loop that groups L1 alerts into structured sessions.
+        """
         total_logs = 0
 
         with open(input_ndjson, 'r', encoding='utf-8') as f:
@@ -291,7 +337,6 @@ class StatefulStreamingEngine:
                     idle_time = (log_time - session.last_seen).total_seconds()
                     absolute_time = (log_time - session.start_time).total_seconds()
 
-                    # SỬ DỤNG TIMEOUT THÍCH ỨNG (ADAPTIVE TIMEOUT) TÍNH TOÁN RIÊNG CHO IP NÀY
                     adaptive_timeout = self._get_adaptive_timeout(session)
 
                     if idle_time > adaptive_timeout:
@@ -317,6 +362,9 @@ class StatefulStreamingEngine:
         return True
 
     def _export_data(self, csv_path, json_path):
+        """
+        Saves computed numerical features to CSV and raw timelines to JSON.
+        """
         if not self.completed_features: return
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=self.completed_features[0].keys())

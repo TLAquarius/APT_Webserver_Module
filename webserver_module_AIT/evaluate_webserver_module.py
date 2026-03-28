@@ -3,14 +3,23 @@ import json
 import pandas as pd
 
 
-class UltimateE2EEvaluator:
-    def __init__(self, labels_dir, raw_logs_dir, incident_reports_path):
+class SystemEvaluator:
+    def __init__(self, labels_dir: str, raw_logs_dir: str, results_dir: str):
         self.labels_dir = labels_dir
         self.raw_logs_dir = raw_logs_dir
-        self.incident_reports_path = incident_reports_path
+        self.layer1_alerts_path = os.path.join(results_dir, "layer1_alerts.ndjson")
+        self.session_timelines_path = os.path.join(results_dir, "session_timelines.json")
+        self.stat_scores_csv = os.path.join(results_dir, "statistical_scores.csv")
+        self.seq_scores_csv = os.path.join(results_dir, "sequential_scores.csv")
+        self.incident_reports_path = os.path.join(results_dir, "incident_reports.ndjson")
 
-    def get_malicious_raw_logs(self):
-        malicious_raw_texts = set()
+        self.malicious_raw_texts = set()
+        self.session_ground_truth = {}
+        self.incident_ground_truth = {}
+        self.total_mapped_malicious_lines = 0
+
+    def _extract_ground_truth(self):
+        print("[*] Extracting malicious ground truth from labels...")
         for root, dirs, files in os.walk(self.labels_dir):
             if 'apache2' in root:
                 for file in files:
@@ -31,118 +40,156 @@ class UltimateE2EEvaluator:
 
                         with open(raw_filepath, 'r', encoding='utf-8', errors='ignore') as rf:
                             for i, line in enumerate(rf, 1):
-                                if i in malicious_lines: malicious_raw_texts.add(line.strip())
-        return malicious_raw_texts
+                                if i in malicious_lines:
+                                    self.malicious_raw_texts.add(line.strip())
 
-    def evaluate(self):
-        print("\n" + "=" * 105)
-        print("🚀 ĐÁNH GIÁ TỔNG THỂ KIẾN TRÚC CORRELATOR (END-TO-END)")
-        print("=" * 105)
+        print(f"[+] Found {len(self.malicious_raw_texts)} malicious raw logs.")
+        print("[*] Mapping ground truth to Sessions and Incidents...")
 
-        if not os.path.exists(self.incident_reports_path):
-            print("❌ Không tìm thấy file incident_reports.ndjson.")
-            return
-
-        malicious_raw_texts = self.get_malicious_raw_logs()
-
-        sessions_data = []
-        total_raw_events = 0
-        total_comp_events = 0
-
-        with open(self.incident_reports_path, 'r', encoding='utf-8') as f:
+        matched_lines_count = 0
+        with open(self.session_timelines_path, 'r', encoding='utf-8') as f:
             for line in f:
                 if not line.strip(): continue
                 session = json.loads(line)
 
-                total_raw_events += session.get('total_raw_events', 0)
-                total_comp_events += session.get('total_compressed_events', 0)
+                session_id = session.get('session_id')
+                parent_id = session.get('parent_tracking_id')
+                events = session.get('timeline', [])
 
-                is_actual_attack = False
-                waf_caught_actual_payload = False  # WAF bắt trúng chính xác dòng log APT
-                has_any_waf_alert = False  # WAF bắt nhầm log rác trong cùng session
+                session_is_malicious = False
+                for e in events:
+                    if e.get('raw_message', '').strip() in self.malicious_raw_texts:
+                        session_is_malicious = True
+                        matched_lines_count += 1
 
-                for event in session.get('timeline', []):
-                    if event.get('layer1_flagged'): has_any_waf_alert = True
+                if session_id:
+                    self.session_ground_truth[session_id] = session_is_malicious
+                if parent_id:
+                    if session_is_malicious or not self.incident_ground_truth.get(parent_id, False):
+                        self.incident_ground_truth[parent_id] = session_is_malicious
 
-                    if event.get('event_type') != 'COMPRESSED_BULK_ACTION':
-                        raw_msg = event.get('raw_message', '').strip()
-                        if raw_msg in malicious_raw_texts:
-                            is_actual_attack = True
-                            if event.get('layer1_flagged'):
-                                waf_caught_actual_payload = True
+        self.total_mapped_malicious_lines = matched_lines_count
+        print(f"[+] Successfully mapped {matched_lines_count} malicious lines into the sessions.")
 
-                max_ml_score = max(session.get('max_statistical_score', 0), session.get('max_markov_score', 0))
+    def _print_metrics(self, y_true, y_pred, threshold_label):
+        total = len(y_true)
+        actual_attacks = sum(y_true)
+        actual_normals = total - actual_attacks
 
-                sessions_data.append({
-                    'is_actual_attack': is_actual_attack,
-                    'waf_caught_payload': waf_caught_actual_payload,
-                    'has_any_waf_alert': has_any_waf_alert,
-                    'max_ml_score': max_ml_score
-                })
+        tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt and yp)
+        fp = sum(1 for yt, yp in zip(y_true, y_pred) if not yt and yp)
+        tn = sum(1 for yt, yp in zip(y_true, y_pred) if not yt and not yp)
+        fn = sum(1 for yt, yp in zip(y_true, y_pred) if yt and not yp)
 
-        total_sessions = len(sessions_data)
-        actual_attacks = sum(1 for s in sessions_data if s['is_actual_attack'])
-        actual_normals = total_sessions - actual_attacks
-        compression_rate = (
-                (total_raw_events - total_comp_events) / total_raw_events * 100) if total_raw_events > 0 else 0
+        recall = (tp / actual_attacks * 100) if actual_attacks > 0 else 0.0
+        fpr = (fp / actual_normals * 100) if actual_normals > 0 else 0.0
+        precision = (tp / (tp + fp) * 100) if (tp + fp) > 0 else 0.0
+        f1_score = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+        accuracy = ((tp + tn) / total * 100) if total > 0 else 0.0
 
-        print(f"📊 THỐNG KÊ ĐẦU VÀO (ENTITY/INCIDENT LEVEL):")
-        print(f"    ➤ Tổng số Hồ sơ sự cố (Incidents) : {total_sessions}")
-        print(f"    ➤ Hồ sơ Tấn công thực tế          : {actual_attacks}")
-        print(f"    ➤ Hiệu suất nén log (Compression) : {compression_rate:.2f}% (Bảo toàn ngữ cảnh APT)")
-
-        print("\n📈 KIỂM THỬ ĐÁNH GIÁ CHÉO (CORRELATION TRADE-OFF):")
-        print("-" * 105)
         print(
-            f"{'Ngưỡng ML (Threshold)':<22} | {'Recall (TP/FN)':<18} | {'FPR (Báo giả)':<18} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
+            f"{threshold_label:<16} | {recall:>6.2f}% (TP:{tp:<5} FN:{fn:<5}) | {fpr:>6.2f}% (FP:{fp:<5} TN:{tn:<5}) | {precision:>6.2f}%   | {f1_score:>6.2f}%   | {accuracy:>6.2f}%")
+
+    def evaluate_layer1_waf(self):
+        print("\n" + "=" * 105)
+        print("🛡️ ĐÁNH GIÁ MÔ HÌNH LỌC TĨNH (LAYER 1 WAF) - LINE-BY-LINE LEVEL")
         print("-" * 105)
 
-        thresholds = [50, 60, 70, 80, 90]
-        best_tp, best_fp = 0, 0
-        ablation_stats = {}
+        if not os.path.exists(self.layer1_alerts_path):
+            print("❌ File layer1_alerts.ndjson không tồn tại.")
+            return
 
-        for thresh in thresholds:
-            tp, fp, tn, fn = 0, 0, 0, 0
-            waf_only, ml_only, both, incidental = 0, 0, 0, 0
+        y_true = []
+        y_pred = []
 
-            for s in sessions_data:
-                # Correlator báo động nếu WAF quét ra L1 hoặc ML vượt ngưỡng
-                is_predicted_attack = s['has_any_waf_alert'] or (s['max_ml_score'] >= thresh)
+        with open(self.layer1_alerts_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip(): continue
+                record = json.loads(line)
 
-                if s['is_actual_attack'] and is_predicted_attack:
-                    tp += 1
-                    if s['waf_caught_payload'] and s['max_ml_score'] >= thresh:
-                        both += 1
-                    elif s['waf_caught_payload'] and s['max_ml_score'] < thresh:
-                        waf_only += 1
-                    elif not s['waf_caught_payload'] and s['max_ml_score'] >= thresh:
-                        ml_only += 1
-                    else:
-                        incidental += 1  # WAF bắt trúng rác, ML không báo, ăn may bắt được session
-                elif not s['is_actual_attack'] and is_predicted_attack:
-                    fp += 1
-                elif not s['is_actual_attack'] and not is_predicted_attack:
-                    tn += 1
-                elif s['is_actual_attack'] and not is_predicted_attack:
-                    fn += 1
+                is_actual = record.get('raw_message', '').strip() in self.malicious_raw_texts
+                is_predicted = record.get('layer1_flagged', False)
 
-            # Tính toán các chỉ số bổ sung
-            recall = (tp / actual_attacks * 100) if actual_attacks > 0 else 0.0
-            fpr = (fp / actual_normals * 100) if actual_normals > 0 else 0.0
-            precision = (tp / (tp + fp) * 100) if (tp + fp) > 0 else 0.0
-            f1_score = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
-            accuracy = ((tp + tn) / total_sessions * 100) if total_sessions > 0 else 0.0
+                y_true.append(is_actual)
+                y_pred.append(is_predicted)
 
-            print(
-                f"Chấp nhận ML >= {thresh:<7} | {recall:>6.2f}% (TP:{tp:<2} FN:{fn:<2}) | {fpr:>6.2f}% (FP:{fp:<3} TN:{tn:<3}) | {precision:>6.2f}%   | {f1_score:>6.2f}%   | {accuracy:>6.2f}%")
-
-            if thresh == 80:  # Lưu lại để in Ablation Study cho ngưỡng chuẩn
-                ablation_stats = {'both': both, 'waf_only': waf_only, 'ml_only': ml_only, 'incidental': incidental,
-                                  'tp': tp}
-
+        print(
+            f"{'Tiêu chí Alert':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
         print("-" * 105)
-        print(f"\n🔍 PHÂN TÍCH ĐÓNG GÓP TẠI NGƯỠNG CHUẨN (THRESHOLD 80):")
-        tp = ablation_stats.get('tp', 0)
+        self._print_metrics(y_true, y_pred, "Flagged == True")
+
+    def evaluate_statistical_model(self):
+        print("\n" + "=" * 105)
+        print("🎯 ĐÁNH GIÁ MÔ HÌNH THỐNG KÊ (STATISTICAL LAYER) - SESSION LEVEL")
+        print("-" * 105)
+
+        df = pd.read_csv(self.stat_scores_csv)
+        df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
+
+        print(
+            f"{'Ngưỡng (Thresh)':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
+        print("-" * 105)
+        for thresh in [40, 50, 60, 70, 80, 90]:
+            y_pred = (df['statistical_threat_score'] >= thresh).tolist()
+            self._print_metrics(df['is_actual'].tolist(), y_pred, f"ML Score >= {thresh}")
+
+    def evaluate_sequential_model(self):
+        print("\n" + "=" * 105)
+        print("🎯 ĐÁNH GIÁ MÔ HÌNH CHUỖI MARKOV (SEQUENTIAL LAYER) - SESSION LEVEL")
+        print("-" * 105)
+
+        df = pd.read_csv(self.seq_scores_csv)
+        df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
+
+        print(
+            f"{'Ngưỡng (Thresh)':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
+        print("-" * 105)
+        for thresh in [40, 50, 60, 70, 80, 90]:
+            y_pred = (df['markov_threat_score'] >= thresh).tolist()
+            self._print_metrics(df['is_actual'].tolist(), y_pred, f"ML Score >= {thresh}")
+
+    def evaluate_correlator_e2e(self):
+        print("\n" + "=" * 105)
+        print("🚀 ĐÁNH GIÁ TỔNG THỂ HỆ THỐNG CORRELATOR (END-TO-END) - INCIDENT LEVEL")
+        print("-" * 105)
+
+        y_true = []
+        y_pred = []
+        ablation_stats = {'waf_only': 0, 'ml_only': 0, 'both': 0}
+
+        with open(self.incident_reports_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip(): continue
+                incident = json.loads(line)
+
+                parent_id = incident.get('incident_tracking_id')
+                threat_level = incident.get('overall_threat_level')
+
+                is_actual = self.incident_ground_truth.get(parent_id, False)
+                is_predicted = threat_level in ["CRITICAL", "SUSPICIOUS"]
+
+                y_true.append(is_actual)
+                y_pred.append(is_predicted)
+
+                if is_actual and is_predicted:
+                    # 🟢 Much cleaner ablation logic using the compiled root fields!
+                    max_ml = max(incident.get('max_statistical_score', 0), incident.get('max_markov_score', 0))
+                    has_waf = len(incident.get('layer1_alerts', [])) > 0
+
+                    if has_waf and max_ml >= 50:
+                        ablation_stats['both'] += 1
+                    elif has_waf and max_ml < 50:
+                        ablation_stats['waf_only'] += 1
+                    elif not has_waf and max_ml >= 50:
+                        ablation_stats['ml_only'] += 1
+
+        print(
+            f"{'Tiêu chí Alert':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
+        print("-" * 105)
+        self._print_metrics(y_true, y_pred, "SUSPICIOUS+")
+
+        print("\n🔍 PHÂN TÍCH ĐÓNG GÓP HỆ THỐNG (ABLATION STUDY):")
+        tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt and yp)
         if tp > 0:
             print(
                 f"    ➤ Bắt được CẢ nhờ WAF và ML Hành vi : {ablation_stats['both']} ({ablation_stats['both'] / tp * 100:.1f}%)")
@@ -150,18 +197,22 @@ class UltimateE2EEvaluator:
                 f"    ➤ Chỉ bắt được nhờ WAF tĩnh (Tầng 1): {ablation_stats['waf_only']} ({ablation_stats['waf_only'] / tp * 100:.1f}%)")
             print(
                 f"    ➤ Chỉ bắt được nhờ ML AI (Tầng 2+3) : {ablation_stats['ml_only']} ({ablation_stats['ml_only'] / tp * 100:.1f}%) [SỨC MẠNH LÕI]")
-            print(
-                f"    ➤ Trùng hợp ngẫu nhiên (Ăn may)     : {ablation_stats['incidental']} ({ablation_stats['incidental'] / tp * 100:.1f}%)")
+
+    def run_all(self):
+        self._extract_ground_truth()
+        if not self.malicious_raw_texts:
+            return
+
+        self.evaluate_layer1_waf()
+        self.evaluate_statistical_model()
+        self.evaluate_sequential_model()
+        self.evaluate_correlator_e2e()
 
 
 if __name__ == "__main__":
     LABELS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\labels"
     RAW_LOGS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\gather"
-
-    # ĐƯỜNG DẪN TỚI FILE KẾT QUẢ CỦA MODULE (Đảm bảo đã chạy Pipeline trước)
     PROFILE_RESULTS_DIR = r"./module_data/Default_Tenant/results"
 
-    INCIDENT_REPORTS_PATH = os.path.join(PROFILE_RESULTS_DIR, "incident_reports.ndjson")
-
-    evaluator = UltimateE2EEvaluator(LABELS_PATH, RAW_LOGS_PATH, INCIDENT_REPORTS_PATH)
-    evaluator.evaluate()
+    evaluator = SystemEvaluator(LABELS_PATH, RAW_LOGS_PATH, PROFILE_RESULTS_DIR)
+    evaluator.run_all()

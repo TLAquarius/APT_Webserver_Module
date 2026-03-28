@@ -1,6 +1,8 @@
 import os
 import sys
 from datetime import datetime
+import urllib.parse
+import base64
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
@@ -104,7 +106,7 @@ def render_dashboard(dashboard_data: dict):
             st.info("Chưa có dữ liệu phân loại Phiên.")
 
     st.markdown("<br>", unsafe_allow_html=True)
-    # --- ROW 2: Biểu đồ Plot ngang hàng ---
+
     col3_1, col3_2 = st.columns(2)
 
     with col3_1:
@@ -138,31 +140,63 @@ def render_dashboard(dashboard_data: dict):
             st.info("Chưa có dữ liệu chuỗi thời gian cho Line Chart.")
 
 
+def try_decode_payload(raw_uri):
+    """
+    Attempts to URL decode and Base64 decode payloads for display in the View.
+    """
+    if not raw_uri or raw_uri == "N/A":
+        return ""
+
+    current = raw_uri
+    for _ in range(3):
+        decoded = urllib.parse.unquote(current)
+        if decoded == current: break
+        current = decoded
+
+    b64_match = re.search(r'WyJ[A-Za-z0-9+/]+', current)
+    if b64_match:
+        b64_str = b64_match.group(0)
+        try:
+            pad_len = (4 - len(b64_str) % 4) % 4
+            padded = b64_str + "=" * pad_len
+            decoded_b64 = base64.b64decode(padded).decode('ascii', errors='ignore')
+            return f"[Decoded B64]: {decoded_b64}"
+        except:
+            pass
+
+    if current != raw_uri:
+        return f"[Decoded URL]: {current}"
+
+    return ""
+
+
 def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
     formatted_data = []
+
+    CRITICAL_WAFS = {"SQLi", "XSS", "RCE", "RCE_Execution_Output", "LFI", "SSRF"}
+
     for event in timeline_data:
-        # 1. XỬ LÝ LOG DẠNG NÉN (RLE - Hành vi lặp lại)
+
         if event.get("event_type") == "COMPRESSED_BULK_ACTION":
             formatted_data.append({
                 "Thời gian (Khoảng)": f"{event.get('start_time', '')[:19]} ➔ {event.get('end_time', '')[11:19]}",
+                "Phân loại": "HÀNH VI LẶP LẠI (RLE)",
+                "Loại Tấn Công (WAF)": "N/A",
+                "Chi tiết (Decode/Lỗi)": event.get("summary", ""),
+                "Đích ngắm (URI)": event.get("uri_path", ""),
                 "Trạng thái": f"Lặp lại {event.get('count', 0)} lần",
                 "Mã Code": str(event.get("status_code", "N/A")),
                 "Host (VHost)": "N/A",
-                "Đích ngắm (URI)": event.get("uri_path", ""),
                 "Kích thước (Bytes)": "N/A",
                 "User Agent": "N/A",
-                "Chi tiết cảnh báo": event.get("summary", ""),
-                "Log thô (Raw Message)": "",
-                "Phân loại": "HÀNH VI LẶP LẠI (RLE)"
+                "Log thô": ""
             })
 
-        # 2. XỬ LÝ LOG CHI TIẾT
         else:
             wafs = event.get("layer1_alerts", [])
             alert_str = ", ".join(wafs) if wafs else ""
             status_code = str(event.get("status_code", ""))
 
-            # Lấy các trường dữ liệu mới
             uri_path = event.get("uri_path", "")
             uri_query = event.get("uri_query", "")
             raw_message = event.get("raw_message", "")
@@ -170,38 +204,28 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
             bytes_sent = event.get("bytes_sent")
             vhost = event.get("vhost")
 
-            # Gộp uri_path và uri_query thành 1 đường dẫn hoàn chỉnh
             full_uri = uri_path
             if uri_query and uri_path:
                 full_uri = f"{uri_path}?{uri_query}"
 
-            # Trích xuất error_message nếu có
             error_msg = event.get("error_message", "")
-
-            # Gộp thông tin cảnh báo vào biến tiếng Anh (alert_details)
-            alert_details = error_msg
-            if wafs:
-                if error_msg:
-                    alert_details = f"{error_msg} | WAF: {alert_str}"
-                else:
-                    alert_details = alert_str
-
-            # Xác định xem đây có phải là Error Log hay không
             is_error_log = event.get("event_source") in ["apache_error", "nginx_error"]
 
-            # KHẮC PHỤC DÒNG TRỐNG URI CHO ERROR LOG
             if not full_uri and error_msg:
-                # Tìm đường dẫn bắt đầu bằng /var/www hoặc / (regex cơ bản)
                 match = re.search(r'(/[\w\-\.\/]+)', error_msg)
                 if match:
                     full_uri = f"(Từ log lỗi) {match.group(1)}"
                 else:
                     full_uri = "N/A"
 
-            # Khởi tạo danh sách các nhãn phân loại màu sắc
             categories = []
-            if wafs:
+            is_critical_waf = any(w in CRITICAL_WAFS for w in wafs)
+
+            if is_critical_waf:
+                categories.append("🔥 WAF NGHIÊM TRỌNG")
+            elif wafs:
                 categories.append("🚨 WAF BÁO ĐỘNG")
+
             if status_code.startswith(("4", "5")) or is_error_log:
                 categories.append("⚠️ LỖI CLIENT/SERVER")
 
@@ -210,23 +234,30 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
             else:
                 category = " | ".join(categories)
 
-            # Hiển thị Trạng thái (HTTP Method)
             http_method = event.get("http_method")
             if not http_method:
                 http_method = "INTERNAL" if is_error_log else "N/A"
 
-            # Đẩy dữ liệu vào mảng
+            # Integrate Error Message or Decode Payload
+            decoded_info = ""
+            if error_msg:
+                decoded_info = f"[Lỗi Máy Chủ]: {error_msg}"
+            else:
+                decoded_info = try_decode_payload(full_uri)
+
+            # 🟢 REORDERED COLUMNS FOR UX
             formatted_data.append({
                 "Thời gian (Khoảng)": event.get("@timestamp", "")[:19].replace("T", " "),
+                "Phân loại": category,
+                "Loại Tấn Công (WAF)": alert_str if alert_str else "N/A",
+                "Chi tiết (Decode/Lỗi)": decoded_info,
+                "Đích ngắm (URI)": full_uri,
                 "Trạng thái": http_method,
                 "Mã Code": status_code if status_code != "None" else "N/A",
                 "Host (VHost)": vhost if vhost else "N/A",
-                "Đích ngắm (URI)": full_uri,
                 "Kích thước (Bytes)": str(int(bytes_sent)) if bytes_sent is not None else "N/A",
                 "User Agent": user_agent if user_agent and user_agent != "-" else "N/A",
-                "Chi tiết cảnh báo": alert_details,
-                "Log thô (Raw Message)": raw_message,
-                "Phân loại": category
+                "Log thô": raw_message
             })
 
     return pd.DataFrame(formatted_data)
@@ -240,24 +271,24 @@ def run_llm_advisor(dashboard_data: dict):
 
     st.markdown("#### Danh sách Phiên truy cập & Phân tích AI")
 
-    # 🟢 CHUYỂN ĐỔI INCIDENTS THÀNH DATAFRAME & BUNG CỘT FEATURES
     flat_incidents = []
     for inc in incidents:
         base_info = {
             "ID Sự Cố": inc.get("incident_tracking_id"),
             "IP Nguồn": inc.get("source_ip"),
             "Mức Đe Dọa": inc.get("overall_threat_level"),
+            "Cảnh báo WAF L1": " | ".join(inc.get("layer1_alerts", [])),
+            "Lý do Stat AI": " | ".join(inc.get("statistical_anomaly_reasons", [])),
             "Điểm Stat": inc.get("max_statistical_score"),
+            "Lý do Markov AI": " | ".join(inc.get("sequential_anomaly_reasons", [])),
             "Điểm Markov": inc.get("max_markov_score"),
             "Số Request": inc.get("total_raw_events"),
             "Chuỗi Hành Vi": inc.get("sequence_chain")
         }
 
-        # Bung các thông số thống kê vào chung một hàng
         stats = inc.get("stats_context", {})
         if stats:
             for key, val in stats.items():
-                # Dùng endswith để tránh lỗi nhận nhầm chữ "ratio" trong chữ "duration"
                 if key.endswith("_rate") or key.endswith("_ratio"):
                     val_str = f"{float(val) * 100:.1f}%"
                 elif isinstance(val, float):
@@ -282,10 +313,23 @@ def run_llm_advisor(dashboard_data: dict):
         display_df = display_df[display_df["Mức Đe Dọa"] != "NORMAL"]
 
     st.markdown(
-        "💡 *Mẹo: Bạn có thể trượt thanh cuộn ngang để xem tất cả các đặc trưng ML, và click chọn trực tiếp vào một dòng để xem chi tiết Timeline.*")
+        "💡 *Mẹo: Giải thích AI (XAI) - Các ô được bôi màu Đỏ nhạt/Cam là nguyên nhân cốt lõi khiến AI đánh dấu phiên truy cập này là bất thường.*")
 
-    # Bảng DataFrame hiển thị toàn bộ
-    selection_event = st.dataframe(display_df, use_container_width=True, hide_index=True, on_select="rerun",
+    def highlight_session_cells(row):
+        styles = [''] * len(row)
+        stat_reason = str(row.get('Lý do Stat AI', ''))
+        seq_reason = str(row.get('Lý do Markov AI', ''))
+
+        for i, col in enumerate(row.index):
+            if col != 'Lý do Stat AI' and col in stat_reason:
+                styles[i] = 'background-color: rgba(255, 99, 71, 0.4); border: 1px solid red;'
+            if col == 'Chuỗi Hành Vi' and seq_reason:
+                styles[i] = 'background-color: rgba(255, 165, 0, 0.4); border: 1px solid orange;'
+        return styles
+
+    styled_display_df = display_df.style.apply(highlight_session_cells, axis=1)
+
+    selection_event = st.dataframe(styled_display_df, use_container_width=True, hide_index=True, on_select="rerun",
                                    selection_mode="single-row")
     st.divider()
 
@@ -297,22 +341,30 @@ def run_llm_advisor(dashboard_data: dict):
 
     if selected_case:
         st.markdown(f"#### 🔍 Điều tra Chuyên sâu: `{selected_case['source_ip']}`")
-        st.markdown("**Dòng thời gian Sự kiện (Đã áp dụng nén RLE chống nhiễu)**")
+        st.markdown("**Dòng thời gian Sự kiện (Nhanh & Hỗ trợ cuộn vô hạn/Tìm kiếm)**")
+
         df_timeline = format_timeline_to_df(selected_case.get("timeline", []))
 
-        def highlight_rows(row):
-            cat = row["Phân loại"]
-            if "🚨 WAF BÁO ĐỘNG" in cat and "⚠️ LỖI CLIENT/SERVER" in cat:
-                return ['background-color: rgba(255, 69, 0, 0.3)'] * len(row)
-            elif "🚨 WAF BÁO ĐỘNG" in cat:
-                return ['background-color: rgba(255, 0, 0, 0.2)'] * len(row)
-            elif "HÀNH VI LẶP LẠI (RLE)" in cat:
-                return ['background-color: rgba(255, 165, 0, 0.2)'] * len(row)
-            elif "⚠️ LỖI CLIENT/SERVER" in cat:
-                return ['background-color: rgba(255, 215, 0, 0.3)'] * len(row)
-            return [''] * len(row)
+        # Smart filter
+        show_alerts_only = st.checkbox("🎯 Chỉ hiển thị các dòng log CÓ CẢNH BÁO HOẶC LỖI (Lọc rác/Scanner Bot)",
+                                       value=False)
 
-        st.dataframe(df_timeline.style.apply(highlight_rows, axis=1), use_container_width=True, hide_index=True)
+        if show_alerts_only:
+            def is_alert_or_anomaly(row):
+                if row["Phân loại"] not in ["BÌNH THƯỜNG", "HÀNH VI LẶP LẠI (RLE)"] and "🚨 WAF BÁO ĐỘNG" not in row[
+                    "Phân loại"]:
+                    return True
+                if "🔥 WAF NGHIÊM TRỌNG" in row["Phân loại"]:
+                    return True
+                if row["Loại Tấn Công (WAF)"] != "N/A" and "Scanner_Bot" not in row["Loại Tấn Công (WAF)"]:
+                    return True
+                return False
+
+            mask = df_timeline.apply(is_alert_or_anomaly, axis=1)
+            df_timeline = df_timeline[mask]
+
+        # 🟢 NATIVE STREAMLIT COMPONENT FOR MAX PERFORMANCE & INFINITE SCROLL
+        st.dataframe(df_timeline, use_container_width=True, hide_index=True)
 
         st.markdown("##### 🤖 Yêu cầu AI Giải thích Mã độc")
         api_key = st.session_state.get("llm_api_key", "")
@@ -449,7 +501,12 @@ def render_page():
                             status_text.text(msg)
                             progress_bar.progress(pct / 100.0)
 
-                        bridge.run_full_pipeline(status_callback=ui_cb)
+                        bridge.rescan_existing_data(
+                            operation_mode=st.session_state.get('operation_mode', 'both'),
+                            time_window=None,
+                            status_callback=ui_cb
+                        )
+
                         st.success(f"Đã xóa file và cập nhật hệ thống thành công!")
                         st.rerun()
         else:
@@ -472,6 +529,9 @@ def render_page():
                     format_func=lambda x: {"both": "Vừa Huấn luyện vừa Phát hiện", "detect": "Chỉ Phát hiện (Detect)",
                                            "train": "Chỉ Huấn luyện (Train)"}[x]
                 )
+
+                st.session_state['operation_mode'] = operation_mode
+
                 if not has_base:
                     st.caption("⚠️ *Hồ sơ này chưa có mô hình Baseline, hệ thống bắt buộc phải kèm chế độ Huấn luyện.*")
 

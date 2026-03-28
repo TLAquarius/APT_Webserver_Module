@@ -1,0 +1,12 @@
+[
+    {
+        "file_id": "fs_cd0bf344_20260326_100724",
+        "original_name": "collected_20260326_100724.json",
+        "physical_path": "D:\\PycharmProjects\\APT\\Version1-0\\fileserver_module\\module_data\\tam\\raw_logs\\collected_20260326_100724.json",
+        "file_hash": "cd0bf344444415c8c44d59abe66d30c9",
+        "size_bytes": 1550118,
+        "upload_time": "2026-03-26T10:08:05.157827",
+        "status": "processed",
+        "source": "local_collect_powershell"
+    }
+]

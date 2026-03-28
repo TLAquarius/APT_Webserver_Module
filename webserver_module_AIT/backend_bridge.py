@@ -4,6 +4,7 @@ import pandas as pd
 from typing import Callable, Dict, List, Any
 import streamlit as st
 from datetime import datetime
+import shutil
 
 from data_management.profile_manager import ProfileManager
 from parser.parser_class import WebServerLogParser
@@ -16,6 +17,9 @@ from final_layer.correlator import DataCorrelator
 
 class WebserverBridge:
     def __init__(self, profile_name: str, base_data_dir: str = "./webserver_module_AIT/module_data"):
+        """
+        Initializes the bridge, preparing system paths and profile configuration.
+        """
         self.profile_name = profile_name
         self.profile_manager = ProfileManager(base_data_dir=base_data_dir)
 
@@ -41,11 +45,17 @@ class WebserverBridge:
         }
 
     def has_baseline(self) -> bool:
-        stat_model_path = os.path.join(self.models_dir, "isolation_forest.joblib")
+        """
+        Validates if AI models have completed their baseline training.
+        """
+        stat_model_path = os.path.join(self.models_dir, "stat_thresholds.json")
         seq_model_path = os.path.join(self.models_dir, "markov_model.json")
         return os.path.exists(stat_model_path) and os.path.exists(seq_model_path)
 
     def update_ai_thresholds(self, sensitivity: str):
+        """
+        Adjusts the alerting thresholds stored in the model's configuration based on sensitivity level.
+        """
         config_path = os.path.join(self.models_dir, "alert_config.json")
         data = {
             "suspicious_threshold": 60,
@@ -60,6 +70,9 @@ class WebserverBridge:
             json.dump(data, f)
 
     def process_uploads(self, uploaded_files: List, operation_mode: str, time_window=None) -> List[Dict]:
+        """
+        Registers and ingests uploaded files via the Profile Manager.
+        """
         ingested_metadata = []
         for file in uploaded_files:
             try:
@@ -75,6 +88,9 @@ class WebserverBridge:
         return ingested_metadata
 
     def run_full_pipeline(self, status_callback: Callable[[str, int], None] = None) -> bool:
+        """
+        Orchestrates the entire execution flow: parsing, feature extraction, ML scoring, and correlation.
+        """
         def update_ui(msg, pct):
             if status_callback: status_callback(msg, pct)
 
@@ -103,7 +119,8 @@ class WebserverBridge:
                     log_format=file_rec["log_format"],
                     log_type=file_rec["file_type"],
                     stream_to_disk=True,
-                    temp_out=self.paths["temp_parsed"]
+                    temp_out=self.paths["temp_parsed"],
+                    time_window=file_rec.get("time_window_filter")
                 )
 
             update_ui("1.5/5: Đang sắp xếp dữ liệu theo Dòng thời gian liền mạch...", 25)
@@ -118,10 +135,9 @@ class WebserverBridge:
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
-            # 🟢 FIX BẢO VỆ ML: Bỏ qua ML nếu không có ml_features được tạo ra
             if not os.path.exists(self.paths["ml_features"]) or os.path.getsize(self.paths["ml_features"]) == 0:
                 update_ui("⚠️ Dữ liệu log quá ít/rác để tạo Phiên (Session). Bỏ qua ML.", 100)
-                open(self.paths["incidents"], 'w').close() # Tạo file rỗng để không bị lỗi Dashboard
+                open(self.paths["incidents"], 'w').close()
                 for f in pending_files: f["status"] = "processed"
                 self.profile_manager._save_metadata(self.profile_name, metadata)
                 return True
@@ -168,6 +184,9 @@ class WebserverBridge:
 
     def rescan_existing_data(self, operation_mode: str, time_window=None,
                              status_callback: Callable[[str, int], None] = None) -> bool:
+        """
+        Triggers a fresh scan on previously uploaded files, optionally filtering by a new timeframe.
+        """
         def update_ui(msg, pct):
             if status_callback: status_callback(msg, pct)
 
@@ -184,16 +203,18 @@ class WebserverBridge:
                 update_ui("❌ Không có file gốc nào trong Profile để phân tích.", 100)
                 return False
 
-            # VÁ LỖI: Tự động Parse lại từ đầu nếu có bộ lọc HOẶC file tạm bị mất (do vừa xóa file)
+            if time_window:
+                time_window_str = [dt.isoformat() for dt in time_window]
+                for f in existing_files:
+                    f["time_window_filter"] = time_window_str
+            else:
+                time_window_str = None
+
             if time_window or not os.path.exists(self.paths["layer1_alerts"]):
                 update_ui("Phát hiện thay đổi dữ liệu: Khởi động lại luồng Parser...", 15)
 
                 parser = WebServerLogParser(chunk_size=50000)
                 if os.path.exists(self.paths["temp_parsed"]): os.remove(self.paths["temp_parsed"])
-
-                if time_window:
-                    for f in existing_files:
-                        f["time_window_filter"] = [dt.isoformat() for dt in time_window]
 
                 for file_rec in existing_files:
                     parser.process_log_file(
@@ -201,7 +222,8 @@ class WebserverBridge:
                         log_format=file_rec["log_format"],
                         log_type=file_rec["file_type"],
                         stream_to_disk=True,
-                        temp_out=self.paths["temp_parsed"]
+                        temp_out=self.paths["temp_parsed"],
+                        time_window=file_rec.get("time_window_filter")
                     )
 
                 update_ui("Đang cắt dữ liệu theo Dòng thời gian...", 25)
@@ -219,7 +241,6 @@ class WebserverBridge:
             sessionizer.process_stream(self.paths["layer1_alerts"], self.paths["ml_features"],
                                        self.paths["session_timelines"], status_callback)
 
-            # 🟢 FIX BẢO VỆ ML CHO RESCAN
             if not os.path.exists(self.paths["ml_features"]) or os.path.getsize(self.paths["ml_features"]) == 0:
                 update_ui("⚠️ Dữ liệu sau khi lọc không đủ để tạo Phiên. Dừng phân tích.", 100)
                 open(self.paths["incidents"], 'w').close()
@@ -256,10 +277,6 @@ class WebserverBridge:
                 correlator.run_correlation(status_callback)
 
             if time_window:
-                metadata = self.profile_manager._load_metadata(self.profile_name)
-                for f in metadata:
-                    if f.get("status") in ["pending_orchestration", "processed"]:
-                        f["time_window_filter"] = [dt.isoformat() for dt in time_window]
                 self.profile_manager._save_metadata(self.profile_name, metadata)
 
             update_ui("Hoàn tất Quét lại!", 100)
@@ -272,6 +289,9 @@ class WebserverBridge:
             return False
 
     def delete_specific_files(self, file_ids: List[str]):
+        """
+        Deletes physical files from storage and purges corresponding database metrics.
+        """
         metadata = self.profile_manager._load_metadata(self.profile_name)
         new_metadata = []
         for file in metadata:
@@ -285,9 +305,7 @@ class WebserverBridge:
 
         self.profile_manager._save_metadata(self.profile_name, new_metadata)
 
-        # 🟢 NẾU XÓA HẾT FILE -> DỌN SẠCH PROFILE NHƯ LÚC MỚI TẠO
         if not new_metadata:
-            import shutil
             shutil.rmtree(self.models_dir, ignore_errors=True)
             shutil.rmtree(self.results_dir, ignore_errors=True)
             os.makedirs(self.models_dir, exist_ok=True)
@@ -298,6 +316,9 @@ class WebserverBridge:
                     os.remove(path)
 
     def compile_dashboard_data(self, display_time_window=None) -> Dict[str, Any]:
+        """
+        Reads, aggregates, and computes visual data for the final UI Dashboard.
+        """
         dashboard_data = {
             "zone1_metrics": {"total_events": 0, "l1_blocks": 0, "anomalous_sessions": 0, "normal_sessions": 0, "critical_sessions": 0, "suspicious_sessions": 0, "max_threat": "NORMAL"},
             "zone2_waf": {"attack_vectors": {}, "top_ips": {}, "top_uris": {}, "geo_distribution": {}},

@@ -29,16 +29,6 @@ MODULES_REGISTRY = {
         "type": "app",
         "path": "fileserver_module.view",
         "status": "ready"
-    },
-    "🗄️ Phân tích Database": {
-        "type": "app",
-        "path": "database_module_XYZ.view",
-        "status": "developing"
-    },
-    "📡 Phân tích Network": {
-        "type": "app",
-        "path": "network_module_ABC.view",
-        "status": "developing"
     }
 }
 

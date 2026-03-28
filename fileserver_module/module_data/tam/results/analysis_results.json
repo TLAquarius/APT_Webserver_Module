@@ -1,0 +1,292 @@
+{
+  "analysis_time": "2026-03-26T10:08:22.263092",
+  "total_events": 2017,
+  "total_users": 2,
+  "time_window": "1h",
+  "contamination": 0.05,
+  "data_span_minutes": 6224.3,
+  "user_results": [
+    {
+      "user": "-",
+      "total_windows": 5,
+      "status": "analyzed",
+      "mode": "single-batch",
+      "anomaly_count": 1,
+      "max_score": 100.0,
+      "avg_score": 51.2,
+      "scores": [
+        {
+          "time_window": "2026-03-23 04:00:00+07:00",
+          "anomaly_score": 94.59,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-23 10:00:00+07:00",
+          "anomaly_score": 0.0,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 14:00:00+07:00",
+          "anomaly_score": 31.41,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 18:00:00+07:00",
+          "anomaly_score": 100.0,
+          "is_anomaly": true
+        },
+        {
+          "time_window": "2026-03-26 09:00:00+07:00",
+          "anomaly_score": 30.23,
+          "is_anomaly": false
+        }
+      ],
+      "top_features": [
+        {
+          "feature": "off_hour_activity_ratio",
+          "z_deviation": 0.73,
+          "training_mean": 0.4,
+          "training_std": 0.55,
+          "current_value": 0.0
+        },
+        {
+          "feature": "hour_sin",
+          "z_deviation": 0.72,
+          "training_mean": 0.11,
+          "training_std": 0.82,
+          "current_value": 0.71
+        },
+        {
+          "feature": "hour_cos",
+          "z_deviation": 0.52,
+          "training_mean": -0.39,
+          "training_std": 0.61,
+          "current_value": -0.71
+        },
+        {
+          "feature": "total_delete_operations",
+          "z_deviation": 0.0,
+          "training_mean": 0.0,
+          "training_std": 1.0,
+          "current_value": 0.0
+        },
+        {
+          "feature": "total_write_operations",
+          "z_deviation": 0.0,
+          "training_mean": 0.0,
+          "training_std": 1.0,
+          "current_value": 0.0
+        }
+      ],
+      "feature_values": {
+        "total_read_operations": 0.0,
+        "total_write_operations": 0.0,
+        "total_delete_operations": 0.0,
+        "total_events": 14.0,
+        "read_write_ratio": 0.0,
+        "distinct_files_accessed": 1.0,
+        "distinct_processes_used": 1.0,
+        "admin_share_access_count": 0.0,
+        "lolbin_event_count": 0.0,
+        "off_hour_activity_ratio": 1.0,
+        "hour_sin": 0.866,
+        "hour_cos": 0.5,
+        "successful_logon_count": 1.0,
+        "failed_logon_count": 0.0,
+        "failed_logon_ratio": 0.0,
+        "distinct_logon_source_ips": 0.0,
+        "explicit_credential_count": 0.0,
+        "new_process_count": 13.0,
+        "suspicious_process_count": 0.0,
+        "distinct_parent_processes": 0.0,
+        "scheduled_task_created_count": 0.0,
+        "service_installed_count": 0.0,
+        "audit_log_cleared_count": 0.0,
+        "object_deleted_count": 0.0,
+        "share_session_count": 0.0,
+        "distinct_shares_accessed": 0.0
+      }
+    },
+    {
+      "user": "TLAQUARIUS$",
+      "total_windows": 103,
+      "status": "analyzed",
+      "mode": "split",
+      "anomaly_count": 5,
+      "max_score": 93.5,
+      "avg_score": 35.5,
+      "scores": [
+        {
+          "time_window": "2026-03-25 12:00:00+07:00",
+          "anomaly_score": 5.8,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 14:00:00+07:00",
+          "anomaly_score": 92.53,
+          "is_anomaly": true
+        },
+        {
+          "time_window": "2026-03-25 15:00:00+07:00",
+          "anomaly_score": 54.97,
+          "is_anomaly": true
+        },
+        {
+          "time_window": "2026-03-25 16:00:00+07:00",
+          "anomaly_score": 59.53,
+          "is_anomaly": true
+        },
+        {
+          "time_window": "2026-03-25 17:00:00+07:00",
+          "anomaly_score": 12.22,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 18:00:00+07:00",
+          "anomaly_score": 89.64,
+          "is_anomaly": true
+        },
+        {
+          "time_window": "2026-03-25 19:00:00+07:00",
+          "anomaly_score": 33.43,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 20:00:00+07:00",
+          "anomaly_score": 31.54,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 21:00:00+07:00",
+          "anomaly_score": 45.71,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 22:00:00+07:00",
+          "anomaly_score": 46.78,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-25 23:00:00+07:00",
+          "anomaly_score": 3.41,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 00:00:00+07:00",
+          "anomaly_score": 4.44,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 01:00:00+07:00",
+          "anomaly_score": 27.7,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 02:00:00+07:00",
+          "anomaly_score": 38.33,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 03:00:00+07:00",
+          "anomaly_score": 5.78,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 04:00:00+07:00",
+          "anomaly_score": 22.46,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 05:00:00+07:00",
+          "anomaly_score": 4.52,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 06:00:00+07:00",
+          "anomaly_score": 15.45,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 07:00:00+07:00",
+          "anomaly_score": 32.46,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 08:00:00+07:00",
+          "anomaly_score": 24.35,
+          "is_anomaly": false
+        },
+        {
+          "time_window": "2026-03-26 09:00:00+07:00",
+          "anomaly_score": 93.51,
+          "is_anomaly": true
+        }
+      ],
+      "top_features": [
+        {
+          "feature": "explicit_credential_count",
+          "z_deviation": 5.7,
+          "training_mean": 0.23,
+          "training_std": 0.84,
+          "current_value": 5.0
+        },
+        {
+          "feature": "distinct_processes_used",
+          "z_deviation": 5.15,
+          "training_mean": 1.18,
+          "training_std": 0.55,
+          "current_value": 4.0
+        },
+        {
+          "feature": "total_events",
+          "z_deviation": 5.1,
+          "training_mean": 17.27,
+          "training_std": 16.24,
+          "current_value": 100.0
+        },
+        {
+          "feature": "successful_logon_count",
+          "z_deviation": 5.03,
+          "training_mean": 17.04,
+          "training_std": 15.49,
+          "current_value": 95.0
+        },
+        {
+          "feature": "distinct_logon_source_ips",
+          "z_deviation": 2.53,
+          "training_mean": 0.13,
+          "training_std": 0.34,
+          "current_value": 1.0
+        }
+      ],
+      "feature_values": {
+        "total_read_operations": 0.0,
+        "total_write_operations": 0.0,
+        "total_delete_operations": 0.0,
+        "total_events": 115.0,
+        "read_write_ratio": 0.0,
+        "distinct_files_accessed": 1.0,
+        "distinct_processes_used": 4.0,
+        "admin_share_access_count": 0.0,
+        "lolbin_event_count": 0.0,
+        "off_hour_activity_ratio": 1.0,
+        "hour_sin": 1.0,
+        "hour_cos": 1.0,
+        "successful_logon_count": 109.0,
+        "failed_logon_count": 0.0,
+        "failed_logon_ratio": 0.0,
+        "distinct_logon_source_ips": 1.0,
+        "explicit_credential_count": 6.0,
+        "new_process_count": 0.0,
+        "suspicious_process_count": 0.0,
+        "distinct_parent_processes": 0.0,
+        "scheduled_task_created_count": 0.0,
+        "service_installed_count": 0.0,
+        "audit_log_cleared_count": 0.0,
+        "object_deleted_count": 0.0,
+        "share_session_count": 0.0,
+        "distinct_shares_accessed": 0.0
+      }
+    }
+  ]
+}

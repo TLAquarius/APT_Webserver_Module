@@ -2,9 +2,9 @@ import pandas as pd
 import pickle
 import json
 
-TEST_CSV = "data/mail_test_features_ready.csv"
-MODEL_PATH = "models/mail_model.pkl"
-WHITELIST_PATH = "models/known_users.json"
+TEST_CSV = "../data/mail_test_features_ready.csv"
+MODEL_PATH = "../models/mail_model.pkl"
+WHITELIST_PATH = "../models/known_users.json"
 
 print("=====================================================")
 print("🕵️‍♂️ HỆ THỐNG ĐI SĂN APT (MAIL EXPERT 10D) ĐÃ KHỞI ĐỘNG")
@@ -72,7 +72,7 @@ try:
         print(anomalies[['timestamp', 'rip', 'user', 'hour_of_day', 'velocity', 'unique_users', 'bytes_out']].head(5).to_string())
         
         # Xuất file
-        EXPORT_HACKER_FILE = "data/detected_hackers.csv"
+        EXPORT_HACKER_FILE = "../data/detected_hackers.csv"
         export_cols = [
             'timestamp', 'rip', 'user', 'action_code', 
             'is_remote', 'attempts', 'velocity', 'unique_users', 'bytes_out',
