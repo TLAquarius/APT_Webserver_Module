@@ -213,3 +213,215 @@ if __name__ == "__main__":
     PROFILE_RESULTS_DIR = r"./module_data/Default_Tenant/results"
     evaluator = SystemEvaluator(LABELS_PATH, RAW_LOGS_PATH, PROFILE_RESULTS_DIR)
     evaluator.run_all()
+
+
+
+
+#
+# import json
+# from datetime import datetime
+# from collections import Counter
+#
+#
+# def parse_ts(ts_str):
+#     return datetime.fromisoformat(ts_str.replace('Z', '+00:00'))
+#
+#
+# def inspect_layer1(filepath):
+#     print(f"\n" + "=" * 60)
+#     print(f"🔍 DEEP INSPECTION: LAYER 1 STREAM")
+#     print("=" * 60)
+#
+#     last_ts = None
+#     line_count = 0
+#     global_violations = 0
+#
+#     with open(filepath, 'r', encoding='utf-8') as f:
+#         for line in f:
+#             line_count += 1
+#             if not line.strip(): continue
+#             data = json.loads(line)
+#             curr_ts = parse_ts(data['@timestamp'])
+#
+#             if last_ts and curr_ts < last_ts:
+#                 global_violations += 1
+#                 if global_violations <= 5:  # Only show first 5
+#                     print(f"[!] Stream Disorder at line {line_count}: {curr_ts} < {last_ts}")
+#             last_ts = curr_ts
+#
+#     if global_violations == 0:
+#         print(f"[✅] PASS: Global stream is 100% chronological.")
+#     else:
+#         print(f"[❌] FAIL: Found {global_violations} stream violations. This will confuse the Sessionizer!")
+#
+#
+# def inspect_incidents(filepath):
+#     print(f"\n" + "=" * 60)
+#     print(f"🔍 DEEP INSPECTION: INCIDENT REPORTS")
+#     print("=" * 60)
+#
+#     incident_count = 0
+#     internal_violations = 0
+#     file_chronological = True
+#     last_incident_start = None
+#
+#     with open(filepath, 'r', encoding='utf-8') as f:
+#         for line in f:
+#             incident_count += 1
+#             incident = json.loads(line)
+#             timeline = incident.get('timeline', [])
+#             inc_id = incident.get('incident_tracking_id')
+#
+#             # 1. Check Internal Order (The most important part for ML)
+#             last_event_ts = None
+#             for i, event in enumerate(timeline):
+#                 curr_ts = parse_ts(event['@timestamp'])
+#                 if last_event_ts and curr_ts < last_event_ts:
+#                     internal_violations += 1
+#                     print(f"[❌] Internal Disorder in {inc_id} at event index {i}")
+#                 last_event_ts = curr_ts
+#
+#             # 2. Check File Order (Just for information)
+#             if timeline:
+#                 start_ts = parse_ts(timeline[0]['@timestamp'])
+#                 if last_incident_start and start_ts < last_incident_start:
+#                     file_chronological = False
+#                 last_incident_start = start_ts
+#
+#     print(f"[*] Processed {incident_count} incidents.")
+#
+#     if internal_violations == 0:
+#         print(f"[✅] PASS: All incidents have 100% correct internal timelines.")
+#     else:
+#         print(f"[❌] FAIL: Found {internal_violations} internal disorders. Correlator sorting logic might be bugged.")
+#
+#     if not file_chronological:
+#         print(f"[i] Info: File is NOT chronological (likely sorted by Threat Score). This is NORMAL.")
+#     else:
+#         print(f"[i] Info: File is chronological.")
+#
+#
+# if __name__ == "__main__":
+#     L1 = r"D:\PycharmProjects\APT\Version1-0\webserver_module_AIT\module_data\Default_Tenant\results\layer1_alerts.ndjson"
+#     INC = r"D:\PycharmProjects\APT\Version1-0\webserver_module_AIT\module_data\Default_Tenant\results\incident_reports.ndjson"
+#
+#     inspect_layer1(L1)
+#     inspect_incidents(INC)
+
+# import pandas as pd
+# import numpy as np
+# import joblib
+# import shap
+# import os
+# import warnings
+#
+# # Suppress SHAP warnings for cleaner output
+# warnings.filterwarnings("ignore")
+#
+#
+# def test_layer2_explainability(features_csv, model_dir):
+#     print("=" * 80)
+#     print("🧠 EXPLAINABLE AI (XAI) BENCHMARK: IQR vs SHAP (Layer 2 Ensemble)")
+#     print("=" * 80)
+#
+#     # 1. Load Data and Models
+#     try:
+#         df = pd.read_csv(features_csv)
+#         iso_forest = joblib.load(os.path.join(model_dir, 'isolation_forest.joblib'))
+#         ocsvm = joblib.load(os.path.join(model_dir, 'one_class_svm.joblib'))
+#         scaler = joblib.load(os.path.join(model_dir, 'scaler.joblib'))
+#     except FileNotFoundError as e:
+#         print(f"❌ Error loading files: {e}")
+#         return
+#
+#     feature_cols = [
+#         'is_external_ip', 'session_duration_sec', 'total_requests',
+#         'req_per_min', 'min_interarrival_sec', 'avg_uri_depth',
+#         'error_404_rate', 'error_403_rate', 'error_401_rate', 'error_50x_rate',
+#         'post_rate', 'rare_method_rate', 'unique_path_ratio', 'static_asset_ratio',
+#         'suspicious_ext_rate', 'status_diversity', 'unique_uas',
+#         'avg_payload_bytes', 'max_resp_bytes', 'max_req_length',
+#         'geo_country_freq', 'auth_attempt_rate', 'bytes_std_dev',
+#         'evasion_attempt_rate'
+#     ]
+#
+#     for col in feature_cols:
+#         if col not in df.columns:
+#             df[col] = 0.0
+#
+#     X_raw = df[feature_cols].fillna(0)
+#     X_scaled = scaler.transform(X_raw)
+#
+#     # Calculate Ensemble Anomaly Score (Lower decision_function = more anomalous)
+#     iso_scores = -iso_forest.decision_function(X_scaled)
+#     svm_scores = -ocsvm.decision_function(X_scaled)
+#     df['ensemble_anomaly_score'] = iso_scores + svm_scores
+#
+#     # 2. Select the Top 3 Worst Sessions (Attacks)
+#     top_anomalies = df.sort_values(by='ensemble_anomaly_score', ascending=False).head(3)
+#
+#     # 3. Initialize Explainers
+#     print("[*] Initializing SHAP TreeExplainer (Isolation Forest)...")
+#     iso_explainer = shap.TreeExplainer(iso_forest)
+#
+#     print("[*] Initializing SHAP KernelExplainer (One-Class SVM)...")
+#     # KernelExplainer needs a "background" dataset. We use a sample of 50 normal sessions.
+#     background_data = shap.sample(X_scaled, 50)
+#     # We wrap the SVM decision function so SHAP can understand it
+#     svm_predict_func = lambda x: ocsvm.decision_function(x)
+#     svm_explainer = shap.KernelExplainer(svm_predict_func, background_data)
+#
+#     print("\n" + "=" * 80)
+#
+#     for idx, row in top_anomalies.iterrows():
+#         print(f"🚨 TARGET SESSION: {row['session_id']}")
+#
+#         # --- METHOD A: IQR (Data Deviation) ---
+#         scaled_values = X_scaled[idx]
+#         abs_scores = np.abs(scaled_values)
+#         top_3_iqr_idx = np.argsort(abs_scores)[-3:][::-1]
+#
+#         iqr_reasons = []
+#         for i in top_3_iqr_idx:
+#             val = scaled_values[i]
+#             if abs(val) > 2.0:
+#                 iqr_reasons.append(f"{feature_cols[i]} ({val:+.1f} IQR)")
+#
+#         print(f"\n   🔹 [1] IQR Explanation (Physical Data Deviation):")
+#         print(f"      ➤ {' | '.join(iqr_reasons) if iqr_reasons else 'No extreme deviations'}")
+#
+#         # --- METHOD B: SHAP for ISOLATION FOREST ---
+#         row_scaled = X_scaled[idx].reshape(1, -1)
+#         iso_shap_values = iso_explainer.shap_values(row_scaled)[0]
+#         # Negative SHAP value pushes the model towards "Anomaly"
+#         top_3_iso_idx = np.argsort(iso_shap_values)[:3]
+#
+#         iso_reasons = []
+#         for i in top_3_iso_idx:
+#             raw_val = X_raw.iloc[idx][feature_cols[i]]
+#             impact = iso_shap_values[i]
+#             iso_reasons.append(f"{feature_cols[i]} (Val:{raw_val:.2f}, Impact:{impact:.2f})")
+#
+#         print(f"   🔸 [2] SHAP - Isolation Forest (Tree Logic):")
+#         print(f"      ➤ {' | '.join(iso_reasons)}")
+#
+#         # --- METHOD C: SHAP for ONE-CLASS SVM ---
+#         svm_shap_values = svm_explainer.shap_values(row_scaled, silent=True)[0]
+#         # Negative SHAP value in SVM decision_function pushes towards "Anomaly"
+#         top_3_svm_idx = np.argsort(svm_shap_values)[:3]
+#
+#         svm_reasons = []
+#         for i in top_3_svm_idx:
+#             raw_val = X_raw.iloc[idx][feature_cols[i]]
+#             impact = svm_shap_values[i]
+#             svm_reasons.append(f"{feature_cols[i]} (Val:{raw_val:.2f}, Impact:{impact:.2f})")
+#
+#         print(f"   🔸 [3] SHAP - One-Class SVM (RBF Kernel Logic):")
+#         print(f"      ➤ {' | '.join(svm_reasons)}")
+#         print("-" * 80)
+#
+#
+# if __name__ == "__main__":
+#     FEATURES_CSV = r"./module_data/Default_Tenant/results/ml_features.csv"
+#     MODEL_DIR = r"./module_data/Default_Tenant/models"
+#     test_layer2_explainability(FEATURES_CSV, MODEL_DIR)
