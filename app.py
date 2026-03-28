@@ -6,7 +6,7 @@ import gc
 # 1. PAGE CONFIGURATION
 # =====================================================================
 st.set_page_config(
-    page_title="SOC APT Hunter Platform",
+    page_title="SOC Log Anomaly Detector Platform",
     layout="wide",
     page_icon="🛡️",
     initial_sidebar_state="expanded"
@@ -18,9 +18,9 @@ st.set_page_config(
 MODULES_REGISTRY = {
     "🏠 Giới thiệu (Home)": {
         "type": "home",
-        "description": "Trang chủ giới thiệu hệ thống SOC."
+        "description": "Trang chủ giới thiệu hệ thống."
     },
-    "🌐 Phân tích Web Server (AIT)": {
+    "🌐 Phân tích Log Web Server": {
         "type": "app",
         "path": "webserver_module_AIT.view",
         "status": "ready"
@@ -29,7 +29,7 @@ MODULES_REGISTRY = {
         "type": "app",
         "path": "fileserver_module.view",
         "status": "ready"
-    }
+    },
 }
 
 
@@ -68,13 +68,13 @@ def load_module_dynamically(module_path):
 # =====================================================================
 def main():
     # --- Sidebar (Chỉ để thông tin phụ) ---
-    st.sidebar.title("🛡️ SOC PLATFORM")
-    st.sidebar.markdown("Hệ thống Phát hiện APT Toàn diện")
     st.sidebar.divider()
-    st.sidebar.info("🎓 Đồ án tốt nghiệp\n\nKiến trúc Micro-module mở rộng.")
+    st.sidebar.info("🎓 Web demo Thực tập Dự án tốt nghiệp Tháng 03/2026")
+    st.sidebar.info("🎓 Sinh viên bảo vệ:\n"
+                    "Lê Phước Thạnh - 22127392")
 
     # --- Main Body: Horizontal Navigation ---
-    st.title("🛡️ SOC APT Hunter Platform")
+    st.title("🛡️ Hệ thống phát hiện tấn công mạng trên Log Web Server")
 
     module_names = list(MODULES_REGISTRY.keys())
 
@@ -109,7 +109,7 @@ def main():
 # 5. HOME PAGE
 # =====================================================================
 def render_home_page():
-    st.markdown("### Trung tâm Giám sát và Điều tra Sự cố An ninh Mạng")
+    st.markdown("### Hệ thống Giám sát và hỗ trợ điều tra Sự cố An ninh mạng")
     st.write("""
     Hệ thống áp dụng kiến trúc Micro-module, phân tích chuyên sâu đa bề mặt bằng cách kết hợp:
     * **Deterministic Rules (Tầng 1):** Bắt quả tang qua Signatures.

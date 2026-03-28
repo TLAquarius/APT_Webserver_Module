@@ -32,9 +32,9 @@ def render_dashboard(dashboard_data: dict):
     with col1:
         st.metric(label="Tổng Số Logs Xử Lý", value=f"{metrics.get('total_events', 0):,}")
     with col2:
-        st.metric(label="Payload Bị Chặn", value=f"{metrics.get('l1_blocks', 0):,}")
+        st.metric(label="Payload Bị Chặn Layer 1", value=f"{metrics.get('l1_blocks', 0):,}")
     with col3:
-        st.metric(label="Phiên Bất Thường (AI)", value=f"{metrics.get('anomalous_sessions', 0):,}")
+        st.metric(label="Phiên Bất Thường (Machine Learning Layer)", value=f"{metrics.get('anomalous_sessions', 0):,}")
     with col4:
         st.metric(label="Phiên Sạch (NORMAL)", value=f"{metrics.get('normal_sessions', 0):,}")
     with col5:
@@ -43,7 +43,7 @@ def render_dashboard(dashboard_data: dict):
         st.metric(label="Mức Độ Đe Dọa", value=f"{color} {threat}")
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("### 🛡️ 2. Bề mặt Tấn công (Dựa trên WAF Regex)")
+    st.markdown("### 🛡️ 2. Thống kê tấn công Layer 1  (Dựa trên WAF Regex)")
     waf_data = dashboard_data.get("zone2_waf", {})
     col2_1, col2_2 = st.columns(2)
     with col2_1:
@@ -70,7 +70,7 @@ def render_dashboard(dashboard_data: dict):
     with col2_3:
         top_ips = waf_data.get("top_ips", {})
         if top_ips:
-            fig_bar_ip = px.bar(x=list(top_ips.keys()), y=list(top_ips.values()), title="Top 10 IP Tấn công",
+            fig_bar_ip = px.bar(x=list(top_ips.keys()), y=list(top_ips.values()), title="Top 10 IP có lượng Request cao",
                                 labels={'x': 'Địa chỉ IP', 'y': 'Số lượng Request'}, color=list(top_ips.values()),
                                 color_continuous_scale="Reds")
             st.plotly_chart(fig_bar_ip, use_container_width=True)
@@ -78,13 +78,13 @@ def render_dashboard(dashboard_data: dict):
         top_uris = waf_data.get("top_uris", {})
         if top_uris:
             fig_bar_uri = px.bar(x=list(top_uris.values()), y=list(top_uris.keys()), orientation='h',
-                                 title="Top 10 Đích ngắm (URIs)",
+                                 title="Top 10 URIs được Request",
                                  labels={'x': 'Số lượng Request', 'y': 'Đường dẫn (URI)'})
             fig_bar_uri.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig_bar_uri, use_container_width=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("### 🧠 3. Phân tích Hành vi (AI/ML)")
+    st.markdown("### 🧠 3. Phân tích Hành vi ML")
     color_map = {"NORMAL": "#00CC96", "SUSPICIOUS": "#FFA15A", "CRITICAL": "#EF553B"}
 
     col_empty_left, col_pie_center, col_empty_right = st.columns([1, 2, 1])
@@ -252,8 +252,8 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
                 "Loại Tấn Công (WAF)": alert_str if alert_str else "N/A",
                 "Chi tiết (Decode/Lỗi)": decoded_info,
                 "Đích ngắm (URI)": full_uri,
-                "Trạng thái": http_method,
-                "Mã Code": status_code if status_code != "None" else "N/A",
+                "Phương thức": http_method,
+                "Mã trạng thái": status_code if status_code != "None" else "N/A",
                 "Host (VHost)": vhost if vhost else "N/A",
                 "Kích thước (Bytes)": str(int(bytes_sent)) if bytes_sent is not None else "N/A",
                 "User Agent": user_agent if user_agent and user_agent != "-" else "N/A",
@@ -278,9 +278,9 @@ def run_llm_advisor(dashboard_data: dict):
             "IP Nguồn": inc.get("source_ip"),
             "Mức Đe Dọa": inc.get("overall_threat_level"),
             "Cảnh báo WAF L1": " | ".join(inc.get("layer1_alerts", [])),
-            "Lý do Stat AI": " | ".join(inc.get("statistical_anomaly_reasons", [])),
+            "Lý do (Stat AI)": " | ".join(inc.get("statistical_anomaly_reasons", [])),
             "Điểm Stat": inc.get("max_statistical_score"),
-            "Lý do Markov AI": " | ".join(inc.get("sequential_anomaly_reasons", [])),
+            "Lý do (Markov AI)": " | ".join(inc.get("sequential_anomaly_reasons", [])),
             "Điểm Markov": inc.get("max_markov_score"),
             "Số Request": inc.get("total_raw_events"),
             "Chuỗi Hành Vi": inc.get("sequence_chain")
@@ -313,7 +313,7 @@ def run_llm_advisor(dashboard_data: dict):
         display_df = display_df[display_df["Mức Đe Dọa"] != "NORMAL"]
 
     st.markdown(
-        "💡 *Mẹo: Giải thích AI (XAI) - Các ô được bôi màu Đỏ nhạt/Cam là nguyên nhân cốt lõi khiến AI đánh dấu phiên truy cập này là bất thường.*")
+        "💡 *Chú thích: Các ô được bôi màu Đỏ nhạt/Cam là nguyên nhân cốt lõi khiến AI đánh dấu phiên truy cập này là bất thường.*")
 
     def highlight_session_cells(row):
         styles = [''] * len(row)
@@ -341,7 +341,7 @@ def run_llm_advisor(dashboard_data: dict):
 
     if selected_case:
         st.markdown(f"#### 🔍 Điều tra Chuyên sâu: `{selected_case['source_ip']}`")
-        st.markdown("**Dòng thời gian Sự kiện (Nhanh & Hỗ trợ cuộn vô hạn/Tìm kiếm)**")
+        st.markdown("**Dòng thời gian Sự kiện**")
 
         df_timeline = format_timeline_to_df(selected_case.get("timeline", []))
 
@@ -366,7 +366,7 @@ def run_llm_advisor(dashboard_data: dict):
         # 🟢 NATIVE STREAMLIT COMPONENT FOR MAX PERFORMANCE & INFINITE SCROLL
         st.dataframe(df_timeline, use_container_width=True, hide_index=True)
 
-        st.markdown("##### 🤖 Yêu cầu AI Giải thích Mã độc")
+        st.markdown("##### 🤖 Yêu cầu AI Giải thích Phiên")
         api_key = st.session_state.get("llm_api_key", "")
         provider = st.session_state.get("llm_provider", "nvidia")
         model = st.session_state.get("llm_model", "meta/llama3-70b-instruct")
@@ -622,8 +622,8 @@ def render_page():
                     st.rerun()
 
     render_standard_module_layout(
-        module_name="Web Server APT Hunter",
-        module_description="Hệ thống Phát hiện APT trên Web Server. Kết hợp WAF lai, Học máy Hành vi và Phân tích LLM.",
+        module_name="Web Server Log Inspector",
+        module_description="Hệ thống Phát hiện tấn công mạng trên log Web Server. Kết hợp WAF Hybrid, Học máy Hành vi và Phân tích LLM.",
         render_dashboard_func=lambda: render_dashboard(dashboard_data),
         run_llm_func=lambda: run_llm_advisor(dashboard_data),
         render_upload_func=render_upload_and_config

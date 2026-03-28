@@ -7,6 +7,7 @@ class SystemEvaluator:
     def __init__(self, labels_dir: str, raw_logs_dir: str, results_dir: str):
         self.labels_dir = labels_dir
         self.raw_logs_dir = raw_logs_dir
+        self.results_dir = results_dir  # Store results dir for output files
         self.layer1_alerts_path = os.path.join(results_dir, "layer1_alerts.ndjson")
         self.session_timelines_path = os.path.join(results_dir, "session_timelines.json")
         self.stat_scores_csv = os.path.join(results_dir, "statistical_scores.csv")
@@ -51,7 +52,6 @@ class SystemEvaluator:
             for line in f:
                 if not line.strip(): continue
                 session = json.loads(line)
-
                 session_id = session.get('session_id')
                 parent_id = session.get('parent_tracking_id')
                 events = session.get('timeline', [])
@@ -102,30 +102,52 @@ class SystemEvaluator:
         y_true = []
         y_pred = []
 
+        # 🟢 NEW: Lists to store samples for investigation
+        missed_attacks = []
+        false_positives = []
+
         with open(self.layer1_alerts_path, 'r', encoding='utf-8') as f:
             for line in f:
                 if not line.strip(): continue
                 record = json.loads(line)
+                raw_msg = record.get('raw_message', '').strip()
 
-                is_actual = record.get('raw_message', '').strip() in self.malicious_raw_texts
+                is_actual = raw_msg in self.malicious_raw_texts
                 is_predicted = record.get('layer1_flagged', False)
 
                 y_true.append(is_actual)
                 y_pred.append(is_predicted)
 
+                # 🟢 DEBUG LOGIC
+                if is_actual and not is_predicted:
+                    # Attack existed but WAF missed it (False Negative)
+                    missed_attacks.append(raw_msg)
+                elif not is_actual and is_predicted:
+                    # Log was benign but WAF flagged it (False Positive)
+                    # We also save the alert reason to help you debug
+                    reason = record.get('layer1_alerts', 'Unknown')
+                    false_positives.append(f"[{reason}] {raw_msg}")
+
+        # Save to files
+        with open(os.path.join(self.results_dir, "l1_missed_attacks.txt"), "w", encoding="utf-8") as f1:
+            f1.write("\n".join(list(set(missed_attacks))))
+
+        with open(os.path.join(self.results_dir, "l1_false_positives.txt"), "w", encoding="utf-8") as f2:
+            f2.write("\n".join(list(set(false_positives))))
+
+        print(f"[!] Exported investigation logs to {self.results_dir}")
         print(
             f"{'Tiêu chí Alert':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
         print("-" * 105)
         self._print_metrics(y_true, y_pred, "Flagged == True")
 
+    # ... (Keep existing methods: evaluate_statistical_model, evaluate_sequential_model, evaluate_correlator_e2e) ...
     def evaluate_statistical_model(self):
         print("\n" + "=" * 105)
         print("🎯 ĐÁNH GIÁ MÔ HÌNH THỐNG KÊ (STATISTICAL LAYER) - SESSION LEVEL")
         print("-" * 105)
-
         df = pd.read_csv(self.stat_scores_csv)
         df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
-
         print(
             f"{'Ngưỡng (Thresh)':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
         print("-" * 105)
@@ -137,10 +159,8 @@ class SystemEvaluator:
         print("\n" + "=" * 105)
         print("🎯 ĐÁNH GIÁ MÔ HÌNH CHUỖI MARKOV (SEQUENTIAL LAYER) - SESSION LEVEL")
         print("-" * 105)
-
         df = pd.read_csv(self.seq_scores_csv)
         df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
-
         print(
             f"{'Ngưỡng (Thresh)':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
         print("-" * 105)
@@ -152,57 +172,35 @@ class SystemEvaluator:
         print("\n" + "=" * 105)
         print("🚀 ĐÁNH GIÁ TỔNG THỂ HỆ THỐNG CORRELATOR (END-TO-END) - INCIDENT LEVEL")
         print("-" * 105)
-
-        y_true = []
-        y_pred = []
+        y_true, y_pred = [], []
         ablation_stats = {'waf_only': 0, 'ml_only': 0, 'both': 0}
-
         with open(self.incident_reports_path, 'r', encoding='utf-8') as f:
             for line in f:
                 if not line.strip(): continue
                 incident = json.loads(line)
-
                 parent_id = incident.get('incident_tracking_id')
                 threat_level = incident.get('overall_threat_level')
-
                 is_actual = self.incident_ground_truth.get(parent_id, False)
                 is_predicted = threat_level in ["CRITICAL", "SUSPICIOUS"]
-
                 y_true.append(is_actual)
                 y_pred.append(is_predicted)
-
                 if is_actual and is_predicted:
-                    # 🟢 Much cleaner ablation logic using the compiled root fields!
                     max_ml = max(incident.get('max_statistical_score', 0), incident.get('max_markov_score', 0))
                     has_waf = len(incident.get('layer1_alerts', [])) > 0
-
                     if has_waf and max_ml >= 50:
                         ablation_stats['both'] += 1
                     elif has_waf and max_ml < 50:
                         ablation_stats['waf_only'] += 1
                     elif not has_waf and max_ml >= 50:
                         ablation_stats['ml_only'] += 1
-
         print(
             f"{'Tiêu chí Alert':<16} | {'Recall (TP/FN)':<22} | {'FPR (Báo giả)':<22} | {'Precision':<11} | {'F1-Score':<9} | {'Accuracy':<10}")
         print("-" * 105)
         self._print_metrics(y_true, y_pred, "SUSPICIOUS+")
 
-        print("\n🔍 PHÂN TÍCH ĐÓNG GÓP HỆ THỐNG (ABLATION STUDY):")
-        tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt and yp)
-        if tp > 0:
-            print(
-                f"    ➤ Bắt được CẢ nhờ WAF và ML Hành vi : {ablation_stats['both']} ({ablation_stats['both'] / tp * 100:.1f}%)")
-            print(
-                f"    ➤ Chỉ bắt được nhờ WAF tĩnh (Tầng 1): {ablation_stats['waf_only']} ({ablation_stats['waf_only'] / tp * 100:.1f}%)")
-            print(
-                f"    ➤ Chỉ bắt được nhờ ML AI (Tầng 2+3) : {ablation_stats['ml_only']} ({ablation_stats['ml_only'] / tp * 100:.1f}%) [SỨC MẠNH LÕI]")
-
     def run_all(self):
         self._extract_ground_truth()
-        if not self.malicious_raw_texts:
-            return
-
+        if not self.malicious_raw_texts: return
         self.evaluate_layer1_waf()
         self.evaluate_statistical_model()
         self.evaluate_sequential_model()
@@ -213,6 +211,5 @@ if __name__ == "__main__":
     LABELS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\labels"
     RAW_LOGS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\gather"
     PROFILE_RESULTS_DIR = r"./module_data/Default_Tenant/results"
-
     evaluator = SystemEvaluator(LABELS_PATH, RAW_LOGS_PATH, PROFILE_RESULTS_DIR)
     evaluator.run_all()

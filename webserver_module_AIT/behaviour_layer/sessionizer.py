@@ -63,9 +63,6 @@ class UserSession:
         self.interarrival_times = []
 
     def _get_extension(self, uri):
-        """
-        Extracts the file extension from a URI string.
-        """
         if not uri or '?' in uri: return ""
         parts = uri.split('.')
         if len(parts) > 1:
@@ -73,9 +70,6 @@ class UserSession:
         return ""
 
     def update(self, record, log_time):
-        """
-        Updates the session statistics and timeline with a new log record.
-        """
         if self.total_logs > 0:
             time_diff = (log_time - self.last_seen).total_seconds()
             if time_diff >= 0:
@@ -91,10 +85,10 @@ class UserSession:
         if record.get('is_evasion_attempt'):
             self.evasion_count += 1
 
-        uri_path = record.get('uri_path', '')
-        uri_query = record.get('uri_query', '')
+        uri_path = record.get('uri_path') or ''
+        uri_query = record.get('uri_query') or ''
 
-        req_length = len(str(uri_path)) + len(str(uri_query))
+        req_length = len(uri_path) + len(uri_query)
         if req_length > self.max_req_length:
             self.max_req_length = req_length
 
@@ -147,9 +141,6 @@ class UserSession:
             self.max_resp_bytes = bytes_sent
 
     def extract_data(self, geo_reader=None):
-        """
-        Computes final statistical rates and bundles the JSON timeline.
-        """
         duration_sec = (self.last_seen - self.start_time).total_seconds()
         safe_duration = max(1.0, duration_sec)
 
@@ -171,9 +162,20 @@ class UserSession:
             geo_country = "UNKNOWN"
 
         session_id = f"{self.ip}_{self.start_time.strftime('%Y%m%d%H%M%S_%f')}"
-        min_arrival = 0.0 if self.min_interarrival_sec == float('inf') else self.min_interarrival_sec
+
+        # 🟢 FIX 1: Velocity Logic & Micro-session protections
+        if self.total_logs <= 1:
+            req_per_min = 0.0
+            min_arrival = 2.0  # Safe default for humans to avoid looking like scripts
+        else:
+            req_per_min = self.total_logs / (safe_duration / 60.0)
+            min_arrival = 0.0 if self.min_interarrival_sec == float('inf') else self.min_interarrival_sec
+
         avg_depth = self.total_uri_depth / self.total_logs if self.total_logs > 0 else 0
         bytes_std_dev = float(np.std(self.bytes_array)) if len(self.bytes_array) > 1 else 0.0
+
+        # 🟢 FIX 2: Laplace Smoothing (Prevents 1 error from looking like a 100% attack rate)
+        smooth_denom = self.total_logs + 5.0
 
         features = {
             "session_id": session_id,
@@ -183,28 +185,33 @@ class UserSession:
             "is_external_ip": is_external,
             "session_duration_sec": round(duration_sec, 2),
             "total_requests": self.total_logs,
-            "req_per_min": round(self.total_logs / (safe_duration / 60.0), 2),
+            "req_per_min": round(req_per_min, 2),
             "min_interarrival_sec": round(min_arrival, 4),
             "avg_uri_depth": round(avg_depth, 2),
-            "error_404_rate": round(self.error_404 / self.total_logs, 4),
-            "error_403_rate": round(self.error_403 / self.total_logs, 4),
-            "error_401_rate": round(self.error_401 / self.total_logs, 4),
-            "error_50x_rate": round(self.error_50x / self.total_logs, 4),
-            "post_rate": round(self.post_count / self.total_logs, 4),
-            "rare_method_rate": round(self.rare_method_count / self.total_logs, 4),
+
+            # Smoothed Rates (Hostile behaviors)
+            "error_404_rate": round(self.error_404 / smooth_denom, 4),
+            "error_403_rate": round(self.error_403 / smooth_denom, 4),
+            "error_401_rate": round(self.error_401 / smooth_denom, 4),
+            "error_50x_rate": round(self.error_50x / smooth_denom, 4),
+            "post_rate": round(self.post_count / smooth_denom, 4),
+            "rare_method_rate": round(self.rare_method_count / smooth_denom, 4),
+            "suspicious_ext_rate": round(self.suspicious_ext_count / smooth_denom, 4),
+            "auth_attempt_rate": round(self.auth_count / smooth_denom, 4),
+            "evasion_attempt_rate": round(self.evasion_count / smooth_denom, 4),
+
+            # Standard Ratios (Normal behavior scaling)
             "unique_path_ratio": round(len(self.unique_uris) / self.total_logs, 4),
             "static_asset_ratio": round(self.static_asset_count / self.total_logs, 4),
-            "suspicious_ext_rate": round(self.suspicious_ext_count / self.total_logs, 4),
+
             "status_diversity": len(self.unique_statuses),
             "unique_uas": len(self.unique_uas),
             "avg_payload_bytes": round(self.bytes_sent_total / self.total_logs, 2),
             "max_resp_bytes": self.max_resp_bytes,
             "max_req_length": self.max_req_length,
-            "auth_attempt_rate": round(self.auth_count / self.total_logs, 4),
             "bytes_std_dev": round(bytes_std_dev, 2),
             "l1_alert_count": self.l1_alert_count,
-            "l1_alert_types": "|".join(self.l1_alert_types),
-            "evasion_attempt_rate": round(self.evasion_count / self.total_logs, 4)
+            "l1_alert_types": "|".join(self.l1_alert_types)
         }
 
         timeline_object = {
@@ -243,30 +250,20 @@ class StatefulStreamingEngine:
             pass
 
     def _get_adaptive_timeout(self, session):
-        """
-        Calculates the Adaptive Gap timeout based on the P95 inter-arrival time.
-        """
         if len(session.interarrival_times) < 5:
             return self.default_timeout_seconds
 
         p95 = np.percentile(session.interarrival_times, 95)
         adaptive_gap = max(min(self.adaptive_alpha * p95, self.adaptive_max_sec), self.adaptive_min_sec)
-
         return adaptive_gap
 
     def _parse_time(self, time_str):
-        """
-        Parses strictly formatted ISO8601 strings into datetime objects.
-        """
         time_str = time_str.replace('Z', '+00:00')
         if len(time_str) >= 5 and time_str[-5] in ('+', '-') and ':' not in time_str[-5:]:
             time_str = time_str[:-2] + ':' + time_str[-2:]
         return datetime.fromisoformat(time_str)
 
     def _find_correlated_ip(self, log_time, host_name, time_window=2.0):
-        """
-        Links orphan error logs to the most probable active session based on time proximity.
-        """
         best_ip = None
         smallest_diff = float('inf')
         for ip, session in self.active_sessions.items():
@@ -279,18 +276,12 @@ class StatefulStreamingEngine:
         return best_ip
 
     def _flush_session(self, ip):
-        """
-        Extracts finished session data and clears it from active memory.
-        """
         features, timeline = self.active_sessions[ip].extract_data(geo_reader=self.geo_reader)
         self.completed_features.append(features)
         self.completed_timelines.append(timeline)
         del self.active_sessions[ip]
 
     def _garbage_collect(self):
-        """
-        Sweeps inactive sessions that have exceeded their adaptive timeout.
-        """
         if not self.global_watermark: return
         stale_ips = []
         for ip, session in self.active_sessions.items():
@@ -302,9 +293,6 @@ class StatefulStreamingEngine:
             self._flush_session(ip)
 
     def process_stream(self, input_ndjson: str, output_csv: str, output_json: str, status_callback: Callable = None):
-        """
-        Main streaming loop that groups L1 alerts into structured sessions.
-        """
         total_logs = 0
 
         with open(input_ndjson, 'r', encoding='utf-8') as f:
@@ -362,9 +350,6 @@ class StatefulStreamingEngine:
         return True
 
     def _export_data(self, csv_path, json_path):
-        """
-        Saves computed numerical features to CSV and raw timelines to JSON.
-        """
         if not self.completed_features: return
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=self.completed_features[0].keys())

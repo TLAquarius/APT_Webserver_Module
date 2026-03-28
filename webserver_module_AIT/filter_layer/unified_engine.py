@@ -98,8 +98,10 @@ class Layer1UnifiedEngine:
                 padded_str = b64_str + "=" * pad_len
                 decoded_bytes = base64.b64decode(padded_str)
                 decoded_text = decoded_bytes.decode('ascii', errors='ignore')
+
                 if self.ascii_check.search(decoded_text):
-                    expanded_payload += f" {decoded_text} "
+                    clean_text = "".join([c for c in decoded_text if c.isprintable()])
+                    expanded_payload += f" {clean_text} "
             except Exception:
                 pass
 

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import IsolationForest
 from sklearn.svm import OneClassSVM
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import RobustScaler
 import joblib
 import os
 import json
@@ -14,17 +14,19 @@ class Layer2AnomalyEnsemble:
         """
         Initializes the statistical anomaly detection ensemble.
         """
-        self.iso_forest = IsolationForest(n_estimators=100, contamination='auto', random_state=42)
-        self.ocsvm = OneClassSVM(kernel='rbf', gamma='scale', nu=0.02)
-        self.scaler = StandardScaler()
+        self.iso_forest = IsolationForest(n_estimators=300, contamination='auto', random_state=42, max_samples='auto')
+        self.ocsvm = OneClassSVM(kernel='rbf', gamma='scale', nu=0.01)
+        self.scaler = RobustScaler()
 
         self.feature_cols = [
             'is_external_ip', 'session_duration_sec', 'total_requests',
             'req_per_min', 'min_interarrival_sec', 'avg_uri_depth',
-            'error_404_rate', 'error_403_rate', 'error_50x_rate', 'post_rate', 'rare_method_rate',
-            'unique_path_ratio', 'static_asset_ratio', 'suspicious_ext_rate',
-            'status_diversity', 'unique_uas', 'avg_payload_bytes', 'max_resp_bytes',
-            'geo_country_freq', 'auth_attempt_rate', 'bytes_std_dev'
+            'error_404_rate', 'error_403_rate', 'error_401_rate', 'error_50x_rate',
+            'post_rate', 'rare_method_rate', 'unique_path_ratio', 'static_asset_ratio',
+            'suspicious_ext_rate', 'status_diversity', 'unique_uas',
+            'avg_payload_bytes', 'max_resp_bytes', 'max_req_length',
+            'geo_country_freq', 'auth_attempt_rate', 'bytes_std_dev',
+            'evasion_attempt_rate'
         ]
 
     def _normalize_anomaly_scores(self, scores, min_val, p99_val):
@@ -41,21 +43,21 @@ class Layer2AnomalyEnsemble:
 
     def _extract_anomaly_reasons(self, X_scaled):
         """
-        Extracts the top deviating features based on their Z-scores to provide explainability.
+        Extracts the top deviating features based on their Z-scores (or Robust-scores) to provide explainability.
         """
         top_reasons = []
         for i in range(len(X_scaled)):
-            z_scores = X_scaled[i]
-            abs_z_scores = np.abs(z_scores)
+            scores_array = X_scaled[i]
+            abs_scores = np.abs(scores_array)
 
-            top_3_indices = np.argsort(abs_z_scores)[-3:][::-1]
+            top_3_indices = np.argsort(abs_scores)[-3:][::-1]
 
             reasons = []
             for idx in top_3_indices:
-                val = z_scores[idx]
+                val = scores_array[idx]
                 if abs(val) > 2.0:
                     feat_name = self.feature_cols[idx]
-                    reasons.append(f"{feat_name} ({val:+.1f}σ)")
+                    reasons.append(f"{feat_name} ({val:+.1f} IQR)")
 
             if reasons:
                 top_reasons.append(" | ".join(reasons))

@@ -8,9 +8,6 @@ from typing import Callable
 class DataCorrelator:
     def __init__(self, stat_csv, seq_csv, timelines_json, output_ndjson,
                  models_dir="./webserver_module_AIT/module_data/Default_Tenant/models"):
-        """
-        Initializes the Tiered Alert Correlator to fuse Layer 1 WAF, Layer 2 Stats, and Layer 3 Markov outputs.
-        """
         self.stat_csv = stat_csv
         self.seq_csv = seq_csv
         self.timelines_json = timelines_json
@@ -33,9 +30,6 @@ class DataCorrelator:
         self.lethal_l1_alerts = {"SQLi", "XSS", "RCE", "RCE_Execution_Output", "LFI", "SSRF"}
 
     def _load_alert_config(self):
-        """
-        Loads the dynamically adjusted sensitivity thresholds.
-        """
         config_path = os.path.join(self.models_dir, "alert_config.json")
         default_config = {"suspicious_threshold": 50, "critical_threshold": 80}
         if os.path.exists(config_path):
@@ -46,19 +40,22 @@ class DataCorrelator:
                 pass
         return default_config
 
-    def _determine_final_threat(self, stat_score, seq_score, l1_alerts_set):
-        """
-        Determines the final threat level using Tiered Alert Fusion.
-        """
+    def _determine_final_threat(self, stat_score, seq_score, l1_alerts_set, total_requests):
         sus_thresh = self.alert_config.get("suspicious_threshold", 50)
         crit_thresh = self.alert_config.get("critical_threshold", 80)
         max_ai_score = max(stat_score, seq_score)
 
-        if l1_alerts_set.intersection(self.lethal_l1_alerts):
-            return "CRITICAL"
+        has_lethal_waf = bool(l1_alerts_set.intersection(self.lethal_l1_alerts))
 
-        if l1_alerts_set:
-            max_ai_score = min(100.0, max_ai_score + 30.0)
+        if has_lethal_waf:
+            if max_ai_score >= 40:
+                return "CRITICAL"
+            elif max_ai_score >= 25:
+                return "SUSPICIOUS"
+            elif total_requests <= 3:
+                return "CRITICAL"
+            else:
+                pass
 
         if max_ai_score >= crit_thresh:
             return "CRITICAL"
@@ -68,9 +65,6 @@ class DataCorrelator:
             return "NORMAL"
 
     def run_correlation(self, status_callback: Callable = None):
-        """
-        Executes the main correlation routine by merging stats, sequences, and raw timelines.
-        """
         if status_callback: status_callback("Correlator: Fusing ML scores and raw timelines...", 85)
 
         try:
@@ -112,9 +106,6 @@ class DataCorrelator:
         if status_callback: status_callback("Correlator: Incident Reports generated successfully.", 95)
 
     def _compress_timeline(self, raw_timeline):
-        """
-        Applies Run-Length Encoding (RLE) to compress identical, consecutive log patterns.
-        """
         compressed = []
         if not raw_timeline: return compressed
 
@@ -169,9 +160,6 @@ class DataCorrelator:
         return compressed
 
     def _build_case_files(self, parent_groups, available_features):
-        """
-        Assembles the final comprehensive incident reports and exports them as NDJSON.
-        """
         raw_timelines = {}
         with open(self.timelines_json, 'r', encoding='utf-8') as f:
             for line in f:
@@ -221,7 +209,7 @@ class DataCorrelator:
                     for alert in event.get('layer1_alerts', []):
                         l1_alerts_set.add(alert)
 
-            final_threat_level = self._determine_final_threat(max_stat_score, max_markov_score, l1_alerts_set)
+            final_threat_level = self._determine_final_threat(max_stat_score, max_markov_score, l1_alerts_set, len(full_timeline))
 
             full_timeline = sorted(full_timeline, key=lambda x: x.get('@timestamp', ''))
             compressed_timeline = self._compress_timeline(full_timeline)

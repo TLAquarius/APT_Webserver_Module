@@ -77,7 +77,10 @@ class MarkovSequentialEngine:
         if any(kw in uri for kw in self.AUTH_KEYWORDS): return "AUTH_ACTION"
         if any(kw in uri for kw in self.ADMIN_KEYWORDS): return "ADMIN_ACTION"
 
-        ext = "." + uri.split('.')[-1] if '.' in uri else ""
+        # 🟢 FIX: Safe extension parsing preventing fake matches on API paths
+        parts = uri.split('/')[-1].split('.')
+        ext = "." + parts[-1] if len(parts) > 1 else ""
+
         if ext in self.STATIC_EXTS: return "STATIC_ASSET"
         if ext in self.SENSITIVE_EXTS: return "SENSITIVE_FILE_ACCESS"
         if method in ("POST", "PUT", "DELETE"): return "FORM_SUBMISSION"
@@ -96,7 +99,7 @@ class MarkovSequentialEngine:
 
     def _calculate_raw_score(self, timeline):
         """
-        Computes the negative log likelihood, dynamic loop penalty, and extracts the primary anomaly reason.
+        Computes the negative log likelihood, hostile density penalty, and extracts the primary anomaly reason.
         """
         if len(timeline) < 2: return 0.0, "TOO_SHORT", "Sequence too short"
 
@@ -129,29 +132,22 @@ class MarkovSequentialEngine:
 
         avg_log_prob = log_prob / (len(timeline) - 1)
 
-        loop_penalty = 0.0
-        loop_reason = ""
-        hostile_states = {"CLIENT_ERR", "SERVER_ERR", "AUTH_ACTION", "DYNAMIC_QUERY", "WAF_ALERT", "EVASION_ATTEMPT"}
+        # 🟢 FIX: Removed DYNAMIC_QUERY. Normal users click paginations and filters!
+        hostile_states = {"CLIENT_ERR", "SERVER_ERR", "AUTH_ACTION", "WAF_ALERT", "EVASION_ATTEMPT"}
+        hostile_count = sum(1 for state in raw_states if state in hostile_states)
+        hostile_ratio = hostile_count / len(raw_states)
 
-        if len(raw_states) > 10:
-            state_counts = Counter(raw_states)
-            dominant_state, dom_count = state_counts.most_common(1)[0]
+        density_penalty = 0.0
+        explanation = ""
 
-            if dom_count > 10 and dominant_state in hostile_states:
-                loop_transitions = sum(1 for i in range(len(raw_states) - 1) if
-                                       raw_states[i] == dominant_state and raw_states[i + 1] == dominant_state)
-                loop_ratio = loop_transitions / len(raw_states)
-                loop_penalty = (loop_ratio ** 2) * 50
-                if loop_penalty > 5.0:
-                    loop_reason = f"Automated loop on {dominant_state}"
+        if hostile_ratio > 0.4 and len(raw_states) > 5:
+            density_penalty = (hostile_ratio ** 2) * 50.0
+            explanation = f"High density of hostile behavior ({hostile_ratio * 100:.1f}%)"
 
-        raw_score = abs(avg_log_prob) + loop_penalty
+        raw_score = abs(avg_log_prob) + density_penalty
         seq_summary = " -> ".join(list(dict.fromkeys(raw_states[:5])))
 
-        explanation = ""
-        if loop_reason:
-            explanation = loop_reason
-        else:
+        if not explanation:
             transitions_taken.sort(key=lambda x: x[1])
             if transitions_taken:
                 rarest_trans, rarest_p = transitions_taken[0]
@@ -287,6 +283,7 @@ class MarkovSequentialEngine:
             res["markov_threat_score"] = round(normalized_scores[i], 2)
 
         df = pd.DataFrame(results,
-                          columns=["session_id", "parent_tracking_id", "markov_threat_score", "sequence_summary", "anomaly_reasons"])
+                          columns=["session_id", "parent_tracking_id", "markov_threat_score", "sequence_summary",
+                                   "anomaly_reasons"])
         df = df.sort_values(by='markov_threat_score', ascending=False)
         df.to_csv(output_csv, index=False)
