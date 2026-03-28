@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  soc-platform:
+    build: .
+    container_name: web_log_anomaly_detector
+    ports:
+      - "8501:8501"
+    volumes:
+      # Maps local folders to Docker so generated CSVs/Models are saved to your host machine
+      - ./webserver_module_AIT/module_data:/app/webserver_module_AIT/module_data
+      - ./webserver_module_AIT/test_data:/app/webserver_module_AIT/test_data
+    environment:
+      - PYTHONUNBUFFERED=1
