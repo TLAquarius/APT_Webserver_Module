@@ -208,8 +208,8 @@ class SystemEvaluator:
 
 
 if __name__ == "__main__":
-    LABELS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\labels"
-    RAW_LOGS_PATH = r"D:\Download\Do_an_tot_nghiep\dataset\russellmitchell\gather"
+    LABELS_PATH = r"./test_data/russellmitchell/labels"
+    RAW_LOGS_PATH = r"./test_data/russellmitchell/gather"
     PROFILE_RESULTS_DIR = r"./module_data/Default_Tenant/results"
     evaluator = SystemEvaluator(LABELS_PATH, RAW_LOGS_PATH, PROFILE_RESULTS_DIR)
     evaluator.run_all()
@@ -302,8 +302,8 @@ if __name__ == "__main__":
 #
 #
 # if __name__ == "__main__":
-#     L1 = r"D:\PycharmProjects\APT\Version1-0\webserver_module_AIT\module_data\Default_Tenant\results\layer1_alerts.ndjson"
-#     INC = r"D:\PycharmProjects\APT\Version1-0\webserver_module_AIT\module_data\Default_Tenant\results\incident_reports.ndjson"
+#     L1 = r"./module_data/Default_Tenant/results/layer1_alerts.ndjson"
+#     INC = r"./module_data/Default_Tenant/results/incident_reports.ndjson"
 #
 #     inspect_layer1(L1)
 #     inspect_incidents(INC)
