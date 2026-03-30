@@ -278,9 +278,9 @@ def run_llm_advisor(dashboard_data: dict):
             "IP Nguồn": inc.get("source_ip"),
             "Mức Đe Dọa": inc.get("overall_threat_level"),
             "Cảnh báo WAF L1": " | ".join(inc.get("layer1_alerts", [])),
-            "Lý do (Stat AI)": " | ".join(inc.get("statistical_anomaly_reasons", [])),
+            "Lý do Stat ML": " | ".join(inc.get("statistical_anomaly_reasons", [])),
             "Điểm Stat": inc.get("max_statistical_score"),
-            "Lý do (Markov AI)": " | ".join(inc.get("sequential_anomaly_reasons", [])),
+            "Lý do Markov ML": " | ".join(inc.get("sequential_anomaly_reasons", [])),
             "Điểm Markov": inc.get("max_markov_score"),
             "Số Request": inc.get("total_raw_events"),
             "Chuỗi Hành Vi": inc.get("sequence_chain")
@@ -317,11 +317,11 @@ def run_llm_advisor(dashboard_data: dict):
 
     def highlight_session_cells(row):
         styles = [''] * len(row)
-        stat_reason = str(row.get('Lý do Stat AI', ''))
-        seq_reason = str(row.get('Lý do Markov AI', ''))
+        stat_reason = str(row.get('Lý do Stat ML', ''))
+        seq_reason = str(row.get('Lý do Markov ML', ''))
 
         for i, col in enumerate(row.index):
-            if col != 'Lý do Stat AI' and col in stat_reason:
+            if col != 'Lý do Stat ML' and col in stat_reason:
                 styles[i] = 'background-color: rgba(255, 99, 71, 0.4); border: 1px solid red;'
             if col == 'Chuỗi Hành Vi' and seq_reason:
                 styles[i] = 'background-color: rgba(255, 165, 0, 0.4); border: 1px solid orange;'

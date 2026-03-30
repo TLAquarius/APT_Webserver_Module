@@ -5,88 +5,88 @@ Missed:         85
 ==================================================
 
 --- MISSED PAYLOADS ---
-" or ""&"
-" or ""-"
-' or "
-\\
-"*"
-'
-RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='
-Comments:
-;%00	Nullbyte
-1′) and '1′='1–
-"-"
-"&"
-' OR '' = '
-' OORR 1<2 #
-/
-' or '1′='1
--- -	SQL comment
-) or '1′='1–
-' and 1='1
-/*…*/
-`
-AND false
-AND true
-' or '' '
-" or "" "
-'*'
-' or ''^'
-`	    Backtick
-' '
-" or ""="
-+		addition, concatenate (or space in url)
-OR x=y--
-Finding the table name
-' and 'one'='one–
 ' or ''='
-"^"
-AND 0
-''
+\\
 '="or'
-'LIKE'
-%00
-' AND id IS NULL; --
-'=0--+
-\
-' OR 1 -- -
-IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--
-' or ''*'
-1*56
-@@variable	global variable
-'&'
-' OR '1
-' and 'x'='x
-""
-``
-1-false
-' or ''-'
-"
-' or 'one'='one–
-'='
-' or 'one'='one
--2
-||		(double pipe) concatenate
-1-true
-%		wildcard attribute indicator
-//
-OR x=y#
-" "
-/*  	C-style comment
-AND 1
-' or ''&'
-,
-Time-Based:
-'^'
-' and a='a
-" OR "" = "
-'=' 'or' and '=' 'or'
-'\"
-@variable	local variable
--- or #
-" or ""*"
-'-'
+AND true
 ' and 'one'='one
-;
-" or ""^"
+"*"
+;%00	Nullbyte
+\
+'&'
+OR x=y#
 OR x=y
+||		(double pipe) concatenate
+'=' 'or' and '=' 'or'
+%		wildcard attribute indicator
+" or ""-"
+' and 'x'='x
+" or ""^"
+;
+"
+1*56
+/*…*/
+" "
+' or '' '
+' '
+@@variable	global variable
+'\"
+' OR 1 -- -
+-2
+' OORR 1<2 #
+' or ''*'
+-- -	SQL comment
+'^'
+" or ""="
+AND 0
+Comments:
+RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='
+'='
+1′) and '1′='1–
+' or 'one'='one–
+' or '1′='1
+'*'
+"&"
+IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--
+`
+' or ''&'
+' and 1='1
+1-false
+"-"
+1-true
+AND 1
+" or "" "
+' OR '1
+AND false
+"^"
+) or '1′='1–
+" or ""&"
+,
+-- or #
+' or ''^'
+" OR "" = "
+' or "
+Time-Based:
+""
+/
+'=0--+
+``
+Finding the table name
++		addition, concatenate (or space in url)
+`	    Backtick
+' AND id IS NULL; --
+' OR '' = '
+" or ""*"
+' or 'one'='one
+' or ''-'
+' and a='a
+' and 'one'='one–
+//
+''
+'-'
+OR x=y--
+'LIKE'
+/*  	C-style comment
+@variable	local variable
+'
+%00
