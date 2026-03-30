@@ -141,9 +141,6 @@ def render_dashboard(dashboard_data: dict):
 
 
 def try_decode_payload(raw_uri):
-    """
-    Attempts to URL decode and Base64 decode payloads for display in the View.
-    """
     if not raw_uri or raw_uri == "N/A":
         return ""
 
@@ -184,8 +181,8 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
                 "Loại Tấn Công (WAF)": "N/A",
                 "Chi tiết (Decode/Lỗi)": event.get("summary", ""),
                 "Đích ngắm (URI)": event.get("uri_path", ""),
-                "Trạng thái": f"Lặp lại {event.get('count', 0)} lần",
-                "Mã Code": str(event.get("status_code", "N/A")),
+                "Phương thức": "N/A",
+                "Mã trạng thái": str(event.get("status_code", "N/A")),
                 "Host (VHost)": "N/A",
                 "Kích thước (Bytes)": "N/A",
                 "User Agent": "N/A",
@@ -238,14 +235,12 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
             if not http_method:
                 http_method = "INTERNAL" if is_error_log else "N/A"
 
-            # Integrate Error Message or Decode Payload
             decoded_info = ""
             if error_msg:
                 decoded_info = f"[Lỗi Máy Chủ]: {error_msg}"
             else:
                 decoded_info = try_decode_payload(full_uri)
 
-            # 🟢 REORDERED COLUMNS FOR UX
             formatted_data.append({
                 "Thời gian (Khoảng)": event.get("@timestamp", "")[:19].replace("T", " "),
                 "Phân loại": category,
@@ -260,7 +255,9 @@ def format_timeline_to_df(timeline_data: list) -> pd.DataFrame:
                 "Log thô": raw_message
             })
 
-    return pd.DataFrame(formatted_data)
+    df = pd.DataFrame(formatted_data)
+    df.insert(0, "STT", range(1, len(df) + 1))
+    return df
 
 
 def run_llm_advisor(dashboard_data: dict):
@@ -313,7 +310,7 @@ def run_llm_advisor(dashboard_data: dict):
         display_df = display_df[display_df["Mức Đe Dọa"] != "NORMAL"]
 
     st.markdown(
-        "💡 *Chú thích: Các ô được bôi màu Đỏ nhạt/Cam là nguyên nhân cốt lõi khiến AI đánh dấu phiên truy cập này là bất thường.*")
+        "💡 *Chú thích: Các ô được bôi màu Đỏ nhạt/Cam là nguyên nhân cốt lõi khiến AI đánh dấu phiên này là bất thường.*")
 
     def highlight_session_cells(row):
         styles = [''] * len(row)
@@ -341,14 +338,26 @@ def run_llm_advisor(dashboard_data: dict):
 
     if selected_case:
         st.markdown(f"#### 🔍 Điều tra Chuyên sâu: `{selected_case['source_ip']}`")
-        st.markdown("**Dòng thời gian Sự kiện**")
 
         df_timeline = format_timeline_to_df(selected_case.get("timeline", []))
 
-        # Smart filter
-        show_alerts_only = st.checkbox("🎯 Chỉ hiển thị các dòng log CÓ CẢNH BÁO HOẶC LỖI (Lọc rác/Scanner Bot)",
-                                       value=False)
+        st.markdown("**1. Công cụ Tra cứu Dòng thời gian**")
+        col_s1, col_s2, col_s3, col_s4 = st.columns([2, 3, 1, 2])
 
+        with col_s1:
+            search_col = st.selectbox("🎯 Chọn cột cần tìm:", options=df_timeline.columns.tolist(),
+                                      index=3)
+        with col_s2:
+            search_kw = st.text_input("🔍 Nhập từ khóa:", placeholder=f"Tìm trong '{search_col}'...")
+        with col_s3:
+            st.markdown("<br>", unsafe_allow_html=True)
+            exact_match = st.checkbox("Khớp toàn từ", value=False)
+        with col_s4:
+            context_size = st.number_input("Ngữ cảnh (± dòng lân cận):", min_value=0, max_value=100, value=10)
+
+        show_alerts_only = st.checkbox("🎯 Chỉ hiển thị log CÓ CẢNH BÁO/LỖI (Lọc bỏ request tĩnh vô hại)", value=False)
+
+        search_df = df_timeline.copy()
         if show_alerts_only:
             def is_alert_or_anomaly(row):
                 if row["Phân loại"] not in ["BÌNH THƯỜNG", "HÀNH VI LẶP LẠI (RLE)"] and "🚨 WAF BÁO ĐỘNG" not in row[
@@ -360,13 +369,61 @@ def run_llm_advisor(dashboard_data: dict):
                     return True
                 return False
 
-            mask = df_timeline.apply(is_alert_or_anomaly, axis=1)
-            df_timeline = df_timeline[mask]
+            search_df = search_df[search_df.apply(is_alert_or_anomaly, axis=1)]
 
-        # 🟢 NATIVE STREAMLIT COMPONENT FOR MAX PERFORMANCE & INFINITE SCROLL
-        st.dataframe(df_timeline, use_container_width=True, hide_index=True)
+        if search_kw:
+            current_search_hash = f"{search_col}_{search_kw}_{exact_match}_{show_alerts_only}"
+            if st.session_state.get('last_search_hash') != current_search_hash:
+                st.session_state['last_search_hash'] = current_search_hash
+                st.session_state['match_idx'] = 0
 
-        st.markdown("##### 🤖 Yêu cầu AI Giải thích Phiên")
+            if exact_match:
+                matches = search_df.index[
+                    search_df[search_col].astype(str).str.lower() == search_kw.strip().lower()].tolist()
+            else:
+                matches = search_df.index[
+                    search_df[search_col].astype(str).str.contains(search_kw.strip(), case=False, na=False)].tolist()
+
+            if matches:
+                st.success(f"✅ Tìm thấy **{len(matches)}** kết quả khớp.")
+
+                nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
+                with nav_col1:
+                    if st.button("⬅️ Kết quả trước", use_container_width=True):
+                        st.session_state['match_idx'] = max(0, st.session_state['match_idx'] - 1)
+                with nav_col3:
+                    if st.button("Kết quả tiếp ➡️", use_container_width=True):
+                        st.session_state['match_idx'] = min(len(matches) - 1, st.session_state['match_idx'] + 1)
+                with nav_col2:
+                    st.markdown(
+                        f"<div style='text-align: center; padding-top: 5px; font-size: 18px;'><b>Vị trí: {st.session_state['match_idx'] + 1} / {len(matches)}</b></div>",
+                        unsafe_allow_html=True)
+
+                target_idx = matches[st.session_state['match_idx']]
+
+                if context_size == 0:
+                    display_df = search_df.loc[matches]
+                else:
+                    iloc_pos = search_df.index.get_loc(target_idx)
+                    start_pos = max(0, iloc_pos - context_size)
+                    end_pos = min(len(search_df), iloc_pos + context_size + 1)
+                    display_df = search_df.iloc[start_pos:end_pos].copy()
+
+                def highlight_target(row):
+                    if row.name == target_idx:
+                        return [
+                            'background-color: rgba(255, 215, 0, 0.4); color: #000; font-weight: bold; border-top: 2px solid red; border-bottom: 2px solid red;'] * len(
+                            row)
+                    return [''] * len(row)
+
+                st.dataframe(display_df.style.apply(highlight_target, axis=1), use_container_width=True)
+            else:
+                st.warning("⚠️ Không tìm thấy kết quả nào khớp với yêu cầu.")
+        else:
+            st.dataframe(search_df, use_container_width=True, hide_index=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("**2. Yêu cầu AI Giải thích Phiên (LLM Advisor)**")
         api_key = st.session_state.get("llm_api_key", "")
         provider = st.session_state.get("llm_provider", "nvidia")
         model = st.session_state.get("llm_model", "meta/llama3-70b-instruct")
