@@ -218,11 +218,18 @@ class LLMAdvisor:
             "model": model,
             "messages": [
                 {"role": "system",
-                 "content": "You are a direct cybersecurity AI. Obey all instructions strictly. Do not invent data."},
+                 "content": "You are a direct cybersecurity AI. Obey all instructions strictly. Do not invent data. DO NOT repeat the same phrase multiple times."},
                 {"role": "user", "content": prompt}
             ],
-            "temperature": 0.05
+            "temperature": 0.08,
+            "max_tokens": 2000,
+            "frequency_penalty": 1.0,
+            "presence_penalty": 0.5
         }
+
+        print("\n" + "="*60, flush=True)
+        print("[DEBUG] ĐÃ TẠO XONG PAYLOAD. BẮT ĐẦU GỬI CHO OPENAI/NVIDIA/OPENROUTER...", flush=True)
+        print("="*60 + "\n", flush=True)
 
         try:
             response = requests.post(url, headers=headers, json=payload)
@@ -241,8 +248,17 @@ class LLMAdvisor:
 
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.05}
+            "generationConfig": {
+                "temperature": 0.08,
+                "maxOutputTokens": 2000,
+                "frequencyPenalty": 1.0,
+                "presencePenalty": 0.5
+            }
         }
+
+        print("\n" + "="*60, flush=True)
+        print("[DEBUG] ĐÃ TẠO XONG PAYLOAD. BẮT ĐẦU GỬI CHO GOOGLE GEMINI...", flush=True)
+        print("="*60 + "\n", flush=True)
 
         try:
             response = requests.post(url, headers=headers, json=payload)
