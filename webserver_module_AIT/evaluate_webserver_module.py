@@ -92,11 +92,11 @@ class SystemEvaluator:
 
     def evaluate_layer1_waf(self):
         print("\n" + "=" * 105)
-        print("🛡️ ĐÁNH GIÁ MÔ HÌNH LỌC TĨNH (LAYER 1 WAF) - LINE-BY-LINE LEVEL")
+        print("ĐÁNH GIÁ MÔ HÌNH LỌC TĨNH (LAYER 1 WAF) - LINE-BY-LINE LEVEL")
         print("-" * 105)
 
         if not os.path.exists(self.layer1_alerts_path):
-            print("❌ File layer1_alerts.ndjson không tồn tại.")
+            print("File layer1_alerts.ndjson không tồn tại.")
             return
 
         y_true = []
@@ -144,7 +144,7 @@ class SystemEvaluator:
     # ... (Keep existing methods: evaluate_statistical_model, evaluate_sequential_model, evaluate_correlator_e2e) ...
     def evaluate_statistical_model(self):
         print("\n" + "=" * 105)
-        print("🎯 ĐÁNH GIÁ MÔ HÌNH THỐNG KÊ (STATISTICAL LAYER) - SESSION LEVEL")
+        print("ĐÁNH GIÁ MÔ HÌNH THỐNG KÊ (STATISTICAL LAYER) - SESSION LEVEL")
         print("-" * 105)
         df = pd.read_csv(self.stat_scores_csv)
         df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
@@ -157,7 +157,7 @@ class SystemEvaluator:
 
     def evaluate_sequential_model(self):
         print("\n" + "=" * 105)
-        print("🎯 ĐÁNH GIÁ MÔ HÌNH CHUỖI MARKOV (SEQUENTIAL LAYER) - SESSION LEVEL")
+        print("ĐÁNH GIÁ MÔ HÌNH CHUỖI MARKOV (SEQUENTIAL LAYER) - SESSION LEVEL")
         print("-" * 105)
         df = pd.read_csv(self.seq_scores_csv)
         df['is_actual'] = df['session_id'].map(self.session_ground_truth).fillna(False)
@@ -170,7 +170,7 @@ class SystemEvaluator:
 
     def evaluate_correlator_e2e(self):
         print("\n" + "=" * 105)
-        print("🚀 ĐÁNH GIÁ TỔNG THỂ HỆ THỐNG CORRELATOR (END-TO-END) - INCIDENT LEVEL")
+        print("ĐÁNH GIÁ TỔNG THỂ HỆ THỐNG CORRELATOR (END-TO-END) - INCIDENT LEVEL")
         print("-" * 105)
         y_true, y_pred = [], []
         ablation_stats = {'waf_only': 0, 'ml_only': 0, 'both': 0}
@@ -208,8 +208,8 @@ class SystemEvaluator:
 
 
 if __name__ == "__main__":
-    LABELS_PATH = r"./test_data/russellmitchell/labels"
-    RAW_LOGS_PATH = r"./test_data/russellmitchell/gather"
+    LABELS_PATH = r"../../test_data/fox/labels"
+    RAW_LOGS_PATH = r"../../test_data/fox/gather"
     PROFILE_RESULTS_DIR = r"./module_data/Default_Tenant/results"
     evaluator = SystemEvaluator(LABELS_PATH, RAW_LOGS_PATH, PROFILE_RESULTS_DIR)
     evaluator.run_all()

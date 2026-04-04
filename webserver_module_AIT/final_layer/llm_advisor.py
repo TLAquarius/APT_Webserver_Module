@@ -36,6 +36,17 @@ class LLMAdvisor:
         combined_ml_reasons = " ".join(stat_reasons).lower()
         scored_events = []
 
+        max_bytes_in_session = 1
+        if "max_resp_bytes" in combined_ml_reasons or "avg_payload_bytes" in combined_ml_reasons:
+            try:
+                max_bytes_in_session = max(
+                    [int(e.get('bytes_sent') or 0) for e in timeline if
+                     e.get("event_type") != "COMPRESSED_BULK_ACTION"],
+                    default=1
+                )
+            except Exception:
+                pass
+
         for i, event in enumerate(timeline):
             score = 0
 
@@ -75,9 +86,9 @@ class LLMAdvisor:
             if "error_401_rate" in combined_ml_reasons and status == 401:
                 score += 200
 
-            if (
-                    "max_resp_bytes" in combined_ml_reasons or "avg_payload_bytes" in combined_ml_reasons) and bytes_sent > 100000:
-                score += 300
+            if "max_resp_bytes" in combined_ml_reasons or "avg_payload_bytes" in combined_ml_reasons:
+                size_ratio = bytes_sent / max_bytes_in_session
+                score += int(150 + (150 * size_ratio))
 
             if "suspicious_ext_rate" in combined_ml_reasons:
                 suspicious_exts = ['.bak', '.env', '.sql', '.git', '.old', '.log', '.sh', '.zip', '.tar.gz', '.inc',
